@@ -9,6 +9,39 @@ But some communities are open by nature: a neighbourhood
 marketplace, a city-wide running club, a public-domain book club.
 For those, Social Home has **global spaces**.
 
+## Four kinds of space
+
+Before you reach for a global space and a relay, it's worth
+knowing the full spectrum. Social Home has four space scopes,
+each one a slightly wider audience:
+
+| Scope         | Visible to                                    | Needs a relay (GFS)? |
+| ------------- | --------------------------------------------- | -------------------- |
+| **Private**   | Members you explicitly invite                 | No                   |
+| **Household** | Members of your own household                 | No                   |
+| **Public**    | All households you've already paired with     | **No**               |
+| **Global**    | Anyone — via a Global Federation Server (GFS) | Yes                  |
+
+The one that often gets overlooked is **public**. A public space
+is visible to every household you've already paired with — your
+extended family, your three best friends' homes, the eight
+neighbours you connected with on move-in day — _without_ needing
+a relay. Posts in a public space ride the same direct
+household-to-household federation that DMs and private spaces
+do. No GFS subscription, no relay outage to worry about, no
+public listing of your existence on the internet.
+
+You only need a global space when you want to be discoverable by
+**households you haven't paired with yet** — strangers
+browsing a public directory. The rest of this page covers that
+last case.
+
+> Space scopes are _downgrade-only_: a `global` space can become
+> `public`, `public` can become `household`, and so on. Going
+> the other way (private → public → global) requires explicit
+> admin action — and republishing to a GFS — so you can't
+> accidentally widen who sees what.
+
 ## What a global space is
 
 A global space lives on a small relay server — a **Global
@@ -119,19 +152,19 @@ specific community. See
 [Run a relay yourself](/docs/running-a-gfs/) for a Docker
 Compose + Cloudflare guide.
 
-## What changes vs private spaces
+## What changes vs other space scopes
 
-| Behaviour           | Private space                     | Global space                                                    |
-| ------------------- | --------------------------------- | --------------------------------------------------------------- |
-| Visible to          | only households you invited       | listed on the relay's directory; anyone paired with it can find |
-| Joining             | by invite, household-to-household | open / request / invite-only / link — host picks per space      |
-| How posts travel    | direct, household-to-household    | through the relay to every subscriber, every time               |
-| What the relay sees | nothing (no relay involved)       | metadata only — encrypted envelope, never plaintext             |
-| Encryption          | **always on**                     | **always on**                                                   |
-| Where messages live | each member's HA                  | each member's HA (relay never stores)                           |
-| If relay is offline | n/a                               | new posts drop until it's back                                  |
-| Visible to peers    | members only                      | members only — never leaks to your paired-household graph       |
-| Can be turned off   | yes, instantly                    | yes — un-publish; the relay forgets                             |
+| Behaviour           | Private / household / public            | Global                                                          |
+| ------------------- | --------------------------------------- | --------------------------------------------------------------- |
+| Visible to          | invited / household / paired peers only | listed on the relay's directory; anyone paired with it can find |
+| Joining             | invite or household membership          | open / request / invite-only / link — host picks per space      |
+| How posts travel    | direct, household-to-household          | through the relay to every subscriber, every time               |
+| What the relay sees | nothing (no relay involved)             | metadata only — encrypted envelope, never plaintext             |
+| Encryption          | **always on**                           | **always on**                                                   |
+| Where messages live | each member's HA                        | each member's HA (relay never stores)                           |
+| If relay is offline | n/a                                     | new posts drop until it's back                                  |
+| Visible to peers    | members only                            | members only — never leaks to your paired-household graph       |
+| Can be turned off   | yes, instantly                          | yes — un-publish; the relay forgets                             |
 
 ## Privacy in global spaces
 
