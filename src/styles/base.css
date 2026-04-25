@@ -53,6 +53,18 @@ body {
   color: var(--paper);
 }
 
+/* Consistent focus ring across every interactive element. The
+   ring uses the hearth accent so the brand colour does double
+   duty — visible on both paper and ink surfaces. */
+:focus-visible {
+  outline: 2px solid var(--hearth);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+.btn:focus-visible {
+  outline-offset: 4px;
+}
+
 /* ─── Typography ──────────────────────────────────────────────────── */
 
 h1,

@@ -835,9 +835,13 @@
   @media (max-width: 880px) {
     .wall {
       grid-template-columns: 1fr;
-      gap: var(--s-3);
+      gap: var(--s-4);
       min-height: 0;
+      padding-block: var(--s-5);
     }
+    /* Reset the desktop ``margin-top`` cascading + alternate the
+       residual rotation across the stack so the wall reads as
+       loose Polaroids rather than a wall-of-cards. */
     .card,
     .card--cal,
     .card--shop,
@@ -851,6 +855,12 @@
       grid-column: 1;
       grid-row: auto;
       margin-top: 0;
+    }
+    .card:nth-child(odd) {
+      --settle-rest: -0.6deg;
+    }
+    .card:nth-child(even) {
+      --settle-rest: 0.6deg;
     }
   }
 </style>

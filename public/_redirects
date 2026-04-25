@@ -1,0 +1,17 @@
+# Cloudflare-Pages-style redirects (also honoured by Netlify and a
+# few other static hosts). GitHub Pages itself doesn't read this
+# file, but we keep it around so a future host swap doesn't lose
+# the canonical short URLs we publish in talks / docs / QR codes.
+
+# Short installer URL — points at the HACS one-click add-on
+# repository helper that the website's CTA also uses.
+/install        https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsocial-home-io%2Fha-app    302
+/add-on         /install                                                                                                                                                                       302
+
+# Common typos / older inbound links.
+/getting-started        /docs/getting-started/      301
+/api                    https://github.com/social-home-io/socialhome   302
+/discord                https://github.com/social-home-io/socialhome/discussions   302
+
+# Apex spelling drift — keep the canonical URL stable.
+/social_home            /                           301
