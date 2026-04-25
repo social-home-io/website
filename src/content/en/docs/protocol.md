@@ -36,9 +36,26 @@ household do:
 - **🔔 Know when people are home** without asking. A quiet
   presence indicator shows who's around right now — no location
   tracking, no history, just the current moment.
+- **✅ Split chores instead of nagging.** Task lists with
+  assignees, deadlines, and an overdue badge. Drill the
+  bookshelf this weekend; recycle the old fridge today;
+  everyone sees who has what.
+- **📒 Keep the house manual in one place.** Pages are
+  Markdown wiki entries that live inside a Space — how to
+  bleed the radiators, where the meter readings go, the
+  babysitter handover. They sync across every household device.
+- **📝 Stickies for the things that don't deserve a page.**
+  Colourful tap-to-edit notes pinned to a Space canvas — the
+  modern fridge magnet. Carrots in the bottom drawer; birthday
+  gift ideas; the doorbell-fix shopping list.
 - **💬 Message your family across the world** — end-to-end
   encrypted, direct from your Home Assistant to theirs. No
   phone numbers. No account on a third-party service.
+- **📞 Call without a stranger in the middle** — voice and video
+  calls, 1:1 or with a group, straight from your DMs and group
+  chats. The audio and video flows directly between participants
+  (WebRTC, DTLS-SRTP encrypted); the server only helps the call
+  start and never touches what's being said.
 - **🏘 Build your own community, your way** — create a Space for
   any group: your street, apartment building, sports team, or
   maker club. Organise a neighbourhood BBQ, run a book club —

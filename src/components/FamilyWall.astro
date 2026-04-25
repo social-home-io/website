@@ -2,17 +2,21 @@
 /**
  * FamilyWall — the hero collage.
  *
- * Five Polaroid-shaped cards pinned to the wall, each card a
- * single household-OS feature *doing* a social thing:
+ * Nine cards pinned to the wall, each a single household-OS
+ * surface *doing* a social thing:
  *
  *   1. Calendar overlay with attendees
- *   2. Live shopping list with recent additions
- *   3. Photo from the household feed with reactions
- *   4. Voice note transcript
- *   5. Quiet presence dots
+ *   2. Live shopping list with named adds
+ *   3. Task list (chore split with assignees + deadlines)  ── §23.54
+ *   4. Page (wiki / Markdown house manual)                 ── §23.58
+ *   5. Sticky note (per-space colourful tap-to-edit note)  ── §23.61
+ *   6. Photo from the household feed with reactions
+ *   7. Voice note transcript
+ *   8. Voice / video call — group, federated                ── §26
+ *   9. Quiet presence dots
  *
  * The composition is staggered + slightly rotated. Each card
- * has a piece of washi tape drawn as an inline SVG patch so the
+ * carries a piece of washi tape (inline SVG patch) so the
  * "wall" reading is unambiguous. Stagger-fade settles them on
  * first paint (respects ``prefers-reduced-motion``).
  */
@@ -25,7 +29,7 @@
 >
   <span class="wall__paper" aria-hidden="true"></span>
 
-  <article class="card card--cal" style="--settle-rest: -1.6deg; --settle-delay: 80ms;">
+  <article class="card card--cal" style="--settle-rest: -1.6deg; --settle-delay: 60ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
       <span class="card__kicker">Tue · Jul 29</span>
@@ -43,7 +47,7 @@
     </footer>
   </article>
 
-  <article class="card card--shop" style="--settle-rest: 1.2deg; --settle-delay: 160ms;">
+  <article class="card card--shop" style="--settle-rest: 1.2deg; --settle-delay: 130ms;">
     <span class="card__tape" aria-hidden="true"></span>
     <header>
       <span class="card__kicker">Shopping list — kitchen</span>
@@ -58,8 +62,80 @@
     </ul>
   </article>
 
-  <article class="card card--photo" style="--settle-rest: -0.6deg; --settle-delay: 240ms;">
+  <article class="card card--tasks" style="--settle-rest: -0.8deg; --settle-delay: 200ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Tasks · move-in chores</span>
+      <h3>3 to do · 6 done</h3>
+    </header>
+    <ul class="task-list">
+      <li class="is-done">
+        <span class="task__check is-done" aria-hidden="true"></span>
+        <span class="task__title">Hang the TV</span>
+        <span class="task__owner">Pascal</span>
+      </li>
+      <li>
+        <span class="task__check" aria-hidden="true"></span>
+        <span class="task__title">Drill the bookshelf</span>
+        <span class="task__owner">Maria · this week</span>
+        <span class="task__pin task__pin--due">due</span>
+      </li>
+      <li>
+        <span class="task__check" aria-hidden="true"></span>
+        <span class="task__title">Buy plants</span>
+        <span class="task__owner">Lina · weekend</span>
+      </li>
+      <li>
+        <span class="task__check" aria-hidden="true"></span>
+        <span class="task__title">Take old fridge to recycling</span>
+        <span class="task__owner">Pascal · today</span>
+        <span class="task__pin task__pin--overdue">overdue</span>
+      </li>
+    </ul>
+  </article>
+
+  <article class="card card--page" style="--settle-rest: 1deg; --settle-delay: 270ms;">
+    <span class="card__tape" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Pages · House manual</span>
+      <h3>How to bleed the radiators</h3>
+    </header>
+    <div class="page-body">
+      <p>
+        First, switch off the heating. Wait for the system to cool — usually <em
+          >10 to 15 minutes</em
+        >.
+      </p>
+      <ol>
+        <li>Find the bleed key in the kitchen drawer (red lid).</li>
+        <li>Turn the valve a quarter turn until water hisses out.</li>
+        <li>Close it tight. Move on to the next radiator.</li>
+      </ol>
+    </div>
+    <footer class="card__meta">
+      <span>Edited by Maria · 2 days ago</span>
+      <span class="card__pill card__pill--moss">wiki</span>
+    </footer>
+  </article>
+
+  <article class="card card--sticky" style="--settle-rest: -2.4deg; --settle-delay: 340ms;">
+    <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <p class="sticky__note">
+      🥕 Carrots in the bottom drawer<br />
+      <span>Sunday roast — don&rsquo;t buy more!</span>
+    </p>
+    <footer class="sticky__meta">
+      <span>Maria · stickies</span>
+      <span class="sticky__chips">
+        <i class="dot--swatch" style="background:#E8B26A"></i>
+        <i class="dot--swatch" style="background:#D2542A"></i>
+        <i class="dot--swatch is-on" style="background:#6FA38B"></i>
+      </span>
+    </footer>
+  </article>
+
+  <article class="card card--photo" style="--settle-rest: -0.6deg; --settle-delay: 400ms;">
+    <span class="card__tape" aria-hidden="true"></span>
     <div class="card__photo" aria-hidden="true">
       <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice">
         <defs>
@@ -88,7 +164,7 @@
     </footer>
   </article>
 
-  <article class="card card--voice" style="--settle-rest: 1.8deg; --settle-delay: 320ms;">
+  <article class="card card--voice" style="--settle-rest: 1.8deg; --settle-delay: 470ms;">
     <span class="card__tape" aria-hidden="true"></span>
     <header>
       <span class="card__kicker">Voice note · 0:17</span>
@@ -111,7 +187,49 @@
     </p>
   </article>
 
-  <article class="card card--presence" style="--settle-rest: -1.2deg; --settle-delay: 400ms;">
+  <article class="card card--call" style="--settle-rest: -1.4deg; --settle-delay: 540ms;">
+    <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Group call · 14:32</span>
+      <h3>Sunday call with family</h3>
+    </header>
+    <div class="call-tiles" aria-hidden="true">
+      <div class="call-tile" style="--tile-from:#D2542A;--tile-to:#67354B;">
+        <span class="call-tile__name">Mom</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
+        </span>
+      </div>
+      <div class="call-tile" style="--tile-from:#E8B26A;--tile-to:#C8902F;">
+        <span class="call-tile__name">Dad</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="false">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
+        </span>
+      </div>
+      <div class="call-tile" style="--tile-from:#6FA38B;--tile-to:#1F4438;">
+        <span class="call-tile__name">Sis</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="false">📹</i>
+        </span>
+      </div>
+      <div class="call-tile call-tile--self" style="--tile-from:#8AA0D7;--tile-to:#2D3957;">
+        <span class="call-tile__name">You</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
+        </span>
+      </div>
+    </div>
+    <footer class="card__meta">
+      <span>End-to-end encrypted · 4 households</span>
+      <span class="card__pill card__pill--moss">P2P · DTLS-SRTP</span>
+    </footer>
+  </article>
+
+  <article class="card card--presence" style="--settle-rest: -1.2deg; --settle-delay: 610ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
       <span class="card__kicker">Quiet presence</span>
@@ -122,8 +240,8 @@
         <span class="dot is-on" style="background:var(--moss)"></span><strong>Maria</strong> · home
       </li>
       <li>
-        <span class="dot is-on" style="background:var(--hearth)"></span><strong>Pascal</strong> · cycling
-        home
+        <span class="dot is-on" style="background:var(--hearth)"></span><strong>Pascal</strong>
+        · cycling home
       </li>
       <li>
         <span class="dot" style="background:var(--ink-faint)"></span><strong>Mom</strong> · away
@@ -149,7 +267,7 @@
     grid-auto-rows: minmax(0, auto);
     gap: var(--s-3);
     isolation: isolate;
-    min-height: 540px;
+    min-height: 920px;
   }
   .wall__paper {
     position: absolute;
@@ -186,7 +304,7 @@
     position: relative;
     background: var(--paper);
     border-radius: var(--r-2);
-    padding: var(--s-4) var(--s-4) var(--s-4);
+    padding: var(--s-4);
     box-shadow: var(--lift-pinned);
     color: var(--ink);
     font: 500 var(--step--1) / 1.45 var(--font-body);
@@ -244,12 +362,14 @@
     color: var(--ink-quiet);
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    gap: var(--s-3);
   }
   .card__pill {
     padding: 4px 10px;
     border-radius: var(--r-pill);
     background: var(--paper-deep);
     color: var(--ink-soft);
+    white-space: nowrap;
   }
   .card__pill--moss {
     background: var(--moss-tint);
@@ -260,10 +380,11 @@
     color: var(--hearth-deep);
   }
 
-  /* Calendar card — list of attendees with coloured dots */
+  /* Calendar attendees */
   .card__attendees,
   .card__list,
-  .presence {
+  .presence,
+  .task-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -354,6 +475,160 @@
     display: none;
   }
 
+  /* Tasks */
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .task-list li {
+    display: grid;
+    grid-template-columns: 18px 1fr auto;
+    column-gap: 10px;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    margin: 0;
+  }
+  .task-list li:last-child {
+    border-bottom: none;
+  }
+  .task__check {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1.5px var(--ink-quiet);
+    background: transparent;
+    align-self: center;
+  }
+  .task__check.is-done {
+    background: var(--moss);
+    box-shadow: inset 0 0 0 1.5px var(--moss);
+    position: relative;
+  }
+  .task__check.is-done::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 4px;
+    height: 7px;
+    border: solid var(--paper);
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+  }
+  .task__title {
+    color: var(--ink);
+    font: 500 var(--step-0) / 1.2 var(--font-body);
+    grid-row: 1;
+    grid-column: 2 / span 2;
+  }
+  .task-list li.is-done .task__title {
+    color: var(--ink-quiet);
+    text-decoration: line-through;
+    text-decoration-color: var(--rule-soft);
+  }
+  .task__owner {
+    grid-row: 2;
+    grid-column: 2;
+    font: 500 calc(var(--step--1) - 1px) / 1.2 var(--font-mono);
+    letter-spacing: 0.02em;
+    color: var(--ink-quiet);
+  }
+  .task__pin {
+    grid-row: 1 / span 2;
+    grid-column: 3;
+    align-self: center;
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .task__pin--due {
+    background: var(--honey);
+    color: var(--ink);
+    opacity: 0.85;
+  }
+  .task__pin--overdue {
+    background: var(--hearth);
+    color: var(--paper);
+  }
+
+  /* Pages */
+  .page-body {
+    margin: 0 0 var(--s-3);
+    color: var(--ink);
+    font: 500 var(--step-0) / 1.45 var(--font-body);
+  }
+  .page-body p {
+    margin: 0 0 var(--s-2);
+  }
+  .page-body em {
+    color: var(--hearth);
+  }
+  .page-body ol {
+    margin: 0;
+    padding: 0 0 0 1.1em;
+    list-style: decimal;
+    color: var(--ink-soft);
+  }
+  .page-body ol li {
+    margin: 0 0 4px;
+    font-size: var(--step-0);
+  }
+
+  /* Sticky note — diverges visually from other cards on purpose. */
+  .card--sticky {
+    background: linear-gradient(180deg, #f7d77a 0%, #f3c95c 100%);
+    color: #2a1f0a;
+    border-radius: 2px;
+    padding: var(--s-4);
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.08),
+      0 22px 36px -22px rgba(80, 60, 0, 0.6);
+  }
+  .card--sticky .card__tape--moss {
+    top: -8px;
+    right: 14px;
+  }
+  .sticky__note {
+    margin: 0;
+    font: 540 var(--step-1) / 1.25 var(--font-display);
+    font-variation-settings: var(--display-italic-axes);
+    font-style: italic;
+  }
+  .sticky__note span {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.78em;
+    color: #4a3a14;
+  }
+  .sticky__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--s-3);
+    font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    color: #4a3a14;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .sticky__chips {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .dot--swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+  }
+  .dot--swatch.is-on {
+    outline: 2px solid #2a1f0a;
+    outline-offset: 1px;
+  }
+
   /* Photo card */
   .card__photo {
     margin: 0 calc(var(--s-4) * -1);
@@ -416,7 +691,7 @@
     color: var(--hearth);
   }
 
-  /* Presence card */
+  /* Presence */
   .presence li {
     display: flex;
     align-items: center;
@@ -434,6 +709,82 @@
     margin-right: auto;
   }
 
+  /* Call card — 4-tile mesh preview */
+  .call-tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 0 0 var(--s-3);
+  }
+  .call-tile {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    border-radius: var(--r-1);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--tile-from), var(--tile-to));
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 6px 8px;
+    color: var(--paper);
+    font-size: calc(var(--step--1) - 1px);
+  }
+  .call-tile::before {
+    /* Subtle "video glow" texture so the tile reads as a stream
+       and not a flat colour swatch. */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 35%, rgba(255, 255, 255, 0.22), transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(0, 0, 0, 0.25), transparent 60%);
+    pointer-events: none;
+  }
+  .call-tile__name {
+    position: relative;
+    font: 600 calc(var(--step--1)) / 1 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  .call-tile__status {
+    position: relative;
+    display: inline-flex;
+    gap: 4px;
+  }
+  .call-tile__icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    font-size: 9px;
+    font-style: normal;
+    line-height: 1;
+  }
+  .call-tile__icon[data-on="false"] {
+    background: var(--hearth);
+    color: var(--paper);
+    /* Strike-through bar to read "off" without colour-only signalling. */
+    position: relative;
+  }
+  .call-tile__icon[data-on="false"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 70%;
+    height: 1.2px;
+    background: var(--paper);
+    transform: rotate(-25deg);
+  }
+  .call-tile--self {
+    outline: 2px solid var(--moss);
+    outline-offset: -2px;
+  }
+
   /* ── Wall composition (desktop) ── */
   .card--cal {
     grid-column: 1 / span 3;
@@ -443,34 +794,59 @@
   .card--shop {
     grid-column: 4 / span 3;
     grid-row: 1;
-    margin-top: -8px;
+    margin-top: -6px;
   }
-  .card--photo {
+  .card--tasks {
     grid-column: 1 / span 3;
     grid-row: 2;
     margin-top: 24px;
   }
-  .card--voice {
+  .card--page {
     grid-column: 4 / span 3;
     grid-row: 2;
     margin-top: 18px;
   }
+  .card--sticky {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    margin-top: 28px;
+  }
+  .card--photo {
+    grid-column: 3 / span 4;
+    grid-row: 3;
+    margin-top: 22px;
+  }
+  .card--voice {
+    grid-column: 1 / span 3;
+    grid-row: 4;
+    margin-top: 20px;
+  }
+  .card--call {
+    grid-column: 4 / span 3;
+    grid-row: 4;
+    margin-top: 14px;
+  }
   .card--presence {
     grid-column: 2 / span 4;
-    grid-row: 3;
-    margin-top: 16px;
+    grid-row: 5;
+    margin-top: 22px;
   }
 
   @media (max-width: 880px) {
     .wall {
       grid-template-columns: 1fr;
       gap: var(--s-3);
+      min-height: 0;
     }
     .card,
     .card--cal,
     .card--shop,
+    .card--tasks,
+    .card--page,
+    .card--sticky,
     .card--photo,
     .card--voice,
+    .card--call,
     .card--presence {
       grid-column: 1;
       grid-row: auto;

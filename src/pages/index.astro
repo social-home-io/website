@@ -40,7 +40,7 @@ const valueProps: ValueProp[] = [
 
 const household: FeatureColumn = {
   heading: "A household OS that quietly runs the day.",
-  lede: "Shared logistics — calendars, lists, presence, voice — without a stack of separate apps and accounts.",
+  lede: "Calendars, lists, tasks, notes, pages, presence, voice — every shared logistics surface a household actually needs, with none of the cloud-signup tax.",
   cards: [
     {
       tag: "Shared calendar",
@@ -53,6 +53,21 @@ const household: FeatureColumn = {
       body: "“Add milk” from anyone's phone or HA voice. Tick items off in real time at the supermarket.",
     },
     {
+      tag: "Tasks",
+      title: "Chores split, not nagged.",
+      body: "Per-list assignees, deadlines, overdue badges. Drill the bookshelf this weekend; recycle the old fridge today; everyone sees who's got what.",
+    },
+    {
+      tag: "Pages",
+      title: "A wiki for the house manual.",
+      body: "Markdown pages with edit-locks and wikilinks. The radiator-bleed instructions live where you'll actually find them — alongside every other house manual entry.",
+    },
+    {
+      tag: "Stickies",
+      title: "Fridge-magnet notes that follow you.",
+      body: "Tap-to-edit colour notes pinned to a Space canvas. Carrots in the bottom drawer; birthday gift ideas; whatever the household needs to remember together.",
+    },
+    {
       tag: "Quiet presence",
       title: "Who's home, right now.",
       body: "A subtle indicator only — no GPS history, no breadcrumbs. Opt-in per person and per device.",
@@ -62,7 +77,7 @@ const household: FeatureColumn = {
 
 const social: FeatureColumn = {
   heading: "A social network you actually own.",
-  lede: "The warm parts of social media — feeds, photos, DMs, group rooms — without giving the platform anything to sell.",
+  lede: "The warm parts of social media — feeds, photos, DMs, calls, group rooms — without giving the platform anything to sell.",
   cards: [
     {
       tag: "Household feed",
@@ -73,6 +88,11 @@ const social: FeatureColumn = {
       tag: "DMs across households",
       title: "Message family worldwide.",
       body: "End-to-end encrypted, HA-to-HA. No phone numbers, no third-party messenger, no account on a service that isn't yours.",
+    },
+    {
+      tag: "Voice & video calls",
+      title: "Call without a third party listening.",
+      body: "1:1 or group calls right from your DMs and group chats. WebRTC peer-to-peer, DTLS-SRTP encrypted; the server is signalling only and never touches the media.",
     },
     {
       tag: "Spaces for any group",
