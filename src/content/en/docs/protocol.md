@@ -51,6 +51,11 @@ household do:
 - **💬 Message your family across the world** — end-to-end
   encrypted, direct from your Home Assistant to theirs. No
   phone numbers. No account on a third-party service.
+- **📞 Call without a stranger in the middle** — voice and video
+  calls, 1:1 or with a group, straight from your DMs and group
+  chats. The audio and video flows directly between participants
+  (WebRTC, DTLS-SRTP encrypted); the server only helps the call
+  start and never touches what's being said.
 - **🏘 Build your own community, your way** — create a Space for
   any group: your street, apartment building, sports team, or
   maker club. Organise a neighbourhood BBQ, run a book club —

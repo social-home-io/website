@@ -2,7 +2,7 @@
 /**
  * FamilyWall — the hero collage.
  *
- * Eight cards pinned to the wall, each a single household-OS
+ * Nine cards pinned to the wall, each a single household-OS
  * surface *doing* a social thing:
  *
  *   1. Calendar overlay with attendees
@@ -12,7 +12,8 @@
  *   5. Sticky note (per-space colourful tap-to-edit note)  ── §23.61
  *   6. Photo from the household feed with reactions
  *   7. Voice note transcript
- *   8. Quiet presence dots
+ *   8. Voice / video call — group, federated                ── §26
+ *   9. Quiet presence dots
  *
  * The composition is staggered + slightly rotated. Each card
  * carries a piece of washi tape (inline SVG patch) so the
@@ -186,7 +187,49 @@
     </p>
   </article>
 
-  <article class="card card--presence" style="--settle-rest: -1.2deg; --settle-delay: 540ms;">
+  <article class="card card--call" style="--settle-rest: -1.4deg; --settle-delay: 540ms;">
+    <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Group call · 14:32</span>
+      <h3>Sunday call with family</h3>
+    </header>
+    <div class="call-tiles" aria-hidden="true">
+      <div class="call-tile" style="--tile-from:#D2542A;--tile-to:#67354B;">
+        <span class="call-tile__name">Mom</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
+        </span>
+      </div>
+      <div class="call-tile" style="--tile-from:#E8B26A;--tile-to:#C8902F;">
+        <span class="call-tile__name">Dad</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="false">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
+        </span>
+      </div>
+      <div class="call-tile" style="--tile-from:#6FA38B;--tile-to:#1F4438;">
+        <span class="call-tile__name">Sis</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="false">📹</i>
+        </span>
+      </div>
+      <div class="call-tile call-tile--self" style="--tile-from:#8AA0D7;--tile-to:#2D3957;">
+        <span class="call-tile__name">You</span>
+        <span class="call-tile__status">
+          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
+          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
+        </span>
+      </div>
+    </div>
+    <footer class="card__meta">
+      <span>End-to-end encrypted · 4 households</span>
+      <span class="card__pill card__pill--moss">P2P · DTLS-SRTP</span>
+    </footer>
+  </article>
+
+  <article class="card card--presence" style="--settle-rest: -1.2deg; --settle-delay: 610ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
       <span class="card__kicker">Quiet presence</span>
@@ -224,7 +267,7 @@
     grid-auto-rows: minmax(0, auto);
     gap: var(--s-3);
     isolation: isolate;
-    min-height: 720px;
+    min-height: 920px;
   }
   .wall__paper {
     position: absolute;
@@ -666,6 +709,82 @@
     margin-right: auto;
   }
 
+  /* Call card — 4-tile mesh preview */
+  .call-tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 0 0 var(--s-3);
+  }
+  .call-tile {
+    position: relative;
+    aspect-ratio: 16 / 11;
+    border-radius: var(--r-1);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--tile-from), var(--tile-to));
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 6px 8px;
+    color: var(--paper);
+    font-size: calc(var(--step--1) - 1px);
+  }
+  .call-tile::before {
+    /* Subtle "video glow" texture so the tile reads as a stream
+       and not a flat colour swatch. */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 35%, rgba(255, 255, 255, 0.22), transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(0, 0, 0, 0.25), transparent 60%);
+    pointer-events: none;
+  }
+  .call-tile__name {
+    position: relative;
+    font: 600 calc(var(--step--1)) / 1 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  .call-tile__status {
+    position: relative;
+    display: inline-flex;
+    gap: 4px;
+  }
+  .call-tile__icon {
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45);
+    font-size: 9px;
+    font-style: normal;
+    line-height: 1;
+  }
+  .call-tile__icon[data-on="false"] {
+    background: var(--hearth);
+    color: var(--paper);
+    /* Strike-through bar to read "off" without colour-only signalling. */
+    position: relative;
+  }
+  .call-tile__icon[data-on="false"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 70%;
+    height: 1.2px;
+    background: var(--paper);
+    transform: rotate(-25deg);
+  }
+  .call-tile--self {
+    outline: 2px solid var(--moss);
+    outline-offset: -2px;
+  }
+
   /* ── Wall composition (desktop) ── */
   .card--cal {
     grid-column: 1 / span 3;
@@ -702,10 +821,15 @@
     grid-row: 4;
     margin-top: 20px;
   }
-  .card--presence {
+  .card--call {
     grid-column: 4 / span 3;
     grid-row: 4;
-    margin-top: 16px;
+    margin-top: 14px;
+  }
+  .card--presence {
+    grid-column: 2 / span 4;
+    grid-row: 5;
+    margin-top: 22px;
   }
 
   @media (max-width: 880px) {
@@ -722,6 +846,7 @@
     .card--sticky,
     .card--photo,
     .card--voice,
+    .card--call,
     .card--presence {
       grid-column: 1;
       grid-row: auto;
