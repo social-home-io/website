@@ -1,0 +1,242 @@
+---
+import Base from "./Base.astro";
+import { getCollection } from "astro:content";
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: string;
+  /** The slug of the current doc, e.g. ``docs/getting-started``. */
+  slug: string;
+}
+const { title, description, active, slug } = Astro.props;
+
+// Pull the docs landing + every page under ``docs/``, sort by
+// ``order`` frontmatter, drop drafts. The non-English locales
+// are populated by CI; we only drive the docs nav from ``en``
+// to keep the sidebar stable while the translator catches up.
+const allDocs = await getCollection(
+  "en",
+  ({ slug }) => slug === "docs" || slug.startsWith("docs/"),
+);
+const sorted = allDocs
+  .filter((d) => d.data.draft !== true)
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Base title={title} description={description} active={active}>
+  <div class="docs">
+    <aside class="docs__nav" aria-label="Documentation">
+      <details class="docs__drawer">
+        <summary>
+          <span>On this site</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path d="M3 5 L7 9 L11 5" stroke="currentColor" stroke-width="1.5" fill="none"></path>
+          </svg>
+        </summary>
+        <ul>
+          {
+            sorted.map((d) => (
+              <li>
+                <a href={`/${d.slug}/`} aria-current={d.slug === slug ? "page" : undefined}>
+                  {d.data.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+    </aside>
+
+    <article class="docs__article">
+      <header class="docs__header">
+        <h1>{title}</h1>
+        {description && <p class="docs__lede">{description}</p>}
+      </header>
+      <div class="docs__body">
+        <slot />
+      </div>
+    </article>
+
+    <aside class="docs__meta" aria-label="Page meta">
+      <p class="docs__edit">
+        <a
+          href={`https://github.com/social-home-io/website/edit/main/src/content/en/${slug.replace(/^\/+|\/+$/g, "")}.md`}
+        >
+          Edit this page on GitHub →
+        </a>
+      </p>
+    </aside>
+  </div>
+</Base>
+
+<style>
+  .docs {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 200px;
+    gap: var(--s-7);
+    max-width: 1240px;
+    margin-inline: auto;
+    padding: var(--s-7) clamp(20px, 5vw, 64px) var(--s-8);
+  }
+
+  .docs__drawer {
+    position: sticky;
+    top: calc(var(--s-7) + 16px);
+  }
+  .docs__drawer summary {
+    display: none;
+  }
+  .docs__drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--rule-soft);
+  }
+  .docs__drawer li {
+    margin: 0;
+  }
+  .docs__drawer a {
+    display: block;
+    padding: 8px 14px;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font: 500 var(--step-0) / 1.4 var(--font-body);
+  }
+  .docs__drawer a:hover {
+    color: var(--ink);
+  }
+  .docs__drawer a[aria-current="page"] {
+    color: var(--ink);
+    border-left-color: var(--hearth);
+  }
+
+  .docs__article {
+    min-width: 0;
+  }
+  .docs__header {
+    margin-bottom: var(--s-6);
+    padding-bottom: var(--s-5);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .docs__header h1 {
+    font-size: var(--step-4);
+    margin: 0 0 var(--s-3);
+  }
+  .docs__lede {
+    margin: 0;
+    color: var(--ink-soft);
+    font: 380 var(--step-1) / 1.5 var(--font-body);
+    max-width: var(--measure-prose);
+  }
+
+  .docs__body {
+    font: 380 var(--step-0) / 1.7 var(--font-body);
+    color: var(--ink);
+  }
+  .docs__body :global(h2) {
+    margin-top: var(--s-7);
+    margin-bottom: var(--s-3);
+    font-size: var(--step-2);
+  }
+  .docs__body :global(h2)::before {
+    content: "§";
+    margin-right: 6px;
+    color: var(--hearth);
+  }
+  .docs__body :global(h3) {
+    margin-top: var(--s-6);
+    font-size: var(--step-1);
+  }
+  .docs__body :global(p:first-of-type)::first-letter {
+    font-family: var(--font-display);
+    font-variation-settings: var(--display-axes);
+    font-size: 3.6em;
+    float: left;
+    line-height: 0.85;
+    padding-right: 8px;
+    margin-top: 6px;
+    color: var(--hearth);
+  }
+  .docs__body :global(blockquote) {
+    margin: var(--s-5) 0;
+    padding: var(--s-3) var(--s-5);
+    border-left: 3px solid var(--hearth);
+    background: var(--paper-deep);
+    border-radius: var(--r-1);
+    font-style: italic;
+    color: var(--ink-soft);
+    font-variation-settings: var(--display-italic-axes);
+    font-family: var(--font-display);
+  }
+  .docs__body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--s-5) 0;
+    font-size: 0.96em;
+  }
+  .docs__body :global(table th),
+  .docs__body :global(table td) {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .docs__body :global(table th) {
+    color: var(--ink-quiet);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+  }
+
+  .docs__meta {
+    position: sticky;
+    top: calc(var(--s-7) + 16px);
+    align-self: start;
+    font: 500 var(--step--1) / 1.4 var(--font-mono);
+    color: var(--ink-quiet);
+  }
+
+  @media (max-width: 1080px) {
+    .docs {
+      grid-template-columns: 200px minmax(0, 1fr);
+    }
+    .docs__meta {
+      display: none;
+    }
+  }
+  @media (max-width: 880px) {
+    .docs {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
+      padding-block: var(--s-6);
+    }
+    .docs__nav {
+      position: static;
+      border: 1px solid var(--rule-soft);
+      border-radius: var(--r-2);
+      background: var(--paper-deep);
+    }
+    .docs__drawer {
+      position: static;
+    }
+    .docs__drawer summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      list-style: none;
+      cursor: pointer;
+      padding: var(--s-3) var(--s-4);
+      font: 600 var(--step-0) / 1 var(--font-body);
+    }
+    .docs__drawer summary::-webkit-details-marker {
+      display: none;
+    }
+    .docs__drawer ul {
+      border-left: none;
+      border-top: 1px solid var(--rule-soft);
+      padding: var(--s-2) 0;
+    }
+  }
+</style>

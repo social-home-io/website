@@ -1,0 +1,480 @@
+---
+/**
+ * FamilyWall — the hero collage.
+ *
+ * Five Polaroid-shaped cards pinned to the wall, each card a
+ * single household-OS feature *doing* a social thing:
+ *
+ *   1. Calendar overlay with attendees
+ *   2. Live shopping list with recent additions
+ *   3. Photo from the household feed with reactions
+ *   4. Voice note transcript
+ *   5. Quiet presence dots
+ *
+ * The composition is staggered + slightly rotated. Each card
+ * has a piece of washi tape drawn as an inline SVG patch so the
+ * "wall" reading is unambiguous. Stagger-fade settles them on
+ * first paint (respects ``prefers-reduced-motion``).
+ */
+---
+
+<figure
+  class="wall"
+  aria-hidden="false"
+  aria-label="A glance at one household's day on Social Home"
+>
+  <span class="wall__paper" aria-hidden="true"></span>
+
+  <article class="card card--cal" style="--settle-rest: -1.6deg; --settle-delay: 80ms;">
+    <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Tue · Jul 29</span>
+      <h3>Sunday brunch @ Maria&rsquo;s</h3>
+    </header>
+    <ul class="card__attendees">
+      <li><span class="dot" style="background:var(--hearth)"></span> Maria</li>
+      <li><span class="dot" style="background:var(--moss)"></span> Pascal</li>
+      <li><span class="dot" style="background:var(--honey)"></span> Mom</li>
+      <li><span class="card__avatars">+3</span></li>
+    </ul>
+    <footer class="card__meta">
+      <span>Household calendar</span>
+      <span class="card__pill card__pill--soft">3 households</span>
+    </footer>
+  </article>
+
+  <article class="card card--shop" style="--settle-rest: 1.2deg; --settle-delay: 160ms;">
+    <span class="card__tape" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Shopping list — kitchen</span>
+      <h3>5 things, last add 4 min ago</h3>
+    </header>
+    <ul class="card__list">
+      <li class="is-done"><span class="tick" aria-hidden="true"></span>Sourdough</li>
+      <li class="is-done"><span class="tick" aria-hidden="true"></span>Olive oil</li>
+      <li><span class="tick is-empty" aria-hidden="true"></span>Tomatoes <em>+ Maria</em></li>
+      <li><span class="tick is-empty" aria-hidden="true"></span>Basil <em>+ Pascal</em></li>
+      <li><span class="tick is-empty" aria-hidden="true"></span>Goat cheese <em>+ HA voice</em></li>
+    </ul>
+  </article>
+
+  <article class="card card--photo" style="--settle-rest: -0.6deg; --settle-delay: 240ms;">
+    <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <div class="card__photo" aria-hidden="true">
+      <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="fw-photo" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#E8B26A"></stop>
+            <stop offset="0.55" stop-color="#D2542A"></stop>
+            <stop offset="1" stop-color="#67354B"></stop>
+          </linearGradient>
+        </defs>
+        <rect width="200" height="130" fill="url(#fw-photo)"></rect>
+        <circle cx="148" cy="42" r="14" fill="#F4ECE0" opacity="0.85"></circle>
+        <path d="M0 110 L60 78 L110 96 L160 70 L200 86 L200 130 L0 130 Z" fill="rgba(26,24,20,0.30)"
+        ></path>
+        <path
+          d="M22 118 L78 86 L122 102 L168 78 L200 94 L200 130 L0 130 L0 124 Z"
+          fill="rgba(26,24,20,0.55)"></path>
+      </svg>
+    </div>
+    <p class="card__caption">
+      &ldquo;First tomato of the year — house tax: half goes to Mom.&rdquo;
+    </p>
+    <footer class="card__reactions">
+      <span class="reaction">🫶 <strong>4</strong></span>
+      <span class="reaction">🍅 <strong>2</strong></span>
+      <span class="reaction">💬 <strong>3</strong></span>
+    </footer>
+  </article>
+
+  <article class="card card--voice" style="--settle-rest: 1.8deg; --settle-delay: 320ms;">
+    <span class="card__tape" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Voice note · 0:17</span>
+      <h3>Pascal — anyone up for pasta?</h3>
+    </header>
+    <div class="card__waveform" aria-hidden="true">
+      <span style="height:18%"></span><span style="height:42%"></span><span style="height:64%"
+      ></span>
+      <span style="height:78%"></span><span style="height:55%"></span><span style="height:30%"
+      ></span>
+      <span style="height:50%"></span><span style="height:72%"></span><span style="height:90%"
+      ></span>
+      <span style="height:58%"></span><span style="height:34%"></span><span style="height:22%"
+      ></span>
+      <span style="height:46%"></span><span style="height:64%"></span><span style="height:38%"
+      ></span>
+    </div>
+    <p class="card__transcript">
+      &ldquo;…anyone up for <em>pasta</em> tonight? I&rsquo;m near the deli.&rdquo;
+    </p>
+  </article>
+
+  <article class="card card--presence" style="--settle-rest: -1.2deg; --settle-delay: 400ms;">
+    <span class="card__tape card__tape--moss" aria-hidden="true"></span>
+    <header>
+      <span class="card__kicker">Quiet presence</span>
+      <h3>Right now</h3>
+    </header>
+    <ul class="presence">
+      <li>
+        <span class="dot is-on" style="background:var(--moss)"></span><strong>Maria</strong> · home
+      </li>
+      <li>
+        <span class="dot is-on" style="background:var(--hearth)"></span><strong>Pascal</strong> · cycling
+        home
+      </li>
+      <li>
+        <span class="dot" style="background:var(--ink-faint)"></span><strong>Mom</strong> · away
+      </li>
+      <li>
+        <span class="dot is-on" style="background:var(--honey)"></span><strong>Lina</strong> · home
+      </li>
+    </ul>
+    <footer class="card__meta">
+      <span>No history kept</span>
+      <span class="card__pill card__pill--moss">opt-in</span>
+    </footer>
+  </article>
+</figure>
+
+<style>
+  .wall {
+    position: relative;
+    margin: 0;
+    padding: var(--s-6) var(--s-4);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(0, auto);
+    gap: var(--s-3);
+    isolation: isolate;
+    min-height: 540px;
+  }
+  .wall__paper {
+    position: absolute;
+    inset: var(--s-3);
+    border-radius: var(--r-3);
+    background:
+      radial-gradient(
+        ellipse at top left,
+        color-mix(in oklab, var(--paper-deep) 90%, var(--ink) 6%),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse at bottom right,
+        color-mix(in oklab, var(--paper-deep) 88%, var(--ink) 8%),
+        transparent 50%
+      ),
+      var(--paper-deep);
+    box-shadow: var(--lift-card);
+    z-index: -1;
+  }
+  .wall__paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: radial-gradient(rgba(26, 24, 20, 0.06) 1px, transparent 1.4px);
+    background-size: 4px 4px;
+    mix-blend-mode: multiply;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    background: var(--paper);
+    border-radius: var(--r-2);
+    padding: var(--s-4) var(--s-4) var(--s-4);
+    box-shadow: var(--lift-pinned);
+    color: var(--ink);
+    font: 500 var(--step--1) / 1.45 var(--font-body);
+    --settle-rot: 0deg;
+    transform: rotate(var(--settle-rest));
+    transition: transform var(--dur-settle) var(--ease-quill);
+    animation: settle-in var(--dur-page) var(--ease-quill) both;
+    animation-delay: var(--settle-delay, 0ms);
+  }
+  .card:hover {
+    transform: rotate(0deg) translateY(-3px);
+    z-index: 2;
+  }
+  .card header {
+    margin-bottom: var(--s-3);
+  }
+  .card__kicker {
+    display: block;
+    font: 500 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin-bottom: 6px;
+  }
+  .card h3 {
+    font: 540 var(--step-1) / 1.1 var(--font-display);
+    margin: 0;
+    letter-spacing: -0.012em;
+  }
+  .card__tape {
+    position: absolute;
+    top: -10px;
+    left: 18px;
+    width: 64px;
+    height: 18px;
+    background: var(--tape);
+    transform: rotate(-6deg);
+    border-radius: 1px;
+    pointer-events: none;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  }
+  .card__tape--moss {
+    background: var(--tape-moss);
+    left: auto;
+    right: 18px;
+    transform: rotate(8deg);
+  }
+
+  .card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--s-3);
+    font: 500 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    color: var(--ink-quiet);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .card__pill {
+    padding: 4px 10px;
+    border-radius: var(--r-pill);
+    background: var(--paper-deep);
+    color: var(--ink-soft);
+  }
+  .card__pill--moss {
+    background: var(--moss-tint);
+    color: var(--moss);
+  }
+  .card__pill--soft {
+    background: var(--hearth-tint);
+    color: var(--hearth-deep);
+  }
+
+  /* Calendar card — list of attendees with coloured dots */
+  .card__attendees,
+  .card__list,
+  .presence {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .card__attendees {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-4);
+    align-items: center;
+  }
+  .card__attendees li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font: 500 var(--step-0) / 1 var(--font-body);
+  }
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ink-faint);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+  }
+  .dot.is-on {
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 0, 0, 0.15),
+      0 0 0 4px color-mix(in oklab, currentColor 18%, transparent);
+  }
+  .card__avatars {
+    font: 500 var(--step--1) / 1 var(--font-mono);
+    color: var(--ink-quiet);
+  }
+
+  /* Shopping list */
+  .card__list li {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    font: 500 var(--step-0) / 1.2 var(--font-body);
+    color: var(--ink);
+  }
+  .card__list li:last-child {
+    border-bottom: none;
+  }
+  .card__list li.is-done {
+    color: var(--ink-quiet);
+    text-decoration: line-through;
+    text-decoration-color: var(--rule-soft);
+  }
+  .card__list em {
+    margin-left: auto;
+    font-style: normal;
+    color: var(--hearth-deep);
+    font: 500 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tick {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--hearth);
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1.5px var(--hearth-deep);
+    position: relative;
+  }
+  .tick::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    width: 4px;
+    height: 7px;
+    border: solid var(--paper);
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+  }
+  .tick.is-empty {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px var(--rule-soft);
+  }
+  .tick.is-empty::after {
+    display: none;
+  }
+
+  /* Photo card */
+  .card__photo {
+    margin: 0 calc(var(--s-4) * -1);
+    overflow: hidden;
+    border-radius: var(--r-1);
+  }
+  .card__photo svg {
+    display: block;
+    width: 100%;
+    height: 130px;
+  }
+  .card__caption {
+    margin: var(--s-3) 0 var(--s-3);
+    font: 540 var(--step-0) / 1.35 var(--font-display);
+    color: var(--ink);
+  }
+  .card__reactions {
+    display: flex;
+    gap: var(--s-3);
+    font: 500 var(--step--1) / 1 var(--font-body);
+    color: var(--ink-soft);
+  }
+  .reaction {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: var(--r-pill);
+    background: var(--paper-deep);
+  }
+  .reaction strong {
+    color: var(--ink);
+    font: 600 var(--step--1) / 1 var(--font-mono);
+  }
+
+  /* Voice card */
+  .card__waveform {
+    display: flex;
+    align-items: end;
+    gap: 3px;
+    height: 56px;
+    margin: var(--s-2) 0 var(--s-3);
+  }
+  .card__waveform span {
+    flex: 1;
+    background: var(--hearth);
+    border-radius: 2px;
+    opacity: 0.85;
+  }
+  .card__waveform span:nth-child(odd) {
+    background: var(--moss);
+    opacity: 0.7;
+  }
+  .card__transcript {
+    margin: 0;
+    font: 540 var(--step-0) / 1.4 var(--font-display);
+    color: var(--ink);
+  }
+  .card__transcript em {
+    color: var(--hearth);
+  }
+
+  /* Presence card */
+  .presence li {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+    font: 500 var(--step-0) / 1.2 var(--font-body);
+  }
+  .presence li:last-child {
+    border-bottom: none;
+  }
+  .presence strong {
+    font-weight: 600;
+    color: var(--ink);
+    margin-right: auto;
+  }
+
+  /* ── Wall composition (desktop) ── */
+  .card--cal {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+    margin-top: 12px;
+  }
+  .card--shop {
+    grid-column: 4 / span 3;
+    grid-row: 1;
+    margin-top: -8px;
+  }
+  .card--photo {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    margin-top: 24px;
+  }
+  .card--voice {
+    grid-column: 4 / span 3;
+    grid-row: 2;
+    margin-top: 18px;
+  }
+  .card--presence {
+    grid-column: 2 / span 4;
+    grid-row: 3;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 880px) {
+    .wall {
+      grid-template-columns: 1fr;
+      gap: var(--s-3);
+    }
+    .card,
+    .card--cal,
+    .card--shop,
+    .card--photo,
+    .card--voice,
+    .card--presence {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 0;
+    }
+  }
+</style>

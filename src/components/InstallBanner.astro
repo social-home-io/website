@@ -1,0 +1,139 @@
+---
+interface Props {
+  installHref: string;
+  /** Override the headline if a localised version is available. */
+  headline?: string;
+}
+const { installHref, headline = "Install in two clicks." } = Astro.props;
+---
+
+<section class="install band">
+  <div class="shell install__inner">
+    <div class="install__copy">
+      <h2>{headline}</h2>
+      <p>
+        Add the Social Home add-on repository to your Home Assistant. The add-on auto-provisions you
+        as admin, mints a token, and registers the matching integration via Supervisor discovery —
+        there's nothing to type.
+      </p>
+      <p class="install__ctas">
+        <a class="btn btn--hearth" href={installHref}>
+          Add to Home Assistant
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+            <path
+              d="M3 7 H11 M7 3 L11 7 L7 11"
+              stroke="currentColor"
+              stroke-width="1.6"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <a class="btn btn--ghost" href="/docs/getting-started/"> Read the install guide </a>
+      </p>
+    </div>
+
+    <aside class="install__shell" aria-label="What you'll see in Home Assistant">
+      <div class="terminal">
+        <header>
+          <span class="dot" style="background:#E96A3F"></span>
+          <span class="dot" style="background:#E8B26A"></span>
+          <span class="dot" style="background:#6FA38B"></span>
+          <span class="terminal__title">Home Assistant · Add-on store</span>
+        </header>
+        <pre><code><span class="dim">$</span> <span class="cmd">supervisor</span> add-repository \
+  https://github.com/social-home-io/ha-app
+<span class="ok">✓</span> Repository added · 2 add-ons available
+<span class="ok">✓</span> <em>Social Home</em>          v2026.4.25  install →
+   Social Home (Dev)    v2026.4.25-dev   install →
+<span class="dim">…</span>
+<span class="ok">✓</span> Discovery: <em>social_home</em> → integration ready
+<span class="dim">$</span> open <em>Settings → Devices &amp; services</em></code></pre>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .install {
+    background: var(--paper-deep);
+    border-block: 1px solid var(--rule-soft);
+  }
+  .install__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 980px) {
+    .install__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+  .install__copy h2 {
+    max-width: 14ch;
+    margin: 0 0 var(--s-4);
+  }
+  .install__copy p {
+    color: var(--ink-soft);
+    max-width: var(--measure-narrow);
+  }
+  .install__ctas {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .terminal {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--r-2);
+    overflow: hidden;
+    box-shadow: var(--lift-pinned);
+    font-family: var(--font-mono);
+    font-size: calc(var(--step--1) + 0.5px);
+    line-height: 1.6;
+  }
+  .terminal header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .terminal header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  }
+  .terminal__title {
+    margin-left: auto;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: calc(var(--step--1) - 1px);
+  }
+  .terminal pre {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: var(--s-4) var(--s-5);
+    color: inherit;
+    overflow-x: auto;
+  }
+  .terminal code .dim {
+    color: var(--ink-faint);
+  }
+  .terminal code .cmd {
+    color: var(--honey);
+  }
+  .terminal code .ok {
+    color: var(--moss);
+  }
+  .terminal code em {
+    color: var(--hearth);
+    font-style: normal;
+  }
+</style>

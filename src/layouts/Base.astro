@@ -1,0 +1,78 @@
+---
+import "../styles/base.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: string;
+  /** Override the og:image filename in /public. */
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "The household OS that's also a federated social network — runs on your own Home Assistant.",
+  active,
+  ogImage = "/og-image.png",
+} = Astro.props;
+
+const siteName = "Social Home";
+const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang={Astro.currentLocale ?? "en"}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F4ECE0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#161821" media="(prefers-color-scheme: dark)" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header active={active} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <style>
+      .skip {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+      }
+      .skip:focus {
+        left: var(--s-4);
+        top: var(--s-4);
+        background: var(--ink);
+        color: var(--paper);
+        padding: 8px 14px;
+        border-radius: var(--r-1);
+        z-index: 100;
+      }
+    </style>
+  </body>
+</html>

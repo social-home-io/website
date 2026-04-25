@@ -1,0 +1,158 @@
+---
+import LogoMark from "./LogoMark.astro";
+
+const buildYear = new Date().getFullYear();
+
+const columns: { heading: string; links: { href: string; label: string }[] }[] = [
+  {
+    heading: "Read",
+    links: [
+      { href: "/docs/getting-started/", label: "Getting started" },
+      { href: "/docs/protocol/", label: "How it works" },
+      { href: "/docs/federation/", label: "Households, federated" },
+      { href: "/docs/global-spaces/", label: "Global spaces" },
+      { href: "/docs/privacy/", label: "Privacy model" },
+    ],
+  },
+  {
+    heading: "Run",
+    links: [
+      { href: "/docs/getting-started/", label: "Add to Home Assistant" },
+      { href: "/docs/running-a-gfs/", label: "Host a relay" },
+      { href: "/changelog/", label: "Changelog" },
+    ],
+  },
+  {
+    heading: "Project",
+    links: [
+      { href: "https://github.com/social-home-io", label: "GitHub" },
+      { href: "/contribute/", label: "Contribute" },
+      { href: "/license/", label: "License (MPL 2.0)" },
+    ],
+  },
+];
+---
+
+<footer class="colophon">
+  <div class="shell colophon__inner">
+    <div class="colophon__brand">
+      <LogoMark size={36} />
+      <p class="colophon__motto">
+        <em>The social home for your household.</em>
+      </p>
+      <p class="colophon__small">
+        Open source under the
+        <a href="/license/">Mozilla Public License 2.0</a>. Hosted by the household, never by us.
+      </p>
+    </div>
+    <nav class="colophon__cols" aria-label="Footer">
+      {
+        columns.map((c) => (
+          <div class="colophon__col">
+            <h3>{c.heading}</h3>
+            <ul>
+              {c.links.map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </nav>
+  </div>
+  <div class="shell colophon__rule">
+    <span>© {buildYear} Social Home contributors</span>
+    <span>v0 — built with Astro &amp; bashio</span>
+  </div>
+</footer>
+
+<style>
+  .colophon {
+    margin-top: var(--s-8);
+    border-top: 1px solid var(--rule-soft);
+    background: var(--paper-deep);
+  }
+  .colophon__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
+    gap: var(--s-7);
+    padding-block: var(--s-7);
+  }
+  .colophon__brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    color: var(--ink-soft);
+    max-width: var(--measure-narrow);
+  }
+  .colophon__motto {
+    font: 500 var(--step-2) / 1.1 var(--font-display);
+    color: var(--ink);
+    margin: 0;
+  }
+  .colophon__motto em {
+    color: var(--hearth);
+  }
+  .colophon__small {
+    font: 400 var(--step--1) / 1.55 var(--font-body);
+    margin: 0;
+    color: var(--ink-quiet);
+  }
+
+  .colophon__cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-6);
+  }
+  .colophon__col h3 {
+    font: 600 var(--step--1) / 1 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin: 0 0 var(--s-3);
+  }
+  .colophon__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .colophon__col li {
+    margin: 0 0 var(--s-2);
+  }
+  .colophon__col a {
+    text-decoration: none;
+    color: var(--ink);
+    font: 500 var(--step-0) / 1.4 var(--font-body);
+    transition: color var(--dur-quick) var(--ease-quill);
+  }
+  .colophon__col a:hover {
+    color: var(--hearth);
+  }
+
+  .colophon__rule {
+    display: flex;
+    justify-content: space-between;
+    padding-block: var(--s-4);
+    border-top: 1px solid var(--rule-soft);
+    font: 500 var(--step--1) / 1 var(--font-mono);
+    color: var(--ink-quiet);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 880px) {
+    .colophon__inner {
+      grid-template-columns: 1fr;
+      gap: var(--s-6);
+    }
+    .colophon__cols {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .colophon__rule {
+      flex-direction: column;
+      gap: var(--s-2);
+    }
+  }
+</style>

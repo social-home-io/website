@@ -1,0 +1,150 @@
+---
+import Base from "../layouts/Base.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ValuePropStrip from "../components/ValuePropStrip.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import SpaceWall from "../components/SpaceWall.astro";
+import InstallBanner from "../components/InstallBanner.astro";
+import type { HeroCopy, FeatureColumn, ValueProp } from "../types";
+
+const installHref =
+  "https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsocial-home-io%2Fha-app";
+
+const hero: HeroCopy = {
+  eyebrow: "Open · federated · MPL 2.0",
+  sub: "Calendar, shopping list, photos, chat — running on your own Home Assistant. A household OS that's also a social network you actually own.",
+  primaryCta: "Add to Home Assistant",
+  secondaryCta: "What can it do?",
+  installHref,
+  secondaryHref: "/docs/protocol/",
+};
+
+const valueProps: ValueProp[] = [
+  {
+    claim: "Your server, your rules.",
+    detail: "Everything lives on your Home Assistant. No third-party cloud touches your day.",
+  },
+  {
+    claim: "End-to-end encrypted.",
+    detail: "Sensitive spaces are sealed on your device — not even the relay can read them.",
+  },
+  {
+    claim: "Federation, not silos.",
+    detail: "Connect households one QR scan at a time. Pair, then talk directly.",
+  },
+  {
+    claim: "Open source. No ads.",
+    detail: "MPL 2.0. No analytics, no growth team trying to monetise your evening.",
+  },
+];
+
+const household: FeatureColumn = {
+  heading: "A household OS that quietly runs the day.",
+  lede: "Shared logistics — calendars, lists, presence, voice — without a stack of separate apps and accounts.",
+  cards: [
+    {
+      tag: "Shared calendar",
+      title: "Every calendar in one overlay.",
+      body: "Personal, partner, household — colour-coded in one view. Add events from HA voice or any phone; everyone sees them at once.",
+    },
+    {
+      tag: "Live shopping list",
+      title: "Living lists across phones.",
+      body: "“Add milk” from anyone's phone or HA voice. Tick items off in real time at the supermarket.",
+    },
+    {
+      tag: "Quiet presence",
+      title: "Who's home, right now.",
+      body: "A subtle indicator only — no GPS history, no breadcrumbs. Opt-in per person and per device.",
+    },
+  ],
+};
+
+const social: FeatureColumn = {
+  heading: "A social network you actually own.",
+  lede: "The warm parts of social media — feeds, photos, DMs, group rooms — without giving the platform anything to sell.",
+  cards: [
+    {
+      tag: "Household feed",
+      title: "Photos, voice notes, updates.",
+      body: "Drop a photo of dinner. Post a voice note when your hands are full. Reactions land instantly across every household device.",
+    },
+    {
+      tag: "DMs across households",
+      title: "Message family worldwide.",
+      body: "End-to-end encrypted, HA-to-HA. No phone numbers, no third-party messenger, no account on a service that isn't yours.",
+    },
+    {
+      tag: "Spaces for any group",
+      title: "Rooms that span households.",
+      body: "Family, neighbours, book club, sports team — each in its own private space. Pair households once, then it just works.",
+    },
+  ],
+};
+---
+
+<Base
+  title="Social Home"
+  description="A private, federated household social network — calendars, shopping lists, photos, and chat that run on your own Home Assistant. Open source, MPL 2.0."
+  active="/"
+>
+  <HeroSection copy={hero} />
+  <ValuePropStrip props={valueProps} />
+  <FeatureGrid household={household} social={social} />
+
+  <section class="federated band">
+    <div class="shell federated__inner">
+      <div class="federated__copy">
+        <span class="eyebrow">
+          <span class="dot dot--moss" aria-hidden="true"></span>
+          Federation, not silos
+        </span>
+        <h2>Spaces span households — yours and the ones you connect to.</h2>
+        <p>
+          Pair two Home Assistants once with a QR code. After that, you can create <em>spaces</em> — shared
+          rooms with their own feed, chat, and calendar — across both. Run a book club, organise a street
+          party, or keep one quiet room for grandparents.
+        </p>
+        <p>
+          A small, open-source <a href="/docs/global-spaces/">relay</a>
+          helps strangers' households find each other for public spaces. It never reads your messages
+          — it only helps your servers shake hands.
+        </p>
+      </div>
+      <div class="federated__wall">
+        <SpaceWall />
+      </div>
+    </div>
+  </section>
+
+  <InstallBanner installHref={installHref} />
+</Base>
+
+<style>
+  .federated__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 980px) {
+    .federated__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+  .federated__copy h2 {
+    margin: var(--s-3) 0 var(--s-4);
+  }
+  .federated__copy p {
+    color: var(--ink-soft);
+    max-width: var(--measure-narrow);
+  }
+  .dot--moss {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--moss);
+    box-shadow: 0 0 0 4px var(--moss-tint);
+  }
+</style>

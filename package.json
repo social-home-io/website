@@ -1,0 +1,25 @@
+{
+  "name": "@social-home-io/website",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Marketing site + documentation for Social Home (https://social-home.io).",
+  "license": "MPL-2.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json,yml,yaml}\""
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^4.16.18",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

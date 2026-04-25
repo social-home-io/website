@@ -1,0 +1,393 @@
+---
+/**
+ * SpaceWall — the federation noticeboard.
+ *
+ * Where ``FamilyWall`` shows one household's day, ``SpaceWall``
+ * widens the lens to show *Spaces* — shared rooms that span
+ * multiple households. Each tile is a Space, with:
+ *
+ *   - a coloured edge that encodes its scope (private / group /
+ *     global),
+ *   - the member + household count,
+ *   - a single recent activity line drawn from real-life
+ *     situations (book club reminder, neighbour BBQ, sports team
+ *     practice, marketplace listing).
+ *
+ * Connection lines are drawn as one inline SVG layer behind the
+ * tiles so the federation reading lands without arrows-on-cards
+ * clutter.
+ */
+---
+
+<figure class="board" aria-label="A glance at the kinds of Spaces households share">
+  <span class="board__paper" aria-hidden="true"></span>
+
+  <svg class="board__threads" viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <pattern id="sw-dots" width="6" height="6" patternUnits="userSpaceOnUse">
+        <circle cx="1" cy="1" r="0.8" fill="currentColor"></circle>
+      </pattern>
+    </defs>
+    <!-- Hand-drawn looking connections between Spaces. Three
+         curves so the eye reads "households linking up". -->
+    <path
+      d="M120 120 C 200 90, 280 200, 380 150"
+      stroke="currentColor"
+      stroke-width="1"
+      fill="none"
+      stroke-dasharray="2 5"
+      opacity="0.5"></path>
+    <path
+      d="M150 260 C 240 290, 340 220, 420 280"
+      stroke="currentColor"
+      stroke-width="1"
+      fill="none"
+      stroke-dasharray="2 5"
+      opacity="0.5"></path>
+    <path
+      d="M390 100 C 460 160, 470 240, 410 310"
+      stroke="currentColor"
+      stroke-width="1"
+      fill="none"
+      stroke-dasharray="2 5"
+      opacity="0.5"></path>
+  </svg>
+
+  <article class="tile tile--family" style="--rest: -0.6deg; --delay: 60ms;">
+    <header>
+      <span class="tile__glyph" aria-hidden="true">🏡</span>
+      <span class="tile__edge tile__edge--private" aria-hidden="true"></span>
+      <h3>Family</h3>
+      <p class="tile__meta">4 people · 3 households · private</p>
+    </header>
+    <p class="tile__activity">
+      <span class="tile__poster">Mom</span>
+      <em>"Dinner at ours Sunday — bring the dog."</em>
+    </p>
+  </article>
+
+  <article class="tile tile--neighbours" style="--rest: 0.8deg; --delay: 140ms;">
+    <header>
+      <span class="tile__glyph" aria-hidden="true">🌳</span>
+      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <h3>Eichenstrasse 3–17</h3>
+      <p class="tile__meta">24 people · 14 households · group</p>
+    </header>
+    <p class="tile__activity">
+      <span class="tile__poster">Lina</span>
+      <em>"Street BBQ next Saturday — bring chairs."</em>
+    </p>
+    <ul class="tile__chips">
+      <li>📅 Sat 19:00</li>
+      <li>📍 No. 11 garden</li>
+    </ul>
+  </article>
+
+  <article class="tile tile--makers" style="--rest: -1deg; --delay: 220ms;">
+    <header>
+      <span class="tile__glyph" aria-hidden="true">🔨</span>
+      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <h3>Maker Space</h3>
+      <p class="tile__meta">12 people · 7 households · group</p>
+    </header>
+    <p class="tile__activity">
+      <span class="tile__poster">Rita</span>
+      <em>"Finished the oak chair — pictures in the feed."</em>
+    </p>
+  </article>
+
+  <article class="tile tile--book" style="--rest: 1.4deg; --delay: 300ms;">
+    <header>
+      <span class="tile__glyph" aria-hidden="true">📖</span>
+      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <h3>Book Club</h3>
+      <p class="tile__meta">8 people · 5 households · group</p>
+    </header>
+    <p class="tile__activity">
+      <span class="tile__poster">Rebecca</span>
+      <em>"Read chapter 7 by Friday — calendar set."</em>
+    </p>
+  </article>
+
+  <article class="tile tile--sport" style="--rest: -0.4deg; --delay: 380ms;">
+    <header>
+      <span class="tile__glyph" aria-hidden="true">⛰️</span>
+      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <h3>Bouldering crew</h3>
+      <p class="tile__meta">16 people · 11 households · group</p>
+    </header>
+    <p class="tile__activity">
+      <span class="tile__poster">Pascal</span>
+      <em>"Practice moved to 19:00 — same gym."</em>
+    </p>
+  </article>
+
+  <article class="tile tile--bazaar" style="--rest: 0.6deg; --delay: 460ms;">
+    <header>
+      <span class="tile__glyph" aria-hidden="true">🛒</span>
+      <span class="tile__edge tile__edge--global" aria-hidden="true"></span>
+      <h3>Bazaar · neighbourhood</h3>
+      <p class="tile__meta">~50 people · open · via global relay</p>
+    </header>
+    <p class="tile__activity">
+      <span class="tile__poster">Maria</span>
+      <em>"Free oak bookshelf — pickup only, before Sun."</em>
+    </p>
+    <ul class="tile__chips">
+      <li>🪑 Free</li>
+      <li>🔁 1 trade pending</li>
+    </ul>
+  </article>
+
+  <aside class="board__legend" aria-label="Space scope legend">
+    <span><i class="dot--legend dot--private"></i> Private — only the people you name.</span>
+    <span><i class="dot--legend dot--group"></i> Group — invited members across households.</span>
+    <span><i class="dot--legend dot--global"></i> Global — discoverable via a relay you trust.</span
+    >
+  </aside>
+</figure>
+
+<style>
+  .board {
+    position: relative;
+    margin: 0;
+    padding: var(--s-7) var(--s-5) var(--s-5);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(0, auto);
+    gap: var(--s-4);
+    isolation: isolate;
+    min-height: 540px;
+  }
+  .board__paper {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-3);
+    background:
+      linear-gradient(
+        125deg,
+        color-mix(in oklab, var(--moss) 9%, var(--paper)) 0%,
+        var(--paper) 65%
+      ),
+      var(--paper);
+    box-shadow: var(--lift-card);
+    z-index: -2;
+    overflow: hidden;
+  }
+  .board__paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(31, 68, 56, 0.08) 1px, transparent 1.4px);
+    background-size: 12px 12px;
+    opacity: 0.7;
+  }
+  .board__threads {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--moss);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .tile {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--r-2);
+    padding: var(--s-4);
+    box-shadow: var(--lift-card);
+    color: var(--ink);
+    font: 500 var(--step--1) / 1.45 var(--font-body);
+    transform: rotate(var(--rest));
+    transition:
+      transform var(--dur-settle) var(--ease-quill),
+      box-shadow var(--dur-quick) var(--ease-quill);
+    animation: settle-in var(--dur-page) var(--ease-quill) both;
+    animation-delay: var(--delay, 0ms);
+    --settle-rest: var(--rest);
+  }
+  .tile:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: var(--lift-pinned);
+    z-index: 2;
+  }
+  .tile header {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    column-gap: var(--s-3);
+    row-gap: 2px;
+    align-items: center;
+    margin-bottom: var(--s-3);
+  }
+  .tile__glyph {
+    grid-row: span 2;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    background: var(--paper-deep);
+    border-radius: var(--r-1);
+    font-size: 18px;
+  }
+  .tile h3 {
+    font: 540 var(--step-1) / 1.1 var(--font-display);
+    margin: 0;
+    letter-spacing: -0.012em;
+  }
+  .tile__meta {
+    margin: 0;
+    font: 500 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    color: var(--ink-quiet);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .tile__edge {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    border-radius: var(--r-2) 0 0 var(--r-2);
+    background: var(--ink-faint);
+  }
+  .tile__edge--private {
+    background: var(--hearth);
+  }
+  .tile__edge--group {
+    background: var(--moss);
+  }
+  .tile__edge--global {
+    background: var(--indigo);
+  }
+  .tile__activity {
+    margin: 0;
+    color: var(--ink-soft);
+    font: 500 var(--step-0) / 1.4 var(--font-body);
+  }
+  .tile__poster {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 1px 8px;
+    border-radius: var(--r-pill);
+    background: var(--paper-deep);
+    color: var(--ink);
+    font: 600 calc(var(--step--1) - 1px) / 1.3 var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+  .tile__activity em {
+    color: var(--ink);
+    font-style: italic;
+    font-variation-settings: var(--display-italic-axes);
+    font-family: var(--font-display);
+    font-size: 1.04em;
+  }
+  .tile__chips {
+    margin: var(--s-3) 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    font: 500 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+  .tile__chips li {
+    margin: 0;
+    padding: 4px 8px;
+    border-radius: var(--r-pill);
+    background: var(--moss-tint);
+    color: var(--moss);
+  }
+
+  .board__legend {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-5);
+    margin-top: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+    border-radius: var(--r-2);
+    background: color-mix(in oklab, var(--paper) 88%, var(--paper-deep));
+    color: var(--ink-soft);
+    font: 500 calc(var(--step--1) - 1px) / 1.3 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .board__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot--legend {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  .dot--private {
+    background: var(--hearth);
+  }
+  .dot--group {
+    background: var(--moss);
+  }
+  .dot--global {
+    background: var(--indigo);
+  }
+
+  /* ── Composition (desktop) ── */
+  .tile--family {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+  }
+  .tile--neighbours {
+    grid-column: 4 / span 3;
+    grid-row: 1;
+    margin-top: 18px;
+  }
+  .tile--makers {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    margin-top: 22px;
+  }
+  .tile--book {
+    grid-column: 3 / span 2;
+    grid-row: 2;
+    margin-top: -8px;
+  }
+  .tile--sport {
+    grid-column: 5 / span 2;
+    grid-row: 2;
+    margin-top: 14px;
+  }
+  .tile--bazaar {
+    grid-column: 2 / span 4;
+    grid-row: 3;
+    margin-top: 18px;
+  }
+
+  @media (max-width: 880px) {
+    .board {
+      grid-template-columns: 1fr;
+      padding: var(--s-5) var(--s-4) var(--s-4);
+      gap: var(--s-3);
+    }
+    .board__threads {
+      display: none;
+    }
+    .tile,
+    .tile--family,
+    .tile--neighbours,
+    .tile--makers,
+    .tile--book,
+    .tile--sport,
+    .tile--bazaar {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: 0;
+    }
+    .board__legend {
+      flex-direction: column;
+    }
+  }
+</style>

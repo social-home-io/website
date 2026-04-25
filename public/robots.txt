@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://social-home.io/sitemap.xml

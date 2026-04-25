@@ -1,0 +1,84 @@
+---
+/**
+ * Lightweight language picker. Server-rendered <select> backed
+ * by a tiny inline script that swaps the path prefix on change.
+ * Falls back gracefully without JS — the dropdown is decorative
+ * until the listener attaches.
+ */
+const locales = [
+  { code: "en", native: "English" },
+  { code: "de", native: "Deutsch" },
+  { code: "nl", native: "Nederlands" },
+  { code: "fr", native: "Français" },
+] as const;
+
+const currentPath = Astro.url.pathname;
+// Astro's locale routing sets ``Astro.currentLocale`` only when the
+// request actually carries a locale prefix. For the default
+// locale (``en``) the prefix is dropped, so fall back manually.
+const current = (Astro.currentLocale ?? "en") as (typeof locales)[number]["code"];
+---
+
+<form class="locale" data-current={current} data-base-path={currentPath}>
+  <label class="visually-hidden" for="locale-select">Language</label>
+  <select id="locale-select" name="locale" autocomplete="off">
+    {
+      locales.map(({ code, native }) => (
+        <option value={code} selected={code === current}>
+          {code.toUpperCase()} · {native}
+        </option>
+      ))
+    }
+  </select>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("form.locale");
+  const select = form?.querySelector<HTMLSelectElement>("select");
+  if (form && select) {
+    select.addEventListener("change", () => {
+      const target = select.value;
+      const path = form.dataset.basePath ?? "/";
+      const current = form.dataset.current ?? "en";
+      // Strip the existing locale prefix (if any) and prepend the
+      // new one. ``en`` is the default and uses no prefix.
+      const stripped = path.replace(new RegExp(`^/(en|de|nl|fr)(?=/|$)`), "");
+      const nextPath = target === "en" ? stripped || "/" : `/${target}${stripped || "/"}`;
+      if (nextPath !== path && current !== target) {
+        window.location.pathname = nextPath;
+      }
+    });
+  }
+</script>
+
+<style>
+  .locale {
+    display: inline-flex;
+    align-items: center;
+  }
+  select {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--r-pill);
+    padding: 6px 32px 6px 14px;
+    font: 500 var(--step--1) / 1 var(--font-mono);
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    cursor: pointer;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+      linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+    background-position:
+      calc(100% - 16px) 50%,
+      calc(100% - 11px) 50%;
+    background-size: 5px 5px;
+    background-repeat: no-repeat;
+    transition: border-color var(--dur-quick) var(--ease-quill);
+  }
+  select:hover,
+  select:focus-visible {
+    border-color: var(--ink);
+    outline: none;
+  }
+</style>

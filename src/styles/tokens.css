@@ -1,0 +1,114 @@
+/* ─── Domestic Editorial — design tokens ───────────────────────────── */
+
+:root {
+  /* Surfaces — never pure white. Warm parchment with subtle grain. */
+  --paper: #f4ece0;
+  --paper-deep: #ece0ce;
+  --paper-tinted: #efe3d2;
+  --paper-grain: rgba(35, 24, 8, 0.04);
+
+  /* Ink — warm-tinted neutrals only. */
+  --ink: #1a1814;
+  --ink-soft: #4a4439;
+  --ink-quiet: #807766;
+  --ink-faint: #b5ac9c;
+
+  /* Signature accents — terracotta hearth + deep hearth-green. */
+  --hearth: #d2542a;
+  --hearth-deep: #a33f1a;
+  --hearth-tint: #f1d9ca;
+  --moss: #1f4438;
+  --moss-tint: #d6e2dc;
+  --plum: #67354b;
+  --honey: #c8902f;
+  --indigo: #2d3957;
+
+  /* Rule lines + decorative tape. */
+  --rule: #1a1814;
+  --rule-soft: rgba(26, 24, 20, 0.18);
+  --tape: rgba(210, 84, 42, 0.22);
+  --tape-moss: rgba(31, 68, 56, 0.22);
+
+  /* Type scale — modular, ratio 1.2 for body, 1.333 for display. */
+  --step--1: clamp(0.78rem, 0.78rem + 0vw, 0.78rem);
+  --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.06rem);
+  --step-1: clamp(1.15rem, 1.1rem + 0.27vw, 1.33rem);
+  --step-2: clamp(1.4rem, 1.3rem + 0.5vw, 1.78rem);
+  --step-3: clamp(1.75rem, 1.55rem + 1vw, 2.66rem);
+  --step-4: clamp(2.3rem, 1.9rem + 2vw, 4rem);
+  --step-5: clamp(3rem, 2.4rem + 3vw, 6.2rem);
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Variable-axis flair: makes Fraunces feel hand-set, not stock. */
+  --display-feat: "ss01" on, "salt" on;
+  --display-axes: "SOFT" 75, "WONK" 1, "opsz" 96;
+  --display-italic-axes: "SOFT" 100, "WONK" 1, "opsz" 144;
+
+  /* Spacing — anchored to a 4 px rhythm. */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 40px;
+  --s-7: 64px;
+  --s-8: 104px;
+  --s-9: 168px;
+
+  /* Motion — restrained, editorial. */
+  --ease-quill: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-shelf: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-quick: 180ms;
+  --dur-settle: 420ms;
+  --dur-page: 680ms;
+
+  --measure-prose: 64ch;
+  --measure-narrow: 42ch;
+
+  /* Elevation — single shadow recipe, no Material levels. */
+  --lift-card: 0 1px 0 var(--rule-soft), 0 18px 36px -22px rgba(26, 24, 20, 0.35);
+  --lift-pinned: 0 1px 0 var(--rule-soft), 0 26px 60px -28px rgba(26, 24, 20, 0.55);
+
+  /* Radii — small, precise. */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-3: 14px;
+  --r-pill: 999px;
+
+  /* Frames */
+  --frame-w: clamp(16px, 4vw, 56px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #161821;
+    --paper-deep: #1f222c;
+    --paper-tinted: #1a1d27;
+    --paper-grain: rgba(255, 240, 215, 0.03);
+
+    --ink: #f1e9da;
+    --ink-soft: #c5bca9;
+    --ink-quiet: #8a8270;
+    --ink-faint: #4f4a40;
+
+    --hearth: #e96a3f;
+    --hearth-deep: #c04e22;
+    --hearth-tint: #3a211a;
+    --moss: #6fa38b;
+    --moss-tint: #1e2c28;
+    --plum: #c98ba8;
+    --honey: #e8b865;
+    --indigo: #8aa0d7;
+
+    --rule: #f1e9da;
+    --rule-soft: rgba(241, 233, 218, 0.16);
+    --tape: rgba(233, 106, 63, 0.3);
+    --tape-moss: rgba(111, 163, 139, 0.32);
+
+    --lift-card: 0 1px 0 var(--rule-soft), 0 28px 56px -28px rgba(0, 0, 0, 0.65);
+    --lift-pinned: 0 1px 0 var(--rule-soft), 0 36px 80px -28px rgba(0, 0, 0, 0.75);
+  }
+}

@@ -1,0 +1,77 @@
+---
+import type { ValueProp } from "../types";
+
+interface Props {
+  props: ValueProp[];
+}
+const { props } = Astro.props;
+---
+
+<section class="strip rule-band">
+  <div class="shell strip__inner">
+    {
+      props.map((p) => (
+        <div class="strip__item">
+          <p class="strip__claim">{p.claim}</p>
+          <p class="strip__detail">{p.detail}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .strip {
+    background: var(--paper-deep);
+  }
+  .strip__inner {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-5);
+    padding-block: var(--s-5);
+  }
+  .strip__item {
+    border-left: 1px solid var(--rule-soft);
+    padding-left: var(--s-4);
+  }
+  .strip__item:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+  .strip__claim {
+    font: 600 var(--step-0) / 1.2 var(--font-display);
+    margin: 0 0 6px;
+    color: var(--ink);
+    letter-spacing: -0.008em;
+  }
+  .strip__detail {
+    font: 500 calc(var(--step--1)) / 1.45 var(--font-body);
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  @media (max-width: 880px) {
+    .strip__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+    .strip__item:nth-child(3) {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
+  @media (max-width: 540px) {
+    .strip__inner {
+      grid-template-columns: 1fr;
+    }
+    .strip__item {
+      border-left: none;
+      padding-left: 0;
+      padding-top: var(--s-3);
+      border-top: 1px solid var(--rule-soft);
+    }
+    .strip__item:first-child {
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+</style>
