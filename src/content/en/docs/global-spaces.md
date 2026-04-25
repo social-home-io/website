@@ -40,6 +40,20 @@ all space traffic flows peer-to-peer.
 4. From that point on, the global-space conversation flows
    directly between the joined households — no relay traffic.
 
+## Connect to a ready-made relay
+
+The Social Home project runs two free relays you can connect to
+immediately:
+
+- **[Community GFS](/servers/)** —
+  `gfs-community.social-home.io`. Moderated, reviewed within
+  24 h. Great for neighbourhood groups, clubs, families.
+- **[Open GFS](/servers/)** — `gfs-open.social-home.io`.
+  Unmoderated, instant publishing. For developers and niche
+  communities.
+
+Or [run your own](/docs/running-a-gfs/) on any VPS in 15 minutes.
+
 ## Running a relay
 
 A relay is a small Python server (open source under MPL 2.0).
@@ -47,11 +61,6 @@ You can host one for your neighbourhood, your city, or a
 specific community. See
 [Run a relay yourself](/docs/running-a-gfs/) for a Docker
 Compose + Cloudflare guide that takes about 15 minutes.
-
-The official Social Home relays are listed in
-[servers](/docs/running-a-gfs/#known-relays). You don't have to
-use them — pointing your space at a relay you trust is the
-whole point.
 
 ## What changes vs private spaces
 

@@ -1,0 +1,368 @@
+---
+import Base from "../layouts/Base.astro";
+import QrCard from "../components/QrCard.astro";
+
+/**
+ * ``/servers/`` lives at the site root (per spec §9.2l), not
+ * under ``/docs/`` — it's a "connect to a relay in one tap"
+ * page, not a doc you read top-to-bottom. The two official
+ * relays are the project's, but the page makes it clear users
+ * can run their own.
+ */
+
+const community = "https://gfs-community.social-home.io";
+const open = "https://gfs-open.social-home.io";
+---
+
+<Base
+  title="Community servers"
+  description="The Social Home project runs two free Global Federation Servers — Community GFS (moderated) and Open GFS (unmoderated). Connect to a relay you trust, or run your own."
+>
+  <section class="band band--tight">
+    <div class="shell">
+      <p class="eyebrow">Global Federation Servers</p>
+      <h1 class="servers__h1">
+        Connect to a relay you <em>already</em> trust.
+      </h1>
+      <p class="servers__lede">
+        The Social Home project runs two free Global Federation Servers, hosted in the EU on Hetzner
+        Frankfurt. They help Spaces become discoverable across households that haven't already
+        paired — the relay never reads any messages, photos, or content.
+      </p>
+    </div>
+  </section>
+
+  <section class="band band--tight">
+    <div class="shell servers__grid">
+      <article class="server server--community">
+        <header>
+          <span class="server__sigil" aria-hidden="true">⬡</span>
+          <div>
+            <span class="server__kind">Moderated</span>
+            <h2>Community GFS</h2>
+            <p class="server__host"><code>gfs-community.social-home.io</code></p>
+          </div>
+        </header>
+        <p>
+          For neighbourhood groups, clubs, families, and local communities. Spaces are reviewed
+          before appearing in the public directory.
+        </p>
+        <ul class="server__bullets">
+          <li>Moderated public directory</li>
+          <li>Spaces reviewed within 24 h</li>
+          <li>Age-gate policy enforced</li>
+          <li>Abuse reports handled by the Social Home team</li>
+        </ul>
+        <p class="server__best-for">
+          <strong>Best for:</strong> neighbourhood watch groups, sports clubs, family networks, local
+          interest groups.
+        </p>
+        <footer>
+          <a class="btn btn--hearth" href={`sh://gfs-pair/${community}`}> Connect → </a>
+          <QrCard gfsUrl={community} label="Community GFS pairing QR code" />
+        </footer>
+      </article>
+
+      <article class="server server--open">
+        <header>
+          <span class="server__sigil" aria-hidden="true">⬡</span>
+          <div>
+            <span class="server__kind server__kind--unmoderated">Unmoderated</span>
+            <h2>Open GFS</h2>
+            <p class="server__host"><code>gfs-open.social-home.io</code></p>
+          </div>
+        </header>
+        <p>
+          Unmoderated relay. Any Space is published immediately with no review. No curation of the
+          public directory.
+        </p>
+        <ul class="server__bullets">
+          <li>Instant publishing — no review queue</li>
+          <li>No restrictions on Space topics</li>
+          <li class="warn">No moderation of published Spaces</li>
+          <li class="warn">Content may be unsuitable for children</li>
+        </ul>
+        <p class="server__best-for">
+          <strong>Best for:</strong> developers testing, niche communities, groups that want immediate
+          discoverability without a review step.
+        </p>
+        <footer>
+          <a class="btn btn--ghost" href={`sh://gfs-pair/${open}`}> Connect → </a>
+          <QrCard gfsUrl={open} label="Open GFS pairing QR code" />
+        </footer>
+      </article>
+    </div>
+  </section>
+
+  <section class="band band--tight">
+    <div class="shell">
+      <h2>Which one should I use?</h2>
+      <table class="compare">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Community GFS</th>
+            <th>Open GFS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Publishing speed</th>
+            <td>Up to 24 h review</td>
+            <td>Instant</td>
+          </tr>
+          <tr>
+            <th>Directory moderation</th>
+            <td>✓ Yes</td>
+            <td>✗ No</td>
+          </tr>
+          <tr>
+            <th>Age-gate policy</th>
+            <td>✓ Enforced</td>
+            <td>✗ Not enforced</td>
+          </tr>
+          <tr>
+            <th>Abuse handling</th>
+            <td>✓ Reported to us</td>
+            <td>✗ Self-manage</td>
+          </tr>
+          <tr>
+            <th>Good for families</th>
+            <td>✓ Yes</td>
+            <td>⚠ With caution</td>
+          </tr>
+          <tr>
+            <th>Good for developers</th>
+            <td>✓ Yes</td>
+            <td>✓ Yes</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="hint">
+        <strong>Not sure?</strong> Start with Community GFS. You can connect to both and publish the same
+        Space on both servers for redundancy.
+      </p>
+    </div>
+  </section>
+
+  <section class="band band--tight">
+    <div class="shell">
+      <h2>How to connect</h2>
+      <ol class="howto">
+        <li>Open <strong>Social Home</strong> on your Home Assistant.</li>
+        <li>Go to <strong>Settings → Connections → Global Servers</strong>.</li>
+        <li>Tap <strong>+ Connect GFS</strong>.</li>
+        <li>Scan the QR code above — or paste the URL.</li>
+      </ol>
+      <p>
+        You can connect to as many relays as you want. Each one gives your Spaces additional reach
+        and redundancy.
+      </p>
+
+      <h2>Run your own</h2>
+      <p>
+        For a private community or organisation that wants full control, you can run your own GFS on
+        any VPS in about 15 minutes. <a href="/docs/running-a-gfs/">Set up your own GFS →</a>
+      </p>
+
+      <h2>Status</h2>
+      <p>
+        Server status, uptime, and incident history live at
+        <a href="https://status.social-home.io" rel="external">status.social-home.io</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .servers__h1 {
+    font-size: var(--step-4);
+    margin: var(--s-3) 0 var(--s-4);
+    max-width: 18ch;
+  }
+  .servers__h1 em {
+    color: var(--hearth);
+  }
+  .servers__lede {
+    font: 380 var(--step-1) / 1.5 var(--font-body);
+    color: var(--ink-soft);
+    max-width: var(--measure-prose);
+    margin: 0;
+  }
+
+  .servers__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-6);
+  }
+  @media (max-width: 980px) {
+    .servers__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .server {
+    position: relative;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--r-3);
+    padding: var(--s-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-4);
+  }
+  .server::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    border-radius: var(--r-3) 0 0 var(--r-3);
+    background: var(--moss);
+  }
+  .server--open::before {
+    background: var(--indigo);
+  }
+
+  .server header {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: var(--s-3);
+    align-items: center;
+  }
+  .server__sigil {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--r-2);
+    color: var(--moss);
+    font-size: 22px;
+  }
+  .server--open .server__sigil {
+    color: var(--indigo);
+  }
+  .server__kind {
+    display: inline-block;
+    font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: var(--r-pill);
+    background: var(--moss-tint);
+    color: var(--moss);
+    margin-bottom: 6px;
+  }
+  .server__kind--unmoderated {
+    background: color-mix(in oklab, var(--indigo) 18%, var(--paper-deep));
+    color: var(--indigo);
+  }
+  .server h2 {
+    font-size: var(--step-2);
+    margin: 0;
+  }
+  .server__host {
+    margin: 4px 0 0;
+    font: 500 var(--step-0) / 1 var(--font-mono);
+    color: var(--ink-soft);
+  }
+  .server__bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .server__bullets li {
+    margin: 0;
+    padding-left: 22px;
+    position: relative;
+    color: var(--ink-soft);
+    font-size: var(--step-0);
+  }
+  .server__bullets li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--moss);
+    font-weight: 600;
+  }
+  .server__bullets li.warn::before {
+    content: "⚠";
+    color: var(--honey);
+  }
+  .server__best-for {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: var(--step-0);
+  }
+  .server footer {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: var(--s-3);
+    border-top: 1px dashed var(--rule-soft);
+  }
+
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--s-5) 0 var(--s-3);
+  }
+  .compare th,
+  .compare td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--rule-soft);
+    font-size: var(--step-0);
+  }
+  .compare thead th {
+    color: var(--ink-quiet);
+    font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .compare tbody th {
+    color: var(--ink);
+    font-weight: 600;
+    width: 32%;
+  }
+  .hint {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .howto {
+    counter-reset: howto;
+    list-style: none;
+    margin: var(--s-3) 0 var(--s-4);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+  }
+  .howto li {
+    counter-increment: howto;
+    padding-left: 36px;
+    position: relative;
+    color: var(--ink);
+  }
+  .howto li::before {
+    content: counter(howto);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--hearth);
+    color: var(--paper);
+    font: 600 calc(var(--step--1)) / 1 var(--font-mono);
+  }
+</style>

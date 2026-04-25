@@ -60,12 +60,19 @@ The most useful thing you can do is **install it and tell us
 what was confusing**. The first 100 households that try Social
 Home shape the next year of work harder than any spec rewrite.
 
-## Sponsoring
+## What the project does _not_ need
 
-Hosting, domain registration, and the occasional code-signing
-certificate cost real money. If your company uses Social Home
-internally and wants to keep it healthy, a sustaining sponsorship
-on [GitHub
-Sponsors](https://github.com/sponsors/social-home-io) is the
-cleanest path. We'll never put a sponsor's logo where it gets in
-the way of the product.
+- **Money.** No donation links, no Patreon, no Open Collective —
+  the project is run by people who use it, not a company that
+  has to keep itself fed. If hosting costs ever become a real
+  problem, we'll say so loudly first.
+- **"Can you add X?"** issues without a description of the
+  problem you're solving. A use case beats a feature request.
+- **Promises to contribute.** A working pull request, even a
+  small one, is worth more than a roadmap.
+
+## Closing
+
+Social Home is for people who believe their family photos,
+messages, and calendar shouldn't be someone else's product. If
+that resonates with you, you're already part of it.

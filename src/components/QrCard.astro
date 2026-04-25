@@ -1,0 +1,65 @@
+---
+import QRCode from "qrcode";
+
+/**
+ * Build-time QR-code renderer. Generates the SVG once at build
+ * time so the static site has no client-side QR dependency.
+ *
+ * The encoded value is the ``sh://gfs-pair/`` deep link the
+ * Social Home mobile/desktop app handles — see spec §23.12.
+ */
+interface Props {
+  /** The URL to encode (will be wrapped in ``sh://gfs-pair/``). */
+  gfsUrl: string;
+  /** Pixel size of the rendered SVG (square). */
+  size?: number;
+  /** Accessible label. */
+  label: string;
+}
+const { gfsUrl, size = 168, label } = Astro.props;
+
+const deepLink = `sh://gfs-pair/${gfsUrl}`;
+const svg = await QRCode.toString(deepLink, {
+  type: "svg",
+  margin: 1,
+  errorCorrectionLevel: "M",
+  width: size,
+  color: {
+    // Render the dark modules in our ink colour and the light
+    // modules transparent so the surrounding card paper shows
+    // through. Both colour-tokens get expanded at runtime.
+    dark: "#1A1814",
+    light: "#00000000",
+  },
+});
+---
+
+<figure class="qr" aria-label={label} style={`--qr-size: ${size}px;`}>
+  <Fragment set:html={svg} />
+  <figcaption>
+    Scan in <strong>Social Home → Connections → Global Servers</strong>
+  </figcaption>
+</figure>
+
+<style>
+  .qr {
+    margin: 0;
+    width: var(--qr-size);
+  }
+  .qr :global(svg) {
+    width: var(--qr-size);
+    height: var(--qr-size);
+    display: block;
+  }
+  figcaption {
+    margin-top: var(--s-2);
+    font: 500 calc(var(--step--1) - 1px) / 1.4 var(--font-mono);
+    letter-spacing: 0.04em;
+    color: var(--ink-quiet);
+    text-align: center;
+  }
+  figcaption strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>
