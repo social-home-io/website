@@ -12,7 +12,7 @@ const installHref =
 
 const hero: HeroCopy = {
   eyebrow: "Open · federated · MPL 2.0",
-  sub: "Calendar, shopping list, photos, chat — running on your own Home Assistant. A household OS that's also a social network you actually own.",
+  sub: "Calendar, shopping list, photos, chat, stories, moments — running on your own Home Assistant. A household OS that's also a social network you actually own.",
   primaryCta: "Add to Home Assistant",
   secondaryCta: "What can it do?",
   installHref,
@@ -45,7 +45,7 @@ const household: FeatureColumn = {
     {
       tag: "Shared calendar",
       title: "Every calendar in one overlay.",
-      body: "Personal, partner, household — colour-coded in one view. Add events from HA voice or any phone; everyone sees them at once.",
+      body: "Personal, partner, household — colour-coded in one view. Add events from HA voice or any phone, then RSVP yes/no/maybe so everyone sees who's in. Invitees from paired households RSVP across the federation.",
     },
     {
       tag: "Live shopping list",
@@ -98,6 +98,16 @@ const social: FeatureColumn = {
       tag: "Spaces for any group",
       title: "Rooms that span households.",
       body: "Family, neighbours, book club, sports team — each in its own private space. Pair households once, then it just works.",
+    },
+    {
+      tag: "Stories",
+      title: "A glimpse, then it's gone.",
+      body: "Drop a photo or short clip with a caption — paired peers see it in their inbox, react with an emoji, and it expires on its own. No archive growing in a stranger's data centre.",
+    },
+    {
+      tag: "Momentum",
+      title: "One-shot posts that travel.",
+      body: "Up to a thousand characters and a 15-second clip. Each moment fans out three hops across the federation — your peers and theirs — and disappears after a day, or a week for people you follow.",
     },
   ],
 };
