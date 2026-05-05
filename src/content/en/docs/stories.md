@@ -6,7 +6,7 @@ order: 22
 
 A **story** is the lightweight, ephemeral counterpart to the
 household feed. You drop a photo or a short video, add an
-optional caption, and it lands in the *Stories* inbox of every
+optional caption, and it lands in the _Stories_ inbox of every
 paired household. After 24 hours (or longer if you've set a
 retention preference) the row is purged, on disk, on your
 server.
@@ -16,7 +16,7 @@ Stories live under **Talk → Stories** in the sidebar.
 ## How it works
 
 - **One story per author per day.** A story is a small album of
-  *frames*; each post during the same day appends a frame to
+  _frames_; each post during the same day appends a frame to
   today's story rather than creating a new one. New day → new
   story row.
 - **Audience.** You pick from three options when you post:

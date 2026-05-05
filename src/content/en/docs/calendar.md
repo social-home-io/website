@@ -43,8 +43,8 @@ peer, so the count chip updates everywhere within seconds.
 
 ## Reminders
 
-Events carry an optional reminder — *15 minutes before*, *1
-hour before*, *1 day before*. The reminder fires through the
+Events carry an optional reminder — _15 minutes before_, _1
+hour before_, _1 day before_. The reminder fires through the
 notification service: an in-app row, a push notification (if
 the user has push enabled), and an HA event so HA automations
 can chime a speaker, dim the lights, or whatever the
@@ -63,7 +63,7 @@ you press Save.
 
 - Calendar payload fields are encrypted in the federation
   envelope (§25.8.21).
-- GPS coordinates on a *location*-flavoured event are
+- GPS coordinates on a _location_-flavoured event are
   truncated to four decimal places (≈ 11 m) before they're
   ever stored or transmitted (§25 GPS rule).
 - Personal calendars never federate. Only the household and
@@ -71,17 +71,17 @@ you press Save.
 
 ## API
 
-| Method | Path | Purpose |
-|---|---|---|
-| `GET` | `/api/calendar` | Household calendar, with personal overlays mixed in. |
-| `POST` | `/api/calendar/events` | Create an event in the household calendar. |
-| `GET` / `PATCH` / `DELETE` | `/api/calendar/events/{id}` | Read / edit / delete one event. |
-| `PUT` | `/api/calendar/events/{id}/rsvps` | Set your RSVP. Body: `{response: "yes" \| "no" \| "maybe", note?}`. |
-| `GET` | `/api/calendar/events/{id}/rsvps` | List every invitee's current state. |
-| `POST` | `/api/calendar/events/{id}/reminders` | Configure the reminder window. |
-| `GET` | `/api/calendar/events/{id}.ics` | Download a single event as an iCalendar file. |
-| `POST` | `/api/calendar/import/ics` | Import a `.ics` file or feed URL. |
-| `POST` | `/api/calendar/import/image` | OCR + AI-extract an event from a screenshot. |
+| Method                     | Path                                  | Purpose                                                             |
+| -------------------------- | ------------------------------------- | ------------------------------------------------------------------- |
+| `GET`                      | `/api/calendar`                       | Household calendar, with personal overlays mixed in.                |
+| `POST`                     | `/api/calendar/events`                | Create an event in the household calendar.                          |
+| `GET` / `PATCH` / `DELETE` | `/api/calendar/events/{id}`           | Read / edit / delete one event.                                     |
+| `PUT`                      | `/api/calendar/events/{id}/rsvps`     | Set your RSVP. Body: `{response: "yes" \| "no" \| "maybe", note?}`. |
+| `GET`                      | `/api/calendar/events/{id}/rsvps`     | List every invitee's current state.                                 |
+| `POST`                     | `/api/calendar/events/{id}/reminders` | Configure the reminder window.                                      |
+| `GET`                      | `/api/calendar/events/{id}.ics`       | Download a single event as an iCalendar file.                       |
+| `POST`                     | `/api/calendar/import/ics`            | Import a `.ics` file or feed URL.                                   |
+| `POST`                     | `/api/calendar/import/image`          | OCR + AI-extract an event from a screenshot.                        |
 
 Space-scoped calendars use the parallel `/api/spaces/{id}/calendar/*`
 shape so a single space can host its own event series without

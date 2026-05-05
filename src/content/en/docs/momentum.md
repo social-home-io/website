@@ -5,8 +5,8 @@ order: 24
 ---
 
 **Momentum** is the broadcast pillar of Social Home. Each post —
-a *moment* — fans out across paired households *and their
-paired households* up to three hops away. Replies are themselves
+a _moment_ — fans out across paired households _and their
+paired households_ up to three hops away. Replies are themselves
 moments, linked through a `parent_moment_id` so a thread reads
 as one. The whole pillar lives under **Talk → Momentum** in the
 sidebar; the **Browse → Moments archive** dashboard groups every
@@ -16,7 +16,7 @@ received moment by day inside the retention window.
 
 - Up to **1 000 characters** of text (the composer shows a live
   counter).
-- Optionally a single **image** *or* a single **video clip up to
+- Optionally a single **image** _or_ a single **video clip up to
   15 seconds**. The composer rejects longer clips before the
   upload so you don't waste bandwidth.
 - Replies attach to a parent via `parent_moment_id`. Threading
@@ -50,7 +50,7 @@ The author's instance fans the moment to every paired peer with
    delivery via two relay paths is a no-op).
 2. **Republishes** the bus event so the realtime layer pushes a
    `moment.created` WebSocket frame to local viewers.
-3. **Re-broadcasts** the same envelope to *its own* paired peers
+3. **Re-broadcasts** the same envelope to _its own_ paired peers
    — bumping `hop_count` and skipping both the original origin
    and the immediate sender.
 4. **Stops** when `hop_count` would exceed `MOMENT_MAX_HOPS`
@@ -90,16 +90,16 @@ the author's session.
 
 ## API
 
-| Method | Path | Purpose |
-|---|---|---|
-| `GET` | `/api/moments` | List moments visible to the caller (block-aware, follow-aware). |
-| `POST` | `/api/moments` | Create a moment. Body: `{content, media_url?, media_type?, duration_ms?, parent_moment_id?}`. |
-| `GET` | `/api/moments/archive` | Full retention-window list for the calendar dashboard. |
-| `GET` | `/api/moments/{id}` | Detail with replies + reactions. |
-| `DELETE` | `/api/moments/{id}` | Author or admin delete. |
-| `PUT` / `DELETE` | `/api/moments/{id}/reaction` | Set / clear your own emoji. |
-| `POST` | `/api/moments/{id}/report` | File a `content_reports` row. |
-| `GET` / `POST` / `DELETE` | `/api/moments/follows[/{user_id}]` | Manage your follow list. |
+| Method                    | Path                               | Purpose                                                                                       |
+| ------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| `GET`                     | `/api/moments`                     | List moments visible to the caller (block-aware, follow-aware).                               |
+| `POST`                    | `/api/moments`                     | Create a moment. Body: `{content, media_url?, media_type?, duration_ms?, parent_moment_id?}`. |
+| `GET`                     | `/api/moments/archive`             | Full retention-window list for the calendar dashboard.                                        |
+| `GET`                     | `/api/moments/{id}`                | Detail with replies + reactions.                                                              |
+| `DELETE`                  | `/api/moments/{id}`                | Author or admin delete.                                                                       |
+| `PUT` / `DELETE`          | `/api/moments/{id}/reaction`       | Set / clear your own emoji.                                                                   |
+| `POST`                    | `/api/moments/{id}/report`         | File a `content_reports` row.                                                                 |
+| `GET` / `POST` / `DELETE` | `/api/moments/follows[/{user_id}]` | Manage your follow list.                                                                      |
 
 The `feat_momentum` household toggle in **Settings →
 Household features** disables every endpoint above with a 403
