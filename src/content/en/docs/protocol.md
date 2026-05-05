@@ -118,6 +118,17 @@ they don't already know one another. The relay never reads your
 messages. It just helps two servers shake hands; once they do,
 the conversation goes directly between them.
 
+## Public story links
+
+The same kind of relay also has one second job: handing off a
+single story to people outside Social Home. When you publish a
+story link, the relay mints a URL that anyone can open in a
+browser — but the story bytes themselves still flow directly
+from your home server to the visitor's browser. The relay only
+brokers a brief WebRTC handshake; it never sees a frame, never
+caches a thumbnail. See [Stories](/docs/stories/#sharing-publicly-via-a-global-server)
+for the author-facing flow.
+
 ## End-to-end encryption
 
 For sensitive spaces, messages are sealed on your device and

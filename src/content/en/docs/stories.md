@@ -46,6 +46,33 @@ Stories live under **Talk → Stories** in the sidebar.
   every surface — inbox, archive, and the rings on top of the
   page — without leaking a "you've been blocked" signal.
 
+## Sharing publicly via a Global Server
+
+Sometimes you want to send a story to someone who isn't on Social
+Home — a friend on Twitter, a relative who only checks email. From
+the story viewer, the author can tap **Publish public link** and
+pick a paired Global Federation Server (GFS). The GFS hands back a
+URL like
+
+```
+https://gfs.example/story/{instance}/{story}/{token}
+```
+
+Anyone with that URL can open the story in a browser. Under the
+hood, the GFS only relays a WebRTC handshake — the **story bytes
+flow directly from your home server to the visitor's browser**, the
+GFS never sees a frame. The same retention you set on the story
+applies to the public link too: when the story would have been
+purged for paired peers, the public URL stops working.
+
+You can mint several tokens per story (one per platform, say) and
+revoke any of them individually. The author can also pull every
+token at once with **Unpublish** if the link gets out of hand.
+
+This is the only Social Home surface where content is intentionally
+readable without a household identity, and it's per-story
+opt-in — nothing leaves your home server until you flip the toggle.
+
 ## Reporting
 
 If a story breaks community norms — spam, harassment,
