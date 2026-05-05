@@ -9,6 +9,15 @@ e.g. `2026.4.25` — across every repo that participated in the
 release. Components without changes for a given date simply
 don't tag.
 
+## Unreleased
+
+- **Stories: public sharing via a paired GFS.** A story author can
+  mint a public URL on a Global Federation Server. Anyone with the
+  URL gets a browser-only viewer — story bytes stream straight from
+  the author's home server over WebRTC; the relay only brokers the
+  signalling handshake. Per-link tokens are individually revocable;
+  the same retention you set on the story applies to the link.
+
 ## 2026.4.25 — first public release
 
 The bootstrap. Five repos go public on the same day:
