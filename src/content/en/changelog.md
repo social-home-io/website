@@ -11,12 +11,12 @@ don't tag.
 
 ## Unreleased
 
-- **Stories: public sharing via a paired GFS.** A story author can
+- **Highlights: public sharing via a paired GFS.** A highlight author can
   mint a public URL on a Global Federation Server. Anyone with the
-  URL gets a browser-only viewer — story bytes stream straight from
+  URL gets a browser-only viewer — highlight bytes stream straight from
   the author's home server over WebRTC; the relay only brokers the
   signalling handshake. Per-link tokens are individually revocable;
-  the same retention you set on the story applies to the link.
+  the same retention you set on the highlight applies to the link.
 
 ## 2026.4.25 — first public release
 

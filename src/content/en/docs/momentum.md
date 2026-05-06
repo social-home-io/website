@@ -79,12 +79,12 @@ the author's session.
 
 ## Block + report
 
-- **Block.** The same `Block` action that hides Stories also
+- **Block.** The same `Block` action that hides Highlights also
   hides every moment from that author. Manage blocks at
   **Settings → Privacy → Blocked accounts**.
 - **Report.** ⋯ → **Report** on the detail page files a row in
   the unified `content_reports` queue (the same one that handles
-  posts, comments, stories, and users). The household admin
+  posts, comments, highlights, and users). The household admin
   triages everything from one place at
   `/api/admin/reports?status=pending`.
 
