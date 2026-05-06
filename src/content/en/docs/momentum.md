@@ -97,6 +97,34 @@ Two extra gates sit on top of the relay:
   their own row locally — peers only catch up after a moderator
   acts.
 
+## Going public via a Global Federation Server
+
+Three hops cover paired households, but the wider network goes
+through a Global Federation Server — a relay anyone can pair
+with. Opt in at **Settings → Privacy → Public Momentum**, pick a
+GFS, and your moments fan out to everyone there who follows you.
+What the GFS knows about you is exactly what you set in
+**Settings → Profile**: display name, bio, avatar. Update those
+and the GFS copy refreshes on save — one identity, no
+per-pillar overrides.
+
+### Discover and follow
+
+- **In your Social Home.** **Talk → Momentum → Discover** lists
+  every public author on each GFS you've paired with. Search by
+  name, handle, or bio; one click to follow. Their next moment
+  lands in your inbox alongside paired-household moments —
+  flagged with a "via {gfs}" chip.
+- **From the open web.** Each GFS hosts a public landing at
+  `/users` (the directory) and `/users/<id>` (per-author page
+  with avatar, bio, follower count, and a deeplink that opens
+  the follow flow on your Social Home). Useful for sharing your
+  Momentum profile with people who aren't on a Social Home yet.
+
+The directory cards use the same avatar + bio + display name
+that paired peers see — there's no separate "public persona" to
+maintain.
+
 ## Rate limit
 
 One **top-level** moment per author per **15 minutes**. Replies
