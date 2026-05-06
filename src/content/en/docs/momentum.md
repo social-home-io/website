@@ -61,6 +61,42 @@ original sender across hops, so the receiving instance can
 verify authority even when the envelope arrived from a relayer
 rather than the author's home.
 
+## How far you want to look
+
+Three hops is the wire-level cap; you can dial it down per
+account. **Settings → Privacy → Momentum visibility** picks
+between **1 hop** (only direct peers — your paired households),
+**2 hops** (their peers too), and **3 hops** (default — the full
+relay reach). The setting only changes what _you_ see; your
+household still relays the full three hops onward so the rest of
+the mesh stays intact.
+
+## Forwarding without storing
+
+When an inbound moment lands and no local user can see it — say
+everyone on this household has dialled max-hops down to 1, or
+they all block the author — your instance skips the local row
+entirely and just forwards the envelope to the next hop. Pure
+pass-through: no disk write, no retention work, no UI surface.
+The mesh stays whole for everyone else; your household just
+doesn't keep a copy of something nobody asked for.
+
+## Banned instances + open reports
+
+Two extra gates sit on top of the relay:
+
+- **Household instance bans.** Admins can drop an instance ID
+  into **Settings → Federation → Banned instances**; inbound
+  moments from that instance get dropped at the §24.11 pipeline
+  and never relay onward. Each household keeps its own list —
+  bans don't federate.
+- **Open content reports.** While a `content_reports` row is
+  open against a moment or its author, your instance won't fan
+  the moment out to peers. Resolving or dismissing the report in
+  `/api/admin/reports` restores the relay. The author still sees
+  their own row locally — peers only catch up after a moderator
+  acts.
+
 ## Rate limit
 
 One **top-level** moment per author per **15 minutes**. Replies
