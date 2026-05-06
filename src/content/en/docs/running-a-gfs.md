@@ -6,10 +6,10 @@ order: 60
 
 A Global Federation Server is a small Python relay that helps
 households discover each other for **global spaces**, and that
-brokers public-story share links — see
-[Stories → public sharing](/docs/stories/#sharing-publicly-via-a-global-server)
+brokers public-highlight share links — see
+[Highlights → public sharing](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow. In both jobs the relay only carries
-metadata: it never sees a message, never caches a story frame.
+metadata: it never sees a message, never caches a highlight frame.
 Hosting your own relay means your community decides who can join,
 and there's no single party at the centre.
 
