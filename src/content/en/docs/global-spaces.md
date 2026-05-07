@@ -132,17 +132,14 @@ subscribed to.
 
 ## Connect to a ready-made relay
 
-The Social Home project runs two free relays you can connect to
-immediately:
+The Social Home project runs one public relay at
+**[`gfs.social-home.io`](/servers/)** — hosted in the EU on
+Hetzner Frankfurt, with a moderated public directory and the
+age-gate policy enforced. One QR scan and you're paired.
 
-- **[Community GFS](/servers/)** —
-  `gfs-community.social-home.io`. Moderated, reviewed within
-  24 h. Great for neighbourhood groups, clubs, families.
-- **[Open GFS](/servers/)** — `gfs-open.social-home.io`.
-  Unmoderated, instant publishing. For developers and niche
-  communities.
-
-Or [run your own](/docs/running-a-gfs/) on any VPS in 15 minutes.
+Or [run your own](/docs/running-a-gfs/) on any VPS in
+15 minutes — useful for a private community, a household-
+specific relay, or as a second pairing for resilience.
 
 ## Running a relay
 
