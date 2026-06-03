@@ -18,10 +18,7 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": [
-        "astro-build.astro-vscode",
-        "esbenp.prettier-vscode"
-      ]
+      "extensions": ["astro-build.astro-vscode", "esbenp.prettier-vscode"]
     }
   }
 }
