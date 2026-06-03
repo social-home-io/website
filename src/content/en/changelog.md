@@ -11,6 +11,16 @@ don't tag.
 
 ## Unreleased
 
+- **Social Home Apps.** Install small apps — a chess board, a shared
+  whiteboard, a quiz — that federate app-to-app with the same app in a
+  paired household. Sessions run peer-to-peer between confirmed homes
+  (the relay is never involved); every payload is AES-256-GCM sealed and
+  Ed25519-signed. Apps are sandboxed; the admin installs once and sets a
+  per-app age gate.
+- **Spaces: big changes take a vote.** Dissolving a space or changing its
+  scope now needs a majority of the space's admins to approve once a
+  space has more than one admin. Any reject cancels; a proposal lapses
+  after seven days.
 - **Highlights: public sharing via a paired GFS.** A highlight author can
   mint a public URL on a Global Federation Server. Anyone with the
   URL gets a browser-only viewer — highlight bytes stream straight from

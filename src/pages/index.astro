@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import HeroSection from "../components/HeroSection.astro";
 import ValuePropStrip from "../components/ValuePropStrip.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
+import AppsFeature from "../components/AppsFeature.astro";
 import SpaceWall from "../components/SpaceWall.astro";
 import InstallBanner from "../components/InstallBanner.astro";
 import type { HeroCopy, FeatureColumn, ValueProp } from "../types";
@@ -12,7 +13,7 @@ const installHref =
 
 const hero: HeroCopy = {
   eyebrow: "Open · federated · MPL 2.0",
-  sub: "Calendar, shopping list, photos, chat, highlights, moments — running on your own Home Assistant. A household OS that's also a social network you actually own.",
+  sub: "Calendar, shopping list, photos, chat, highlights, moments, apps — running on your own Home Assistant. A household OS that's also a social network you actually own.",
   primaryCta: "Add to Home Assistant",
   secondaryCta: "What can it do?",
   installHref,
@@ -121,6 +122,7 @@ const social: FeatureColumn = {
   <HeroSection copy={hero} />
   <ValuePropStrip props={valueProps} />
   <FeatureGrid household={household} social={social} />
+  <AppsFeature />
 
   <section class="federated band">
     <div class="shell federated__inner">
