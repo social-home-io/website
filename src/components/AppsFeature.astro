@@ -15,16 +15,33 @@ interface AppCard {
 }
 
 const apps: AppCard[] = [
-  { glyph: "♞", name: "Chess", blurb: "Play the grandparents' house, one move at a time.", state: "open" },
+  {
+    glyph: "♞",
+    name: "Chess",
+    blurb: "Play the grandparents' house, one move at a time.",
+    state: "open",
+  },
   { glyph: "✎", name: "Whiteboard", blurb: "Sketch a seating plan together, live.", state: "open" },
   { glyph: "◑", name: "Trivia night", blurb: "Two households, one quiz.", state: "install" },
 ];
 
 const points = [
-  { k: "App-to-app federation", v: "The same app in a paired home swaps moves and ops directly — no shared cloud, no lobby server." },
-  { k: "Encryption-first", v: "Every payload is AES-256-GCM sealed and Ed25519-signed. Only routing headers ride in the clear." },
-  { k: "Sandboxed", v: "Each app runs in its own locked-down frame. The admin installs once, sets an age gate, done." },
-  { k: "Peer-to-peer", v: "Sessions run straight between confirmed households. The relay stays out of it entirely." },
+  {
+    k: "App-to-app federation",
+    v: "The same app in a paired home swaps moves and ops directly — no shared cloud, no lobby server.",
+  },
+  {
+    k: "Encryption-first",
+    v: "Every payload is AES-256-GCM sealed and Ed25519-signed. Only routing headers ride in the clear.",
+  },
+  {
+    k: "Sandboxed",
+    v: "Each app runs in its own locked-down frame. The admin installs once, sets an age gate, done.",
+  },
+  {
+    k: "Peer-to-peer",
+    v: "Sessions run straight between confirmed households. The relay stays out of it entirely.",
+  },
 ];
 ---
 
