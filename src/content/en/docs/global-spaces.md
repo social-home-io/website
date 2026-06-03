@@ -42,6 +42,25 @@ last case.
 > admin action — and republishing to a GFS — so you can't
 > accidentally widen who sees what.
 
+## Big changes take a vote
+
+Two actions are too consequential for one person to do alone:
+**dissolving a space** and **changing who it's visible to** (its
+scope). When a space has more than one admin, either action
+becomes a _proposal_ instead of happening instantly.
+
+- Any admin can open the proposal; the others vote yes or no.
+- It executes once **more than half** the admins approve — the
+  owner counts as an admin like everyone else.
+- A single _no_ cancels it. So does waiting: a proposal lapses
+  after seven days if it never reaches a majority.
+
+A space with just one admin still acts immediately — a majority
+of one. But the moment a second admin joins, no single person
+can dissolve the space or push it to a wider scope on their own.
+Admins in paired households vote too; the host tallies everyone
+and only the approved result federates out.
+
 ## What a global space is
 
 A global space lives on a small relay server — a **Global
