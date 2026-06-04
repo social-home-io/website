@@ -24,6 +24,16 @@ spec](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
 - **[Privacy model](/docs/privacy/)** — what stays on your server
   and what (very little) leaves it.
 
+## Features
+
+- **[Calendar & RSVPs](/docs/calendar/)** — everyone's calendars
+  in one view. Reply yes / no / maybe, even to a household you've
+  paired with.
+- **[Highlights](/docs/highlights/)** — share a photo or short clip
+  that quietly disappears. No archive, no pressure.
+- **[Momentum](/docs/momentum/)** — a quick post that travels to
+  friends and their friends, then fades on its own.
+
 ## Go deeper
 
 - **[Households, federated](/docs/federation/)** — pair another
