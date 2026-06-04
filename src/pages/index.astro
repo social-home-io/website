@@ -26,8 +26,9 @@ const valueProps: ValueProp[] = [
     detail: "Everything lives on your Home Assistant. No third-party cloud touches your day.",
   },
   {
-    claim: "End-to-end encrypted.",
-    detail: "Sensitive spaces are sealed on your device — not even the relay can read them.",
+    claim: "Always encrypted.",
+    detail:
+      "Every message is sealed before it leaves your server — no toggle, no exceptions. Not even the relay can read it.",
   },
   {
     claim: "Federation, not silos.",
@@ -73,6 +74,11 @@ const household: FeatureColumn = {
       title: "Who's home, right now.",
       body: "A subtle indicator only — no GPS history, no breadcrumbs. Opt-in per person and per device.",
     },
+    {
+      tag: "Family safety",
+      title: "Kids' accounts, with guardrails.",
+      body: "Mark a child's account as protected, set their age, and name a guardian. Age-gated spaces and apps stay out of reach, their DMs stay within households you've paired, and guardians get a quiet read-only overview.",
+    },
   ],
 };
 
@@ -109,6 +115,11 @@ const social: FeatureColumn = {
       tag: "Momentum",
       title: "One-shot posts that travel.",
       body: "Up to a thousand characters and a 15-second clip. Each moment fans out three hops across the federation — your peers and theirs — and disappears after a day, or a week for people you follow.",
+    },
+    {
+      tag: "Marketplace",
+      title: "Buy, sell, and give within your circle.",
+      body: "List things in a space — fixed price, best offer, or a timed auction. Only the households in that space see it. No strangers, no platform fees, no listings sold to advertisers.",
     },
   ],
 };

@@ -48,13 +48,19 @@ It **never** sees:
 If you don't use global spaces, no relay is involved at all —
 your household just talks directly to households you've paired.
 
-## End-to-end encryption
+## Encryption
 
-For sensitive spaces, every message travels inside an encrypted
-envelope that only members of the space can open. Even a
-malicious relay couldn't read it. Encryption is per-space and
-opt-in — the household feed and shopping list don't need it
-because the data never leaves your server in the first place.
+Every message that leaves your server is encrypted — always, with
+no toggle to forget. Each federation event is sealed in an
+AES-256-GCM envelope and signed, so only the households on the
+guest list can open it and not even a malicious relay can read a
+word. There's no "encrypted / not encrypted" switch and no
+plaintext fallback: if a space can't encrypt, it doesn't send.
+
+On your own server, your data sits in plaintext — because it's
+your house, your disk, and that's how you search and scroll your
+own history. The rule is simple: nothing leaves the house
+unencrypted, and nothing a relay touches is ever readable.
 
 ## Things Social Home doesn't have
 
@@ -67,8 +73,9 @@ because the data never leaves your server in the first place.
 
 ## Things you control
 
-- **Per-space encryption** (Settings → Spaces → _space_ →
-  Security).
+- **Who's in a space** (Settings → Spaces — invite or remove
+  members; removing someone rotates the space's key so they can't
+  read anything posted afterwards).
 - **Presence sharing** (Settings → Privacy — opt-in, per
   household member, can be turned off any time).
 - **Pairing** (Settings → Connections — remove a household and

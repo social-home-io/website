@@ -21,6 +21,13 @@ don't tag.
   scope now needs a majority of the space's admins to approve once a
   space has more than one admin. Any reject cancels; a proposal lapses
   after seven days.
+- **Marketplace.** A classifieds board scoped to a space — fixed price,
+  best offer, or a timed auction, running 1–7 days. Listings stay inside
+  the space and never touch a central catalogue or platform fee.
+- **Family safety.** Household admins can mark an account as a protected
+  minor with a declared age and a guardian. Age-gated spaces and apps
+  stay out of reach, the minor's DMs stay within paired households, and
+  guardians get a read-only overview.
 - **Highlights: public sharing via a paired GFS.** A highlight author can
   mint a public URL on a Global Federation Server. Anyone with the
   URL gets a browser-only viewer — highlight bytes stream straight from
@@ -50,12 +57,14 @@ The bootstrap. Five repos go public on the same day:
 
 Highlights:
 
-- Pairing via QR + six-word phrase.
+- Pairing via QR + a short verification code both sides read
+  aloud to block a man-in-the-middle.
 - Direct WebRTC sync between paired households; HTTPS inbox as
   fallback.
 - Optional GFS relay for global-space discovery (no message
   data ever flows through it).
-- Per-space end-to-end encryption.
+- Always-on encryption — every federation event sealed
+  (AES-256-GCM) and signed, with no opt-out.
 - Voice-note transcripts via HA STT.
 - Calendar overlay between household + personal + shared
   calendars.

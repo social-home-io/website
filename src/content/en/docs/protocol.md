@@ -129,17 +129,19 @@ brokers a brief WebRTC handshake; it never sees a frame, never
 caches a thumbnail. See [Highlights](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow.
 
-## End-to-end encryption
+## Encryption, always on
 
-For sensitive spaces, messages are sealed on your device and
-can only be read by members. Even the global relay can't see
-inside. Think of it like an envelope that only the people on
-the guest list have keys for — the postal service routes it,
-but never opens it.
+Every message that leaves your server is sealed in an encrypted
+envelope only the recipients can open — always, with no switch to
+turn it off and no plaintext fallback. Even the global relay
+can't see inside. Think of it like an envelope that only the
+people on the guest list have keys for — the postal service
+routes it, but never opens it. On your own server your data stays
+readable, because it's yours; it's only the wire that's locked.
 
 ## Privacy at a glance
 
-- ✅ Messages encrypted in transit and at rest
+- ✅ Every message encrypted on the wire — always on, no opt-out
 - ✅ No ads, no tracking, no analytics
 - ✅ GPS is opt-in per device
 - ✅ Your server, your rules
