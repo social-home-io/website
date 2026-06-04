@@ -17,8 +17,8 @@ spec](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
 
 ## Start here
 
-- **[Getting started](/docs/getting-started/)** — install in two
-  clicks via HACS.
+- **[Getting started](/docs/getting-started/)** — add the
+  Social Home add-on to Home Assistant in about five minutes.
 - **[How it works](/docs/protocol/)** — what Social Home does for
   you, with concrete examples.
 - **[Privacy model](/docs/privacy/)** — what stays on your server
@@ -33,6 +33,10 @@ spec](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
   that quietly disappears. No archive, no pressure.
 - **[Momentum](/docs/momentum/)** — a quick post that travels to
   friends and their friends, then fades on its own.
+- **[Marketplace](/docs/marketplace/)** — sell, give away, or
+  auction things inside a space, with no strangers and no fees.
+- **[Family safety](/docs/family-safety/)** — protected accounts
+  for kids, age-gated spaces and apps, and a read-only guardian view.
 
 ## Go deeper
 

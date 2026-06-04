@@ -7,9 +7,9 @@ order: 22
 A **highlight** is the lightweight, ephemeral counterpart to the
 household feed. You drop a photo or a short video, add an
 optional caption, and it lands in the _Highlights_ inbox of every
-paired household. After 24 hours (or longer if you've set a
-retention preference) the row is purged, on disk, on your
-server.
+paired household. It expires on its own — 30 days by default, or
+whatever retention window you set — and is then purged from disk,
+on your server.
 
 Highlights live under **Talk → Highlights** in the sidebar.
 

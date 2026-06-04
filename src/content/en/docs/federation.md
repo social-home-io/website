@@ -14,11 +14,12 @@ auth.
 
 1. **Open a pairing link.** In Social Home → **Settings →
    Connections → Pair a household**. You'll see a QR code and a
-   six-word phrase.
+   short verification code.
 2. **Scan from the other household.** They open the same screen
-   on their HA, click **Scan**, and point a phone at the QR. The
-   six-word phrase prevents man-in-the-middle attacks — both
-   sides confirm they see the same words before accepting.
+   on their HA, click **Scan**, and point a phone at the QR. Both
+   sides then read the verification code aloud and confirm it
+   matches — that out-of-band check is what blocks a
+   man-in-the-middle from slipping in.
 3. **Done.** The two servers exchange public keys, names,
    avatars, and the externally-reachable URL each one announces
    for itself. From now on, messages flow directly between you.
@@ -69,3 +70,16 @@ The HA integration pushes whichever URL HA reports as the
 external one to Social Home automatically. If Nabu Casa is on,
 the Nabu Casa URL wins; otherwise the admin-set `external_url`
 is used.
+
+## Seeing your households
+
+The **Connections** page also draws a map: one pin per paired
+household, with the distance and direction to each. It's there to
+make the federation tangible — to see that "my sister's house" is
+a real place 40 km north-east, talking straight to yours. A small
+glyph notes whether you're connected directly (WebRTC) or via the
+HTTPS fallback; it's purely diagnostic — everything works the same
+either way. The map only ever shows a household's rough home
+location if they chose to share it when you paired, and any
+coordinate is blurred to about 11 metres before it's stored or
+sent.

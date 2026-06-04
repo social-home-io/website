@@ -29,6 +29,16 @@ Default visibility:
 - **Space** events — RSVPs visible to every space member,
   including paired remote households.
 
+## Capacity and waitlists
+
+Give an event a **capacity** and "Yes" stops being instant: it
+becomes a **request** that the event creator (or a space admin)
+approves, and once the seats are full, further yeses join a
+**waitlist**. When someone drops out, the oldest person on the
+waitlist is promoted automatically. "Maybe" never counts against
+the capacity, so it stays an honest "I'll try." Leave capacity
+unset and the event is open to everyone, as before.
+
 ## Federation
 
 When an event is shared with a space whose members live on

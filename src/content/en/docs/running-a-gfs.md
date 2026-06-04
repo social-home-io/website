@@ -131,12 +131,11 @@ docker compose up -d
 The container is stateless except for `./data`; backups are a
 plain `tar -czf data.tgz ./data`.
 
-## Known relays
+## The project relay
 
-If you don't want to run your own, the project hosts a small
-set of community relays — see
-[`/docs/global-spaces/`](/docs/global-spaces/#known-relays) for
-the live list. Pointing your space at a relay you trust is the
+If you don't want to run your own, the project hosts one public
+relay at [`gfs.social-home.io`](/servers/) — one QR scan and
+you're paired. Pointing your space at a relay you trust is the
 entire point of having choices, though, so running your own is
 encouraged for any community of more than a handful of
 households.
