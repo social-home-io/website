@@ -15,8 +15,9 @@ const gfs = "https://gfs.social-home.io";
 ---
 
 <Base
-  title="The Social Home relay"
-  description="The Social Home project runs one public Global Federation Server at gfs.social-home.io — hosted in the EU on Hetzner Frankfurt. Connect in one tap, or run your own."
+  title="Our server"
+  description="The Social Home project runs one public Global Federation Server, live at gfs.social-home.io — hosted in the EU on Hetzner Frankfurt. Connect in one tap, or run your own."
+  active="/servers/"
 >
   <section class="band band--tight">
     <div class="shell">
@@ -25,9 +26,10 @@ const gfs = "https://gfs.social-home.io";
         Connect to the relay we run <em>for you</em>.
       </h1>
       <p class="servers__lede">
-        The Social Home project runs one public Global Federation Server, hosted in the EU on
-        Hetzner Frankfurt. It helps your Spaces and public Moments reach households that haven't
-        paired with you yet — the relay never reads any messages, photos, or content.
+        The Social Home project runs one public Global Federation Server — live now at
+        <code>gfs.social-home.io</code>, hosted in the EU on Hetzner Frankfurt. It helps your Spaces
+        and public Moments reach households that haven't paired with you yet — the relay never reads
+        any messages, photos, or content.
       </p>
     </div>
   </section>
@@ -40,7 +42,12 @@ const gfs = "https://gfs.social-home.io";
           <div>
             <span class="server__kind">Hosted by Social Home</span>
             <h2>Global Federation Server</h2>
-            <p class="server__host"><code>gfs.social-home.io</code></p>
+            <p class="server__host">
+              <span class="server__live"
+                ><span class="server__pulse" aria-hidden="true"></span>Live</span
+              >
+              <code>gfs.social-home.io</code>
+            </p>
           </div>
         </header>
         <p>
@@ -83,12 +90,6 @@ const gfs = "https://gfs.social-home.io";
         For a private community, organisation, or household-specific relay, you can stand up your
         own GFS on any VPS in about 15 minutes.
         <a href="/docs/running-a-gfs/">Set up your own GFS →</a>
-      </p>
-
-      <h2>Status</h2>
-      <p>
-        Server status, uptime, and incident history live at
-        <a href="https://status.social-home.io" rel="external">status.social-home.io</a>.
       </p>
     </div>
   </section>
@@ -170,8 +171,48 @@ const gfs = "https://gfs.social-home.io";
   }
   .server__host {
     margin: 4px 0 0;
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex-wrap: wrap;
     font: 500 var(--step-0) / 1 var(--font-mono);
     color: var(--ink-soft);
+  }
+  .server__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px 3px 8px;
+    border-radius: var(--r-pill);
+    background: var(--moss-tint);
+    color: var(--moss);
+    font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .server__pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--moss);
+    box-shadow: 0 0 0 0 var(--tape-moss);
+    animation: serverPulse 2.4s var(--ease-quill) infinite;
+  }
+  @keyframes serverPulse {
+    0% {
+      box-shadow: 0 0 0 0 var(--tape-moss);
+    }
+    70% {
+      box-shadow: 0 0 0 7px transparent;
+    }
+    100% {
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .server__pulse {
+      animation: none;
+    }
   }
   .server__bullets {
     list-style: none;
