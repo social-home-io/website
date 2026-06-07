@@ -7,7 +7,7 @@ interface Props {
   title: string;
   description?: string;
   active?: string;
-  /** Override the og:image filename in /public. */
+  /** Override the og:image filename in /public. Must be a raster (PNG/JPG) — social platforms don't render SVG. */
   ogImage?: string;
 }
 
@@ -15,12 +15,17 @@ const {
   title,
   description = "The household OS that's also a federated social network — runs on your own Home Assistant.",
   active,
-  ogImage = "/og-image.svg",
+  ogImage = "/og-image.png",
 } = Astro.props;
 
 const siteName = "Social Home";
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
+const ogImageAlt =
+  "Social Home — the social home for your household. Runs on your own Home Assistant.";
+const ogLocaleMap: Record<string, string> = { en: "en_US", de: "de_DE", nl: "nl_NL", fr: "fr_FR" };
+const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
 ---
 
 <!doctype html>
@@ -43,12 +48,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <link rel="alternate icon" href="/favicon.ico" />
     <link rel="sitemap" href="/sitemap.xml" />
 
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

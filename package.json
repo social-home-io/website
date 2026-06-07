@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "og:image": "node tools/og-image/generate.mjs",
     "format": "prettier --write \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{astro,ts,tsx,js,jsx,md,mdx,css,json,yml,yaml}\""
   },
