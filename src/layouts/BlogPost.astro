@@ -1,0 +1,178 @@
+---
+import Base from "./Base.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  date?: Date;
+  author?: string;
+  image?: string;
+  imageAlt?: string;
+  /** The slug of the current post, e.g. ``blog/2026-10-01-timetables``. */
+  slug: string;
+}
+const { title, description, date, author, image, imageAlt = "", slug } = Astro.props;
+
+const dateLabel = date?.toLocaleDateString("en", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<Base title={title} description={description} active="/blog/">
+  <article class="post">
+    <header class="post__header">
+      <p class="eyebrow">
+        <a href="/blog/">Blog</a>
+        {date && <time datetime={date.toISOString().slice(0, 10)}>{dateLabel}</time>}
+        {author && <span>{author}</span>}
+      </p>
+      <h1>{title}</h1>
+      {description && <p class="post__lede">{description}</p>}
+      {image && <img class="post__cover" src={image} alt={imageAlt} />}
+    </header>
+
+    <div class="post__body">
+      <slot />
+    </div>
+
+    <footer class="post__footer">
+      <a href="/blog/">← All posts</a>
+      <a
+        href={`https://github.com/social-home-io/website/edit/main/src/content/en/${slug.replace(/^\/+|\/+$/g, "")}.md`}
+      >
+        Edit this post on GitHub →
+      </a>
+    </footer>
+  </article>
+</Base>
+
+<style>
+  .post {
+    max-width: var(--measure-wide);
+    margin-inline: auto;
+    padding: var(--s-7) clamp(20px, 5vw, 64px) var(--s-8);
+  }
+
+  .post__header {
+    margin-bottom: var(--s-6);
+  }
+  .post__header .eyebrow {
+    flex-wrap: wrap;
+    margin: 0 0 var(--s-4);
+  }
+  .post__header .eyebrow > * + *::before {
+    content: "·";
+    margin-right: var(--s-3);
+    color: var(--hearth);
+  }
+  .post__header .eyebrow a {
+    text-decoration: none;
+    color: var(--hearth);
+  }
+  .post__header h1 {
+    margin: 0 0 var(--s-4);
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .post__lede {
+    margin: 0 0 var(--s-6);
+    color: var(--ink-soft);
+    font: 380 var(--step-1) / 1.5 var(--font-body);
+  }
+  .post__cover {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--r-3);
+    box-shadow: var(--lift-card);
+  }
+
+  .post__body {
+    font: 380 var(--step-0) / 1.7 var(--font-body);
+    color: var(--ink);
+  }
+  .post__body :global(h2) {
+    margin-top: var(--s-7);
+    margin-bottom: var(--s-3);
+    font-size: var(--step-2);
+    max-width: var(--measure-prose);
+  }
+  .post__body :global(ul) {
+    padding-left: var(--s-5);
+  }
+
+  /* Screenshot galleries: wide tiles for desktop captures, narrow
+     ones for phone captures; they wrap and stack on small screens. */
+  .post__body :global(.shots) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--s-5);
+    margin: var(--s-5) 0 var(--s-6);
+  }
+  .post__body :global(.shots figure) {
+    margin: 0;
+    display: grid;
+    gap: var(--s-2);
+    min-width: 0;
+  }
+  .post__body :global(.shots .desk) {
+    flex: 1 1 var(--shot-desk);
+  }
+  .post__body :global(.shots .phone) {
+    flex: 0 1 var(--shot-phone);
+  }
+  .post__body :global(.shots a) {
+    display: block;
+    line-height: 0;
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--r-2);
+    overflow: hidden;
+    background: var(--paper-deep);
+    cursor: zoom-in;
+    transition:
+      border-color var(--dur-quick) var(--ease-quill),
+      transform var(--dur-quick) var(--ease-quill);
+  }
+  .post__body :global(.shots a:hover) {
+    border-color: var(--hearth);
+    transform: translateY(-2px);
+  }
+  .post__body :global(.shots img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .post__body :global(.shots figcaption) {
+    font: 500 var(--step--1) / 1.45 var(--font-body);
+    color: var(--ink-quiet);
+  }
+  .post__body :global(.shots figcaption b) {
+    display: block;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .post__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s-4);
+    margin-top: var(--s-7);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--rule-soft);
+    font: 500 var(--step--1) / 1.4 var(--font-mono);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .post__body :global(.shots a) {
+      transition: none;
+    }
+    .post__body :global(.shots a:hover) {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+
+/**
+ * Every English entry under ``src/content/en/blog/`` renders here
+ * against the ``BlogPost`` layout. The slug keeps the ``blog/``
+ * prefix in the collection, so strip it for the route param.
+ */
+
+export async function getStaticPaths() {
+  const posts = await getCollection(
+    "en",
+    ({ slug, data }) => slug.startsWith("blog/") && data.draft !== true,
+  );
+  return posts.map((entry) => ({
+    params: { slug: entry.slug.replace(/^blog\//, "") },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"en">;
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BlogPost
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  author={entry.data.author}
+  image={entry.data.image}
+  imageAlt={entry.data.imageAlt}
+  slug={entry.slug}
+>
+  <Content />
+</BlogPost>

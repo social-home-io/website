@@ -12,6 +12,14 @@ const docFrontmatter = z.object({
   order: z.number().default(50),
   /** Hide the page from sidebar / build. */
   draft: z.boolean().default(false),
+  /** Blog posts only (``blog/*``): publish date shown in the byline. */
+  date: z.coerce.date().optional(),
+  /** Blog posts only: byline. */
+  author: z.string().optional(),
+  /** Blog posts only: cover image, absolute path under ``public/``. */
+  image: z.string().optional(),
+  /** Blog posts only: alt text for ``image``. */
+  imageAlt: z.string().optional(),
 });
 
 const en = defineCollection({ type: "content", schema: docFrontmatter });

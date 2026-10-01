@@ -11,6 +11,12 @@ don't tag.
 
 ## Unreleased
 
+- **Timetables.** A weekly school timetable for each child under
+  Calendar › Timetable, with periods, timeline and picture layouts, a
+  school-year week picker with holidays, one-off changes for this week,
+  and A4 printing. Today's lessons merge into the Today card next to
+  your calendar events. A space can share one read-only timetable with
+  every member household. [Read the post](/blog/2026-10-01-timetables/).
 - **Social Home Apps.** Install small apps — a chess board, a shared
   whiteboard, a quiz — that federate app-to-app with the same app in a
   paired household. Sessions run peer-to-peer between confirmed homes
