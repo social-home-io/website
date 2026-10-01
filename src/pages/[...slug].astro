@@ -6,11 +6,12 @@ import Docs from "../layouts/Docs.astro";
  * One file routes every English markdown content entry that
  * isn't the landing page. Astro's static-build picks up the
  * collection at build time and renders ``Content`` against the
- * ``Docs`` layout.
+ * ``Docs`` layout. Blog posts (``blog/*``) have their own route
+ * under ``pages/blog/``.
  */
 
 export async function getStaticPaths() {
-  const all = await getCollection("en");
+  const all = await getCollection("en", ({ slug }) => !slug.startsWith("blog/"));
   return all.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },

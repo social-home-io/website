@@ -67,6 +67,11 @@
 
   --measure-prose: 64ch;
   --measure-narrow: 42ch;
+  /* Blog article column — prose stays at --measure-prose, galleries use the full width. */
+  --measure-wide: 1040px;
+  /* Screenshot gallery tiles (blog). Phone captures sit narrow, desktop wide. */
+  --shot-phone: 200px;
+  --shot-desk: 400px;
 
   /* Elevation — single shadow recipe, no Material levels. */
   --lift-card: 0 1px 0 var(--rule-soft), 0 18px 36px -22px rgba(26, 24, 20, 0.35);
