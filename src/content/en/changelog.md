@@ -17,6 +17,16 @@ don't tag.
   and A4 printing. Today's lessons merge into the Today card next to
   your calendar events. A space can share one read-only timetable with
   every member household. [Read the post](/blog/2026-10-01-timetables/).
+- **Organize, redesigned.** Tasks get a board (To do · In progress ·
+  Done) with drag and drop, priority and labels, at home and in
+  spaces. The shopping list and sticky notes get Undo, clear load
+  errors and phone-friendly layouts.
+  [Read the post](/blog/2026-10-02-organize/).
+- **Spaces publish through the GFS without the host.** Writer
+  certificates let members post, comment and react while the host is
+  offline. Owners choose trusted or strict (anonymous) mode, and
+  private spaces can opt in through an opaque channel.
+  [Read the post](/blog/2026-10-04-gfs-relay/).
 - **Social Home Apps.** Install small apps — a chess board, a shared
   whiteboard, a quiz — that federate app-to-app with the same app in a
   paired household. Sessions run peer-to-peer between confirmed homes
