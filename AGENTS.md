@@ -7,8 +7,10 @@ AI agent instruction file. Read before editing. Canonical spec:
 
 - Astro 4+ static site, output `dist/`. No SSR, no client-side
   JS framework.
-- Content collection lives at `src/content/{locale}/`. Only
-  `en/` is authored by hand.
+- Content collection lives at `src/content/{locale}/`. `en/` is
+  the reference; `de/`, `nl/`, `fr/` are hand-maintained
+  translations updated in the same change as the English page.
+  UI strings follow the same rule in `src/i18n/{locale}.ts`.
 - Design tokens are the single source of truth — never hardcode
   values in component styles.
 
@@ -25,5 +27,6 @@ AI agent instruction file. Read before editing. Canonical spec:
 - Components: `src/components/`
 - Layouts: `src/layouts/`
 - Content: `src/content/{locale}/`
+- UI strings + locale helpers: `src/i18n/`
 - Styles: `src/styles/`
 - Pages / routes: `src/pages/`

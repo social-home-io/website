@@ -1,10 +1,8 @@
 ---
-import type { ValueProp } from "../types";
+import { getLocale, t } from "../i18n";
 
-interface Props {
-  props: ValueProp[];
-}
-const { props } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const props = t(locale).landing.valueProps;
 ---
 
 <section class="strip rule-band">

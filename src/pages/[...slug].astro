@@ -1,40 +1,21 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
-import Docs from "../layouts/Docs.astro";
+import DocPage from "../components/pages/DocPage.astro";
+import { getLocalizedEntries, isPage, type LocalizedEntry } from "../i18n/content";
 
 /**
  * One file routes every English markdown content entry that
- * isn't the landing page. Astro's static-build picks up the
- * collection at build time and renders ``Content`` against the
- * ``Docs`` layout. Blog posts (``blog/*``) have their own route
- * under ``pages/blog/``.
+ * isn't the landing page or a blog post. The other locales are
+ * served by ``[lang]/[...slug].astro``.
  */
-
 export async function getStaticPaths() {
-  const all = await getCollection("en", ({ slug }) => !slug.startsWith("blog/"));
-  return all.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  const pages = await getLocalizedEntries("en", isPage);
+  return pages.map((page) => ({ params: { slug: page.entry.slug }, props: { page } }));
 }
 
 interface Props {
-  entry: CollectionEntry<"en">;
+  page: LocalizedEntry;
 }
-const { entry } = Astro.props;
-const { Content } = await entry.render();
-
-// Highlight the "Docs" header link on every doc subpage; for the
-// flat top-level pages (contribute, license) leave
-// the active prop unset so nothing is highlighted.
-const activeRoot = entry.slug.startsWith("docs") ? "/docs/" : undefined;
+const { page } = Astro.props;
 ---
 
-<Docs
-  title={entry.data.title}
-  description={entry.data.description}
-  active={activeRoot}
-  slug={entry.slug}
->
-  <Content />
-</Docs>
+<DocPage page={page} />

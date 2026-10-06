@@ -1,6 +1,7 @@
 ---
 import Base from "./Base.astro";
-import { getCollection } from "astro:content";
+import { getLocale, localePath, t } from "../i18n";
+import { getLocalizedEntries, isDoc } from "../i18n/content";
 
 interface Props {
   title: string;
@@ -8,28 +9,31 @@ interface Props {
   active?: string;
   /** The slug of the current doc, e.g. ``docs/getting-started``. */
   slug: string;
+  /** ``true`` when the English body stands in for a missing translation. */
+  fallback?: boolean;
 }
-const { title, description, active, slug } = Astro.props;
+const { title, description, active, slug, fallback = false } = Astro.props;
 
-// Pull the docs landing + every page under ``docs/``, sort by
-// ``order`` frontmatter, drop drafts. The non-English locales
-// are populated by CI; we only drive the docs nav from ``en``
-// to keep the sidebar stable while the translator catches up.
-const allDocs = await getCollection(
-  "en",
-  ({ slug }) => slug === "docs" || slug.startsWith("docs/"),
-);
-const sorted = allDocs
-  .filter((d) => d.data.draft !== true)
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
+
+// Pull the docs landing + every page under ``docs/`` in the current
+// locale (English fills any gap), sort by ``order`` frontmatter.
+const sorted = (await getLocalizedEntries(locale, isDoc))
+  .map(({ entry }) => entry)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const cleanSlug = slug.replace(/^\/+|\/+$/g, "");
+const editLocale = fallback ? "en" : locale;
+const editUrl = `https://github.com/social-home-io/website/edit/main/src/content/${editLocale}/${cleanSlug}.md`;
 ---
 
 <Base title={title} description={description} active={active}>
   <div class="docs">
-    <aside class="docs__nav" aria-label="Documentation">
+    <aside class="docs__nav" aria-label={s.docs.navLabel}>
       <details class="docs__drawer">
         <summary>
-          <span>On this site</span>
+          <span>{s.docs.drawerTitle}</span>
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
             <path d="M3 5 L7 9 L11 5" stroke="currentColor" stroke-width="1.5" fill="none"></path>
           </svg>
@@ -38,7 +42,10 @@ const sorted = allDocs
           {
             sorted.map((d) => (
               <li>
-                <a href={`/${d.slug}/`} aria-current={d.slug === slug ? "page" : undefined}>
+                <a
+                  href={localePath(locale, `/${d.slug}/`)}
+                  aria-current={d.slug === slug ? "page" : undefined}
+                >
                   {d.data.title}
                 </a>
               </li>
@@ -58,13 +65,9 @@ const sorted = allDocs
       </div>
     </article>
 
-    <aside class="docs__meta" aria-label="Page meta">
+    <aside class="docs__meta" aria-label={s.docs.metaLabel}>
       <p class="docs__edit">
-        <a
-          href={`https://github.com/social-home-io/website/edit/main/src/content/en/${slug.replace(/^\/+|\/+$/g, "")}.md`}
-        >
-          Edit this page on GitHub →
-        </a>
+        <a href={editUrl}>{s.docs.editOnGithub}</a>
       </p>
     </aside>
   </div>

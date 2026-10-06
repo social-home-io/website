@@ -12,18 +12,25 @@ pnpm install     # or npm install / yarn install
 pnpm dev         # http://localhost:4321
 pnpm build       # static site → ./dist/
 pnpm check       # astro type-check
+pnpm check:links # internal links + anchors in ./dist, all locales
 ```
 
 ## Content
 
-All copywriting lives under `src/content/en/`. Non-English
-locales are planned to be **machine-generated** by a CI
-translator (`scripts/azure-translate.js`, not in this repo yet);
-until then every other locale falls back to English. Never
-hand-edit generated locale files.
+English is the reference: every page is written under
+`src/content/en/` (markdown) and `src/i18n/en.ts` (UI strings)
+first, then translated by hand into German, Dutch and French
+(`src/content/{de,nl,fr}/`, `src/i18n/{de,nl,fr}.ts`). A change
+to an English page is carried into all three translations in the
+same PR; translations are never edited on their own. A page
+missing from a locale falls back to the English body at the
+localized URL so the build never breaks.
+
+`npm run check:links` verifies every internal link and anchor in
+the built site, across all four languages.
 
 Writing rules (voice, the "two readers, one page" pattern, the
-vocabulary table) are in `CLAUDE.md`.
+vocabulary table, the translation workflow) are in `CLAUDE.md`.
 
 ## Layout
 
@@ -44,18 +51,29 @@ website/
 │   │   ├── TrustBand.astro    # "Private by construction" band
 │   │   └── …
 │   ├── content/
-│   │   └── en/
-│   │       ├── docs.md        # Docs landing
-│   │       ├── docs/          # User-facing documentation
-│   │       │   ├── security.md
-│   │       │   ├── glossary.md
-│   │       │   └── …
-│   │       └── blog/          # Posts, one per release feature
+│   │   ├── en/                # Reference copy (English)
+│   │   │   ├── docs.md        # Docs landing
+│   │   │   ├── docs/          # User-facing documentation
+│   │   │   │   ├── security.md
+│   │   │   │   ├── glossary.md
+│   │   │   │   └── …
+│   │   │   └── blog/          # Posts, one per release feature
+│   │   ├── de/                # Translations, same tree as en/
+│   │   ├── nl/
+│   │   └── fr/
+│   ├── i18n/
+│   │   ├── en.ts              # UI strings (reference)
+│   │   ├── de.ts, nl.ts, fr.ts
+│   │   ├── types.ts           # UiStrings shape
+│   │   ├── index.ts           # locale helpers (t, localePath …)
+│   │   └── content.ts         # collections with en fallback
 │   ├── layouts/
 │   │   ├── Base.astro
 │   │   ├── Docs.astro
 │   │   └── BlogPost.astro
 │   ├── pages/                 # Astro file-based routing
+│   │   ├── index.astro …      # English routes (no prefix)
+│   │   └── [lang]/            # /de/, /nl/, /fr/ twins
 │   ├── styles/
 │   │   ├── tokens.css         # Design tokens
 │   │   └── base.css

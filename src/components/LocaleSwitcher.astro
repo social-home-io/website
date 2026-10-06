@@ -5,27 +5,20 @@
  * Falls back gracefully without JS — the dropdown is decorative
  * until the listener attaches.
  */
-const locales = [
-  { code: "en", native: "English" },
-  { code: "de", native: "Deutsch" },
-  { code: "nl", native: "Nederlands" },
-  { code: "fr", native: "Français" },
-] as const;
+import { LOCALES, LOCALE_NAMES, getLocale, t } from "../i18n";
 
+const current = getLocale(Astro.currentLocale);
+const s = t(current);
 const currentPath = Astro.url.pathname;
-// Astro's locale routing sets ``Astro.currentLocale`` only when the
-// request actually carries a locale prefix. For the default
-// locale (``en``) the prefix is dropped, so fall back manually.
-const current = (Astro.currentLocale ?? "en") as (typeof locales)[number]["code"];
 ---
 
 <form class="locale" data-current={current} data-base-path={currentPath}>
-  <label class="visually-hidden" for="locale-select">Language</label>
+  <label class="visually-hidden" for="locale-select">{s.header.languageLabel}</label>
   <select id="locale-select" name="locale" autocomplete="off">
     {
-      locales.map(({ code, native }) => (
+      LOCALES.map((code) => (
         <option value={code} selected={code === current}>
-          {code.toUpperCase()} · {native}
+          {code.toUpperCase()} · {LOCALE_NAMES[code]}
         </option>
       ))
     }
@@ -41,8 +34,9 @@ const current = (Astro.currentLocale ?? "en") as (typeof locales)[number]["code"
       const path = form.dataset.basePath ?? "/";
       const current = form.dataset.current ?? "en";
       // Strip the existing locale prefix (if any) and prepend the
-      // new one. ``en`` is the default and uses no prefix.
-      const stripped = path.replace(new RegExp(`^/(en|de|nl|fr)(?=/|$)`), "");
+      // new one. ``en`` is the default and uses no prefix. Keep the
+      // trailing-slash form the site is built with.
+      const stripped = path.replace(/^\/(en|de|nl|fr)(?=\/|$)/, "");
       const nextPath = target === "en" ? stripped || "/" : `/${target}${stripped || "/"}`;
       if (nextPath !== path && current !== target) {
         window.location.pathname = nextPath;
@@ -50,7 +44,6 @@ const current = (Astro.currentLocale ?? "en") as (typeof locales)[number]["code"
     });
   }
 </script>
-
 <style>
   .locale {
     display: inline-flex;

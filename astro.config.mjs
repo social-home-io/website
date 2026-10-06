@@ -4,11 +4,12 @@ import sitemap from "@astrojs/sitemap";
 // Public origin — used by Astro for canonical URLs, sitemap, OG tags.
 const SITE = "https://social-home.io";
 
-// Locales we plan to ship. English is hand-authored under
-// ``src/content/en/``; the others are populated by the Azure
-// Translator CI (see scripts/azure-translate.js, §30.8.2). Until
-// that lands, every non-en locale falls back to en so missing
-// pages never 404.
+// Locales we ship. English is the reference (``src/content/en/``,
+// ``src/i18n/en.ts``); the others are hand-maintained translations
+// updated alongside it. Every route exists in every locale (see
+// ``src/pages/[lang]/``); a page missing from a locale's collection
+// renders the English body at the localized URL. Keep this list in
+// sync with ``LOCALES`` in ``src/i18n/index.ts``.
 const LOCALES = ["en", "de", "nl", "fr"];
 
 export default defineConfig({
@@ -19,7 +20,10 @@ export default defineConfig({
     defaultLocale: "en",
     locales: [...LOCALES],
     routing: { prefixDefaultLocale: false },
-    fallback: { de: "en", nl: "en", fr: "en" },
+    // No ``fallback`` here: ``src/pages/[lang]/`` renders every route
+    // for every locale itself (missing translations show the English
+    // body), and Astro's fallback redirects would overwrite those
+    // pages for static routes such as ``/de/blog/``.
   },
   integrations: [
     sitemap({

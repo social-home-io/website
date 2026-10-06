@@ -19,113 +19,121 @@
  * carries a piece of washi tape (inline SVG patch) so the
  * "wall" reading is unambiguous. Stagger-fade settles them on
  * first paint (respects ``prefers-reduced-motion``).
+ *
+ * All copy comes from ``src/i18n/<locale>.ts`` (``familyWall``).
  */
+import { getLocale, t } from "../i18n";
+
+const locale = getLocale(Astro.currentLocale);
+const w = t(locale).familyWall;
+
+const attendeeColours = ["var(--hearth)", "var(--moss)", "var(--honey)"];
+const callTiles = [
+  { from: "#D2542A", to: "#67354B", mic: true, cam: true, self: false },
+  { from: "#E8B26A", to: "#C8902F", mic: false, cam: true, self: false },
+  { from: "#6FA38B", to: "#1F4438", mic: true, cam: false, self: false },
+  { from: "#8AA0D7", to: "#2D3957", mic: true, cam: true, self: true },
+];
+const presenceColours = ["var(--moss)", "var(--hearth)", "var(--ink-faint)", "var(--honey)"];
 ---
 
-<figure
-  class="wall"
-  aria-hidden="false"
-  aria-label="A glance at one household's day on Social Home"
->
+<figure class="wall" aria-hidden="false" aria-label={w.figureLabel}>
   <span class="wall__paper" aria-hidden="true"></span>
 
   <article class="card card--cal" style="--settle-rest: -1.6deg; --settle-delay: 60ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Tue · Jul 29</span>
-      <h3>Sunday brunch @ Maria&rsquo;s</h3>
+      <span class="card__kicker">{w.cal.kicker}</span>
+      <h3>{w.cal.title}</h3>
     </header>
     <ul class="card__attendees">
-      <li><span class="dot" style="background:var(--hearth)"></span> Maria</li>
-      <li><span class="dot" style="background:var(--moss)"></span> Pascal</li>
-      <li><span class="dot" style="background:var(--honey)"></span> Mom</li>
-      <li><span class="card__avatars">+3</span></li>
+      {
+        w.cal.attendees.map((name, i) => (
+          <li>
+            <span class="dot" style={`background:${attendeeColours[i % attendeeColours.length]}`} />{" "}
+            {name}
+          </li>
+        ))
+      }
+      <li><span class="card__avatars">{w.cal.more}</span></li>
     </ul>
     <footer class="card__meta">
-      <span>Household calendar</span>
-      <span class="card__pill card__pill--soft">3 households</span>
+      <span>{w.cal.meta}</span>
+      <span class="card__pill card__pill--soft">{w.cal.pill}</span>
     </footer>
   </article>
 
   <article class="card card--shop" style="--settle-rest: 1.2deg; --settle-delay: 130ms;">
     <span class="card__tape" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Shopping list — kitchen</span>
-      <h3>5 things, last add 4 min ago</h3>
+      <span class="card__kicker">{w.shop.kicker}</span>
+      <h3>{w.shop.title}</h3>
     </header>
     <ul class="card__list">
-      <li class="is-done"><span class="tick" aria-hidden="true"></span>Sourdough</li>
-      <li class="is-done"><span class="tick" aria-hidden="true"></span>Olive oil</li>
-      <li><span class="tick is-empty" aria-hidden="true"></span>Tomatoes <em>+ Maria</em></li>
-      <li><span class="tick is-empty" aria-hidden="true"></span>Basil <em>+ Pascal</em></li>
-      <li><span class="tick is-empty" aria-hidden="true"></span>Goat cheese <em>+ voice</em></li>
+      {
+        w.shop.done.map((item) => (
+          <li class="is-done">
+            <span class="tick" aria-hidden="true" />
+            {item}
+          </li>
+        ))
+      }
+      {
+        w.shop.open.map(({ item, by }) => (
+          <li>
+            <span class="tick is-empty" aria-hidden="true" />
+            {item} <em>{by}</em>
+          </li>
+        ))
+      }
     </ul>
   </article>
 
   <article class="card card--tasks" style="--settle-rest: -0.8deg; --settle-delay: 200ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Tasks · move-in chores</span>
-      <h3>3 to do · 6 done</h3>
+      <span class="card__kicker">{w.tasks.kicker}</span>
+      <h3>{w.tasks.title}</h3>
     </header>
     <ul class="task-list">
-      <li class="is-done">
-        <span class="task__check is-done" aria-hidden="true"></span>
-        <span class="task__title">Hang the TV</span>
-        <span class="task__owner">Pascal</span>
-      </li>
-      <li>
-        <span class="task__check" aria-hidden="true"></span>
-        <span class="task__title">Drill the bookshelf</span>
-        <span class="task__owner">Maria · this week</span>
-        <span class="task__pin task__pin--due">due</span>
-      </li>
-      <li>
-        <span class="task__check" aria-hidden="true"></span>
-        <span class="task__title">Buy plants</span>
-        <span class="task__owner">Lina · weekend</span>
-      </li>
-      <li>
-        <span class="task__check" aria-hidden="true"></span>
-        <span class="task__title">Take old fridge to recycling</span>
-        <span class="task__owner">Pascal · today</span>
-        <span class="task__pin task__pin--overdue">overdue</span>
-      </li>
+      {
+        w.tasks.items.map((task) => (
+          <li class:list={{ "is-done": task.done }}>
+            <span class:list={["task__check", { "is-done": task.done }]} aria-hidden="true" />
+            <span class="task__title">{task.title}</span>
+            <span class="task__owner">{task.owner}</span>
+            {task.pin && (
+              <span class={`task__pin task__pin--${task.pin}`}>
+                {task.pin === "due" ? w.tasks.pinDue : w.tasks.pinOverdue}
+              </span>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </article>
 
   <article class="card card--page" style="--settle-rest: 1deg; --settle-delay: 270ms;">
     <span class="card__tape" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Pages · House manual</span>
-      <h3>How to bleed the radiators</h3>
+      <span class="card__kicker">{w.page.kicker}</span>
+      <h3>{w.page.title}</h3>
     </header>
     <div class="page-body">
-      <p>
-        First, switch off the heating. Wait for the system to cool — usually <em
-          >10 to 15 minutes</em
-        >.
-      </p>
-      <ol>
-        <li>Find the bleed key in the kitchen drawer (red lid).</li>
-        <li>Turn the valve a quarter turn until water hisses out.</li>
-        <li>Close it tight. Move on to the next radiator.</li>
-      </ol>
+      <p set:html={w.page.introHtml} />
+      <ol>{w.page.steps.map((step) => <li>{step}</li>)}</ol>
     </div>
     <footer class="card__meta">
-      <span>Edited by Maria · 2 days ago</span>
-      <span class="card__pill card__pill--moss">wiki</span>
+      <span>{w.page.meta}</span>
+      <span class="card__pill card__pill--moss">{w.page.pill}</span>
     </footer>
   </article>
 
   <article class="card card--sticky" style="--settle-rest: -2.4deg; --settle-delay: 340ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
-    <p class="sticky__note">
-      🥕 Carrots in the bottom drawer<br />
-      <span>Sunday roast — don&rsquo;t buy more!</span>
-    </p>
+    <p class="sticky__note" set:html={w.sticky.lineHtml} />
     <footer class="sticky__meta">
-      <span>Maria · stickies</span>
+      <span>{w.sticky.meta}</span>
       <span class="sticky__chips">
         <i class="dot--swatch" style="background:#E8B26A"></i>
         <i class="dot--swatch" style="background:#D2542A"></i>
@@ -154,9 +162,7 @@
           fill="rgba(26,24,20,0.55)"></path>
       </svg>
     </div>
-    <p class="card__caption">
-      &ldquo;First tomato of the year — house tax: half goes to Mom.&rdquo;
-    </p>
+    <p class="card__caption">{w.photo.caption}</p>
     <footer class="card__reactions">
       <span class="reaction">🫶 <strong>4</strong></span>
       <span class="reaction">🍅 <strong>2</strong></span>
@@ -167,8 +173,8 @@
   <article class="card card--voice" style="--settle-rest: 1.8deg; --settle-delay: 470ms;">
     <span class="card__tape" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Voice note · 0:17</span>
-      <h3>Pascal — anyone up for pasta?</h3>
+      <span class="card__kicker">{w.voice.kicker}</span>
+      <h3>{w.voice.title}</h3>
     </header>
     <div class="card__waveform" aria-hidden="true">
       <span style="height:18%"></span><span style="height:42%"></span><span style="height:64%"
@@ -182,77 +188,63 @@
       <span style="height:46%"></span><span style="height:64%"></span><span style="height:38%"
       ></span>
     </div>
-    <p class="card__transcript">
-      &ldquo;…anyone up for <em>pasta</em> tonight? I&rsquo;m near the deli.&rdquo;
-    </p>
+    <p class="card__transcript" set:html={w.voice.transcriptHtml} />
   </article>
 
   <article class="card card--call" style="--settle-rest: -1.4deg; --settle-delay: 540ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Group call · 14:32</span>
-      <h3>Sunday call with family</h3>
+      <span class="card__kicker">{w.call.kicker}</span>
+      <h3>{w.call.title}</h3>
     </header>
     <div class="call-tiles" aria-hidden="true">
-      <div class="call-tile" style="--tile-from:#D2542A;--tile-to:#67354B;">
-        <span class="call-tile__name">Mom</span>
-        <span class="call-tile__status">
-          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
-          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
-        </span>
-      </div>
-      <div class="call-tile" style="--tile-from:#E8B26A;--tile-to:#C8902F;">
-        <span class="call-tile__name">Dad</span>
-        <span class="call-tile__status">
-          <i class="call-tile__icon call-tile__icon--mic" data-on="false">🎤</i>
-          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
-        </span>
-      </div>
-      <div class="call-tile" style="--tile-from:#6FA38B;--tile-to:#1F4438;">
-        <span class="call-tile__name">Sis</span>
-        <span class="call-tile__status">
-          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
-          <i class="call-tile__icon call-tile__icon--cam" data-on="false">📹</i>
-        </span>
-      </div>
-      <div class="call-tile call-tile--self" style="--tile-from:#8AA0D7;--tile-to:#2D3957;">
-        <span class="call-tile__name">You</span>
-        <span class="call-tile__status">
-          <i class="call-tile__icon call-tile__icon--mic" data-on="true">🎤</i>
-          <i class="call-tile__icon call-tile__icon--cam" data-on="true">📹</i>
-        </span>
-      </div>
+      {
+        callTiles.map((tile, i) => (
+          <div
+            class:list={["call-tile", { "call-tile--self": tile.self }]}
+            style={`--tile-from:${tile.from};--tile-to:${tile.to};`}
+          >
+            <span class="call-tile__name">{w.call.tiles[i]}</span>
+            <span class="call-tile__status">
+              <i class="call-tile__icon call-tile__icon--mic" data-on={String(tile.mic)}>
+                🎤
+              </i>
+              <i class="call-tile__icon call-tile__icon--cam" data-on={String(tile.cam)}>
+                📹
+              </i>
+            </span>
+          </div>
+        ))
+      }
     </div>
     <footer class="card__meta">
-      <span>Encrypted · 4 households</span>
-      <span class="card__pill card__pill--moss">P2P · DTLS-SRTP</span>
+      <span>{w.call.meta}</span>
+      <span class="card__pill card__pill--moss">{w.call.pill}</span>
     </footer>
   </article>
 
   <article class="card card--presence" style="--settle-rest: -1.2deg; --settle-delay: 610ms;">
     <span class="card__tape card__tape--moss" aria-hidden="true"></span>
     <header>
-      <span class="card__kicker">Quiet presence</span>
-      <h3>Right now</h3>
+      <span class="card__kicker">{w.presence.kicker}</span>
+      <h3>{w.presence.title}</h3>
     </header>
     <ul class="presence">
-      <li>
-        <span class="dot is-on" style="background:var(--moss)"></span><strong>Maria</strong> · home
-      </li>
-      <li>
-        <span class="dot is-on" style="background:var(--hearth)"></span><strong>Pascal</strong>
-        · cycling home
-      </li>
-      <li>
-        <span class="dot" style="background:var(--ink-faint)"></span><strong>Mom</strong> · away
-      </li>
-      <li>
-        <span class="dot is-on" style="background:var(--honey)"></span><strong>Lina</strong> · home
-      </li>
+      {
+        w.presence.people.map((person, i) => (
+          <li>
+            <span
+              class:list={["dot", { "is-on": person.on }]}
+              style={`background:${presenceColours[i % presenceColours.length]}`}
+            />
+            <strong>{person.name}</strong> · {person.status}
+          </li>
+        ))
+      }
     </ul>
     <footer class="card__meta">
-      <span>No history kept</span>
-      <span class="card__pill card__pill--moss">opt-in</span>
+      <span>{w.presence.meta}</span>
+      <span class="card__pill card__pill--moss">{w.presence.pill}</span>
     </footer>
   </article>
 </figure>

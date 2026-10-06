@@ -1,0 +1,28 @@
+---
+/**
+ * Renders one blog post against the ``BlogPost`` layout. Shared by
+ * ``/blog/[...slug]`` (en) and ``/[lang]/blog/[...slug]``.
+ */
+import BlogPost from "../../layouts/BlogPost.astro";
+import type { LocalizedEntry } from "../../i18n/content";
+
+interface Props {
+  post: LocalizedEntry;
+}
+const { post } = Astro.props;
+const { entry, fallback } = post;
+const { Content } = await entry.render();
+---
+
+<BlogPost
+  title={entry.data.title}
+  description={entry.data.description}
+  date={entry.data.date}
+  author={entry.data.author}
+  image={entry.data.image}
+  imageAlt={entry.data.imageAlt}
+  slug={entry.slug}
+  fallback={fallback}
+>
+  <Content />
+</BlogPost>

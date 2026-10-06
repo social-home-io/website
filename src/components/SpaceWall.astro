@@ -17,10 +17,26 @@
  * Connection lines are drawn as one inline SVG layer behind the
  * tiles so the federation reading lands without arrows-on-cards
  * clutter.
+ *
+ * All copy comes from ``src/i18n/<locale>.ts`` (``spaceWall``).
  */
+import { getLocale, t } from "../i18n";
+
+const locale = getLocale(Astro.currentLocale);
+const w = t(locale).spaceWall;
+
+// Position / tilt per tile, in the order the strings list them.
+const layout = [
+  { cls: "tile--family", rest: "-0.6deg", delay: "60ms" },
+  { cls: "tile--neighbours", rest: "0.8deg", delay: "140ms" },
+  { cls: "tile--makers", rest: "-1deg", delay: "220ms" },
+  { cls: "tile--book", rest: "1.4deg", delay: "300ms" },
+  { cls: "tile--sport", rest: "-0.4deg", delay: "380ms" },
+  { cls: "tile--bazaar", rest: "0.6deg", delay: "460ms" },
+];
 ---
 
-<figure class="board" aria-label="A glance at the kinds of Spaces households share">
+<figure class="board" aria-label={w.figureLabel}>
   <span class="board__paper" aria-hidden="true"></span>
 
   <svg class="board__threads" viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden="true">
@@ -54,103 +70,40 @@
       opacity="0.5"></path>
   </svg>
 
-  <article class="tile tile--family" style="--rest: -0.6deg; --delay: 60ms;">
-    <header>
-      <span class="tile__glyph" aria-hidden="true">🏡</span>
-      <span class="tile__edge tile__edge--private" aria-hidden="true"></span>
-      <h3>Family</h3>
-      <p class="tile__meta">4 people · 3 households · private</p>
-    </header>
-    <p class="tile__activity">
-      <span class="tile__poster">Mom</span>
-      <em>"Dinner at ours Sunday — bring the dog."</em>
-    </p>
-  </article>
+  {
+    w.tiles.map((tile, i) => (
+      <article
+        class:list={["tile", layout[i].cls]}
+        style={`--rest: ${layout[i].rest}; --delay: ${layout[i].delay};`}
+      >
+        <header>
+          <span class="tile__glyph" aria-hidden="true">
+            {tile.glyph}
+          </span>
+          <span class={`tile__edge tile__edge--${tile.scope}`} aria-hidden="true" />
+          <h3>{tile.name}</h3>
+          <p class="tile__meta">{tile.meta}</p>
+        </header>
+        <p class="tile__activity">
+          <span class="tile__poster">{tile.poster}</span>
+          <em>{tile.quote}</em>
+        </p>
+        {tile.chips && (
+          <ul class="tile__chips">
+            {tile.chips.map((chip) => (
+              <li>{chip}</li>
+            ))}
+          </ul>
+        )}
+      </article>
+    ))
+  }
 
-  <article class="tile tile--neighbours" style="--rest: 0.8deg; --delay: 140ms;">
-    <header>
-      <span class="tile__glyph" aria-hidden="true">🌳</span>
-      <span class="tile__edge tile__edge--public" aria-hidden="true"></span>
-      <h3>Eichenstrasse 3–17</h3>
-      <p class="tile__meta">24 people · 14 households · public</p>
-    </header>
-    <p class="tile__activity">
-      <span class="tile__poster">Lina</span>
-      <em>"Street BBQ next Saturday — bring chairs."</em>
-    </p>
-    <ul class="tile__chips">
-      <li>📅 Sat 19:00</li>
-      <li>📍 No. 11 garden</li>
-    </ul>
-  </article>
-
-  <article class="tile tile--makers" style="--rest: -1deg; --delay: 220ms;">
-    <header>
-      <span class="tile__glyph" aria-hidden="true">🔨</span>
-      <span class="tile__edge tile__edge--public" aria-hidden="true"></span>
-      <h3>Maker Space</h3>
-      <p class="tile__meta">12 people · 7 households · public</p>
-    </header>
-    <p class="tile__activity">
-      <span class="tile__poster">Rita</span>
-      <em>"Finished the oak chair — pictures in the feed."</em>
-    </p>
-  </article>
-
-  <article class="tile tile--book" style="--rest: 1.4deg; --delay: 300ms;">
-    <header>
-      <span class="tile__glyph" aria-hidden="true">📖</span>
-      <span class="tile__edge tile__edge--private" aria-hidden="true"></span>
-      <h3>Book Club</h3>
-      <p class="tile__meta">8 people · 5 households · private</p>
-    </header>
-    <p class="tile__activity">
-      <span class="tile__poster">Rebecca</span>
-      <em>"Read chapter 7 by Friday — calendar set."</em>
-    </p>
-  </article>
-
-  <article class="tile tile--sport" style="--rest: -0.4deg; --delay: 380ms;">
-    <header>
-      <span class="tile__glyph" aria-hidden="true">⛰️</span>
-      <span class="tile__edge tile__edge--public" aria-hidden="true"></span>
-      <h3>Bouldering crew</h3>
-      <p class="tile__meta">16 people · 11 households · public</p>
-    </header>
-    <p class="tile__activity">
-      <span class="tile__poster">Pascal</span>
-      <em>"Practice moved to 19:00 — same gym."</em>
-    </p>
-  </article>
-
-  <article class="tile tile--bazaar" style="--rest: 0.6deg; --delay: 460ms;">
-    <header>
-      <span class="tile__glyph" aria-hidden="true">🛒</span>
-      <span class="tile__edge tile__edge--global" aria-hidden="true"></span>
-      <h3>Bazaar · neighbourhood</h3>
-      <p class="tile__meta">~50 people · global · via your GFS</p>
-    </header>
-    <p class="tile__activity">
-      <span class="tile__poster">Maria</span>
-      <em>"Free oak bookshelf — pickup only, before Sun."</em>
-    </p>
-    <ul class="tile__chips">
-      <li>🪑 Free</li>
-      <li>🔁 1 trade pending</li>
-    </ul>
-  </article>
-
-  <aside class="board__legend" aria-label="Space scope legend">
-    <span><i class="dot--legend dot--private"></i> Private — only the people you invite.</span>
-    <span
-      ><i class="dot--legend dot--household"></i> Household — everyone in your home, automatically.</span
-    >
-    <span
-      ><i class="dot--legend dot--public"></i> Public — listed on your GFS's map for others to find.</span
-    >
-    <span
-      ><i class="dot--legend dot--global"></i> Global — published worldwide through your GFS.</span
-    >
+  <aside class="board__legend" aria-label={w.legendLabel}>
+    <span><i class="dot--legend dot--private"></i> {w.legend.private}</span>
+    <span><i class="dot--legend dot--household"></i> {w.legend.household}</span>
+    <span><i class="dot--legend dot--public"></i> {w.legend.public}</span>
+    <span><i class="dot--legend dot--global"></i> {w.legend.global}</span>
   </aside>
 </figure>
 

@@ -1,9 +1,10 @@
 import { defineCollection, z } from "astro:content";
 
 /**
- * One collection per locale. ``en`` is the source of truth; the
- * other locales are populated by the Azure Translator CI and
- * mirror the same schema.
+ * One collection per locale. ``en`` is the reference; ``de``,
+ * ``nl`` and ``fr`` are hand-maintained translations that mirror
+ * the same file tree, frontmatter and schema (see CLAUDE.md,
+ * "Translations").
  */
 const docFrontmatter = z.object({
   title: z.string(),

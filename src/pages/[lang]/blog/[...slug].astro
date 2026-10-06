@@ -1,0 +1,29 @@
+---
+import PostPage from "../../../components/pages/PostPage.astro";
+import { PREFIXED_LOCALES } from "../../../i18n";
+import { getLocalizedEntries, isPost, type LocalizedEntry } from "../../../i18n/content";
+
+/**
+ * Localized twin of ``/blog/[...slug]`` for every prefixed locale.
+ */
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of PREFIXED_LOCALES) {
+    const posts = await getLocalizedEntries(lang, isPost);
+    for (const post of posts) {
+      paths.push({
+        params: { lang, slug: post.entry.slug.replace(/^blog\//, "") },
+        props: { post },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  post: LocalizedEntry;
+}
+const { post } = Astro.props;
+---
+
+<PostPage post={post} />

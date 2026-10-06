@@ -13,51 +13,11 @@
  * Trust colour is ``--moss`` (see CLAUDE.md); ``--hearth`` stays
  * reserved for primary CTAs, so this band uses the ghost button.
  */
-interface Guarantee {
-  /** Plain claim, ≤ 6 words. */
-  claim: string;
-  /** One or two sentences in household terms. */
-  detail: string;
-  /** Technical terms for the chip row — never in the sentence. */
-  chips: string[];
-}
+import { getLocale, localePath, t } from "../i18n";
 
-const guarantees: Guarantee[] = [
-  {
-    claim: "It won't send unencrypted, ever.",
-    detail:
-      "If a space can't be sealed, the message stays home. There is no plain-text fallback to fall back to.",
-    chips: ["AES-256-GCM", "Ed25519", "fail-closed"],
-  },
-  {
-    claim: "Leave a space, lose the key.",
-    detail:
-      "Every time membership changes, the space gets a fresh key. Old members can't read new posts.",
-    chips: ["per-epoch key", "rotated on every change"],
-  },
-  {
-    claim: "The relay carries parcels, not letters.",
-    detail:
-      "It sees which space a sealed envelope belongs to and when — never what's inside. Strict mode hides even who sent it.",
-    chips: ["padded 1/4/16/64/128 KiB", "±300 s", "24 h replay cache"],
-  },
-  {
-    claim: "Tested before every release.",
-    detail: "68 protocol test files check these rules; one failure blocks the release.",
-    chips: ["tests/protocol", "release-blocking"],
-  },
-  {
-    claim: "Nothing to sell.",
-    detail: "No accounts, no analytics, no ads. The code is open for anyone to read.",
-    chips: ["MPL 2.0", "no third-party JS"],
-  },
-  {
-    claim: "Honest about the rest.",
-    detail:
-      "Whatever this page can't promise is written down next to the rules, with a date and a sign-off.",
-    chips: ["principles.md", "signed-off residuals"],
-  },
-];
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale).trust;
+const guarantees = s.guarantees;
 
 const principlesUrl = "https://github.com/social-home-io/socialhome/blob/main/docs/principles.md";
 ---
@@ -67,14 +27,10 @@ const principlesUrl = "https://github.com/social-home-io/socialhome/blob/main/do
     <header class="trust__head">
       <span class="eyebrow">
         <span class="dot dot--moss" aria-hidden="true"></span>
-        Private by construction
+        {s.eyebrow}
       </span>
-      <h2>Sealed from your home to theirs. Fail-closed. Tested before every release.</h2>
-      <p class="trust__lede">
-        The shopping list and the book-club chat are sealed the same way: before anything leaves
-        your home, it's locked so that only the households it's meant for can open it. The household
-        OS and the social network share one rule, and the rule has no off switch.
-      </p>
+      <h2>{s.heading}</h2>
+      <p class="trust__lede">{s.lede}</p>
     </header>
 
     <ol class="trust__list">
@@ -86,7 +42,7 @@ const principlesUrl = "https://github.com/social-home-io/socialhome/blob/main/do
             </span>
             <h3>{g.claim}</h3>
             <p>{g.detail}</p>
-            <ul class="tc__chips" aria-label="Technical terms">
+            <ul class="tc__chips" aria-label={s.technicalTerms}>
               {g.chips.map((c) => (
                 <li>{c}</li>
               ))}
@@ -97,8 +53,10 @@ const principlesUrl = "https://github.com/social-home-io/socialhome/blob/main/do
     </ol>
 
     <p class="trust__ctas">
-      <a class="btn btn--ghost" href="/docs/security/">Read the security model</a>
-      <a class="trust__link" href={principlesUrl}>principles.md on GitHub →</a>
+      <a class="btn btn--ghost" href={localePath(locale, "/docs/security/")}>
+        {s.readSecurityModel}
+      </a>
+      <a class="trust__link" href={principlesUrl}>{s.principlesLink}</a>
     </p>
   </div>
 </section>

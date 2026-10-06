@@ -1,5 +1,6 @@
 ---
 import Base from "./Base.astro";
+import { formatDate, getLocale, localePath, t } from "../i18n";
 
 interface Props {
   title: string;
@@ -10,22 +11,33 @@ interface Props {
   imageAlt?: string;
   /** The slug of the current post, e.g. ``blog/2026-10-01-timetables``. */
   slug: string;
+  /** ``true`` when the English body stands in for a missing translation. */
+  fallback?: boolean;
 }
-const { title, description, date, author, image, imageAlt = "", slug } = Astro.props;
+const {
+  title,
+  description,
+  date,
+  author,
+  image,
+  imageAlt = "",
+  slug,
+  fallback = false,
+} = Astro.props;
 
-const dateLabel = date?.toLocaleDateString("en", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  timeZone: "UTC",
-});
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
+const dateLabel = date ? formatDate(locale, date) : undefined;
+const blogHref = localePath(locale, "/blog/");
+const editLocale = fallback ? "en" : locale;
+const editUrl = `https://github.com/social-home-io/website/edit/main/src/content/${editLocale}/${slug.replace(/^\/+|\/+$/g, "")}.md`;
 ---
 
 <Base title={title} description={description} active="/blog/">
   <article class="post">
     <header class="post__header">
       <p class="eyebrow">
-        <a href="/blog/">Blog</a>
+        <a href={blogHref}>{s.blog.eyebrow}</a>
         {date && <time datetime={date.toISOString().slice(0, 10)}>{dateLabel}</time>}
         {author && <span>{author}</span>}
       </p>
@@ -39,12 +51,8 @@ const dateLabel = date?.toLocaleDateString("en", {
     </div>
 
     <footer class="post__footer">
-      <a href="/blog/">← All posts</a>
-      <a
-        href={`https://github.com/social-home-io/website/edit/main/src/content/en/${slug.replace(/^\/+|\/+$/g, "")}.md`}
-      >
-        Edit this post on GitHub →
-      </a>
+      <a href={blogHref}>{s.blog.allPosts}</a>
+      <a href={editUrl}>{s.blog.editOnGithub}</a>
     </footer>
   </article>
 </Base>

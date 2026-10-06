@@ -1,0 +1,10 @@
+---
+import ServersPage from "../../components/pages/ServersPage.astro";
+import { PREFIXED_LOCALES } from "../../i18n";
+
+export function getStaticPaths() {
+  return PREFIXED_LOCALES.map((lang) => ({ params: { lang } }));
+}
+---
+
+<ServersPage />

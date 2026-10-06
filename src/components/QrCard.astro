@@ -1,5 +1,6 @@
 ---
 import QRCode from "qrcode";
+import { getLocale, t } from "../i18n";
 
 /**
  * Build-time QR-code renderer. Generates the SVG once at build
@@ -17,6 +18,7 @@ interface Props {
   label: string;
 }
 const { gfsUrl, size = 168, label } = Astro.props;
+const caption = t(getLocale(Astro.currentLocale)).servers.qrCaptionHtml;
 
 const deepLink = `sh://gfs-pair/${gfsUrl}`;
 const svg = await QRCode.toString(deepLink, {
@@ -36,9 +38,7 @@ const svg = await QRCode.toString(deepLink, {
 
 <figure class="qr" aria-label={label} style={`--qr-size: ${size}px;`}>
   <Fragment set:html={svg} />
-  <figcaption>
-    Scan in <strong>Social Home → Settings → Connections → Global Federation Servers</strong>
-  </figcaption>
+  <figcaption set:html={caption} />
 </figure>
 
 <style>
