@@ -25,6 +25,10 @@ That declared age then quietly shapes what the account can reach:
 - **DMs stay close to home** — a protected minor's direct
   messages are limited to households you've directly paired with,
   not the wider federation.
+- **No public surfaces** — a protected account is refused
+  outright from the Bazaar (the marketplace), public spaces,
+  public Moments, public highlight links and API tokens. There
+  is no setting to loosen that.
 
 ## The guardian view
 
@@ -37,8 +41,22 @@ and it never reaches into message contents.
 ## Age gates are a space setting too
 
 Any space — not just ones with children in mind — can set a
-**minimum age** and a target audience. Admins set it once; it's
-enforced on every join, local or federated, and an older peer
-that doesn't understand the field simply treats the space as
-having no restriction. See [Global spaces](/docs/global-spaces/)
-for how a relay carries an age policy into a public directory.
+**minimum age** (13, 16 or 18 — or none) and a target audience.
+Admins set it once, and the minimum age is checked on every path
+that seats a member: joining locally, joining from a paired
+household, and joining through a GFS link. There is no path that
+skips the check. See [Global spaces](/docs/global-spaces/) for
+how a relay carries an age policy into a public directory.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+`min_age ∈ {0, 13, 16, 18}` is part of the space's signed
+settings and is evaluated by the same seating code for local
+joins, federated joins from paired households and GFS-link
+joins. Protected accounts (`protected_minor = true`) are refused
+at the service layer for the Bazaar, public-scope spaces, public
+Momentum, public highlight links and personal API tokens,
+regardless of declared age.
+
+</details>

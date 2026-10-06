@@ -7,7 +7,7 @@ order: 25
 The calendar is the central coordination surface for a
 household. Personal calendars, a shared **House** calendar, and
 any space-scoped calendars overlay in one colour-coded view
-under **At home → Calendar**. Events can be added from the SPA,
+under **At home → Calendar**. Events can be added from the app,
 through HA voice, or by importing an `.ics` file dropped into
 the composer.
 
@@ -17,8 +17,7 @@ Every event carries a list of invitees. Each invitee can RSVP
 **Yes**, **No**, or **Maybe** — and change their mind any time
 up until the event starts. The detail view summarises the
 counts at the top (`✓ 3 · ✗ 1 · ? 2`) and lists every invitee
-with their current state and the ISO timestamp of their last
-change.
+with their current state and when they last changed it.
 
 Default visibility:
 
@@ -41,15 +40,26 @@ unset and the event is open to everyone, as before.
 
 ## Federation
 
-When an event is shared with a space whose members live on
-paired peer instances, every RSVP federates over the standard
-§24.11 inbound pipeline. The event id is plaintext on the
-envelope (it's routing data); the invitee list, the response,
-and any free-text note ride inside the encrypted payload.
+When an event is shared with a space whose members live in
+paired households, every RSVP travels to those households the
+same sealed way everything else does. Who was invited, what they
+answered and any note they typed are all inside the sealed part;
+only the event's id is readable on the outside so it can be
+routed.
 
 A space admin who removes a member also revokes their RSVP
-silently — the federated event is mirrored to every paired
-peer, so the count chip updates everywhere within seconds.
+silently — the event is mirrored to every paired household, so
+the count chip updates everywhere within seconds.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+RSVPs federate over the standard §24.11 inbound pipeline. The
+event id is plaintext on the envelope (routing data); the invitee
+list, the response and any free-text note ride inside the
+encrypted payload.
+
+</details>
 
 ## Reminders
 
@@ -64,22 +74,33 @@ household has wired up.
 
 Drop an `.ics` file on the composer, paste the URL of a public
 calendar feed, or upload a screenshot of a paper invitation —
-the AI extractor (when configured) will pull `{title, start,
-end, location, description}` from the image. Imported events
+the AI extractor (when configured) will pull the title, start,
+end, location and description from the image. Imported events
 land as **draft** until you confirm; nothing federates until
 you press Save.
 
 ## Privacy
 
-- Calendar payload fields are encrypted in the federation
-  envelope (§25.8.21).
-- GPS coordinates on a _location_-flavoured event are
-  truncated to four decimal places (≈ 11 m) before they're
-  ever stored or transmitted (§25 GPS rule).
+- Everything inside an event is sealed when it travels to
+  another household.
+- The location on a _location_-flavoured event is blurred to
+  about 11 metres before it's ever stored or transmitted.
 - Personal calendars never federate. Only the household and
-  space-scoped overlays cross instance boundaries.
+  space-scoped overlays cross household boundaries.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+Calendar payload fields are encrypted in the federation envelope
+(§25.8.21). GPS coordinates are truncated to four decimal places
+(≈ 11 m) before storage or transmission (§25 GPS rule).
+
+</details>
 
 ## API
+
+<details class="tech">
+<summary>Under the hood</summary>
 
 | Method                     | Path                                  | Purpose                                                             |
 | -------------------------- | ------------------------------------- | ------------------------------------------------------------------- |
@@ -96,3 +117,5 @@ you press Save.
 Space-scoped calendars use the parallel `/api/spaces/{id}/calendar/*`
 shape so a single space can host its own event series without
 mixing into the household overlay.
+
+</details>

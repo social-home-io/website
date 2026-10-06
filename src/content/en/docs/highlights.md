@@ -20,9 +20,9 @@ Highlights live under **Talk → Highlights** in the sidebar.
   today's highlight rather than creating a new one. New day → new
   highlight row.
 - **Audience.** You pick from three options when you post:
-  - **All paired peers** — every confirmed paired household.
-  - **Specific households** — the peers you choose.
-  - **Specific users** — particular people on those households.
+  - **All paired households** — every confirmed paired household.
+  - **Specific households** — the households you choose.
+  - **Specific people** — particular people in those households.
 - **Retention.** Default 30 days, configurable per author from
   1 to 90 days in **Settings → Privacy**. The retention scheduler
   prunes expired rows hourly.
@@ -32,15 +32,16 @@ Highlights live under **Talk → Highlights** in the sidebar.
   after the original frame expires.
 - **Archive.** **Browse → Highlight archive** is a calendar grid of
   every highlight still inside its retention window — yours and
-  every paired peer's. Days with highlights are clickable; tap a
-  date to see who posted that day.
+  every paired household's. Days with highlights are clickable;
+  tap a date to see who posted that day.
 
 ## Privacy
 
-- The same end-to-end encryption that protects DMs protects
-  highlight frames in transit between Home Assistants.
-- Frames are signed with the author's instance key; receivers
-  drop forgeries before they ever land in the database.
+- Highlight frames are sealed from your Home Assistant to the
+  other household's Home Assistant, the same way DMs are. Nothing
+  on the way can open them.
+- Frames are signed by your household; a receiving household
+  drops forgeries before they ever land in its database.
 - The personal block list (**Settings → Privacy → Blocked
   accounts**) hides every highlight from a blocked author across
   every surface — inbox, archive, and the rings on top of the
@@ -51,19 +52,23 @@ Highlights live under **Talk → Highlights** in the sidebar.
 Sometimes you want to send a highlight to someone who isn't on Social
 Home — a friend on Twitter, a relative who only checks email. From
 the highlight viewer, the author can tap **Publish public link** and
-pick a paired Global Federation Server (GFS). The GFS hands back a
-URL like
+pick a paired [GFS (Global Federation Server)](/docs/glossary/#gfs)
+— the relay that helps households find each other. The GFS hands
+back a URL like
 
 ```
 https://gfs.example/highlight/{instance}/{highlight}/{token}
 ```
 
-Anyone with that URL can open the highlight in a browser. Under the
-hood, the GFS only relays a WebRTC handshake — the **highlight bytes
-flow directly from your home server to the visitor's browser**, the
-GFS never sees a frame. The same retention you set on the highlight
-applies to the public link too: when the highlight would have been
-purged for paired peers, the public URL stops working.
+Anyone with that URL can open the highlight in a browser. The
+pictures travel directly from your server to the visitor's
+browser; the GFS only introduces the two. If that direct path
+can't be set up (a strict office network, say), the GFS passes the
+frames through — but only while your Home Assistant is online, and
+it stores none of them. The same retention you set on the
+highlight applies to the public link too: when the highlight would
+have been purged for paired households, the public URL stops
+working.
 
 You can mint several tokens per highlight (one per platform, say) and
 revoke any of them individually. The author can also pull every
@@ -73,21 +78,49 @@ This is the only Social Home surface where content is intentionally
 readable without a household identity, and it's per-highlight
 opt-in — nothing leaves your home server until you flip the toggle.
 
+<details class="tech">
+<summary>Under the hood</summary>
+
+The GFS brokers a WebRTC handshake between the author's server and
+the visitor's browser; highlight bytes then flow over that
+direct connection. When WebRTC fails, the GFS falls back to an
+HTTP pass-through that streams frames from the author's server
+while it is reachable — zero highlight bytes are written to the
+relay's disk in either path. Tokens are per-highlight, per-link,
+and revocable individually or all at once.
+
+</details>
+
 ## Reporting
 
 If a highlight breaks community norms — spam, harassment,
 inappropriate content, misinformation — open the ⋯ menu on the
-viewer and choose **Report**. The report lands in the unified
-admin queue at `/api/admin/reports?status=pending` for the
-household admin to triage. Same surface that handles posts,
-comments, and Momentum reports.
+viewer and choose **Report**. The report lands in the household
+admin's review queue — the same one that handles posts, comments,
+and Momentum reports — for the admin to triage.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+Reports are rows in the unified `content_reports` table; admins
+list them at `/api/admin/reports?status=pending`.
+
+</details>
 
 ## Federation
 
-Highlights federate over the same §24.11 inbound pipeline that
-covers DMs and space content: signed envelopes, replay-cache
-protected, every routing field plaintext and every content field
-encrypted. Reactions and view-receipts ride a back-channel
-back to the author's instance so the chip on the frame counts
-correctly. See the [federation docs](/docs/federation/) for the
-full envelope shape.
+Highlights travel between households the same way DMs and space
+content do: sealed, signed, and checked for replays on arrival.
+Reactions and view-receipts find their way back to the author's
+household so the chip on the frame counts correctly.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+Highlights use the §24.11 inbound pipeline shared with DMs and
+space content: signed envelopes, replay-cache protected, routing
+fields in plaintext and every content field encrypted. Reactions
+and view-receipts ride a unicast back-channel to the author's
+household.
+
+</details>

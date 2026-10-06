@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // Public origin — used by Astro for canonical URLs, sitemap, OG tags.
 const SITE = "https://social-home.io";
@@ -20,4 +21,12 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
     fallback: { de: "en", nl: "en", fr: "en" },
   },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: "en",
+        locales: { en: "en-US", de: "de-DE", nl: "nl-NL", fr: "fr-FR" },
+      },
+    }),
+  ],
 });

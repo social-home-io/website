@@ -13,7 +13,9 @@ network, only without giving anyone's data to a company in the
 middle.
 
 This page walks through what you can actually do with it. No
-acronyms.
+acronyms in the main text; the technical detail sits in the
+"Under the hood" blocks, and the words are in
+[Words we use](/docs/glossary/).
 
 ## What can I do with it?
 
@@ -48,14 +50,14 @@ household do:
   Colourful tap-to-edit notes pinned to a Space canvas — the
   modern fridge magnet. Carrots in the bottom drawer; birthday
   gift ideas; the doorbell-fix shopping list.
-- **💬 Message your family across the world** — end-to-end
-  encrypted, direct from your Home Assistant to theirs. No
-  phone numbers. No account on a third-party service.
+- **💬 Message your family across the world** — sealed from your
+  Home Assistant to theirs, encrypted home to home. No phone
+  numbers. No account on a third-party service.
 - **📞 Call without a stranger in the middle** — voice and video
   calls, 1:1 or with a group, straight from your DMs and group
-  chats. The audio and video flows directly between participants
-  (WebRTC, DTLS-SRTP encrypted); the server only helps the call
-  start and never touches what's being said.
+  chats. The audio and video flow directly between participants;
+  if a direct connection can't be made, a relay passes the
+  stream through but only ever sees encrypted media.
 - **🏘 Build your own community, your way** — create a Space for
   any group: your street, apartment building, sports team, or
   maker club. Organise a neighbourhood BBQ, run a book club —
@@ -67,29 +69,60 @@ household do:
 - **🎙 Transcribe a voice note** from HA's microphone and post it
   to the feed — useful when your hands are full.
 
+<details class="tech">
+<summary>Under the hood</summary>
+
+Calls are WebRTC with DTLS-SRTP between participants; a TURN
+fallback relays ciphertext only. Direct messages are encrypted
+server-to-server (AES-256-GCM envelopes, Ed25519 signatures) and
+stored readable on each household's server.
+
+</details>
+
 ## Your data stays yours
 
 Everything Social Home knows lives on your Home Assistant. The
 photos, the messages, the shopping list, the calendar entries —
-all in a small SQLite database in `/data` on your machine.
-There is no cloud account, no analytics, no advertising network,
-no remote logger watching what your household says. If your
-internet goes down, the household features keep working on your
-LAN; the only thing that pauses is messaging _outside_ the house.
+all in a small database on your machine. There is no cloud
+account, no analytics, no advertising network, no remote logger
+watching what your household says. If your internet goes down,
+the household features keep working on your LAN; the only thing
+that pauses is messaging _outside_ the house.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+SQLite plus a media folder under `/data`. On Home Assistant OS
+it is part of the normal HA backup; standalone installs get a
+Recovery Kit (`.shrk`, scrypt + AES-256-GCM) for the keys.
+
+</details>
 
 ## Connecting with other households
 
-You connect two Home Assistants by scanning a QR code. After
-that, the two servers know each other and can carry direct
-messages and shared spaces between them. The QR code carries a
-public key — like a digital ID card — that lets the other side
-verify it's still you, even if your address changes later.
+You connect two Home Assistants by scanning a QR code — in the
+app it's called **pairing**. After that, the two servers know
+each other and can carry direct messages and shared spaces
+between them. The QR code carries a public key — like a digital
+ID card — that lets the other side verify it's still you, even if
+your address changes later.
 
 What you share with a paired household: your display name, your
 avatar, and the spaces you join together.
 
 What you never share: passwords, emails, your location history,
 or anything that lives in a space you didn't both join.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+Each household generates an Ed25519 identity key on first start.
+Pairing is X25519 + HKDF-SHA256, authenticated by the QR code or
+a short spoken code. Every incoming envelope's signature is
+checked against the pairing; a bad signature is dropped, and
+there is no trusted-instance mode to bypass that.
+
+</details>
 
 ## Spaces — shared rooms for any group
 
@@ -105,39 +138,70 @@ people, across any number of households. Think:
   any platform that's worth trusting.
 
 You decide who sees a space. You decide which households are
-invited. The space exists across all of them simultaneously and
-no single host owns it.
+invited. Every space has a host household — the one that created
+it and keeps the member list — but members post straight to each
+other, and the big decisions (who can see it, whether it still
+exists) are taken by all its admins together.
 
-## Global spaces
+## Public and global spaces
 
 Some spaces are private to invited households. Others — like a
 public marketplace, a hobby community, or your neighbourhood
-notice board — are _global_: anyone can discover them. A
-lightweight relay server helps households find each other when
-they don't already know one another. The relay never reads your
-messages. It just helps two servers shake hands; once they do,
-the conversation goes directly between them.
+notice board — are _public_ or _global_: anyone can discover
+them. A lightweight relay, the GFS (Global Federation Server),
+helps households find each other when they don't already know
+one another (see [GFS](/docs/glossary/#gfs)).
+
+The relay stays on the path for those spaces: every post goes
+through it as a sealed, padded envelope, and it fans the envelope
+out to the members. It can't read a word. By default it knows
+which household posted and when; a space can switch to strict
+mode, where it doesn't even know who. More in
+[Global spaces](/docs/global-spaces/).
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+`PUBLIC_SPACE_TIERS = {public, global}`. The GFS sees routing
+metadata only (`space_id`, `event_type`, size bucket, timing,
+subscriber set, source IP); strict mode makes publishes
+identity-free. Offline members are queued 24 h; nothing else is
+stored.
+
+</details>
 
 ## Public highlight links
 
-The same kind of relay also has one second job: handing off a
-single highlight to people outside Social Home. When you publish a
-highlight link, the relay mints a URL that anyone can open in a
-browser — but the highlight bytes themselves still flow directly
-from your home server to the visitor's browser. The relay only
-brokers a brief WebRTC handshake; it never sees a frame, never
-caches a thumbnail. See [Highlights](/docs/highlights/#sharing-publicly-via-a-global-server)
+The same kind of relay also has a second job: handing off a
+single highlight to people outside Social Home. When you publish
+a highlight link, the relay mints a URL that anyone can open in a
+browser — but the highlight bytes flow directly from your home
+server to the visitor's browser. If that direct path can't be
+made, the relay passes the frames through only while you're
+online, and stores none of them. See
+[Highlights](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+WebRTC-direct from the author's server to the browser; HTTP
+pass-through as fallback only while the author is online. Zero
+highlight or moment bytes are stored on the GFS.
+
+</details>
 
 ## Encryption, always on
 
-Every message that leaves your server is sealed in an encrypted
-envelope only the recipients can open — always, with no switch to
-turn it off and no plaintext fallback. Even the global relay
-can't see inside. Think of it like an envelope that only the
-people on the guest list have keys for — the postal service
-routes it, but never opens it. On your own server your data stays
-readable, because it's yours; it's only the wire that's locked.
+Every message that leaves your server is sealed in an envelope
+only the receiving households can open — always, with no switch
+to turn it off and no plaintext fallback. Even the relay can't
+see inside. Think of it like an envelope that only the people on
+the guest list have keys for — the postal service routes it, but
+never opens it. On your own server your data stays readable,
+because it's yours; it's only the wire that's locked. The
+[security model](/docs/security/) page says exactly what that
+does and doesn't cover.
 
 ## Privacy at a glance
 

@@ -104,6 +104,50 @@ const dateLabel = date?.toLocaleDateString("en", {
     padding-left: var(--s-5);
   }
 
+  /* "Under the hood" — the skippable technical layer that markdown
+     content opens with <details class="tech">. Moss is the trust
+     colour; mono is the cue for technical text (see CLAUDE.md). */
+  .post__body :global(details.tech) {
+    margin-block: var(--s-5);
+    padding: var(--s-3) var(--s-5);
+    background: var(--moss-tint);
+    border-left: 3px solid var(--moss);
+    border-radius: var(--r-2);
+    overflow-x: auto;
+  }
+  .post__body :global(details.tech > summary) {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    list-style: none;
+    cursor: pointer;
+    padding-block: var(--s-1);
+    font: 500 var(--step--1) / 1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--moss);
+  }
+  .post__body :global(details.tech > summary::-webkit-details-marker) {
+    display: none;
+  }
+  .post__body :global(details.tech > summary)::before {
+    content: "\25B8";
+    display: inline-block;
+    transition: transform var(--dur-quick) var(--ease-quill);
+  }
+  .post__body :global(details.tech[open] > summary) {
+    margin-bottom: var(--s-3);
+  }
+  .post__body :global(details.tech[open] > summary)::before {
+    transform: rotate(90deg);
+  }
+  .post__body :global(details.tech > :last-child) {
+    margin-bottom: 0;
+  }
+  .post__body :global(details.tech pre) {
+    background: var(--paper);
+  }
+
   /* Screenshot galleries: wide tiles for desktop captures, narrow
      ones for phone captures; they wrap and stack on small screens. */
   .post__body :global(.shots) {

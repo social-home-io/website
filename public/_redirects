@@ -3,10 +3,14 @@
 # file, but we keep it around so a future host swap doesn't lose
 # the canonical short URLs we publish in talks / docs / QR codes.
 
-# Short installer URL — points at the HACS one-click add-on
-# repository helper that the website's CTA also uses.
-/install        https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fsocial-home-io%2Fha-app    302
+# Short installer URL — the canonical my.home-assistant.io add-on
+# redirect that the website's CTA also uses (opens the Social Home
+# add-on with the ha-app repository pre-filled).
+/install        https://my.home-assistant.io/redirect/supervisor_addon/?addon=752dab87_socialhome&repository_url=https%3A%2F%2Fgithub.com%2Fsocial-home-io%2Fha-app    302
 /add-on         /install                                                                                                                                                                       302
+
+# The hand-written changelog was retired; releases live on GitHub.
+/changelog/     https://github.com/social-home-io/socialhome/releases   301
 
 # Common typos / older inbound links.
 /getting-started        /docs/getting-started/      301

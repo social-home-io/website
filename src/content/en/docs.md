@@ -11,18 +11,23 @@ and a **federated social fabric** — feeds, DMs, and shared spaces
 that span the people you actually know.
 
 These docs are written for people who run their household, not
-for protocol engineers. The deeper technical material lives in
-the [GitHub
+for protocol engineers. Every page opens in plain language; the
+technical detail sits in collapsible "Under the hood" blocks you
+can skip or open. The deeper material lives in the [GitHub
 spec](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
 
 ## Start here
 
 - **[Getting started](/docs/getting-started/)** — add the
   Social Home add-on to Home Assistant in about five minutes.
+- **[Words we use](/docs/glossary/)** — household, space, scope,
+  GFS, pairing: the dozen words that come up everywhere.
 - **[How it works](/docs/protocol/)** — what Social Home does for
   you, with concrete examples.
 - **[Privacy model](/docs/privacy/)** — what stays on your server
   and what (very little) leaves it.
+- **[Security model](/docs/security/)** — what is sealed, what is
+  signed, what the relay can still see, and what isn't solved yet.
 
 ## Features
 
@@ -30,7 +35,8 @@ spec](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
   in one view. Reply yes / no / maybe, even to a household you've
   paired with.
 - **[Highlights](/docs/highlights/)** — share a photo or short clip
-  that quietly disappears. No archive, no pressure.
+  that quietly disappears. No archive in someone else's data
+  centre.
 - **[Momentum](/docs/momentum/)** — a quick post that travels to
   friends and their friends, then fades on its own.
 - **[Marketplace](/docs/marketplace/)** — sell, give away, or

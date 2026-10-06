@@ -41,12 +41,31 @@ const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts are self-hosted (public/fonts/); preload the ones every page paints with. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/fraunces-latin-full-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/fraunces-latin-full-italic.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/manrope-latin-wght-normal.woff2"
+    />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="/favicon.ico" />
-    <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={fullTitle} />

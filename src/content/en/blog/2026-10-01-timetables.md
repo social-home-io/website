@@ -182,7 +182,6 @@ it's ready to try.
 
 ## Try it
 
-Timetables ship with the next Social Home release. Check the
-[changelog](/changelog/) for the version that includes them. New to
-Social Home? [Getting started](/docs/getting-started/) takes you from
-Home Assistant to your first household in a few minutes.
+Timetables shipped in **Social Home 2026.10.1**. New to Social Home?
+[Getting started](/docs/getting-started/) takes you from Home
+Assistant to your first household in a few minutes.

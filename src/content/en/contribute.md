@@ -14,20 +14,20 @@ contributions into a future paid plan.
 The repos are small and well-documented:
 
 - **Core server** —
-  [`socialhome-io/socialhome`](https://github.com/social-home-io/socialhome).
+  [`social-home-io/socialhome`](https://github.com/social-home-io/socialhome).
   Python 3.14, aiohttp, SQLite, Preact frontend.
 - **HA integration** —
-  [`socialhome-io/ha-integration`](https://github.com/social-home-io/ha-integration).
+  [`social-home-io/ha-integration`](https://github.com/social-home-io/ha-integration).
   Custom integration; tests via
   `pytest-homeassistant-custom-component`.
 - **Client library** —
-  [`socialhome-io/socialhome-client`](https://github.com/social-home-io/socialhome-client).
+  [`social-home-io/socialhome-client`](https://github.com/social-home-io/socialhome-client).
   Pure async HTTP/WS client, no HA dependency.
 - **HA add-on** —
-  [`socialhome-io/ha-app`](https://github.com/social-home-io/ha-app).
-  Two channels (stable + dev), bashio + tempio.
+  [`social-home-io/ha-app`](https://github.com/social-home-io/ha-app).
+  Two channels (stable + Early), bashio + tempio.
 - **Website** — this repo at
-  [`socialhome-io/website`](https://github.com/social-home-io/website).
+  [`social-home-io/website`](https://github.com/social-home-io/website).
 
 Read the `CLAUDE.md` / `AGENTS.md` files at the root of each
 repo before opening a PR — they explain the conventions
@@ -36,12 +36,13 @@ consistent.
 
 ## If you translate
 
-Non-English copy on this site and in the apps is generated
-automatically by Azure Translator on every CI run. The output
-isn't perfect — if you read a locale natively and the wording
-feels off, open a PR against the **English** source. We don't
-accept hand edits to the translated files because the next CI
-run would overwrite them.
+Non-English copy on this site and in the apps is meant to be
+generated automatically by Azure Translator on every CI run —
+the translator script is planned, not in the repo yet. Either
+way the output won't be perfect: if you read a locale natively
+and the wording feels off, open a PR against the **English**
+source. We don't accept hand edits to the translated files
+because the next CI run would overwrite them.
 
 If you'd like to take ownership of a locale (proofread + nudge
 the source so it translates better), open an issue tagged

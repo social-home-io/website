@@ -5,6 +5,7 @@ import ValuePropStrip from "../components/ValuePropStrip.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import AppsFeature from "../components/AppsFeature.astro";
 import SpaceWall from "../components/SpaceWall.astro";
+import TrustBand from "../components/TrustBand.astro";
 import InstallBanner from "../components/InstallBanner.astro";
 import type { HeroCopy, FeatureColumn, ValueProp } from "../types";
 
@@ -94,12 +95,12 @@ const social: FeatureColumn = {
     {
       tag: "DMs across households",
       title: "Message family worldwide.",
-      body: "End-to-end encrypted, HA-to-HA. No phone numbers, no third-party messenger, no account on a service that isn't yours.",
+      body: "Encrypted home to home, HA-to-HA. No phone numbers, no third-party messenger, no account on a service that isn't yours.",
     },
     {
       tag: "Voice & video calls",
       title: "Call without a third party listening.",
-      body: "1:1 or group calls right from your DMs and group chats. WebRTC peer-to-peer, DTLS-SRTP encrypted; the server is signalling only and never touches the media.",
+      body: "1:1 or group calls right from your DMs and group chats. WebRTC between participants, DTLS-SRTP encrypted; the server only helps the call start, and if a relay is needed it only ever sees encrypted media.",
     },
     {
       tag: "Spaces for any group",
@@ -149,10 +150,10 @@ const social: FeatureColumn = {
           party, or keep one quiet room for grandparents.
         </p>
         <p>
-          A small, open-source <a href="/docs/global-spaces/">relay</a>
-          helps strangers' households find each other for public spaces. It never reads your messages
-          — it only helps your servers shake hands. We run one live at
-          <a href="/servers/">gfs.social-home.io</a> — connect in a tap.
+          A small, open-source <a href="/docs/global-spaces/">relay</a> — the GFS — helps households that
+          haven't paired find each other for public and global spaces and carries their sealed posts.
+          It can't read them: every post is sealed before it leaves your Home Assistant. We run one live
+          at <a href="/servers/">gfs.social-home.io</a> — connect in a tap.
         </p>
       </div>
       <div class="federated__wall">
@@ -160,6 +161,8 @@ const social: FeatureColumn = {
       </div>
     </div>
   </section>
+
+  <TrustBand />
 
   <InstallBanner installHref={installHref} />
 </Base>

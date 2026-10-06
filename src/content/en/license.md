@@ -25,7 +25,7 @@ The canonical full license text lives at
 [`mozilla.org/MPL/2.0/`](https://www.mozilla.org/en-US/MPL/2.0/).
 Each repo also ships a `LICENSE` file at its root with the
 verbatim text — for example,
-[`socialhome-io/socialhome/LICENSE`](https://github.com/social-home-io/socialhome/blob/main/LICENSE).
+[`social-home-io/socialhome/LICENSE`](https://github.com/social-home-io/socialhome/blob/main/LICENSE).
 
 ## Reusing this site
 

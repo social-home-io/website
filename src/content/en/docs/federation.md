@@ -20,9 +20,10 @@ auth.
    sides then read the verification code aloud and confirm it
    matches — that out-of-band check is what blocks a
    man-in-the-middle from slipping in.
-3. **Done.** The two servers exchange public keys, names,
+3. **Done.** The two households exchange public keys, names,
    avatars, and the externally-reachable URL each one announces
-   for itself. From now on, messages flow directly between you.
+   for itself. From now on, messages flow directly between you,
+   sealed from your Home Assistant to theirs.
 
 ## What travels
 
@@ -40,11 +41,19 @@ auth.
 ## What happens when an address changes
 
 If your HA's external URL moves — you switch domains, lose
-Nabu Casa Remote UI, or your IP rotates — Social Home announces
-the new address to every paired household automatically (a
-signed `URL_UPDATED` event). Their HA verifies the signature,
-updates the stored URL, and the connection stays alive. No
-manual re-pairing.
+Nabu Casa Remote UI, or your IP rotates — Social Home tells every
+paired household the new address automatically. Their HA checks
+that the announcement really came from you, updates the stored
+URL, and the connection stays alive. No manual re-pairing.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+The announcement is a signed `URL_UPDATED` event. The receiving
+household verifies the Ed25519 signature against the public key
+stored at pairing time before it replaces the URL.
+
+</details>
 
 ## Revoking a pairing
 
@@ -56,9 +65,9 @@ database) — federation is forward-only.
 
 ## Across the internet
 
-Pairing works over the open internet — federation is
-peer-to-peer between Home Assistants, not LAN-only. To be
-reachable from outside your network you need either:
+Pairing works over the open internet — federation runs from one
+Home Assistant to the other, not LAN-only. To be reachable from
+outside your network you need either:
 
 - **Nabu Casa Remote UI** (easiest), or
 - An **external URL** in HA's network settings + a port forward
