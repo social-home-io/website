@@ -30,8 +30,7 @@ in the meta-repo.
 - **Say only what the code does.** Every factual claim must be
   backed by `social-home-io/socialhome` (its `docs/principles.md`
   and `docs/crypto.md` are the reference for security wording).
-  No "end-to-end" (it's encrypted home to home; your own server
-  keeps a readable copy), no "military-grade", "zero-knowledge"
+  No "end-to-end" (say "encrypted home to home"), no "military-grade", "zero-knowledge"
   or "quantum-safe". Residuals are stated plainly, not hidden.
 - **Design system = `src/styles/tokens.css`.** Never hardcode
   colours / sizes / motion durations in components. New tokens

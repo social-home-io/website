@@ -74,8 +74,7 @@ household do:
 
 Calls are WebRTC with DTLS-SRTP between participants; a TURN
 fallback relays ciphertext only. Direct messages are encrypted
-server-to-server (AES-256-GCM envelopes, Ed25519 signatures) and
-stored readable on each household's server.
+server-to-server (AES-256-GCM envelopes, Ed25519 signatures).
 
 </details>
 
@@ -93,8 +92,7 @@ that pauses is messaging _outside_ the house.
 <details class="tech">
 <summary>Under the hood</summary>
 
-SQLite plus a media folder under `/data`. If you installed the
-add-on, it is part of your normal Home Assistant backup;
+If you installed the add-on, it is part of your normal Home Assistant backup;
 standalone installs get a Recovery Kit (`.shrk`, scrypt +
 AES-256-GCM) for the keys.
 
@@ -200,8 +198,7 @@ only the receiving households can open — always, with no switch
 to turn it off and no plaintext fallback. Even the relay can't
 see inside. Think of it like an envelope that only the people on
 the guest list have keys for — the postal service routes it, but
-never opens it. On your own server your data stays readable,
-because it's yours; it's only the wire that's locked. The
+never opens it. The
 [security model](/docs/security/) page says exactly what that
 does and doesn't cover.
 

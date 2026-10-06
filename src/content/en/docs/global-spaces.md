@@ -168,9 +168,6 @@ What that means in practice:
 - The relay can't read your messages, photos or voice notes —
   even if the operator wanted to. It only sees the sealed
   envelope.
-- Your own home **does** keep the messages readable
-  after opening them. That's how you can search and browse your
-  own history.
 - A new member who joins later only receives messages posted
   after they join. Earlier history isn't retroactively shared —
   members handle their own backups locally.

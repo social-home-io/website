@@ -18,19 +18,19 @@ words used here are in [Words we use](/docs/glossary/).
 
 ## What lives where
 
-| Data                                          | Stored at home?                        | Travels off your server?                                            |
-| --------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------- |
-| Messages, posts, photos                       | yes (database + media folder, `/data`) | only to households in the space, sealed                             |
-| Direct messages                               | yes — readable on your server          | sealed to the other household's server, readable there              |
-| Shopping list                                 | yes                                    | only across your household devices                                  |
-| Calendar events                               | yes                                    | only to households sharing the calendar                             |
-| Voice transcripts                             | yes (the text)                         | same as posts                                                       |
-| Avatars + display names                       | yes                                    | yes — to paired households (it's how they recognise you)            |
-| Public key (identity)                         | yes                                    | yes — that's literally the point of pairing                         |
-| External URL                                  | yes                                    | yes — to paired households when it changes                          |
-| Your Home Assistant account (email, password) | **never read**                         | never                                                               |
-| GPS / location history                        | **never** by default                   | only the current zone, only when you opt in; map pins rounded ~11 m |
-| Logs                                          | stay on your server                    | never                                                               |
+| Data                                          | Stored at home?      | Travels off your server?                                            |
+| --------------------------------------------- | -------------------- | ------------------------------------------------------------------- |
+| Messages, posts, photos                       | yes                  | only to households in the space, sealed                             |
+| Direct messages                               | yes                  | sealed to the other household's server                              |
+| Shopping list                                 | yes                  | only across your household devices                                  |
+| Calendar events                               | yes                  | only to households sharing the calendar                             |
+| Voice transcripts                             | yes (the text)       | same as posts                                                       |
+| Avatars + display names                       | yes                  | yes — to paired households (it's how they recognise you)            |
+| Public key (identity)                         | yes                  | yes — that's literally the point of pairing                         |
+| External URL                                  | yes                  | yes — to paired households when it changes                          |
+| Your Home Assistant account (email, password) | **never read**       | never                                                               |
+| GPS / location history                        | **never** by default | only the current zone, only when you opt in; map pins rounded ~11 m |
+| Logs                                          | stay on your server  | never                                                               |
 
 ## What the global relay sees
 
@@ -90,19 +90,15 @@ sealed from your home to theirs. There's no "encrypted
 / not encrypted" switch and no plaintext fallback: if a space
 can't seal, it doesn't send.
 
-On your own server, your data sits readable — because it's your
-house, your disk, and that's how you search and scroll your own
-history. That includes direct messages: they are stored readable
-on both households' servers. The rule is simple: nothing leaves
-the house unsealed, and nothing a relay touches is ever readable.
+The rule is simple: nothing leaves the house unsealed, and
+nothing a relay touches is ever readable.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
 AES-256-GCM envelopes, Ed25519 signatures. The only readable
 fields on an envelope are `event_type`, `from_instance`,
-`to_instance`, `space_id` and `epoch`. DMs are transport-only
-encryption, stored readable in the local SQLite database. Full
+`to_instance`, `space_id` and `epoch`. Full
 detail on the [security model](/docs/security/) page.
 
 </details>

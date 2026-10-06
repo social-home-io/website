@@ -18,18 +18,16 @@ book-club chat, the photo of dinner, the dentist appointment —
 all of it is sealed before it leaves your home and only
 opened in the home it was sent to.
 
-Your own server keeps a readable copy. It's your house and your
-disk; that is how you search and scroll your own history. The
-rule is about the wire and about every machine in between, not
-about your own hardware.
+The rule is about the wire and about every machine in between:
+the relay, the network, and other members' servers that pass a
+post along.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
 Encryption is server-to-server: your household's server seals,
 the receiving household's server opens. There is no per-device
-key and no claim of device-to-device secrecy. Local storage
-(SQLite + media folder under `/data`) is plaintext.
+key and no claim of device-to-device secrecy.
 
 </details>
 
@@ -53,7 +51,7 @@ Every message, post and calendar event is sealed in an envelope
 in your home and signed, so the receiving household can
 check it really came from you and that nobody changed it on the
 way. Direct messages work the same way: sealed from your home
-to theirs, and stored readable on each end.
+to theirs.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -61,8 +59,6 @@ to theirs, and stored readable on each end.
 - Envelopes: AES-256-GCM. Signatures: Ed25519 over the envelope.
 - The only plaintext on the wire: `event_type`, `from_instance`,
   `to_instance`, `space_id`, `epoch`.
-- DMs are transport-only encryption; they are stored readable in
-  the local SQLite database on both households.
 
 </details>
 
@@ -260,8 +256,6 @@ dependencies. That is on the list, not in the pipeline.
 The things that are true today and that you should know before
 you trust us with the group chat:
 
-- Your own server keeps a readable copy of everything, including
-  direct messages.
 - In trusted mode the relay learns which household posted into
   which space, and when.
 - In every mode the relay sees your IP address, the timing and the
