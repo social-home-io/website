@@ -23,8 +23,8 @@ don't tag.
   errors and phone-friendly layouts.
   [Read the post](/blog/2026-10-02-organize/).
 - **Spaces publish through the GFS without the host.** Writer
-  certificates let members post, comment and react while the host is
-  offline. Owners choose trusted or strict (anonymous) mode, and
+  certificates let members post, comment and react over the GFS while
+  the host is offline, as direct federation and the mesh already allow. Owners choose trusted or strict (anonymous) mode, and
   private spaces can opt in through an opaque channel.
   [Read the post](/blog/2026-10-04-gfs-relay/).
 - **Social Home Apps.** Install small apps — a chess board, a shared
