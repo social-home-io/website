@@ -80,8 +80,8 @@ connect to. The relay does two jobs:
    other household in that space.
 
 The relay never sees the _contents_ of your posts. Every post is
-sealed on the way out of your Home Assistant and only opened on
-each member's Home Assistant when it arrives. The envelope is
+sealed on the way out of your home and only opened in
+each member's home when it arrives. The envelope is
 padded to one of a few fixed sizes, so the relay can't even tell
 a short message from a long one. It stores no content: if a
 member is offline, it holds their sealed envelopes for a day and
@@ -136,14 +136,14 @@ the size bucket and the subscriber set.
    The relay receives the space's name, description, cover
    image, age policy, accent colour — enough to put it on the
    map — but **no message content**.
-2. Anyone whose Home Assistant is connected to that same relay
+2. Anyone whose home is connected to that same relay
    can browse the map, find the space, and ask to join.
 3. Whether the join is granted depends on the space's **join
    mode**, which the host picks: **Open** (anyone can join
    straight away) or **Request** (the host household reviews
    and approves). Invite links work alongside either.
 4. Once you're a member, posts in the space flow:
-   `your HA → relay → every other member's HA`. The relay is on
+   `your home → relay → every other member's home`. The relay is on
    the path for every message and reaction; it doesn't drop out
    after introductions.
 
@@ -168,7 +168,7 @@ What that means in practice:
 - The relay can't read your messages, photos or voice notes —
   even if the operator wanted to. It only sees the sealed
   envelope.
-- Your local Home Assistant **does** keep the messages readable
+- Your own home **does** keep the messages readable
   after opening them. That's how you can search and browse your
   own history.
 - A new member who joins later only receives messages posted
@@ -185,7 +185,7 @@ dropped: your household keeps retrying — after a few seconds,
 then half a minute, then a couple of minutes, then every ten —
 and the relay, once it's back, still holds up to a day's worth
 of sealed envelopes for members who were offline. Your local
-copy is saved on your HA the moment you press send.
+copy is saved at home the moment you press send.
 
 In practice this matters when:
 
@@ -234,7 +234,7 @@ Compose + Cloudflare guide.
 | How posts travel    | direct, household-to-household              | through the relay to every member, every time                 |
 | What the relay sees | nothing (no relay, unless you switch it on) | routing data and a sealed, padded envelope — never content    |
 | Encryption          | **always on**                               | **always on**                                                 |
-| Where messages live | each member's HA                            | each member's HA (relay never stores content)                 |
+| Where messages live | each member's home                          | each member's home (relay never stores content)               |
 | If relay is offline | n/a                                         | posts wait and retry; relay holds a day's envelopes when back |
 | Visible to peers    | members only                                | members only — never leaks to your paired-household graph     |
 | Can be turned off   | yes, by admin vote                          | yes — un-publish by admin vote; the relay forgets             |

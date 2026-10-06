@@ -4,7 +4,7 @@ description: A plain-language tour of what Social Home does, what stays on your 
 order: 20
 ---
 
-Social Home turns your Home Assistant into the household OS your
+Social Home gives your home the household OS your
 phone never managed to be: shared calendars, a live shopping
 list, photos, voice notes, presence, and chat — all running on
 hardware you already own. It also lets your household connect to
@@ -33,7 +33,7 @@ household do:
   server.
 - **🛒 Shout "I'm at the supermarket — anything needed?"** Your
   household shopping list is live. Someone adds milk, you see it
-  before you reach the checkout. Ask HA's voice assistant to add
+  before you reach the checkout. Ask your voice assistant to add
   it by speaking.
 - **🔔 Know when people are home** without asking. A quiet
   presence indicator shows who's around right now — no location
@@ -51,7 +51,7 @@ household do:
   modern fridge magnet. Carrots in the bottom drawer; birthday
   gift ideas; the doorbell-fix shopping list.
 - **💬 Message your family across the world** — sealed from your
-  Home Assistant to theirs, encrypted home to home. No phone
+  home to theirs, with no cloud in between. No phone
   numbers. No account on a third-party service.
 - **📞 Call without a stranger in the middle** — voice and video
   calls, 1:1 or with a group, straight from your DMs and group
@@ -66,8 +66,8 @@ household do:
 - **🔨 Run a marketplace** — list things you want to give away or
   sell to people you already know. No strangers, no platform
   fees.
-- **🎙 Transcribe a voice note** from HA's microphone and post it
-  to the feed — useful when your hands are full.
+- **🎙 Transcribe a voice note** from a microphone in the house
+  and post it to the feed — useful when your hands are full.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -81,7 +81,8 @@ stored readable on each household's server.
 
 ## Your data stays yours
 
-Everything Social Home knows lives on your Home Assistant. The
+Everything Social Home knows lives in your home, on your own
+server. The
 photos, the messages, the shopping list, the calendar entries —
 all in a small database on your machine. There is no cloud
 account, no analytics, no advertising network, no remote logger
@@ -92,15 +93,16 @@ that pauses is messaging _outside_ the house.
 <details class="tech">
 <summary>Under the hood</summary>
 
-SQLite plus a media folder under `/data`. On Home Assistant OS
-it is part of the normal HA backup; standalone installs get a
-Recovery Kit (`.shrk`, scrypt + AES-256-GCM) for the keys.
+SQLite plus a media folder under `/data`. If you installed the
+add-on, it is part of your normal Home Assistant backup;
+standalone installs get a Recovery Kit (`.shrk`, scrypt +
+AES-256-GCM) for the keys.
 
 </details>
 
 ## Connecting with other households
 
-You connect two Home Assistants by scanning a QR code — in the
+You connect two homes by scanning a QR code — in the
 app it's called **pairing**. After that, the two servers know
 each other and can carry direct messages and shared spaces
 between them. The QR code carries a public key — like a digital
@@ -130,7 +132,7 @@ A Space is a shared feed, chat, and calendar for any group of
 people, across any number of households. Think:
 
 - **Family** — the people in your house, plus parents and
-  siblings on their own Home Assistants.
+  siblings in their own homes.
 - **Eichenstrasse 3–17** — your apartment block. Everyone runs
   their own server; the space is the shared notice board.
 - **Book club**, **bouldering crew**, **maker space** — the
@@ -213,17 +215,17 @@ does and doesn't cover.
 
 ## How connections work (for the curious)
 
-Each Home Assistant running Social Home generates a unique
+Each home running Social Home generates a unique
 cryptographic identity on first boot — the equivalent of a
 digital ID card. When two households pair, they exchange these
 IDs and verify each other's signatures whenever a message
 arrives. After that one-time handshake, the two servers can
-talk directly: a message you send to your sister appears on her
-HA the same second, with no relay in the middle.
+talk directly: a message you send to your sister appears in her
+home the same second, with no relay in the middle.
 
 If a household's address changes (you move, your IP rotates, or
 you switch to a domain), the new address is announced to all
-its paired households automatically — your sister's HA notes
+its paired households automatically — your sister's home notes
 the move and keeps the connection alive.
 
 ## Running a global space relay

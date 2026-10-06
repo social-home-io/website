@@ -8,7 +8,7 @@ The calendar is the central coordination surface for a
 household. Personal calendars, a shared **House** calendar, and
 any space-scoped calendars overlay in one colour-coded view
 under **At home → Calendar**. Events can be added from the app,
-through HA voice, or by importing an `.ics` file dropped into
+by voice, or by importing an `.ics` file dropped into
 the composer.
 
 ## RSVPs
@@ -66,9 +66,18 @@ encrypted payload.
 Events carry an optional reminder — _15 minutes before_, _1
 hour before_, _1 day before_. The reminder fires through the
 notification service: an in-app row, a push notification (if
-the user has push enabled), and an HA event so HA automations
-can chime a speaker, dim the lights, or whatever the
+the user has push enabled), and an event your home automations
+can react to — chime a speaker, dim the lights, or whatever the
 household has wired up.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+The automation hook is an event on the Home Assistant event bus,
+fired through the integration the add-on ships; any automation
+can trigger on it.
+
+</details>
 
 ## Importing existing events
 

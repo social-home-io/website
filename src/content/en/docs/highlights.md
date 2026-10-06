@@ -37,8 +37,8 @@ Highlights live under **Talk → Highlights** in the sidebar.
 
 ## Privacy
 
-- Highlight frames are sealed from your Home Assistant to the
-  other household's Home Assistant, the same way DMs are. Nothing
+- Highlight frames are sealed from your home to the
+  other household's, the same way DMs are. Nothing
   on the way can open them.
 - Frames are signed by your household; a receiving household
   drops forgeries before they ever land in its database.
@@ -64,7 +64,7 @@ Anyone with that URL can open the highlight in a browser. The
 pictures travel directly from your server to the visitor's
 browser; the GFS only introduces the two. If that direct path
 can't be set up (a strict office network, say), the GFS passes the
-frames through — but only while your Home Assistant is online, and
+frames through — but only while your home is online, and
 it stores none of them. The same retention you set on the
 highlight applies to the public link too: when the highlight would
 have been purged for paired households, the public URL stops

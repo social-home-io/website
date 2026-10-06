@@ -1,13 +1,13 @@
 ---
 title: Households, federated
-description: How two Home Assistants pair, what travels between them, and what stays put.
+description: How two homes pair, what travels between them, and what stays put.
 order: 30
 ---
 
-When two households pair, their Home Assistants learn each
+When two households pair, their homes learn each
 other's cryptographic identity and store the public key locally.
 After that one handshake, every message between them carries a
-signature your HA can verify — no central account, no third-party
+signature your home can verify — no central account, no third-party
 auth.
 
 ## The pairing flow
@@ -16,14 +16,14 @@ auth.
    Connections → Pair a household**. You'll see a QR code and a
    short verification code.
 2. **Scan from the other household.** They open the same screen
-   on their HA, click **Scan**, and point a phone at the QR. Both
+   in their own home, click **Scan**, and point a phone at the QR. Both
    sides then read the verification code aloud and confirm it
    matches — that out-of-band check is what blocks a
    man-in-the-middle from slipping in.
 3. **Done.** The two households exchange public keys, names,
    avatars, and the externally-reachable URL each one announces
    for itself. From now on, messages flow directly between you,
-   sealed from your Home Assistant to theirs.
+   sealed from your home to theirs.
 
 ## What travels
 
@@ -40,9 +40,9 @@ auth.
 
 ## What happens when an address changes
 
-If your HA's external URL moves — you switch domains, lose
+If your household's external URL moves — you switch domains, lose
 Nabu Casa Remote UI, or your IP rotates — Social Home tells every
-paired household the new address automatically. Their HA checks
+paired household the new address automatically. Their home checks
 that the announcement really came from you, updates the stored
 URL, and the connection stays alive. No manual re-pairing.
 
@@ -66,19 +66,24 @@ database) — federation is forward-only.
 ## Across the internet
 
 Pairing works over the open internet — federation runs from one
-Home Assistant to the other, not LAN-only. To be reachable from
+home to the other, not LAN-only. To be reachable from
 outside your network you need either:
 
 - **Nabu Casa Remote UI** (easiest), or
-- An **external URL** in HA's network settings + a port forward
-  / reverse proxy, or
+- An **external URL** (set in Home Assistant's network settings if
+  you run the add-on) + a port forward / reverse proxy, or
 - A **TURN server** for the WebRTC fallback when neither side
   can be reached directly.
 
-The HA integration pushes whichever URL HA reports as the
-external one to Social Home automatically. If Nabu Casa is on,
-the Nabu Casa URL wins; otherwise the admin-set `external_url`
-is used.
+<details class="tech">
+<summary>Under the hood</summary>
+
+If you installed the add-on, the Home Assistant integration pushes
+whichever URL Home Assistant reports as the external one to Social
+Home automatically. If Nabu Casa is on, the Nabu Casa URL wins;
+otherwise the admin-set `external_url` is used.
+
+</details>
 
 ## Seeing your households
 

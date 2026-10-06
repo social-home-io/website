@@ -15,8 +15,8 @@ new, it is in [Words we use](/docs/glossary/).
 
 Nothing leaves your household readable. The shopping list, the
 book-club chat, the photo of dinner, the dentist appointment —
-all of it is sealed before it leaves your Home Assistant and only
-opened on the Home Assistant it was sent to.
+all of it is sealed before it leaves your home and only
+opened in the home it was sent to.
 
 Your own server keeps a readable copy. It's your house and your
 disk; that is how you search and scroll your own history. The
@@ -41,7 +41,7 @@ key and no claim of device-to-device secrecy. Local storage
 | watches the network               | sealed, padded traffic between known addresses                                                         |
 | was removed from a space          | nothing posted after they left — the space got a new key                                               |
 | finds a stray invite link         | into the space, if it was a GFS link — treat those like keys; a Local link does nothing for a stranger |
-| has root on _your_ Home Assistant | everything — it is your server; protect it like you protect HA itself                                  |
+| has root on your home's server    | everything — it is your server; protect it like the rest of your home network                          |
 | is an admin of a space you are in | everything in that space, same as any member — admins aren't a backdoor                                |
 
 The last two rows are the honest ones: Social Home protects your
@@ -50,10 +50,10 @@ household from the outside, not from itself.
 ## Encrypted home to home
 
 Every message, post and calendar event is sealed in an envelope
-on your Home Assistant and signed, so the receiving household can
+in your home and signed, so the receiving household can
 check it really came from you and that nobody changed it on the
-way. Direct messages work the same way: sealed from your Home
-Assistant to theirs, and stored readable on each end.
+way. Direct messages work the same way: sealed from your home
+to theirs, and stored readable on each end.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -97,9 +97,9 @@ gets a new key; they can't read anything posted after that. When
 an admin is removed, the key that signs admin decisions changes
 too.
 
-The keys on your disk are wrapped under a master key. On Home
-Assistant OS they travel with your normal HA backup; on a
-standalone install you download a Recovery Kit and keep it
+The keys on your disk are wrapped under a master key. If you
+installed the add-on, they travel with your normal Home Assistant
+backup; on a standalone install you download a Recovery Kit and keep it
 somewhere safe.
 
 <details class="tech">
@@ -112,8 +112,8 @@ somewhere safe.
 - Space content: per-epoch AES-256-GCM key, rotated on every
   membership change. Authority key rotated on admin revocation.
 - At rest: keys wrapped under a KEK (key-encryption key). Recovery
-  Kit `.shrk` = scrypt + AES-256-GCM, for standalone installs; HA
-  backup covers HA OS.
+  Kit `.shrk` = scrypt + AES-256-GCM, for standalone installs; the
+  Home Assistant backup covers add-on installs.
 - Residual: key exchange is X25519 only — not yet post-quantum.
   Hybrid signatures do not make the key exchange post-quantum.
 

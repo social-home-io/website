@@ -83,7 +83,8 @@ a protocol nerd can read the same page.
 
    | Say                                      | Not                   |
    | ---------------------------------------- | --------------------- |
-   | household                                | instance, HFS, node   |
+   | household / your home                    | instance, HFS, node   |
+   | your home (what sends, stores, pairs)    | Home Assistant, HA    |
    | space                                    | room, group, channel  |
    | pair / paired households                 | federate with, peer   |
    | Connections (the settings page)          | Federation settings   |
@@ -95,6 +96,14 @@ a protocol nerd can read the same page.
 
    First use of "GFS" on a page gets the short gloss and a link
    to `/docs/glossary/#gfs`.
+
+   **Home, not Home Assistant.** The unit that sends, receives,
+   stores and pairs is "your home" / "your household". Home
+   Assistant is named only as the way to install Social Home: the
+   "Add to Home Assistant" CTA, the install banner, Getting
+   started, the add-on's backup and account sentences. Never
+   "sealed from your Home Assistant to theirs"; always "sealed
+   from your home to theirs".
 
 5. **Checklist for a new page:** plain first paragraph · every
    term glossed or linked to `/docs/glossary/` · technical detail

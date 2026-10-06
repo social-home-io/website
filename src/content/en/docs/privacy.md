@@ -18,19 +18,19 @@ words used here are in [Words we use](/docs/glossary/).
 
 ## What lives where
 
-| Data                                  | Stored on your Home Assistant?         | Travels off your server?                                            |
-| ------------------------------------- | -------------------------------------- | ------------------------------------------------------------------- |
-| Messages, posts, photos               | yes (database + media folder, `/data`) | only to households in the space, sealed                             |
-| Direct messages                       | yes — readable on your server          | sealed to the other household's server, readable there              |
-| Shopping list                         | yes                                    | only across your household devices                                  |
-| Calendar events                       | yes                                    | only to households sharing the calendar                             |
-| Voice transcripts                     | yes (the text)                         | same as posts                                                       |
-| Avatars + display names               | yes                                    | yes — to paired households (it's how they recognise you)            |
-| Public key (identity)                 | yes                                    | yes — that's literally the point of pairing                         |
-| External URL                          | yes                                    | yes — to paired households when it changes                          |
-| HA owner's account / email / password | **never read**                         | never                                                               |
-| GPS / location history                | **never** by default                   | only the current zone, only when you opt in; map pins rounded ~11 m |
-| Logs                                  | stay on your server                    | never                                                               |
+| Data                                          | Stored at home?                        | Travels off your server?                                            |
+| --------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------- |
+| Messages, posts, photos                       | yes (database + media folder, `/data`) | only to households in the space, sealed                             |
+| Direct messages                               | yes — readable on your server          | sealed to the other household's server, readable there              |
+| Shopping list                                 | yes                                    | only across your household devices                                  |
+| Calendar events                               | yes                                    | only to households sharing the calendar                             |
+| Voice transcripts                             | yes (the text)                         | same as posts                                                       |
+| Avatars + display names                       | yes                                    | yes — to paired households (it's how they recognise you)            |
+| Public key (identity)                         | yes                                    | yes — that's literally the point of pairing                         |
+| External URL                                  | yes                                    | yes — to paired households when it changes                          |
+| Your Home Assistant account (email, password) | **never read**                         | never                                                               |
+| GPS / location history                        | **never** by default                   | only the current zone, only when you opt in; map pins rounded ~11 m |
+| Logs                                          | stay on your server                    | never                                                               |
 
 ## What the global relay sees
 
@@ -86,7 +86,7 @@ Every message that leaves your server is encrypted — always, with
 no toggle to forget. Each post is sealed in an envelope and
 signed, so only the households in the space can open it and not
 even a malicious relay can read a word. Direct messages are
-sealed from your Home Assistant to theirs. There's no "encrypted
+sealed from your home to theirs. There's no "encrypted
 / not encrypted" switch and no plaintext fallback: if a space
 can't seal, it doesn't send.
 
@@ -110,9 +110,9 @@ detail on the [security model](/docs/security/) page.
 ## Things Social Home doesn't have
 
 - An account on a Social Home cloud (there isn't one).
-- A copy of your data anywhere else. On Home Assistant OS, Social
-  Home is part of your normal HA backup; on a standalone install,
-  download a Recovery Kit and keep it somewhere safe.
+- A copy of your data anywhere else. If you installed the add-on, Social
+  Home is part of your normal Home Assistant backup; on a
+  standalone install, download a Recovery Kit and keep it somewhere safe.
 - Telemetry, analytics, crash reporting, or A/B testing.
 - An advertising surface.
 - A growth team trying to monetise your evening.
@@ -136,7 +136,7 @@ Keys at rest are wrapped under a KEK. The Recovery Kit is a
   its copy of your messages stops being trusted).
 - **Which relay, if any** (Settings → Connections — the GFS is
   optional and you choose which one).
-- **Backups** — your responsibility, like everything else on HA.
+- **Backups** — your responsibility, like everything else in your home.
 
 ## Reporting issues
 

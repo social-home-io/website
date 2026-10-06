@@ -12,7 +12,8 @@ the technical detail on every page sits in a collapsible
 
 ## Household
 
-A household is one Home Assistant running Social Home, and the
+A household is one home running Social Home — one server,
+usually installed as a Home Assistant add-on — and the
 people who live behind it — you, your partner, the kids, the
 flatmate. Everything a household does (the shopping list, the
 calendar, the photos, the chat) is stored on that one server.
@@ -32,7 +33,7 @@ The two readable addressing fields on every envelope,
 
 Pairing is how two households get to know each other: you scan a
 QR code (or type a short code out loud over the phone), and from
-then on your Home Assistant and theirs can exchange direct
+then your home and theirs can exchange direct
 messages and share spaces. Pairing happens once per household
 pair, and either side can remove it later under
 **Settings → Connections**.
@@ -126,8 +127,8 @@ rotates separately whenever an admin is revoked.
 
 A sealed envelope is what actually travels between households.
 The post, photo or calendar event inside is encrypted before it
-leaves your Home Assistant and only decrypted on the receiving
-one; the outside of the envelope carries just enough to deliver
+leaves your home and is only decrypted in the receiving
+home; the outside of the envelope carries just enough to deliver
 it. Nothing ever leaves a household unsealed — if a space can't
 seal, it doesn't send.
 

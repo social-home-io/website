@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "The household OS that's also a federated social network — runs on your own Home Assistant.",
+  description = "The household OS that's also a federated social network — runs in your own home.",
   active,
   ogImage = "/og-image.png",
 } = Astro.props;
@@ -22,8 +22,7 @@ const siteName = "Social Home";
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImageUrl = new URL(ogImage, Astro.site).toString();
-const ogImageAlt =
-  "Social Home — the social home for your household. Runs on your own Home Assistant.";
+const ogImageAlt = "Social Home — the social home for your household. Runs in your own home.";
 const ogLocaleMap: Record<string, string> = { en: "en_US", de: "de_DE", nl: "nl_NL", fr: "fr_FR" };
 const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
 ---

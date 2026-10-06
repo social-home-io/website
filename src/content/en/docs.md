@@ -5,7 +5,8 @@ order: 0
 ---
 
 Social Home is a private, federated household social network that
-runs as a Home Assistant add-on. It's two things at once: a
+lives in your home — you install it as a Home Assistant add-on.
+It's two things at once: a
 **household OS** — calendar, shopping list, presence, photos —
 and a **federated social fabric** — feeds, DMs, and shared spaces
 that span the people you actually know.
