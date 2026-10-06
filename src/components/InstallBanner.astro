@@ -1,24 +1,23 @@
 ---
+import { getLocale, localePath, t } from "../i18n";
+
 interface Props {
   installHref: string;
-  /** Override the headline if a localised version is available. */
-  headline?: string;
 }
-const { installHref, headline = "Install in two clicks." } = Astro.props;
+const { installHref } = Astro.props;
+
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale).installBanner;
 ---
 
 <section class="install band">
   <div class="shell install__inner">
     <div class="install__copy">
-      <h2>{headline}</h2>
-      <p>
-        Add the Social Home add-on repository to your Home Assistant. The add-on auto-provisions you
-        as admin, mints a token, and registers the matching integration via Supervisor discovery —
-        there's nothing to type.
-      </p>
+      <h2>{s.headline}</h2>
+      <p>{s.body}</p>
       <p class="install__ctas">
         <a class="btn btn--hearth" href={installHref}>
-          Add to Home Assistant
+          {s.primaryCta}
           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
             <path
               d="M3 7 H11 M7 3 L11 7 L7 11"
@@ -29,17 +28,19 @@ const { installHref, headline = "Install in two clicks." } = Astro.props;
               stroke-linejoin="round"></path>
           </svg>
         </a>
-        <a class="btn btn--ghost" href="/docs/getting-started/"> Read the install guide </a>
+        <a class="btn btn--ghost" href={localePath(locale, "/docs/getting-started/")}>
+          {s.readGuide}
+        </a>
       </p>
     </div>
 
-    <aside class="install__shell" aria-label="What you'll see in Home Assistant">
+    <aside class="install__shell" aria-label={s.shellLabel}>
       <div class="terminal">
         <header>
           <span class="dot" style="background:#E96A3F"></span>
           <span class="dot" style="background:#E8B26A"></span>
           <span class="dot" style="background:#6FA38B"></span>
-          <span class="terminal__title">Home Assistant · Add-on store</span>
+          <span class="terminal__title">{s.terminalTitle}</span>
         </header>
         <pre><code><span class="dim">$</span> <span class="cmd">supervisor</span> add-repository \
   https://github.com/social-home-io/ha-app

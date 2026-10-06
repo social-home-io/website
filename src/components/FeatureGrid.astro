@@ -1,15 +1,12 @@
 ---
-import type { FeatureColumn } from "../types";
+import { getLocale, t } from "../i18n";
 
-interface Props {
-  household: FeatureColumn;
-  social: FeatureColumn;
-}
-const { household, social } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
 
 const sides = [
-  { tone: "household" as const, col: household },
-  { tone: "social" as const, col: social },
+  { tone: "household" as const, col: s.landing.household, pill: s.landing.householdPill },
+  { tone: "social" as const, col: s.landing.social, pill: s.landing.socialPill },
 ];
 ---
 
@@ -17,12 +14,10 @@ const sides = [
   <div class="shell">
     <div class="grid__cols">
       {
-        sides.map(({ tone, col }) => (
+        sides.map(({ tone, col, pill }) => (
           <div class={`grid__col grid__col--${tone}`}>
             <header class="grid__head">
-              <span class={`grid__pill grid__pill--${tone}`}>
-                {tone === "household" ? "Run your household" : "Stay social — privately"}
-              </span>
+              <span class={`grid__pill grid__pill--${tone}`}>{pill}</span>
               <h2>{col.heading}</h2>
               <p class="grid__lede">{col.lede}</p>
             </header>

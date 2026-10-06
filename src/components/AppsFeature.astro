@@ -8,44 +8,12 @@
  * peer-to-peer, the relay never involved. Technical terms sit in mono
  * chips under each point; the sentences stay in household language.
  */
-interface AppCard {
-  glyph: string;
-  name: string;
-  blurb: string;
-  state: "open" | "install";
-}
+import { getLocale, t } from "../i18n";
 
-const apps: AppCard[] = [
-  {
-    glyph: "♞",
-    name: "Chess",
-    blurb: "Play the grandparents' house, one move at a time.",
-    state: "open",
-  },
-  { glyph: "✎", name: "Whiteboard", blurb: "Sketch a seating plan together, live.", state: "open" },
-  { glyph: "◑", name: "Trivia night", blurb: "Two households, one quiz.", state: "install" },
-];
-
-const points: { k: string; v: string; chips?: string[] }[] = [
-  {
-    k: "App-to-app federation",
-    v: "The same app in a paired home swaps moves and ops directly — no shared cloud, no lobby server.",
-  },
-  {
-    k: "Encryption-first",
-    v: "Every move is sealed and signed before it leaves your home. Only the address label rides in the clear.",
-    chips: ["AES-256-GCM", "Ed25519"],
-  },
-  {
-    k: "Sandboxed",
-    v: "Each app runs in its own locked-down frame with no network access. The admin installs once — bundles are pinned by checksum — and sets an age gate.",
-    chips: ["sha256-pinned", "connect-src 'none'", "1 MiB cap"],
-  },
-  {
-    k: "Peer-to-peer",
-    v: "Sessions run straight between confirmed households. The relay stays out of it entirely.",
-  },
-];
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale).apps;
+const apps = s.cards;
+const points = s.points;
 ---
 
 <section class="apps band">
@@ -53,14 +21,10 @@ const points: { k: string; v: string; chips?: string[] }[] = [
     <div class="apps__copy">
       <span class="eyebrow">
         <span class="dot dot--hearth" aria-hidden="true"></span>
-        New · Social Home Apps
+        {s.eyebrow}
       </span>
-      <h2>Apps that play across households.</h2>
-      <p class="apps__lede">
-        Install a small app once — a chess board, a shared whiteboard, a quiz — and it talks to the
-        <em>same app</em> running in a household you've paired with. Make a move here; it lands there.
-        Every byte sealed between your two homes, straight from one home to the other.
-      </p>
+      <h2>{s.heading}</h2>
+      <p class="apps__lede" set:html={s.ledeHtml} />
       <dl class="apps__points">
         {
           points.map((p) => (
@@ -68,7 +32,7 @@ const points: { k: string; v: string; chips?: string[] }[] = [
               <dt>{p.k}</dt>
               <dd>{p.v}</dd>
               {p.chips && (
-                <ul class="apps__chips" aria-label="Technical terms">
+                <ul class="apps__chips" aria-label={s.technicalTerms}>
                   {p.chips.map((c) => (
                     <li>{c}</li>
                   ))}
@@ -80,12 +44,14 @@ const points: { k: string; v: string; chips?: string[] }[] = [
       </dl>
     </div>
 
-    <aside class="apps__showcase" aria-label="The Apps screen">
+    <aside class="apps__showcase" aria-label={s.showcaseLabel}>
       <div class="catalog">
         <header class="catalog__bar">
-          <span class="catalog__tab catalog__tab--on">Installed</span>
-          <span class="catalog__tab">Catalog</span>
-          <span class="catalog__sync" aria-hidden="true">⇄ paired with maple-st</span>
+          <span class="catalog__tab catalog__tab--on">{s.tabInstalled}</span>
+          <span class="catalog__tab">{s.tabCatalog}</span>
+          <span class="catalog__sync" aria-hidden="true">
+            {s.syncLine}
+          </span>
         </header>
         <ul class="catalog__list">
           {
@@ -99,7 +65,7 @@ const points: { k: string; v: string; chips?: string[] }[] = [
                   <span class="appcard__blurb">{a.blurb}</span>
                 </span>
                 <span class={`appcard__btn appcard__btn--${a.state}`}>
-                  {a.state === "open" ? "Open" : "Install"}
+                  {a.state === "open" ? s.open : s.install}
                 </span>
               </li>
             ))
@@ -107,7 +73,7 @@ const points: { k: string; v: string; chips?: string[] }[] = [
         </ul>
         <footer class="catalog__live">
           <span class="catalog__pulse" aria-hidden="true"></span>
-          Chess · session open with <strong>maple-st</strong> · encrypted
+          <span set:html={s.liveHtml} />
         </footer>
       </div>
     </aside>

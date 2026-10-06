@@ -1,54 +1,21 @@
 ---
 import LogoMark from "./LogoMark.astro";
+import { getLocale, localePath, localizeHtml, t } from "../i18n";
 
 const buildYear = new Date().getFullYear();
-
-const columns: { heading: string; links: { href: string; label: string }[] }[] = [
-  {
-    heading: "Read",
-    links: [
-      { href: "/docs/getting-started/", label: "Getting started" },
-      { href: "/docs/protocol/", label: "How it works" },
-      { href: "/docs/federation/", label: "Households, federated" },
-      { href: "/docs/global-spaces/", label: "Global spaces" },
-      { href: "/docs/privacy/", label: "Privacy model" },
-      { href: "/docs/security/", label: "Security model" },
-    ],
-  },
-  {
-    heading: "Run",
-    links: [
-      { href: "/docs/getting-started/", label: "Add to Home Assistant" },
-      { href: "/servers/", label: "Our server" },
-      { href: "/docs/running-a-gfs/", label: "Host a relay" },
-      { href: "https://github.com/social-home-io/socialhome/releases", label: "Releases" },
-      { href: "/blog/", label: "Blog" },
-    ],
-  },
-  {
-    heading: "Project",
-    links: [
-      { href: "https://github.com/social-home-io", label: "GitHub" },
-      { href: "/contribute/", label: "Contribute" },
-      { href: "/license/", label: "License (MPL 2.0)" },
-    ],
-  },
-];
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
+const columns = s.footer.columns;
 ---
 
 <footer class="colophon">
   <div class="shell colophon__inner">
     <div class="colophon__brand">
       <LogoMark size={36} />
-      <p class="colophon__motto">
-        <em>The social home for your household.</em>
-      </p>
-      <p class="colophon__small">
-        Open source under the
-        <a href="/license/">Mozilla Public License 2.0</a>. Hosted by the household, never by us.
-      </p>
+      <p class="colophon__motto" set:html={s.footer.mottoHtml} />
+      <p class="colophon__small" set:html={localizeHtml(locale, s.footer.smallHtml)} />
     </div>
-    <nav class="colophon__cols" aria-label="Footer">
+    <nav class="colophon__cols" aria-label={s.footer.navLabel}>
       {
         columns.map((c) => (
           <div class="colophon__col">
@@ -56,7 +23,7 @@ const columns: { heading: string; links: { href: string; label: string }[] }[] =
             <ul>
               {c.links.map((l) => (
                 <li>
-                  <a href={l.href}>{l.label}</a>
+                  <a href={localePath(locale, l.href)}>{l.label}</a>
                 </li>
               ))}
             </ul>

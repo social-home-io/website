@@ -1,39 +1,24 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
-import BlogPost from "../../layouts/BlogPost.astro";
+import PostPage from "../../components/pages/PostPage.astro";
+import { getLocalizedEntries, isPost, type LocalizedEntry } from "../../i18n/content";
 
 /**
- * Every English entry under ``src/content/en/blog/`` renders here
- * against the ``BlogPost`` layout. The slug keeps the ``blog/``
- * prefix in the collection, so strip it for the route param.
+ * Every English entry under ``src/content/en/blog/`` renders here.
+ * The slug keeps the ``blog/`` prefix in the collection, so strip
+ * it for the route param. Other locales: ``[lang]/blog/[...slug]``.
  */
-
 export async function getStaticPaths() {
-  const posts = await getCollection(
-    "en",
-    ({ slug, data }) => slug.startsWith("blog/") && data.draft !== true,
-  );
-  return posts.map((entry) => ({
-    params: { slug: entry.slug.replace(/^blog\//, "") },
-    props: { entry },
+  const posts = await getLocalizedEntries("en", isPost);
+  return posts.map((post) => ({
+    params: { slug: post.entry.slug.replace(/^blog\//, "") },
+    props: { post },
   }));
 }
 
 interface Props {
-  entry: CollectionEntry<"en">;
+  post: LocalizedEntry;
 }
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { post } = Astro.props;
 ---
 
-<BlogPost
-  title={entry.data.title}
-  description={entry.data.description}
-  date={entry.data.date}
-  author={entry.data.author}
-  image={entry.data.image}
-  imageAlt={entry.data.imageAlt}
-  slug={entry.slug}
->
-  <Content />
-</BlogPost>
+<PostPage post={post} />

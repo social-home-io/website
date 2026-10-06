@@ -1,39 +1,38 @@
 ---
 import LogoMark from "./LogoMark.astro";
 import LocaleSwitcher from "./LocaleSwitcher.astro";
+import { getLocale, localePath, t } from "../i18n";
 
 interface Props {
-  /** Path of the current page — used to highlight the active nav link. */
+  /** Un-prefixed path of the current page — used to highlight the active nav link. */
   active?: string;
 }
 const { active } = Astro.props;
 
-const links: { href: string; label: string }[] = [
-  { href: "/docs/", label: "Docs" },
-  { href: "/docs/protocol/", label: "How it works" },
-  { href: "/docs/global-spaces/", label: "Global spaces" },
-  { href: "/servers/", label: "Our server" },
-  { href: "/blog/", label: "Blog" },
-  { href: "/contribute/", label: "Contribute" },
-];
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
+const links = s.header.links;
 ---
 
 <header class="masthead">
   <div class="shell masthead__inner">
-    <a class="wordmark" href="/" aria-label="Social Home — home">
+    <a class="wordmark" href={localePath(locale, "/")} aria-label={s.header.homeAriaLabel}>
       <LogoMark size={28} />
       <span class="wordmark__set">
         <span class="wordmark__name">Social <em>Home</em></span>
-        <span class="wordmark__motto">household OS · federated · open</span>
+        <span class="wordmark__motto">{s.header.motto}</span>
       </span>
     </a>
 
-    <nav class="nav" aria-label="Primary">
+    <nav class="nav" aria-label={s.header.primaryNavLabel}>
       <ul>
         {
           links.map(({ href, label }) => (
             <li>
-              <a href={href} aria-current={active === href ? "page" : undefined}>
+              <a
+                href={localePath(locale, href)}
+                aria-current={active === href ? "page" : undefined}
+              >
                 {label}
               </a>
             </li>
@@ -47,7 +46,7 @@ const links: { href: string; label: string }[] = [
       <a
         class="masthead__github"
         href="https://github.com/social-home-io"
-        aria-label="Social Home on GitHub"
+        aria-label={s.header.githubAriaLabel}
       >
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
           <path

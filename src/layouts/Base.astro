@@ -2,6 +2,7 @@
 import "../styles/base.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { LOCALES, DEFAULT_LOCALE, getLocale, localePath, stripLocale, t } from "../i18n";
 
 interface Props {
   title: string;
@@ -11,24 +12,36 @@ interface Props {
   ogImage?: string;
 }
 
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
+
 const {
   title,
-  description = "The household OS that's also a federated social network — runs in your own home.",
+  description = s.site.defaultDescription,
   active,
   ogImage = "/og-image.png",
 } = Astro.props;
 
-const siteName = "Social Home";
+const siteName = s.site.name;
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImageUrl = new URL(ogImage, Astro.site).toString();
-const ogImageAlt = "Social Home — the social home for your household. Runs in your own home.";
+const ogImageAlt = s.site.ogImageAlt;
 const ogLocaleMap: Record<string, string> = { en: "en_US", de: "de_DE", nl: "nl_NL", fr: "fr_FR" };
-const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
+const ogLocale = ogLocaleMap[locale] ?? "en_US";
+
+// Every page exists in every locale (missing translations fall back
+// to English at the same localized URL), so the alternates are a
+// straight prefix swap on the un-prefixed path.
+const basePath = stripLocale(Astro.url.pathname);
+const alternates = LOCALES.map((l) => ({
+  lang: l,
+  href: new URL(localePath(l, basePath), Astro.site).toString(),
+}));
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale ?? "en"}>
+<html lang={locale}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -39,6 +52,12 @@ const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={alternates.find((a) => a.lang === DEFAULT_LOCALE)?.href}
+    />
 
     <!-- Fonts are self-hosted (public/fonts/); preload the ones every page paints with. -->
     <link
@@ -84,7 +103,7 @@ const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
     <meta name="twitter:image:alt" content={ogImageAlt} />
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{s.site.skipToContent}</a>
     <Header active={active} />
     <main id="main">
       <slot />

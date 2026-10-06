@@ -1,12 +1,11 @@
 ---
 import LogoMark from "./LogoMark.astro";
 import FamilyWall from "./FamilyWall.astro";
-import type { HeroCopy } from "../types";
+import { getLocale, localePath, t } from "../i18n";
 
-interface Props {
-  copy: HeroCopy;
-}
-const { copy } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const s = t(locale);
+const copy = s.landing.hero;
 ---
 
 <section class="hero">
@@ -16,10 +15,7 @@ const { copy } = Astro.props;
       <span>{copy.eyebrow}</span>
     </p>
 
-    <h1 class="hero__headline">
-      The <em>social</em> home<br />
-      for your <em>household</em>.
-    </h1>
+    <h1 class="hero__headline" set:html={s.landing.heroHeadlineHtml} />
 
     <p class="hero__sub">{copy.sub}</p>
 
@@ -36,22 +32,22 @@ const { copy } = Astro.props;
             stroke-linejoin="round"></path>
         </svg>
       </a>
-      <a class="btn btn--ghost" href={copy.secondaryHref}>
+      <a class="btn btn--ghost" href={localePath(locale, copy.secondaryHref)}>
         {copy.secondaryCta}
       </a>
     </p>
 
-    <p class="hero__caption">Free &amp; open source · MPL 2.0 · runs on your own Home Assistant</p>
+    <p class="hero__caption">{s.landing.heroCaption}</p>
   </div>
 
   <div class="shell hero__lead-in" aria-hidden="true">
     <span class="hero__lead-rule"></span>
-    <span class="hero__lead-text">A glance at one household's day</span>
+    <span class="hero__lead-text">{s.landing.heroLeadIn}</span>
     <span class="hero__lead-rule"></span>
   </div>
 
   <div class="shell hero__wall-shell">
-    <aside class="hero__wall" aria-label="A glance at one household's day">
+    <aside class="hero__wall" aria-label={s.landing.heroLeadIn}>
       <FamilyWall />
     </aside>
   </div>

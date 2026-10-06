@@ -1,0 +1,28 @@
+---
+import DocPage from "../../components/pages/DocPage.astro";
+import { PREFIXED_LOCALES } from "../../i18n";
+import { getLocalizedEntries, isPage, type LocalizedEntry } from "../../i18n/content";
+
+/**
+ * Localized twin of ``/[...slug]``: every non-blog content entry,
+ * for every prefixed locale. A page missing from a locale's
+ * collection falls back to the English entry at the same URL.
+ */
+export async function getStaticPaths() {
+  const paths = [];
+  for (const lang of PREFIXED_LOCALES) {
+    const pages = await getLocalizedEntries(lang, isPage);
+    for (const page of pages) {
+      paths.push({ params: { lang, slug: page.entry.slug }, props: { page } });
+    }
+  }
+  return paths;
+}
+
+interface Props {
+  page: LocalizedEntry;
+}
+const { page } = Astro.props;
+---
+
+<DocPage page={page} />

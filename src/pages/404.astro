@@ -1,16 +1,21 @@
 ---
 import Base from "../layouts/Base.astro";
+import { t } from "../i18n";
+
+// GitHub Pages serves one ``/404.html`` for every missing path, so
+// this page is English only.
+const s = t("en").notFound;
 ---
 
-<Base title="404 — page not found">
+<Base title={s.title}>
   <section class="band">
     <div class="shell oops">
-      <p class="eyebrow">Error · 404</p>
-      <h1>🏠 This page moved to another household.</h1>
-      <p class="oops__lede">The page you asked for either moved or never existed.</p>
+      <p class="eyebrow">{s.eyebrow}</p>
+      <h1>{s.heading}</h1>
+      <p class="oops__lede">{s.lede}</p>
       <p class="oops__ctas">
-        <a class="btn btn--hearth" href="/">Go home</a>
-        <a class="btn btn--ghost" href="/docs/">Search the docs</a>
+        <a class="btn btn--hearth" href="/">{s.goHome}</a>
+        <a class="btn btn--ghost" href="/docs/">{s.searchDocs}</a>
       </p>
     </div>
   </section>

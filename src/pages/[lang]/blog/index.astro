@@ -1,0 +1,14 @@
+---
+import BlogIndexPage from "../../../components/pages/BlogIndexPage.astro";
+import { PREFIXED_LOCALES, isLocale } from "../../../i18n";
+import { getLocalizedEntries, isPost } from "../../../i18n/content";
+
+export function getStaticPaths() {
+  return PREFIXED_LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+const posts = await getLocalizedEntries(isLocale(lang) ? lang : "en", isPost);
+---
+
+<BlogIndexPage posts={posts} />

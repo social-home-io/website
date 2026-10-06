@@ -10,11 +10,14 @@ in the meta-repo.
 
 ## Hard rules
 
-- **English-only authoring.** All copy lives in
-  `src/content/en/`. Other locales are meant to be written by a
-  CI translator (`scripts/azure-translate.js`, §30.8.2 — planned,
-  not in this repo yet); never commit hand edits to non-English
-  content files.
+- **English is the reference; the other languages mirror it.**
+  Every page is written in English first (`src/content/en/`,
+  `src/i18n/en.ts`) and then translated into German, Dutch and
+  French (`src/content/{de,nl,fr}/`, `src/i18n/{de,nl,fr}.ts`).
+  Any change to an English page or UI string is carried into all
+  three translations in the same PR. Never edit a translation on
+  its own: if the wording is wrong, fix the English page, then
+  update the translations to match. See "Translations" below.
 - **Voice: warm but technical.** Like the Home Assistant docs.
   Concrete examples beat abstract claims; "your household"
   beats "the home of the future".
@@ -72,7 +75,9 @@ a protocol nerd can read the same page.
 
    The block is styled once in `src/layouts/Docs.astro` and
    `src/layouts/BlogPost.astro` (moss edge, mono summary). The
-   plain text outside it must still make sense on its own.
+   plain text outside it must still make sense on its own. The
+   summary line is fixed per language: "Under the hood" /
+   "Unter der Haube" / "Onder de motorkap" / "Sous le capot".
 
 3. **Landing page:** claims and bodies stay plain. Technical terms
    appear only as small mono chips under a card (e.g.
@@ -109,6 +114,53 @@ a protocol nerd can read the same page.
    only inside `details.tech` · chips, not jargon, on the landing
    page · facts checked against the core repo.
 
+## Translations
+
+The site ships in four languages: English (reference, no URL
+prefix), German (`/de/`), Dutch (`/nl/`) and French (`/fr/`).
+There is no machine translator in CI; the translations are
+maintained by hand, by the same change that touches the English.
+
+- **Workflow.** 1) Write or edit the English page or string. 2) Translate the change into `src/content/de/…`,
+  `src/content/nl/…` and `src/content/fr/…` (same path, same
+  frontmatter keys) or into `src/i18n/de.ts`, `nl.ts`, `fr.ts`
+  (same keys, typed against `UiStrings` so a drift fails
+  `npm run check`). 3) Run `npm run build` and
+  `npm run check:links`. A page missing from a locale falls back
+  to the English body at the localized URL, so a lagging
+  translation never breaks the build — but do not rely on it.
+- **Where strings live.** Markdown pages: `src/content/<locale>/`.
+  Everything rendered by a component or layout (nav, footer,
+  landing page copy, the collages, the servers page, blog chrome):
+  `src/i18n/<locale>.ts`. Components never contain literal copy;
+  they read `t(locale)` and prefix internal links with
+  `localePath()`.
+- **Links in translated markdown** are written with the locale
+  prefix (`/de/docs/glossary/#gfs`). Image and font paths are
+  shared and stay un-prefixed (`/blog/…/x.png`). A `#fragment`
+  must match the id Astro derives from the _translated_ heading.
+- **Register.** German and Dutch address the reader informally
+  (du / je), like Home Assistant's own docs; French uses vous.
+- **Names stay.** Social Home, Home Assistant, GFS, Highlights,
+  Momentum, Apps, Organize, algorithm names and the mono chips are
+  not translated.
+- **Core vocabulary** (mirror of the table above):
+
+  | English                                | Deutsch                                          | Nederlands                                | Français                                   |
+  | -------------------------------------- | ------------------------------------------------ | ----------------------------------------- | ------------------------------------------ |
+  | household / your home                  | Haushalt / dein Zuhause                          | huishouden / je thuis                     | foyer / votre maison                       |
+  | space                                  | Space                                            | space                                     | espace                                     |
+  | pair / paired households               | koppeln / gekoppelte Haushalte                   | koppelen / gekoppelde huishoudens         | jumeler / foyers jumelés                   |
+  | Connections                            | Verbindungen                                     | Verbindingen                              | Connexions                                 |
+  | GFS (gloss on first use)               | GFS (Global Federation Server)                   | GFS (Global Federation Server)            | GFS (Global Federation Server)             |
+  | GFS link / Local link                  | GFS-Link / Lokaler Link                          | GFS-link / Lokale link                    | Lien GFS / Lien local                      |
+  | relay                                  | Relay                                            | relay                                     | relais                                     |
+  | Follower                               | Follower                                         | volger                                    | abonné                                     |
+  | Social Home (Early) add-on             | Social Home (Early) Add-on                       | Social Home (Early) add-on                | module complémentaire Social Home (Early)  |
+  | sealed, encrypted home to home         | versiegelt, verschlüsselt von Zuhause zu Zuhause | verzegeld, versleuteld van huis tot huis  | scellé, chiffré de maison à maison         |
+  | Under the hood                         | Unter der Haube                                  | Onder de motorkap                         | Sous le capot                              |
+  | Marketplace / Pages / Stickies / Tasks | Marktplatz / Seiten / Haftnotizen / Aufgaben     | Marktplaats / Pagina's / Sticky's / Taken | Place de marché / Pages / Post-it / Tâches |
+
 ## Adding a doc page
 
 1. Create `src/content/en/docs/<slug>.md` with the standard
@@ -120,6 +172,10 @@ a protocol nerd can read the same page.
    landing.
 3. The page renders via the dynamic `[...slug].astro` route — no
    per-page Astro file needed.
+4. Translate the page into `src/content/de/docs/<slug>.md`,
+   `src/content/nl/docs/<slug>.md` and
+   `src/content/fr/docs/<slug>.md` (and the `docs.md` entry) in
+   the same PR. The `[lang]/[...slug].astro` route picks them up.
 
 ## Brand cues
 
