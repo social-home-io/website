@@ -15,7 +15,7 @@ export interface HeroCopy {
   primaryCta: string;
   /** Secondary CTA label. */
   secondaryCta: string;
-  /** HACS install URL. */
+  /** Add-on install redirect (my.home-assistant.io). */
   installHref: string;
   /** Where the secondary CTA goes. */
   secondaryHref: string;

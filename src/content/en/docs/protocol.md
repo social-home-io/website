@@ -4,7 +4,7 @@ description: A plain-language tour of what Social Home does, what stays on your 
 order: 20
 ---
 
-Social Home turns your Home Assistant into the household OS your
+Social Home gives your home the household OS your
 phone never managed to be: shared calendars, a live shopping
 list, photos, voice notes, presence, and chat — all running on
 hardware you already own. It also lets your household connect to
@@ -13,7 +13,9 @@ network, only without giving anyone's data to a company in the
 middle.
 
 This page walks through what you can actually do with it. No
-acronyms.
+acronyms in the main text; the technical detail sits in the
+"Under the hood" blocks, and the words are in
+[Words we use](/docs/glossary/).
 
 ## What can I do with it?
 
@@ -31,7 +33,7 @@ household do:
   server.
 - **🛒 Shout "I'm at the supermarket — anything needed?"** Your
   household shopping list is live. Someone adds milk, you see it
-  before you reach the checkout. Ask HA's voice assistant to add
+  before you reach the checkout. Ask your voice assistant to add
   it by speaking.
 - **🔔 Know when people are home** without asking. A quiet
   presence indicator shows who's around right now — no location
@@ -48,14 +50,14 @@ household do:
   Colourful tap-to-edit notes pinned to a Space canvas — the
   modern fridge magnet. Carrots in the bottom drawer; birthday
   gift ideas; the doorbell-fix shopping list.
-- **💬 Message your family across the world** — end-to-end
-  encrypted, direct from your Home Assistant to theirs. No
-  phone numbers. No account on a third-party service.
+- **💬 Message your family across the world** — sealed from your
+  home to theirs, with no cloud in between. No phone
+  numbers. No account on a third-party service.
 - **📞 Call without a stranger in the middle** — voice and video
   calls, 1:1 or with a group, straight from your DMs and group
-  chats. The audio and video flows directly between participants
-  (WebRTC, DTLS-SRTP encrypted); the server only helps the call
-  start and never touches what's being said.
+  chats. The audio and video flow directly between participants;
+  if a direct connection can't be made, a relay passes the
+  stream through but only ever sees encrypted media.
 - **🏘 Build your own community, your way** — create a Space for
   any group: your street, apartment building, sports team, or
   maker club. Organise a neighbourhood BBQ, run a book club —
@@ -64,26 +66,46 @@ household do:
 - **🔨 Run a marketplace** — list things you want to give away or
   sell to people you already know. No strangers, no platform
   fees.
-- **🎙 Transcribe a voice note** from HA's microphone and post it
-  to the feed — useful when your hands are full.
+- **🎙 Transcribe a voice note** from a microphone in the house
+  and post it to the feed — useful when your hands are full.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+Calls are WebRTC with DTLS-SRTP between participants; a TURN
+fallback relays ciphertext only. Direct messages are encrypted
+server-to-server (AES-256-GCM envelopes, Ed25519 signatures).
+
+</details>
 
 ## Your data stays yours
 
-Everything Social Home knows lives on your Home Assistant. The
+Everything Social Home knows lives in your home, on your own
+server. The
 photos, the messages, the shopping list, the calendar entries —
-all in a small SQLite database in `/data` on your machine.
-There is no cloud account, no analytics, no advertising network,
-no remote logger watching what your household says. If your
-internet goes down, the household features keep working on your
-LAN; the only thing that pauses is messaging _outside_ the house.
+all in a small database on your machine. There is no cloud
+account, no analytics, no advertising network, no remote logger
+watching what your household says. If your internet goes down,
+the household features keep working on your LAN; the only thing
+that pauses is messaging _outside_ the house.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+If you installed the add-on, it is part of your normal Home Assistant backup;
+standalone installs get a Recovery Kit (`.shrk`, scrypt +
+AES-256-GCM) for the keys.
+
+</details>
 
 ## Connecting with other households
 
-You connect two Home Assistants by scanning a QR code. After
-that, the two servers know each other and can carry direct
-messages and shared spaces between them. The QR code carries a
-public key — like a digital ID card — that lets the other side
-verify it's still you, even if your address changes later.
+You connect two homes by scanning a QR code — in the
+app it's called **pairing**. After that, the two servers know
+each other and can carry direct messages and shared spaces
+between them. The QR code carries a public key — like a digital
+ID card — that lets the other side verify it's still you, even if
+your address changes later.
 
 What you share with a paired household: your display name, your
 avatar, and the spaces you join together.
@@ -91,13 +113,24 @@ avatar, and the spaces you join together.
 What you never share: passwords, emails, your location history,
 or anything that lives in a space you didn't both join.
 
+<details class="tech">
+<summary>Under the hood</summary>
+
+Each household generates an Ed25519 identity key on first start.
+Pairing is X25519 + HKDF-SHA256, authenticated by the QR code or
+a short spoken code. Every incoming envelope's signature is
+checked against the pairing; a bad signature is dropped, and
+there is no trusted-instance mode to bypass that.
+
+</details>
+
 ## Spaces — shared rooms for any group
 
 A Space is a shared feed, chat, and calendar for any group of
 people, across any number of households. Think:
 
 - **Family** — the people in your house, plus parents and
-  siblings on their own Home Assistants.
+  siblings in their own homes.
 - **Eichenstrasse 3–17** — your apartment block. Everyone runs
   their own server; the space is the shared notice board.
 - **Book club**, **bouldering crew**, **maker space** — the
@@ -105,39 +138,69 @@ people, across any number of households. Think:
   any platform that's worth trusting.
 
 You decide who sees a space. You decide which households are
-invited. The space exists across all of them simultaneously and
-no single host owns it.
+invited. Every space has a host household — the one that created
+it and keeps the member list — but members post straight to each
+other, and the big decisions (who can see it, whether it still
+exists) are taken by all its admins together.
 
-## Global spaces
+## Public and global spaces
 
 Some spaces are private to invited households. Others — like a
 public marketplace, a hobby community, or your neighbourhood
-notice board — are _global_: anyone can discover them. A
-lightweight relay server helps households find each other when
-they don't already know one another. The relay never reads your
-messages. It just helps two servers shake hands; once they do,
-the conversation goes directly between them.
+notice board — are _public_ or _global_: anyone can discover
+them. A lightweight relay, the GFS (Global Federation Server),
+helps households find each other when they don't already know
+one another (see [GFS](/docs/glossary/#gfs)).
+
+The relay stays on the path for those spaces: every post goes
+through it as a sealed, padded envelope, and it fans the envelope
+out to the members. It can't read a word. By default it knows
+which household posted and when; a space can switch to strict
+mode, where it doesn't even know who. More in
+[Global spaces](/docs/global-spaces/).
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+`PUBLIC_SPACE_TIERS = {public, global}`. The GFS sees routing
+metadata only (`space_id`, `event_type`, size bucket, timing,
+subscriber set, source IP); strict mode makes publishes
+identity-free. Offline members are queued 24 h; nothing else is
+stored.
+
+</details>
 
 ## Public highlight links
 
-The same kind of relay also has one second job: handing off a
-single highlight to people outside Social Home. When you publish a
-highlight link, the relay mints a URL that anyone can open in a
-browser — but the highlight bytes themselves still flow directly
-from your home server to the visitor's browser. The relay only
-brokers a brief WebRTC handshake; it never sees a frame, never
-caches a thumbnail. See [Highlights](/docs/highlights/#sharing-publicly-via-a-global-server)
+The same kind of relay also has a second job: handing off a
+single highlight to people outside Social Home. When you publish
+a highlight link, the relay mints a URL that anyone can open in a
+browser — but the highlight bytes flow directly from your home
+server to the visitor's browser. If that direct path can't be
+made, the relay passes the frames through only while you're
+online, and stores none of them. See
+[Highlights](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+WebRTC-direct from the author's server to the browser; HTTP
+pass-through as fallback only while the author is online. Zero
+highlight or moment bytes are stored on the GFS.
+
+</details>
 
 ## Encryption, always on
 
-Every message that leaves your server is sealed in an encrypted
-envelope only the recipients can open — always, with no switch to
-turn it off and no plaintext fallback. Even the global relay
-can't see inside. Think of it like an envelope that only the
-people on the guest list have keys for — the postal service
-routes it, but never opens it. On your own server your data stays
-readable, because it's yours; it's only the wire that's locked.
+Every message that leaves your server is sealed in an envelope
+only the receiving households can open — always, with no switch
+to turn it off and no plaintext fallback. Even the relay can't
+see inside. Think of it like an envelope that only the people on
+the guest list have keys for — the postal service routes it, but
+never opens it. The
+[security model](/docs/security/) page says exactly what that
+does and doesn't cover.
 
 ## Privacy at a glance
 
@@ -149,17 +212,17 @@ readable, because it's yours; it's only the wire that's locked.
 
 ## How connections work (for the curious)
 
-Each Home Assistant running Social Home generates a unique
+Each home running Social Home generates a unique
 cryptographic identity on first boot — the equivalent of a
 digital ID card. When two households pair, they exchange these
 IDs and verify each other's signatures whenever a message
 arrives. After that one-time handshake, the two servers can
-talk directly: a message you send to your sister appears on her
-HA the same second, with no relay in the middle.
+talk directly: a message you send to your sister appears in her
+home the same second, with no relay in the middle.
 
 If a household's address changes (you move, your IP rotates, or
 you switch to a domain), the new address is announced to all
-its paired households automatically — your sister's HA notes
+its paired households automatically — your sister's home notes
 the move and keeps the connection alive.
 
 ## Running a global space relay

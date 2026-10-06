@@ -6,8 +6,9 @@
  * widens the lens to show *Spaces* — shared rooms that span
  * multiple households. Each tile is a Space, with:
  *
- *   - a coloured edge that encodes its scope (private / group /
- *     global),
+ *   - a coloured edge that encodes its scope (private / public /
+ *     global — the three scopes that span households; the fourth,
+ *     household, never leaves your own home),
  *   - the member + household count,
  *   - a single recent activity line drawn from real-life
  *     situations (book club reminder, neighbour BBQ, sports team
@@ -69,9 +70,9 @@
   <article class="tile tile--neighbours" style="--rest: 0.8deg; --delay: 140ms;">
     <header>
       <span class="tile__glyph" aria-hidden="true">🌳</span>
-      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <span class="tile__edge tile__edge--public" aria-hidden="true"></span>
       <h3>Eichenstrasse 3–17</h3>
-      <p class="tile__meta">24 people · 14 households · group</p>
+      <p class="tile__meta">24 people · 14 households · public</p>
     </header>
     <p class="tile__activity">
       <span class="tile__poster">Lina</span>
@@ -86,9 +87,9 @@
   <article class="tile tile--makers" style="--rest: -1deg; --delay: 220ms;">
     <header>
       <span class="tile__glyph" aria-hidden="true">🔨</span>
-      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <span class="tile__edge tile__edge--public" aria-hidden="true"></span>
       <h3>Maker Space</h3>
-      <p class="tile__meta">12 people · 7 households · group</p>
+      <p class="tile__meta">12 people · 7 households · public</p>
     </header>
     <p class="tile__activity">
       <span class="tile__poster">Rita</span>
@@ -99,9 +100,9 @@
   <article class="tile tile--book" style="--rest: 1.4deg; --delay: 300ms;">
     <header>
       <span class="tile__glyph" aria-hidden="true">📖</span>
-      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <span class="tile__edge tile__edge--private" aria-hidden="true"></span>
       <h3>Book Club</h3>
-      <p class="tile__meta">8 people · 5 households · group</p>
+      <p class="tile__meta">8 people · 5 households · private</p>
     </header>
     <p class="tile__activity">
       <span class="tile__poster">Rebecca</span>
@@ -112,9 +113,9 @@
   <article class="tile tile--sport" style="--rest: -0.4deg; --delay: 380ms;">
     <header>
       <span class="tile__glyph" aria-hidden="true">⛰️</span>
-      <span class="tile__edge tile__edge--group" aria-hidden="true"></span>
+      <span class="tile__edge tile__edge--public" aria-hidden="true"></span>
       <h3>Bouldering crew</h3>
-      <p class="tile__meta">16 people · 11 households · group</p>
+      <p class="tile__meta">16 people · 11 households · public</p>
     </header>
     <p class="tile__activity">
       <span class="tile__poster">Pascal</span>
@@ -127,7 +128,7 @@
       <span class="tile__glyph" aria-hidden="true">🛒</span>
       <span class="tile__edge tile__edge--global" aria-hidden="true"></span>
       <h3>Bazaar · neighbourhood</h3>
-      <p class="tile__meta">~50 people · open · via global relay</p>
+      <p class="tile__meta">~50 people · global · via your GFS</p>
     </header>
     <p class="tile__activity">
       <span class="tile__poster">Maria</span>
@@ -140,9 +141,15 @@
   </article>
 
   <aside class="board__legend" aria-label="Space scope legend">
-    <span><i class="dot--legend dot--private"></i> Private — only the people you name.</span>
-    <span><i class="dot--legend dot--group"></i> Group — invited members across households.</span>
-    <span><i class="dot--legend dot--global"></i> Global — discoverable via a relay you trust.</span
+    <span><i class="dot--legend dot--private"></i> Private — only the people you invite.</span>
+    <span
+      ><i class="dot--legend dot--household"></i> Household — everyone in your home, automatically.</span
+    >
+    <span
+      ><i class="dot--legend dot--public"></i> Public — listed on your GFS's map for others to find.</span
+    >
+    <span
+      ><i class="dot--legend dot--global"></i> Global — published worldwide through your GFS.</span
     >
   </aside>
 </figure>
@@ -254,7 +261,7 @@
   .tile__edge--private {
     background: var(--hearth);
   }
-  .tile__edge--group {
+  .tile__edge--public {
     background: var(--moss);
   }
   .tile__edge--global {
@@ -328,7 +335,10 @@
   .dot--private {
     background: var(--hearth);
   }
-  .dot--group {
+  .dot--household {
+    background: var(--honey);
+  }
+  .dot--public {
     background: var(--moss);
   }
   .dot--global {

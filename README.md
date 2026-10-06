@@ -16,12 +16,14 @@ pnpm check       # astro type-check
 
 ## Content
 
-All copywriting lives under `src/content/en/`. The non-English
-locale folders (`src/content/de/`, `src/content/nl/`,
-`src/content/fr/`, …) are **machine-generated** by
-`scripts/azure-translate.js` on every CI run — never hand-edit
-them. The translator skips files whose source hash is unchanged
-(see `.i18n-hash.json`).
+All copywriting lives under `src/content/en/`. Non-English
+locales are planned to be **machine-generated** by a CI
+translator (`scripts/azure-translate.js`, not in this repo yet);
+until then every other locale falls back to English. Never
+hand-edit generated locale files.
+
+Writing rules (voice, the "two readers, one page" pattern, the
+vocabulary table) are in `CLAUDE.md`.
 
 ## Layout
 
@@ -30,6 +32,8 @@ website/
 ├── astro.config.mjs           # i18n routing, custom domain
 ├── public/
 │   ├── CNAME                  # required for GitHub Pages
+│   ├── blog/                  # Blog screenshots
+│   ├── fonts/                 # Self-hosted Fraunces / Manrope / JetBrains Mono
 │   └── robots.txt
 ├── src/
 │   ├── components/            # Reusable .astro components
@@ -37,15 +41,20 @@ website/
 │   │   ├── FamilyWall.astro   # Hero collage
 │   │   ├── SpaceWall.astro    # Federation collage
 │   │   ├── FeatureGrid.astro
+│   │   ├── TrustBand.astro    # "Private by construction" band
 │   │   └── …
 │   ├── content/
 │   │   └── en/
-│   │       ├── index.md       # Landing-page copy
+│   │       ├── docs.md        # Docs landing
 │   │       ├── docs/          # User-facing documentation
-│   │       └── changelog.md
+│   │       │   ├── security.md
+│   │       │   ├── glossary.md
+│   │       │   └── …
+│   │       └── blog/          # Posts, one per release feature
 │   ├── layouts/
 │   │   ├── Base.astro
-│   │   └── Docs.astro
+│   │   ├── Docs.astro
+│   │   └── BlogPost.astro
 │   ├── pages/                 # Astro file-based routing
 │   ├── styles/
 │   │   ├── tokens.css         # Design tokens

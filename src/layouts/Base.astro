@@ -13,7 +13,7 @@ interface Props {
 
 const {
   title,
-  description = "The household OS that's also a federated social network — runs on your own Home Assistant.",
+  description = "The household OS that's also a federated social network — runs in your own home.",
   active,
   ogImage = "/og-image.png",
 } = Astro.props;
@@ -22,8 +22,7 @@ const siteName = "Social Home";
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const ogImageUrl = new URL(ogImage, Astro.site).toString();
-const ogImageAlt =
-  "Social Home — the social home for your household. Runs on your own Home Assistant.";
+const ogImageAlt = "Social Home — the social home for your household. Runs in your own home.";
 const ogLocaleMap: Record<string, string> = { en: "en_US", de: "de_DE", nl: "nl_NL", fr: "fr_FR" };
 const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
 ---
@@ -41,12 +40,31 @@ const ogLocale = ogLocaleMap[Astro.currentLocale ?? "en"] ?? "en_US";
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts are self-hosted (public/fonts/); preload the ones every page paints with. -->
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/fraunces-latin-full-normal.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/fraunces-latin-full-italic.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="/fonts/manrope-latin-wght-normal.woff2"
+    />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate icon" href="/favicon.ico" />
-    <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={fullTitle} />

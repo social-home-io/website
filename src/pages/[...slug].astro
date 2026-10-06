@@ -25,7 +25,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 
 // Highlight the "Docs" header link on every doc subpage; for the
-// flat top-level pages (changelog, contribute, license) leave
+// flat top-level pages (contribute, license) leave
 // the active prop unset so nothing is highlighted.
 const activeRoot = entry.slug.startsWith("docs") ? "/docs/" : undefined;
 ---

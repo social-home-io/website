@@ -190,6 +190,61 @@ const sorted = allDocs
     font: 600 calc(var(--step--1) - 1px) / 1 var(--font-mono);
   }
 
+  /* "Under the hood" — the skippable technical layer that markdown
+     content opens with <details class="tech">. Moss is the trust
+     colour; mono is the cue for technical text (see CLAUDE.md). */
+  .docs__body :global(details.tech) {
+    margin-block: var(--s-5);
+    padding: var(--s-3) var(--s-5);
+    background: var(--moss-tint);
+    border-left: 3px solid var(--moss);
+    border-radius: var(--r-2);
+    overflow-x: auto;
+  }
+  .docs__body :global(details.tech > summary) {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    list-style: none;
+    cursor: pointer;
+    padding-block: var(--s-1);
+    font: 500 var(--step--1) / 1 var(--font-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--moss);
+  }
+  .docs__body :global(details.tech > summary::-webkit-details-marker) {
+    display: none;
+  }
+  .docs__body :global(details.tech > summary)::before {
+    content: "\25B8";
+    display: inline-block;
+    transition: transform var(--dur-quick) var(--ease-quill);
+  }
+  .docs__body :global(details.tech[open] > summary) {
+    margin-bottom: var(--s-3);
+  }
+  .docs__body :global(details.tech[open] > summary)::before {
+    transform: rotate(90deg);
+  }
+  .docs__body :global(details.tech > :last-child) {
+    margin-bottom: 0;
+  }
+  .docs__body :global(details.tech pre) {
+    background: var(--paper);
+  }
+  /* The drop cap belongs to the page's opening paragraph only. */
+  .docs__body :global(details.tech p)::first-letter {
+    font-family: inherit;
+    font-variation-settings: normal;
+    font-size: inherit;
+    float: none;
+    line-height: inherit;
+    padding-right: 0;
+    margin-top: 0;
+    color: inherit;
+  }
+
   .docs__meta {
     position: sticky;
     top: calc(var(--s-7) + 16px);
