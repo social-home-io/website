@@ -19,12 +19,12 @@ sont jamais rencontrés à se trouver. (Un mot nouveau ? Voir
 
 Chaque sorte va un peu plus loin que la précédente :
 
-| Sorte      | Qui peut le trouver                                      | Le GFS le voit-il ?                                           |
-| ---------- | -------------------------------------------------------- | -------------------------------------------------------------- |
-| **Privé**  | Seulement les personnes que vous invitez                 | Non, sauf si le propriétaire active le GFS pour cet espace     |
-| **Foyer**  | Tout votre foyer, automatiquement                        | Non                                                            |
-| **Public** | Vos foyers jumelés, sous **Parcourir les espaces**       | Non, sauf si un administrateur le publie à la main sur un GFS  |
-| **Global** | Toute personne dont la maison est connectée au même GFS  | **Oui**, il est listé sur chaque GFS que vous utilisez         |
+| Sorte      | Qui peut le trouver                                     | Le GFS le voit-il ?                                           |
+| ---------- | ------------------------------------------------------- | ------------------------------------------------------------- |
+| **Privé**  | Seulement les personnes que vous invitez                | Non, sauf si le propriétaire active le GFS pour cet espace    |
+| **Foyer**  | Tout votre foyer, automatiquement                       | Non                                                           |
+| **Public** | Vos foyers jumelés, sous **Parcourir les espaces**      | Non, sauf si un administrateur le publie à la main sur un GFS |
+| **Global** | Toute personne dont la maison est connectée au même GFS | **Oui**, il est listé sur chaque GFS que vous utilisez        |
 
 Une règle simplifie tout le reste : **les foyers avec qui vous
 êtes jumelé n'ont pas besoin du GFS.** Les publications leur
@@ -261,16 +261,16 @@ guide Docker Compose + Cloudflare.
 
 ## Côte à côte
 
-| Comportement                | Privé / foyer / public                                | Global                                                                            |
-| --------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Qui peut le trouver         | personnes invitées / votre foyer / foyers jumelés     | toute personne connectée au même GFS                                              |
-| Adhésion                    | invitation, appartenance au foyer ou mode d'adhésion  | ouvert / sur demande / sur invitation uniquement, plus les liens d'invitation     |
-| Trajet des publications     | directement ou par le maillage                        | pareil pour les membres jumelés ; via le GFS pour les autres                     |
-| Ce que voit le relais       | rien (pas de relais, sauf s'il est activé)            | des données de routage et une enveloppe scellée et complétée, jamais le contenu   |
-| Chiffrement                 | **toujours actif**                                    | **toujours actif**                                                                |
-| Où vivent les messages      | chez chaque membre                                    | chez chaque membre (le relais ne stocke jamais de contenu)                        |
-| Si le relais est hors ligne | s. o.                                                 | les abonnés attendent ; les publications réessaient, le relais garde une journée |
-| Peut être désactivé         | oui, par vote des administrateurs                     | oui : le rendre non global par vote des administrateurs, et le relais oublie     |
+| Comportement                | Privé / foyer / public                               | Global                                                                           |
+| --------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Qui peut le trouver         | personnes invitées / votre foyer / foyers jumelés    | toute personne connectée au même GFS                                             |
+| Adhésion                    | invitation, appartenance au foyer ou mode d'adhésion | ouvert / sur demande / sur invitation uniquement, plus les liens d'invitation    |
+| Trajet des publications     | directement ou par le maillage                       | pareil pour les membres jumelés ; via le GFS pour les autres                     |
+| Ce que voit le relais       | rien (pas de relais, sauf s'il est activé)           | des données de routage et une enveloppe scellée et complétée, jamais le contenu  |
+| Chiffrement                 | **toujours actif**                                   | **toujours actif**                                                               |
+| Où vivent les messages      | chez chaque membre                                   | chez chaque membre (le relais ne stocke jamais de contenu)                       |
+| Si le relais est hors ligne | s. o.                                                | les abonnés attendent ; les publications réessaient, le relais garde une journée |
+| Peut être désactivé         | oui, par vote des administrateurs                    | oui : le rendre non global par vote des administrateurs, et le relais oublie     |
 
 ## Confidentialité dans les espaces globaux
 

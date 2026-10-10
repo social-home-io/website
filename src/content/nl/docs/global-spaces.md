@@ -19,12 +19,12 @@ woordenlijst.)
 
 Elke soort reikt een stukje verder dan de vorige:
 
-| Soort          | Wie kan hem vinden                                       | Ziet de GFS hem?                                              |
-| -------------- | -------------------------------------------------------- | ------------------------------------------------------------- |
-| **Privé**      | Alleen mensen die je uitnodigt                           | Nee, tenzij de eigenaar de GFS ervoor inschakelt              |
-| **Huishouden** | Iedereen in je huis, automatisch                         | Nee                                                           |
-| **Openbaar**   | Je gekoppelde huishoudens, onder **Ruimtes bekijken**    | Nee, tenzij een beheerder hem met de hand op een GFS publiceert |
-| **Wereldwijd** | Iedereen wiens huis met dezelfde GFS is verbonden        | **Ja**, hij staat op elke GFS die je gebruikt                 |
+| Soort          | Wie kan hem vinden                                    | Ziet de GFS hem?                                                |
+| -------------- | ----------------------------------------------------- | --------------------------------------------------------------- |
+| **Privé**      | Alleen mensen die je uitnodigt                        | Nee, tenzij de eigenaar de GFS ervoor inschakelt                |
+| **Huishouden** | Iedereen in je huis, automatisch                      | Nee                                                             |
+| **Openbaar**   | Je gekoppelde huishoudens, onder **Ruimtes bekijken** | Nee, tenzij een beheerder hem met de hand op een GFS publiceert |
+| **Wereldwijd** | Iedereen wiens huis met dezelfde GFS is verbonden     | **Ja**, hij staat op elke GFS die je gebruikt                   |
 
 Eén regel maakt de rest makkelijk: **huishoudens waarmee je
 gekoppeld bent, hebben de GFS niet nodig.** Posts bereiken ze
@@ -259,16 +259,16 @@ handleiding met Docker Compose + Cloudflare.
 
 ## Naast elkaar
 
-| Gedrag                  | Privé / huishouden / openbaar                                   | Wereldwijd                                                                 |
-| ----------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Wie kan hem vinden      | uitgenodigde mensen / je huis / gekoppelde huishoudens          | iedereen die met dezelfde GFS is verbonden                                 |
-| Lid worden              | uitnodiging, lidmaatschap van het huishouden of toetredingsmodus | open / aanvragen / alleen op uitnodiging, plus uitnodigingslinks            |
-| Hoe posts reizen        | rechtstreeks of via de mesh                                     | hetzelfde voor gekoppelde leden; via de GFS voor de rest                   |
-| Wat de relay ziet       | niets (geen relay, tenzij ingeschakeld)                         | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud         |
-| Versleuteling           | **altijd aan**                                                  | **altijd aan**                                                             |
-| Waar berichten leven    | in het huis van elk lid                                         | in het huis van elk lid (de relay slaat nooit inhoud op)                   |
-| Als de relay offline is | n.v.t.                                                          | volgers wachten; posts proberen opnieuw, de relay houdt een dag enveloppen vast |
-| Kan worden uitgezet     | ja, per stemming van beheerders                                 | ja: per stemming van beheerders niet-wereldwijd maken, en de relay vergeet |
+| Gedrag                  | Privé / huishouden / openbaar                                    | Wereldwijd                                                                      |
+| ----------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Wie kan hem vinden      | uitgenodigde mensen / je huis / gekoppelde huishoudens           | iedereen die met dezelfde GFS is verbonden                                      |
+| Lid worden              | uitnodiging, lidmaatschap van het huishouden of toetredingsmodus | open / aanvragen / alleen op uitnodiging, plus uitnodigingslinks                |
+| Hoe posts reizen        | rechtstreeks of via de mesh                                      | hetzelfde voor gekoppelde leden; via de GFS voor de rest                        |
+| Wat de relay ziet       | niets (geen relay, tenzij ingeschakeld)                          | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud              |
+| Versleuteling           | **altijd aan**                                                   | **altijd aan**                                                                  |
+| Waar berichten leven    | in het huis van elk lid                                          | in het huis van elk lid (de relay slaat nooit inhoud op)                        |
+| Als de relay offline is | n.v.t.                                                           | volgers wachten; posts proberen opnieuw, de relay houdt een dag enveloppen vast |
+| Kan worden uitgezet     | ja, per stemming van beheerders                                  | ja: per stemming van beheerders niet-wereldwijd maken, en de relay vergeet      |
 
 ## Privacy in wereldwijde spaces
 

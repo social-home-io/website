@@ -17,12 +17,12 @@ the glossary.)
 
 Each kind reaches a little further than the one before:
 
-| Kind          | Who can find it                                      | Does the GFS see it?                              |
-| ------------- | ---------------------------------------------------- | ------------------------------------------------- |
-| **Private**   | Only people you invite                               | No, unless the owner switches the GFS on for it   |
-| **Household** | Everyone in your home, automatically                 | No                                                |
-| **Public**    | Your paired households, under **Browse spaces**      | No, unless an admin publishes it to a GFS by hand |
-| **Global**    | Anyone whose home is connected to the same GFS       | **Yes**, it is listed on every GFS you use        |
+| Kind          | Who can find it                                 | Does the GFS see it?                              |
+| ------------- | ----------------------------------------------- | ------------------------------------------------- |
+| **Private**   | Only people you invite                          | No, unless the owner switches the GFS on for it   |
+| **Household** | Everyone in your home, automatically            | No                                                |
+| **Public**    | Your paired households, under **Browse spaces** | No, unless an admin publishes it to a GFS by hand |
+| **Global**    | Anyone whose home is connected to the same GFS  | **Yes**, it is listed on every GFS you use        |
 
 One rule makes the rest easy: **households you're paired with
 don't need the GFS.** Posts reach them directly, or across the
@@ -232,16 +232,16 @@ Compose + Cloudflare guide.
 
 ## Side by side
 
-| Behaviour            | Private / household / public                  | Global                                                        |
-| -------------------- | --------------------------------------------- | ------------------------------------------------------------- |
-| Who can find it      | invited people / your home / paired households | anyone connected to the same GFS                             |
-| Joining              | invite, household membership, or join mode    | open / request / invite only, plus invite links               |
-| How posts travel     | directly or over the mesh                     | the same for paired members; through the GFS for the rest     |
-| What the relay sees  | nothing (no relay, unless switched on)        | routing data and a sealed, padded envelope, never content     |
-| Encryption           | **always on**                                 | **always on**                                                 |
-| Where messages live  | each member's home                            | each member's home (relay never stores content)               |
-| If relay is offline  | n/a                                           | followers wait; posts retry, relay holds a day's envelopes    |
-| Can be turned off    | yes, by admin vote                            | yes: make it non-global by admin vote, and the relay forgets  |
+| Behaviour           | Private / household / public                   | Global                                                       |
+| ------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| Who can find it     | invited people / your home / paired households | anyone connected to the same GFS                             |
+| Joining             | invite, household membership, or join mode     | open / request / invite only, plus invite links              |
+| How posts travel    | directly or over the mesh                      | the same for paired members; through the GFS for the rest    |
+| What the relay sees | nothing (no relay, unless switched on)         | routing data and a sealed, padded envelope, never content    |
+| Encryption          | **always on**                                  | **always on**                                                |
+| Where messages live | each member's home                             | each member's home (relay never stores content)              |
+| If relay is offline | n/a                                            | followers wait; posts retry, relay holds a day's envelopes   |
+| Can be turned off   | yes, by admin vote                             | yes: make it non-global by admin vote, and the relay forgets |
 
 ## Privacy in global spaces
 

@@ -18,12 +18,12 @@ begegnet sind, einander zu finden. (Neues Wort? Siehe
 
 Jede Art reicht ein Stück weiter als die vorherige:
 
-| Art            | Wer kann ihn finden                                          | Sieht der GFS ihn?                                      |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------- |
-| **Privat**     | Nur Leute, die du einlädst                                   | Nein, außer der Besitzer schaltet den GFS dafür ein     |
-| **Haushalt**   | Alle in deinem Zuhause, automatisch                          | Nein                                                    |
-| **Öffentlich** | Deine gekoppelten Haushalte, unter **Räume entdecken**    | Nein, außer ein Admin veröffentlicht ihn von Hand dort  |
-| **Global**     | Jeder, dessen Zuhause mit demselben GFS verbunden ist        | **Ja**, er ist auf jedem GFS gelistet, den du nutzt     |
+| Art            | Wer kann ihn finden                                    | Sieht der GFS ihn?                                     |
+| -------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| **Privat**     | Nur Leute, die du einlädst                             | Nein, außer der Besitzer schaltet den GFS dafür ein    |
+| **Haushalt**   | Alle in deinem Zuhause, automatisch                    | Nein                                                   |
+| **Öffentlich** | Deine gekoppelten Haushalte, unter **Räume entdecken** | Nein, außer ein Admin veröffentlicht ihn von Hand dort |
+| **Global**     | Jeder, dessen Zuhause mit demselben GFS verbunden ist  | **Ja**, er ist auf jedem GFS gelistet, den du nutzt    |
 
 Eine Regel macht den Rest einfach: **Haushalte, mit denen du
 gekoppelt bist, brauchen den GFS nicht.** Beiträge erreichen sie
@@ -249,16 +249,16 @@ Anleitung mit Docker Compose + Cloudflare.
 
 ## Nebeneinander
 
-| Verhalten                  | Privat / Haushalt / öffentlich                            | Global                                                                      |
-| -------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Wer kann ihn finden        | Eingeladene / dein Zuhause / gekoppelte Haushalte         | jeder, der mit demselben GFS verbunden ist                                  |
-| Beitritt                   | Einladung, Haushaltsmitgliedschaft oder Beitrittsmodus    | offen / Anfrage / nur auf Einladung, plus Einladungslinks                   |
-| Wie Beiträge reisen        | direkt oder über das Mesh                                 | genauso für gekoppelte Mitglieder; über den GFS für alle anderen            |
-| Was das Relay sieht        | nichts (kein Relay, außer eingeschaltet)                  | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte |
-| Verschlüsselung            | **immer an**                                              | **immer an**                                                                |
-| Wo Nachrichten liegen      | im Zuhause jedes Mitglieds                                | im Zuhause jedes Mitglieds (das Relay speichert nie Inhalte)                |
-| Wenn das Relay offline ist | entfällt                                                  | Follower warten; Beiträge werden wiederholt, das Relay hält einen Tag lang  |
-| Lässt sich abschalten      | ja, per Admin-Abstimmung                                  | ja: per Admin-Abstimmung nicht mehr global machen, und das Relay vergisst   |
+| Verhalten                  | Privat / Haushalt / öffentlich                         | Global                                                                      |
+| -------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Wer kann ihn finden        | Eingeladene / dein Zuhause / gekoppelte Haushalte      | jeder, der mit demselben GFS verbunden ist                                  |
+| Beitritt                   | Einladung, Haushaltsmitgliedschaft oder Beitrittsmodus | offen / Anfrage / nur auf Einladung, plus Einladungslinks                   |
+| Wie Beiträge reisen        | direkt oder über das Mesh                              | genauso für gekoppelte Mitglieder; über den GFS für alle anderen            |
+| Was das Relay sieht        | nichts (kein Relay, außer eingeschaltet)               | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte |
+| Verschlüsselung            | **immer an**                                           | **immer an**                                                                |
+| Wo Nachrichten liegen      | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (das Relay speichert nie Inhalte)                |
+| Wenn das Relay offline ist | entfällt                                               | Follower warten; Beiträge werden wiederholt, das Relay hält einen Tag lang  |
+| Lässt sich abschalten      | ja, per Admin-Abstimmung                               | ja: per Admin-Abstimmung nicht mehr global machen, und das Relay vergisst   |
 
 ## Privatsphäre in globalen Spaces
 
