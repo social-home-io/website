@@ -145,16 +145,18 @@ exists) are taken by all its admins together.
 
 ## Public and global spaces
 
-Some spaces are private to invited households. Others — like a
-public marketplace, a hobby community, or your neighbourhood
-notice board — are _public_ or _global_: anyone can discover
-them. A lightweight relay, the GFS (Global Federation Server),
-helps households find each other when they don't already know
-one another (see [GFS](/docs/glossary/#gfs)).
+Some spaces are private to invited households. A _public_ space
+is one your paired households can find and ask to join; it stays
+inside your own circle. A _global_ space — a public marketplace,
+a hobby community, a neighbourhood notice board — is for
+strangers too: a lightweight relay, the GFS (Global Federation
+Server), lists it so households who don't know each other can
+find it (see [GFS](/docs/glossary/#gfs)).
 
-The relay stays on the path for those spaces: every post goes
-through it as a sealed, padded envelope, and it fans the envelope
-out to the members. It can't read a word. By default it knows
+Paired households always get a space's posts directly or over
+the mesh. The relay only carries posts to households you aren't
+paired with — followers, and members who joined with a GFS link —
+as sealed, padded envelopes. It can't read a word. By default it knows
 which household posted and when; a space can switch to strict
 mode, where it doesn't even know who. More in
 [Global spaces](/docs/global-spaces/).
@@ -162,7 +164,11 @@ mode, where it doesn't even know who. More in
 <details class="tech">
 <summary>Under the hood</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}`. The GFS sees routing
+`PUBLIC_SPACE_TIERS = {public, global}`: only these may relay to
+a GFS. A global space is published to every connected GFS
+automatically; a public space only when an admin publishes it by
+hand. Public spaces reach paired households as a
+`SPACE_DIRECTORY_SYNC` snapshot, never via a GFS. The GFS sees routing
 metadata only (`space_id`, `event_type`, size bucket, timing,
 subscriber set, source IP); strict mode makes publishes
 identity-free. Offline members are queued 24 h; nothing else is

@@ -123,9 +123,12 @@ installation autonome, vous téléchargez un kit de récupération
 ## Ce que voit un relais
 
 Le GFS (Global Federation Server) — le relais qui aide les foyers à
-se trouver — est sur le chemin de chaque publication d'un espace
-public ou global. Il transporte des enveloppes scellées, rembourrées
-à quelques tailles fixes, et les distribue aux foyers membres. Il ne
+se trouver — transporte les publications d'un espace global vers
+les foyers avec qui vous n'êtes pas jumelé : les abonnés, et les
+membres qui ont rejoint avec un Lien GFS. Les foyers jumelés les
+reçoivent directement ou par le maillage. Il transporte des
+enveloppes scellées, rembourrées à quelques tailles fixes, et les
+distribue. Il ne
 stocke aucun contenu : si un foyer est hors ligne, il garde les
 enveloppes scellées pendant une journée, puis les abandonne. Voir
 [GFS](/fr/docs/glossary/#gfs) dans le glossaire.

@@ -157,17 +157,21 @@ beheerders samen.
 
 ## Openbare en wereldwijde spaces
 
-Sommige spaces zijn privé voor uitgenodigde huishoudens. Andere
-– zoals een openbare marktplaats, een hobbycommunity of het
-prikbord van je buurt – zijn _openbaar_ of _wereldwijd_: iedereen
-kan ze ontdekken. Een lichte relay, de GFS (Global Federation
-Server – de wereldwijde federatieserver), helpt huishoudens
-elkaar te vinden als ze elkaar nog niet kennen (zie
+Sommige spaces zijn privé voor uitgenodigde huishoudens. Een
+_openbare_ space is er een die je gekoppelde huishoudens kunnen
+vinden en waar ze om toegang kunnen vragen; hij blijft binnen je
+eigen kring. Een _wereldwijde_ space – een openbare marktplaats,
+een hobbycommunity, het prikbord van je buurt – is ook voor
+onbekenden: een lichte relay, de GFS (Global Federation Server –
+de wereldwijde federatieserver), toont hem zodat huishoudens die
+elkaar niet kennen hem kunnen vinden (zie
 [GFS](/nl/docs/glossary/#gfs)).
 
-De relay blijft voor die spaces op het pad: elke post gaat
-erdoorheen als een verzegelde, opgevulde envelop, en de relay
-stuurt de envelop door naar de leden. Hij kan er geen woord van
+Gekoppelde huishoudens krijgen de posts van een space altijd
+rechtstreeks of via de mesh. De relay brengt posts alleen naar
+huishoudens waarmee je niet gekoppeld bent – volgers, en leden
+die via een GFS-link zijn toegetreden – als verzegelde, opgevulde
+enveloppen. Hij kan er geen woord van
 lezen. Standaard weet hij welk huishouden wanneer heeft gepost;
 een space kan overschakelen naar de strikte modus, waarin hij
 niet eens weet wie. Meer in
@@ -176,7 +180,12 @@ niet eens weet wie. Meer in
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}`. De GFS ziet alleen
+`PUBLIC_SPACE_TIERS = {public, global}`: alleen deze mogen naar
+een GFS doorgeven. Een wereldwijde space wordt automatisch op elke
+verbonden GFS gepubliceerd; een openbare space alleen als een
+beheerder hem met de hand publiceert. Openbare spaces bereiken
+gekoppelde huishoudens als een `SPACE_DIRECTORY_SYNC`-snapshot,
+nooit via een GFS. De GFS ziet alleen
 routeringsmetadata (`space_id`, `event_type`, groottebucket,
 timing, abonneeset, bron-IP); de strikte modus maakt publicaties
 identiteitsvrij. Voor offline leden wordt 24 uur in de wachtrij

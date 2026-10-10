@@ -11,11 +11,13 @@ betreiben, und diese Seite führt dich in etwa 15 Minuten hindurch.
 
 Der [GFS (Global Federation Server – der globale Föderationsserver)](/de/docs/glossary/#gfs)
 — das Relay, das Haushalten hilft, einander zu finden — hat drei
-Aufgaben. Er ist ein Verzeichnis, damit Haushalte öffentliche und
-globale Spaces finden. Er transportiert versiegelte Beiträge für
-öffentliche und globale Spaces (und für private Spaces, deren
-Besitzer den GFS eingeschaltet hat), damit ein Space weiterläuft,
-während sein Host schläft. Und er vermittelt öffentliche
+Aufgaben. Er ist ein Verzeichnis, damit Haushalte globale Spaces
+finden. Er transportiert versiegelte Beiträge zu Haushalten, die
+nicht miteinander gekoppelt sind — Followern eines globalen Space,
+Mitgliedern, die über einen GFS-Link beigetreten sind, privaten
+Spaces, deren Besitzer den GFS eingeschaltet hat, und gekoppelten
+Haushalten, die den GFS-Ausweichweg eingeschaltet haben —, damit
+ein Space weiterläuft, während sein Host schläft. Und er vermittelt öffentliche
 Highlight-Links — siehe
 [Highlights → öffentlich teilen](/de/docs/highlights/#öffentlich-teilen-über-einen-global-server)
 für den Ablauf aus Sicht des Autors. Bei jeder dieser Aufgaben

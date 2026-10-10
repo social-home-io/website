@@ -118,9 +118,11 @@ somewhere safe.
 ## What a relay sees
 
 The GFS (Global Federation Server) — the relay that helps
-households find each other — is on the path for every post in a
-public or global space. It carries sealed envelopes, padded to a
-few fixed sizes, and fans them out to the member households. It
+households find each other — carries the posts of a global space
+to households you aren't paired with: followers, and members who
+joined with a GFS link. Paired households get them directly or
+over the mesh. It carries sealed envelopes, padded to a few fixed
+sizes, and fans them out. It
 stores no content: if a household is offline it keeps the sealed
 envelopes for a day, then lets them go. See
 [GFS](/docs/glossary/#gfs) in the glossary.

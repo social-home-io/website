@@ -1,40 +1,40 @@
 ---
 title: Global spaces
-description: Rooms for households who don't already know each other — public and global spaces, the relay that carries them (one you trust, or one you run yourself), and what it can and can't see.
+description: Rooms for households who don't already know each other — the four kinds of space, the relay that carries global spaces (one you trust, or one you run yourself), and what it can and can't see.
 order: 40
 ---
 
-Most spaces in Social Home are private — invited households only.
-But some communities are open by nature: a neighbourhood
-marketplace, a city-wide running club, a public-domain book club.
-For those, Social Home has **public** and **global spaces**, and
-a small relay — the GFS (Global Federation Server) — that helps
-households find each other. (New word? See
-[GFS](/docs/glossary/#gfs) in the glossary.)
+Most spaces in Social Home are shared between households you
+already know: the family, the neighbours you've paired with. But
+some communities are open by nature: a neighbourhood marketplace,
+a city-wide running club, a public-domain book club. For those,
+Social Home has **global spaces**, and a small relay, the GFS
+(Global Federation Server), that helps households who have never
+met find each other. (New word? See [GFS](/docs/glossary/#gfs) in
+the glossary.)
 
 ## Four kinds of space
 
-Before you reach for a relay, it's worth knowing the full
-spectrum. Social Home has four space scopes, each one a slightly
-wider audience:
+Each kind reaches a little further than the one before:
 
-| Scope         | Visible to                                                    | Uses a relay (GFS)?       |
-| ------------- | ------------------------------------------------------------- | ------------------------- |
-| **Private**   | Members you explicitly invite                                 | Optional (off by default) |
-| **Household** | Members of your own household                                 | No                        |
-| **Public**    | Listed on the GFS map — anyone connected to that GFS can find | **Yes**                   |
-| **Global**    | Published worldwide through your GFS                          | **Yes**                   |
+| Kind          | Who can find it                                      | Does the GFS see it?                              |
+| ------------- | ---------------------------------------------------- | ------------------------------------------------- |
+| **Private**   | Only people you invite                               | No, unless the owner switches the GFS on for it   |
+| **Household** | Everyone in your home, automatically                 | No                                                |
+| **Public**    | Your paired households, under **Browse spaces**      | No, unless an admin publishes it to a GFS by hand |
+| **Global**    | Anyone whose home is connected to the same GFS       | **Yes**, it is listed on every GFS you use        |
 
-Private and household spaces travel directly between the
-households involved. A private space's owner can switch the GFS
-on for it — useful when members can't reach each other directly
-— but it is off unless you turn it on.
+One rule makes the rest easy: **households you're paired with
+don't need the GFS.** Posts reach them directly, or across the
+mesh of households you both know, whatever kind of space it is.
+The GFS only comes in for households you _aren't_ paired with
+(or as a fallback, if you switched that on for a connection and
+the direct path is down).
 
-Public and global spaces both ride the GFS. A **public** space
-gets a pin on the map of the GFS you're connected to, with its
-location rounded to about 11 m, so anyone on that GFS can find
-it. A **global** space is published worldwide through your GFS.
-The rest of this page covers these two.
+So a **public** space stays inside your own circle: it is a space
+your paired households can find and ask to join, not one the
+whole world can see. A **global** space is the one for strangers.
+The rest of this page is about global spaces.
 
 ## Big changes take a vote
 
@@ -68,48 +68,61 @@ contribution waits in a queue until a moderator or admin
 approves it), or **admins only**. Reviewed items that nobody
 looks at expire after seven days.
 
-## What a global space is
+## What the GFS does for a global space
 
-A public or global space lives on a GFS that any household can
-connect to. The relay does two jobs:
+A GFS is a relay any household can connect to. For a global
+space it does two jobs:
 
-1. **It's a map and a directory.** It lists which spaces have
-   been published to it, who hosts them, and how to join.
-2. **It's the post hub.** Once you're a member, every post you
-   write goes through the relay, which fans it out to every
-   other household in that space.
+1. **It's a directory.** It lists the global spaces published to
+   it, who hosts them, how to join, and, if the space has one, a
+   map pin rounded to about 11 m. Anyone connected to that GFS
+   can find them under **Browse spaces**.
+2. **It carries posts to people you aren't paired with.** That
+   means **followers**, households that read along without
+   joining (only if the owner allows followers; it's off by
+   default), and **members who joined with a GFS link**. Members
+   you're paired with still get every post directly or over the
+   mesh.
 
 The relay never sees the _contents_ of your posts. Every post is
-sealed on the way out of your home and only opened in
-each member's home when it arrives. The envelope is
-padded to one of a few fixed sizes, so the relay can't even tell
-a short message from a long one. It stores no content: if a
-member is offline, it holds their sealed envelopes for a day and
-then lets them go.
+sealed on the way out of your home and only opened in each
+recipient's home. The envelope is padded to one of a few fixed
+sizes, so the relay can't even tell a short message from a long
+one. It stores no content: if a household is offline, it holds
+their sealed envelopes for a day and then lets them go.
 
 > Think of the relay as the post office for an open community.
 > The post office sees that a sealed parcel went to the book
-> club, and roughly how heavy it was — but only the members have
+> club, and roughly how heavy it was, but only the members have
 > keys to open it.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-Envelopes are AES-256-GCM, signed with Ed25519; the only
-readable fields are `event_type`, `from_instance`,
-`to_instance`, `space_id` and `epoch`. Padding buckets:
-1 / 4 / 16 / 64 / 128 KiB (member publish), plus 191 KiB for
-envelope relay. Offline recipients are queued for 24 h, at most
-2000 envelopes or 64 MiB per recipient. Full detail on the
+`PUBLIC_SPACE_TIERS = {public, global}`: only those two may ever
+relay content to a GFS. A global space is published to every GFS
+the household is connected to when it becomes global, and
+withdrawn from all of them when it stops being global. A public
+space reaches paired households as a `SPACE_DIRECTORY_SYNC`
+snapshot (name, description, emoji, member count, join mode),
+never through a GFS; it reaches a GFS only through the manual
+publish button, and is withdrawn again if it turns private or
+household. Followers need `allow_subscribers` on (default off).
+Members always receive posts through the ordinary member fan-out,
+direct or mesh, independent of the GFS. Envelopes are
+AES-256-GCM, signed with Ed25519. Padding buckets: 1 / 4 / 16 /
+64 / 128 KiB (member publish), plus 191 KiB for envelope relay.
+Offline recipients are queued for 24 h, at most 2000 envelopes or
+64 MiB per recipient. Full detail on the
 [security model](/docs/security/#what-a-relay-sees) page.
 
 </details>
 
 ## Trusted or strict
 
-By default a space runs in **trusted** mode: the relay learns
-which household posted into which space, and when — but never
-what. For communities where even that is too much, the space's
+For the posts that do go through the GFS, a space runs in
+**trusted** mode by default: the relay learns which household
+posted into which space, and when — but never what. For communities where even that is too much, the space's
 owner can switch to **strict** mode: posts go out with no
 sender on them at all, and the relay only knows that _someone_
 in the space posted.
@@ -130,22 +143,23 @@ the size bucket and the subscriber set.
 
 </details>
 
-## How discovery and posting work
+## How finding and joining work
 
-1. A household creates a space and **publishes** it to a relay.
-   The relay receives the space's name, description, cover
-   image, age policy, accent colour — enough to put it on the
-   map — but **no message content**.
-2. Anyone whose home is connected to that same relay
-   can browse the map, find the space, and ask to join.
-3. Whether the join is granted depends on the space's **join
-   mode**, which the host picks: **Open** (anyone can join
-   straight away) or **Request** (the host household reviews
-   and approves). Invite links work alongside either.
-4. Once you're a member, posts in the space flow:
-   `your home → relay → every other member's home`. The relay is on
-   the path for every message and reaction; it doesn't drop out
-   after introductions.
+1. A household makes a space **global**. Its home publishes the
+   name, description, cover image, age policy and accent colour
+   to every GFS it is connected to: enough to list it, but **no
+   message content**.
+2. Anyone whose home is connected to that same GFS can find it
+   under **Browse spaces** and ask to join, or follow it if the
+   owner allows followers.
+3. Whether a join is granted depends on the space's **join
+   mode**: **Open** (anyone can join straight away), **Request**
+   (an admin says yes) or **Invite only**. Invite links work
+   alongside any of them.
+4. Once you're in, posts travel from your home to every other
+   member's home: directly or over the mesh for households you're
+   paired with, through the GFS for followers and members who joined
+   with a GFS link.
 
 ## Two kinds of invite link
 
@@ -176,25 +190,19 @@ What that means in practice:
 
 ## What happens if the relay is down?
 
-The relay is the post hub for public and global spaces, so while
-it's down, posts to those spaces wait. Nothing is silently
-dropped: your household keeps retrying — after a few seconds,
-then half a minute, then a couple of minutes, then every ten —
-and the relay, once it's back, still holds up to a day's worth
-of sealed envelopes for members who were offline. Your local
-copy is saved at home the moment you press send.
+Members you're paired with don't notice: their posts never went
+through the GFS. Followers and members who joined with a GFS link
+have to wait. Nothing is silently dropped: your household keeps
+retrying (after a few seconds, then half a minute, then a couple
+of minutes, then every ten) and the relay, once it's back, still
+holds up to a day's worth of sealed envelopes for households that
+were offline. Your local copy is saved at home the moment you
+press send.
 
-In practice this matters when:
-
-- Your relay is having an outage. Members talking to _each
-  other_ in the space won't see new posts until it's back.
-- You depend on a single project-run relay. Connecting your
-  household to a second relay (or running your own) is the
-  cure.
-
-Connecting your space to **multiple relays** is supported and
-encouraged for resilience. Posts go out via every relay you've
-connected.
+If your space has many followers, connecting your household to a
+second relay (or running your own) is the cure. A global space is
+published to every relay you're connected to, and posts for
+followers go out through all of them.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -222,27 +230,24 @@ specific community. See
 [Run a relay yourself](/docs/running-a-gfs/) for a Docker
 Compose + Cloudflare guide.
 
-## What changes vs other space scopes
+## Side by side
 
-| Behaviour           | Private / household                         | Public / global                                               |
-| ------------------- | ------------------------------------------- | ------------------------------------------------------------- |
-| Visible to          | invited / household members only            | on the relay's map; anyone connected to it can find           |
-| Joining             | invite or household membership              | open / request / invite link — host picks per space           |
-| How posts travel    | direct, household-to-household              | through the relay to every member, every time                 |
-| What the relay sees | nothing (no relay, unless you switch it on) | routing data and a sealed, padded envelope — never content    |
-| Encryption          | **always on**                               | **always on**                                                 |
-| Where messages live | each member's home                          | each member's home (relay never stores content)               |
-| If relay is offline | n/a                                         | posts wait and retry; relay holds a day's envelopes when back |
-| Visible to peers    | members only                                | members only — never leaks to your paired-household graph     |
-| Can be turned off   | yes, by admin vote                          | yes — un-publish by admin vote; the relay forgets             |
+| Behaviour            | Private / household / public                  | Global                                                        |
+| -------------------- | --------------------------------------------- | ------------------------------------------------------------- |
+| Who can find it      | invited people / your home / paired households | anyone connected to the same GFS                             |
+| Joining              | invite, household membership, or join mode    | open / request / invite only, plus invite links               |
+| How posts travel     | directly or over the mesh                     | the same for paired members; through the GFS for the rest     |
+| What the relay sees  | nothing (no relay, unless switched on)        | routing data and a sealed, padded envelope, never content     |
+| Encryption           | **always on**                                 | **always on**                                                 |
+| Where messages live  | each member's home                            | each member's home (relay never stores content)               |
+| If relay is offline  | n/a                                           | followers wait; posts retry, relay holds a day's envelopes    |
+| Can be turned off    | yes, by admin vote                            | yes: make it non-global by admin vote, and the relay forgets  |
 
 ## Privacy in global spaces
 
-Public and global spaces stay walled off from the rest of your
-federation. They don't show up to your paired households, they
-don't get included in any household-level sync, and information
-posted in one space never bleeds into another (or into your
-private spaces). The space is a deliberate scope: members only,
-on the relay you chose. What the relay can and can't see is
-spelled out on the [privacy model](/docs/privacy/) and
+A global space stays walled off from the rest of your household.
+Information posted in one space never bleeds into another, or
+into your private spaces, and the relay only ever learns about
+the global spaces you take part in. What the relay can and can't
+see is spelled out on the [privacy model](/docs/privacy/) and
 [security model](/docs/security/) pages.

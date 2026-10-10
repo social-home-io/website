@@ -1,44 +1,44 @@
 ---
 title: Espaces globaux
-description: Des pièces pour les foyers qui ne se connaissent pas encore — espaces publics et globaux, le relais qui les transporte (un relais de confiance, ou le vôtre) et ce qu'il peut voir ou non.
+description: Des pièces pour les foyers qui ne se connaissent pas encore — les quatre sortes d'espaces, le relais qui transporte les espaces globaux (un relais de confiance, ou le vôtre) et ce qu'il peut voir ou non.
 order: 40
 ---
 
-La plupart des espaces dans Social Home sont privés — réservés
-aux foyers invités. Mais certaines communautés sont ouvertes par
-nature : une place de marché de quartier, un club de course à
+La plupart des espaces dans Social Home sont partagés entre des
+foyers que vous connaissez déjà : la famille, les voisins avec
+qui vous êtes jumelé. Mais certaines communautés sont ouvertes
+par nature : une place de marché de quartier, un club de course à
 l'échelle de la ville, un club de lecture d'œuvres du domaine
-public. Pour celles-là, Social Home propose des espaces
-**publics** et **globaux**, et un petit relais — le GFS (Global
-Federation Server – le serveur de fédération global) — qui aide
-les foyers à se trouver. (Un mot nouveau ? Voir
+public. Pour celles-là, Social Home propose des **espaces
+globaux**, et un petit relais, le GFS (Global Federation Server –
+le serveur de fédération global), qui aide des foyers qui ne se
+sont jamais rencontrés à se trouver. (Un mot nouveau ? Voir
 [GFS](/fr/docs/glossary/#gfs) dans le glossaire.)
 
 ## Quatre sortes d'espaces
 
-Avant de vous tourner vers un relais, il vaut la peine de
-connaître tout l'éventail. Social Home a quatre portées d'espace,
-chacune pour un public un peu plus large :
+Chaque sorte va un peu plus loin que la précédente :
 
-| Portée     | Visible par                                                                     | Utilise un relais (GFS) ?        |
-| ---------- | ------------------------------------------------------------------------------- | -------------------------------- |
-| **Privé**  | Les membres que vous invitez explicitement                                      | Optionnel (désactivé par défaut) |
-| **Foyer**  | Les membres de votre propre foyer                                               | Non                              |
-| **Public** | Affiché sur la carte du GFS — toute personne connectée à ce GFS peut le trouver | **Oui**                          |
-| **Global** | Publié dans le monde entier via votre GFS                                       | **Oui**                          |
+| Sorte      | Qui peut le trouver                                      | Le GFS le voit-il ?                                           |
+| ---------- | -------------------------------------------------------- | -------------------------------------------------------------- |
+| **Privé**  | Seulement les personnes que vous invitez                 | Non, sauf si le propriétaire active le GFS pour cet espace     |
+| **Foyer**  | Tout votre foyer, automatiquement                        | Non                                                            |
+| **Public** | Vos foyers jumelés, sous **Parcourir les espaces**       | Non, sauf si un administrateur le publie à la main sur un GFS  |
+| **Global** | Toute personne dont la maison est connectée au même GFS  | **Oui**, il est listé sur chaque GFS que vous utilisez         |
 
-Les espaces privés et du foyer voyagent directement entre les
-foyers concernés. Le propriétaire d'un espace privé peut activer
-le GFS pour celui-ci — utile quand les membres ne peuvent pas se
-joindre directement — mais il est désactivé tant que vous ne
-l'activez pas.
+Une règle simplifie tout le reste : **les foyers avec qui vous
+êtes jumelé n'ont pas besoin du GFS.** Les publications leur
+parviennent directement, ou à travers le maillage des foyers que
+vous connaissez tous les deux, quelle que soit la sorte d'espace.
+Le GFS n'intervient que pour les foyers avec qui vous _n'êtes
+pas_ jumelé (ou comme solution de repli, si vous l'avez activée
+pour une connexion et que le chemin direct est coupé).
 
-Les espaces publics et globaux passent tous deux par le GFS. Un
-espace **public** reçoit une épingle sur la carte du GFS auquel
-vous êtes connecté, avec sa position arrondie à environ 11 m,
-pour que toute personne sur ce GFS puisse le trouver. Un espace
-**global** est publié dans le monde entier via votre GFS. Le
-reste de cette page traite de ces deux-là.
+Un espace **public** reste donc dans votre propre cercle : c'est
+un espace que vos foyers jumelés peuvent trouver et demander à
+rejoindre, pas un espace que le monde entier peut voir. Un espace
+**global** est celui destiné aux inconnus. Le reste de cette page
+traite des espaces globaux.
 
 ## Les grandes décisions se votent
 
@@ -79,40 +79,57 @@ qu'un modérateur ou un administrateur l'approuve), ou **réservée
 aux administrateurs**. Les éléments en attente que personne ne
 regarde expirent au bout de sept jours.
 
-## Ce qu'est un espace global
+## Ce que fait le GFS pour un espace global
 
-Un espace public ou global vit sur un GFS auquel n'importe quel
-foyer peut se connecter. Le relais a deux rôles :
+Un GFS est un relais auquel n'importe quel foyer peut se
+connecter. Pour un espace global, il a deux rôles :
 
-1. **C'est une carte et un annuaire.** Il liste les espaces qui y
-   ont été publiés, qui les héberge et comment les rejoindre.
-2. **C'est le centre de tri des publications.** Une fois membre,
-   chaque publication que vous écrivez passe par le relais, qui
-   la distribue à tous les autres foyers de cet espace.
+1. **C'est un annuaire.** Il liste les espaces globaux qui y sont
+   publiés, qui les héberge, comment les rejoindre et, si
+   l'espace en a une, une épingle sur la carte arrondie à environ
+   11 m. Toute personne connectée à ce GFS peut les trouver sous
+   **Parcourir les espaces**.
+2. **Il transporte les publications vers les personnes avec qui
+   vous n'êtes pas jumelé.** C'est-à-dire les **abonnés**, des
+   foyers qui suivent la lecture sans rejoindre l'espace
+   (seulement si le propriétaire autorise les abonnés ; c'est
+   désactivé par défaut), et les **membres qui ont rejoint avec
+   un Lien GFS**. Les membres avec qui vous êtes jumelé reçoivent
+   toujours chaque publication directement ou par le maillage.
 
 Le relais ne voit jamais le _contenu_ de vos publications. Chaque
 publication est scellée en sortant de votre maison et n'est
-ouverte que dans la maison de chaque membre, à l'arrivée.
-L'enveloppe est complétée à l'une de quelques tailles fixes, si
-bien que le relais ne peut même pas distinguer un message court
-d'un message long. Il ne stocke aucun contenu : si un membre est
-hors ligne, il garde ses enveloppes scellées pendant un jour,
-puis les laisse partir.
+ouverte que dans la maison de chaque destinataire. L'enveloppe
+est complétée à l'une de quelques tailles fixes, si bien que le
+relais ne peut même pas distinguer un message court d'un message
+long. Il ne stocke aucun contenu : si un foyer est hors ligne, il
+garde ses enveloppes scellées pendant un jour, puis les laisse
+partir.
 
 > Voyez le relais comme le bureau de poste d'une communauté
 > ouverte. Le bureau de poste voit qu'un colis scellé est parti
-> pour le club de lecture, et à peu près combien il pesait — mais
+> pour le club de lecture, et à peu près combien il pesait, mais
 > seuls les membres ont les clés pour l'ouvrir.
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Les enveloppes sont en AES-256-GCM, signées avec Ed25519 ; les
-seuls champs lisibles sont `event_type`, `from_instance`,
-`to_instance`, `space_id` et `epoch`. Tranches de padding :
-1 / 4 / 16 / 64 / 128 KiB (publication par un membre), plus
-191 KiB pour le relais d'enveloppes. Les destinataires hors ligne
-sont mis en file d'attente 24 h, au plus 2000 enveloppes ou
+`PUBLIC_SPACE_TIERS = {public, global}` : seules ces deux
+portées peuvent relayer du contenu vers un GFS. Un espace global
+est publié sur chaque GFS auquel le foyer est connecté dès qu'il
+devient global, et retiré de tous dès qu'il cesse de l'être. Un
+espace public parvient aux foyers jumelés sous forme d'instantané
+`SPACE_DIRECTORY_SYNC` (nom, description, emoji, nombre de
+membres, mode d'adhésion), jamais via un GFS ; il n'atteint un
+GFS que par le bouton de publication manuelle, et en est retiré
+s'il devient privé ou foyer. Les abonnés nécessitent
+`allow_subscribers` activé (désactivé par défaut). Les membres
+reçoivent toujours les publications par la diffusion ordinaire
+aux membres, directe ou par maillage, indépendamment du GFS. Les
+enveloppes sont en AES-256-GCM, signées avec Ed25519. Tranches de
+padding : 1 / 4 / 16 / 64 / 128 KiB (publication par un membre),
+plus 191 KiB pour le relais d'enveloppes. Les destinataires hors
+ligne sont mis en file d'attente 24 h, au plus 2000 enveloppes ou
 64 MiB par destinataire. Tous les détails sur la page
 [modèle de sécurité](/fr/docs/security/#ce-que-voit-un-relais).
 
@@ -120,8 +137,8 @@ sont mis en file d'attente 24 h, au plus 2000 enveloppes ou
 
 ## De confiance ou strict
 
-Par défaut, un espace fonctionne en mode **de confiance**
-(trusted) : le relais apprend quel foyer a publié dans quel
+Pour les publications qui passent bien par le GFS, un espace
+fonctionne par défaut en mode **de confiance** (trusted) : le relais apprend quel foyer a publié dans quel
 espace, et quand — mais jamais quoi. Pour les communautés où même
 cela est de trop, le propriétaire de l'espace peut passer en mode
 **strict** : les publications partent sans aucun expéditeur, et
@@ -145,24 +162,25 @@ la tranche de taille et l'ensemble des abonnés.
 
 </details>
 
-## Comment fonctionnent la découverte et la publication
+## Comment trouver et rejoindre un espace
 
-1. Un foyer crée un espace et le **publie** sur un relais. Le
-   relais reçoit le nom de l'espace, sa description, son image de
-   couverture, sa politique d'âge, sa couleur d'accent — de quoi
-   le placer sur la carte — mais **aucun contenu de message**.
-2. Toute personne dont la maison est connectée à ce même relais
-   peut parcourir la carte, trouver l'espace et demander à le
-   rejoindre.
+1. Un foyer rend un espace **global**. Sa maison publie le nom,
+   la description, l'image de couverture, la politique d'âge et
+   la couleur d'accent sur chaque GFS auquel elle est connectée :
+   de quoi le lister, mais **aucun contenu de message**.
+2. Toute personne dont la maison est connectée à ce même GFS peut
+   le trouver sous **Parcourir les espaces** et demander à le
+   rejoindre, ou s'y abonner si le propriétaire autorise les
+   abonnés.
 3. Que l'adhésion soit accordée dépend du **mode d'adhésion** de
-   l'espace, choisi par l'hôte : **Ouvert** (n'importe qui peut
-   rejoindre tout de suite) ou **Sur demande** (le foyer hôte
-   examine et approuve). Les liens d'invitation fonctionnent en
-   parallèle dans les deux cas.
-4. Une fois membre, les publications de l'espace circulent
-   ainsi : `votre maison → relais → la maison de chaque autre
-membre`. Le relais est sur le chemin de chaque message et de
-   chaque réaction ; il ne s'efface pas après les présentations.
+   l'espace : **Ouvert** (n'importe qui peut rejoindre tout de
+   suite), **Sur demande** (un administrateur dit oui) ou **Sur
+   invitation uniquement**. Les liens d'invitation fonctionnent
+   en parallèle dans tous les cas.
+4. Une fois membre, les publications vont de votre maison à la
+   maison de chaque autre membre : directement ou par le maillage
+   pour les foyers avec qui vous êtes jumelé, via le GFS pour les
+   abonnés et les membres qui ont rejoint avec un Lien GFS.
 
 ## Deux sortes de liens d'invitation
 
@@ -198,27 +216,20 @@ Concrètement, cela signifie :
 
 ## Que se passe-t-il si le relais est en panne ?
 
-Le relais est le centre de tri des espaces publics et globaux ;
-tant qu'il est en panne, les publications vers ces espaces
-attendent. Rien n'est perdu en silence : votre foyer réessaie —
-après quelques secondes, puis une demi-minute, puis quelques
-minutes, puis toutes les dix — et le relais, une fois revenu,
-garde encore jusqu'à une journée d'enveloppes scellées pour les
-membres qui étaient hors ligne. Votre copie locale est
-enregistrée chez vous dès que vous appuyez sur Envoyer.
+Les membres avec qui vous êtes jumelé ne remarquent rien : leurs
+publications ne sont jamais passées par le GFS. Les abonnés et
+les membres qui ont rejoint avec un Lien GFS doivent patienter.
+Rien n'est perdu en silence : votre foyer réessaie (après
+quelques secondes, puis une demi-minute, puis quelques minutes,
+puis toutes les dix) et le relais, une fois revenu, garde encore
+jusqu'à une journée d'enveloppes scellées pour les foyers qui
+étaient hors ligne. Votre copie locale est enregistrée chez vous
+dès que vous appuyez sur Envoyer.
 
-En pratique, cela compte quand :
-
-- Votre relais subit une panne. Les membres qui se parlent _entre
-  eux_ dans l'espace ne verront pas les nouvelles publications
-  avant son retour.
-- Vous dépendez d'un seul relais géré par le projet. Connecter
-  votre foyer à un second relais (ou héberger le vôtre) est le
-  remède.
-
-Connecter votre espace à **plusieurs relais** est pris en charge
-et encouragé pour la résilience. Les publications partent via
-chaque relais que vous avez connecté.
+Si votre espace a beaucoup d'abonnés, connecter votre foyer à un
+second relais (ou héberger le vôtre) est le remède. Un espace
+global est publié sur chaque relais auquel vous êtes connecté, et
+les publications destinées aux abonnés partent par chacun d'eux.
 
 <details class="tech">
 <summary>Sous le capot</summary>
@@ -248,28 +259,25 @@ ville ou une communauté particulière. Voir
 [Héberger un relais vous-même](/fr/docs/running-a-gfs/) pour un
 guide Docker Compose + Cloudflare.
 
-## Ce qui change par rapport aux autres portées
+## Côte à côte
 
-| Comportement                | Privé / foyer                                | Public / global                                                                                  |
-| --------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Visible par                 | membres invités / du foyer uniquement        | sur la carte du relais ; toute personne qui y est connectée peut le trouver                      |
-| Adhésion                    | invitation ou appartenance au foyer          | ouvert / sur demande / lien d'invitation — l'hôte choisit pour chaque espace                     |
-| Trajet des publications     | direct, de foyer à foyer                     | via le relais vers chaque membre, à chaque fois                                                  |
-| Ce que voit le relais       | rien (pas de relais, sauf si vous l'activez) | des données de routage et une enveloppe scellée et complétée — jamais le contenu                 |
-| Chiffrement                 | **toujours actif**                           | **toujours actif**                                                                               |
-| Où vivent les messages      | chez chaque membre                           | chez chaque membre (le relais ne stocke jamais de contenu)                                       |
-| Si le relais est hors ligne | s. o.                                        | les publications attendent et réessaient ; le relais garde une journée d'enveloppes à son retour |
-| Visible par les pairs       | membres uniquement                           | membres uniquement — ne fuite jamais vers votre graphe de foyers jumelés                         |
-| Peut être désactivé         | oui, par vote des administrateurs            | oui — dépublication par vote des administrateurs ; le relais oublie                              |
+| Comportement                | Privé / foyer / public                                | Global                                                                            |
+| --------------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Qui peut le trouver         | personnes invitées / votre foyer / foyers jumelés     | toute personne connectée au même GFS                                              |
+| Adhésion                    | invitation, appartenance au foyer ou mode d'adhésion  | ouvert / sur demande / sur invitation uniquement, plus les liens d'invitation     |
+| Trajet des publications     | directement ou par le maillage                        | pareil pour les membres jumelés ; via le GFS pour les autres                     |
+| Ce que voit le relais       | rien (pas de relais, sauf s'il est activé)            | des données de routage et une enveloppe scellée et complétée, jamais le contenu   |
+| Chiffrement                 | **toujours actif**                                    | **toujours actif**                                                                |
+| Où vivent les messages      | chez chaque membre                                    | chez chaque membre (le relais ne stocke jamais de contenu)                        |
+| Si le relais est hors ligne | s. o.                                                 | les abonnés attendent ; les publications réessaient, le relais garde une journée |
+| Peut être désactivé         | oui, par vote des administrateurs                     | oui : le rendre non global par vote des administrateurs, et le relais oublie     |
 
 ## Confidentialité dans les espaces globaux
 
-Les espaces publics et globaux restent cloisonnés du reste de
-votre fédération. Ils n'apparaissent pas à vos foyers jumelés,
-ils ne sont inclus dans aucune synchronisation au niveau du
-foyer, et une information publiée dans un espace ne déborde
-jamais dans un autre (ni dans vos espaces privés). L'espace est
-une portée délibérée : les membres uniquement, sur le relais que
-vous avez choisi. Ce que le relais peut voir ou non est détaillé
-sur les pages [modèle de confidentialité](/fr/docs/privacy/) et
+Un espace global reste cloisonné du reste de votre foyer. Une
+information publiée dans un espace ne déborde jamais dans un
+autre, ni dans vos espaces privés, et le relais n'apprend quelque
+chose que sur les espaces globaux auxquels vous participez. Ce que
+le relais peut voir ou non est détaillé sur les pages
+[modèle de confidentialité](/fr/docs/privacy/) et
 [modèle de sécurité](/fr/docs/security/).

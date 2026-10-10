@@ -38,8 +38,9 @@ verwendeten Wörter stehen in
 
 Der GFS (Global Federation Server) — der globale
 Föderationsserver, das Relay, das Haushalten hilft, einander zu
-finden — trägt die Beiträge öffentlicher und globaler Spaces als
-versiegelte Umschläge. Was er über dich erfährt, hängt davon ab,
+finden — listet globale Spaces und trägt ihre Beiträge als
+versiegelte Umschläge zu Haushalten, mit denen du nicht gekoppelt
+bist. Was er über dich erfährt, hängt davon ab,
 wie der Space eingerichtet ist (siehe
 [GFS](/de/docs/glossary/#gfs) im Glossar):
 
@@ -65,8 +66,9 @@ Er sieht deine IP-Adresse, die Zeitpunkte und die ungefähre Größe
 jedes Umschlags sowie welche Haushalte die Beiträge eines Space
 empfangen.
 
-Gar kein Relay ist beteiligt, wenn du keine öffentlichen oder
-globalen Spaces, keine öffentlichen Momente, keine öffentlichen
+Gar kein Relay ist beteiligt, wenn du keine globalen Spaces (und
+keinen öffentlichen Space, den du von Hand auf einem GFS
+veröffentlicht hast), keine öffentlichen Momente, keine öffentlichen
 Highlight-Links und keinen privaten Space mit eingeschaltetem GFS
 hast. Dein Haushalt redet dann nur mit Haushalten, mit denen du
 gekoppelt bist, direkt.

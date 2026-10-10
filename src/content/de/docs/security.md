@@ -128,10 +128,11 @@ herunter und bewahrst es an einem sicheren Ort auf.
 
 Der GFS (Global Federation Server) — der globale
 Föderationsserver, das Relay, das Haushalten hilft, einander zu
-finden — liegt auf dem Weg jedes Beitrags in einem öffentlichen
-oder globalen Space. Er trägt versiegelte Umschläge, auf wenige
-feste Größen gepolstert, und verteilt sie an die
-Mitgliedshaushalte. Er speichert keine Inhalte: Ist ein Haushalt
+finden — trägt die Beiträge eines globalen Space zu Haushalten,
+mit denen du nicht gekoppelt bist: Followern und Mitgliedern, die
+über einen GFS-Link beigetreten sind. Gekoppelte Haushalte
+bekommen sie direkt oder über das Mesh. Er trägt versiegelte
+Umschläge, auf wenige feste Größen gepolstert, und verteilt sie. Er speichert keine Inhalte: Ist ein Haushalt
 offline, behält er die versiegelten Umschläge einen Tag lang und
 lässt sie dann los. Siehe [GFS](/de/docs/glossary/#gfs) im
 Glossar.

@@ -162,18 +162,22 @@ tous ses administrateurs ensemble.
 
 ## Espaces publics et globaux
 
-Certains espaces sont privés, réservés aux foyers invités.
-D'autres — une place de marché publique, une communauté autour
-d'un loisir ou le panneau d'affichage de votre quartier — sont
-_publics_ ou *globaux* : n'importe qui peut les découvrir. Un
-relais léger, le GFS (Global Federation Server – le serveur de
-fédération global), aide les foyers à se trouver quand ils ne se
-connaissent pas encore (voir [GFS](/fr/docs/glossary/#gfs)).
+Certains espaces sont privés, réservés aux foyers invités. Un
+espace _public_ est un espace que vos foyers jumelés peuvent
+trouver et demander à rejoindre ; il reste dans votre propre
+cercle. Un espace _global_ — une place de marché publique, une
+communauté autour d'un loisir, le panneau d'affichage de votre
+quartier — s'adresse aussi aux inconnus : un relais léger, le GFS
+(Global Federation Server – le serveur de fédération global), le
+liste pour que des foyers qui ne se connaissent pas puissent le
+trouver (voir [GFS](/fr/docs/glossary/#gfs)).
 
-Le relais reste sur le chemin pour ces espaces : chaque
-publication le traverse sous forme d'enveloppe scellée et
-complétée à taille fixe, et il la distribue aux membres. Il ne
-peut pas en lire un mot. Par défaut, il sait quel foyer a publié
+Les foyers jumelés reçoivent toujours les publications d'un
+espace directement ou par le maillage. Le relais ne transporte
+les publications que vers les foyers avec qui vous n'êtes pas
+jumelé — les abonnés, et les membres qui ont rejoint avec un Lien
+GFS — sous forme d'enveloppes scellées et complétées à taille
+fixe. Il ne peut pas en lire un mot. Par défaut, il sait quel foyer a publié
 et quand ; un espace peut passer en mode strict, où il ne sait
 même plus qui. Plus de détails dans
 [Espaces globaux](/fr/docs/global-spaces/).
@@ -181,7 +185,13 @@ même plus qui. Plus de détails dans
 <details class="tech">
 <summary>Sous le capot</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}`. Le GFS ne voit que des
+`PUBLIC_SPACE_TIERS = {public, global}` : seules ces portées
+peuvent relayer vers un GFS. Un espace global est publié
+automatiquement sur chaque GFS connecté ; un espace public
+seulement quand un administrateur le publie à la main. Les
+espaces publics parviennent aux foyers jumelés sous forme
+d'instantané `SPACE_DIRECTORY_SYNC`, jamais via un GFS. Le GFS ne
+voit que des
 métadonnées de routage (`space_id`, `event_type`, tranche de
 taille, horodatage, ensemble des abonnés, IP source) ; le mode
 strict rend les publications anonymes. Les membres hors ligne

@@ -37,8 +37,8 @@ gebruikt staan in [Woorden die we gebruiken](/nl/docs/glossary/).
 
 De GFS (Global Federation Server) — de wereldwijde
 federatieserver, de relay die huishoudens helpt elkaar te vinden —
-draagt de posts van openbare en wereldwijde spaces als verzegelde
-enveloppen. Wat hij over je te weten komt, hangt af van hoe de
+toont wereldwijde spaces en brengt hun posts, als verzegelde
+enveloppen, naar huishoudens waarmee je niet gekoppeld bent. Wat hij over je te weten komt, hangt af van hoe de
 space is ingesteld (zie [GFS](/nl/docs/glossary/#gfs) in de
 woordenlijst):
 
@@ -64,8 +64,9 @@ Hij ziet wel je IP-adres, de tijdstippen en de ruwe grootte van
 elke envelop, en welke huishoudens de posts van een space
 ontvangen.
 
-Er komt helemaal geen relay aan te pas als je geen openbare of
-wereldwijde spaces hebt, geen openbare momenten, geen openbare
+Er komt helemaal geen relay aan te pas als je geen wereldwijde
+spaces hebt (en geen openbare space die je met de hand op een GFS
+hebt gepubliceerd), geen openbare momenten, geen openbare
 highlight-links en geen privé space met de GFS-schakelaar aan. Je
 huishouden praat dan alleen met huishoudens waarmee je gekoppeld
 bent, rechtstreeks.

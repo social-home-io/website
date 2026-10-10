@@ -12,11 +12,13 @@ doorheen.
 
 De [GFS (Global Federation Server – de wereldwijde federatieserver)](/nl/docs/glossary/#gfs)
 – de relay die huishoudens helpt elkaar te vinden – heeft drie
-taken. Hij is een gids, zodat huishoudens openbare en
-wereldwijde spaces kunnen vinden. Hij draagt verzegelde posts
-voor openbare en wereldwijde spaces (en voor privéspaces waarvan
-de eigenaar de GFS heeft ingeschakeld), zodat een space blijft
-stromen terwijl de host slaapt. En hij bemiddelt openbare
+taken. Hij is een gids, zodat huishoudens wereldwijde spaces
+kunnen vinden. Hij draagt verzegelde posts naar huishoudens die
+niet met elkaar gekoppeld zijn – volgers van een wereldwijde
+space, leden die via een GFS-link zijn toegetreden, privéspaces
+waarvan de eigenaar de GFS heeft ingeschakeld, en gekoppelde
+huishoudens die de GFS-terugvaloptie hebben aangezet – zodat een
+space blijft stromen terwijl de host slaapt. En hij bemiddelt openbare
 highlight-links – zie
 [Highlights → openbaar delen](/nl/docs/highlights/#openbaar-delen-via-een-global-server)
 voor de kant van de auteur. Bij elke taak verwerkt hij alleen
