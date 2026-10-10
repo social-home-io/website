@@ -36,8 +36,9 @@ utilisons](/fr/docs/glossary/).
 ## Ce que voit le relais global
 
 Le GFS (Global Federation Server) — le relais qui aide les foyers à
-se trouver — transporte les publications des espaces publics et
-globaux sous forme d'enveloppes scellées. Ce qu'il apprend sur vous
+se trouver — liste les espaces globaux et transporte leurs
+publications, sous forme d'enveloppes scellées, vers les foyers
+avec qui vous n'êtes pas jumelé. Ce qu'il apprend sur vous
 dépend de la configuration de l'espace (voir
 [GFS](/fr/docs/glossary/#gfs) dans le glossaire) :
 
@@ -63,8 +64,9 @@ Il voit votre adresse IP, les horaires et la taille approximative
 de chaque enveloppe, et quels foyers reçoivent les publications
 d'un espace.
 
-Aucun relais n'intervient du tout si vous n'avez ni espace public
-ou global, ni moment public, ni lien public de highlight, ni espace
+Aucun relais n'intervient du tout si vous n'avez ni espace global
+(ni espace public que vous avez publié à la main sur un GFS), ni
+moment public, ni lien public de highlight, ni espace
 privé avec l'interrupteur GFS activé. Votre foyer ne parle alors
 qu'aux foyers avec lesquels vous êtes jumelé, directement.
 

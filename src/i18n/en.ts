@@ -222,7 +222,7 @@ export const en: UiStrings = {
       p1Html:
         "Pair two homes once with a QR code. After that, you can create <em>spaces</em> — shared rooms with their own feed, chat, and calendar — across both. Run a book club, organise a street party, or keep one quiet room for grandparents.",
       p2Html:
-        'A small, open-source <a href="/docs/global-spaces/">relay</a> — the GFS — helps households that haven\'t paired find each other for public and global spaces and carries their sealed posts. It can\'t read them: every post is sealed before it leaves your home. We run one live at <a href="/servers/">gfs.social-home.io</a> — connect in a tap.',
+        'A small, open-source <a href="/docs/global-spaces/">relay</a> — the GFS — helps households that haven\'t paired find each other in global spaces and carries their sealed posts. It can\'t read them: every post is sealed before it leaves your home. We run one live at <a href="/servers/">gfs.social-home.io</a> — connect in a tap.',
     },
   },
 
@@ -466,8 +466,8 @@ export const en: UiStrings = {
     legend: {
       private: "Private — only the people you invite.",
       household: "Household — everyone in your home, automatically.",
-      public: "Public — listed on your GFS's map for others to find.",
-      global: "Global — published worldwide through your GFS.",
+      public: "Public — your paired households can find it and ask to join.",
+      global: "Global — listed on your GFS for anyone to find.",
     },
   },
 
@@ -478,13 +478,13 @@ export const en: UiStrings = {
     eyebrow: "Global Federation Server",
     h1Html: "Connect to the relay we run <em>for you</em>.",
     ledeHtml:
-      "The Social Home project runs one public Global Federation Server (GFS) — live now at <code>gfs.social-home.io</code>. It helps your public and global spaces and your public Moments reach households that haven't paired with you yet. Every post is sealed before it leaves your home, so the relay carries it without ever reading it.",
+      "The Social Home project runs one public Global Federation Server (GFS) — live now at <code>gfs.social-home.io</code>. It helps your global spaces and your public Moments reach households that haven't paired with you yet. Every post is sealed before it leaves your home, so the relay carries it without ever reading it.",
     hostedBy: "Hosted by Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "One QR scan and you're connected. Public spaces show up on the map; public Moments fan out to followers across every paired household; Highlights public links route through here too. Content-blind by design.",
+    body: "One QR scan and you're connected. Global spaces show up in Browse spaces; public Moments fan out to followers across every paired household; Highlights public links route through here too. Content-blind by design.",
     bullets: [
-      "Public spaces map + global spaces",
+      "Global space directory",
       "Public Momentum directory + follow graph",
       "Highlights public-link relay",
       "Age-gate policy enforced",
@@ -514,13 +514,13 @@ export const en: UiStrings = {
     seesColNever: "Never",
     seesRows: [
       {
-        space: "Public & global spaces",
+        space: "Global spaces",
         mode: "trusted · default",
         sees: "Which household posted, into which space, when.",
         never: "The content.",
       },
       {
-        space: "Public & global spaces",
+        space: "Global spaces",
         mode: "strict · owner's choice",
         sees: "The same — but not who posted.",
         never: "The content, or the sender.",

@@ -66,18 +66,23 @@ Die Reichweite eines Space legt fest, wer ihn finden und wer
 darin posten kann. Es gibt vier, jede mit einem größeren Publikum
 als die vorige:
 
-- **Privat** — Mitglieder, die du ausdrücklich einlädst.
-- **Haushalt** — die Mitglieder deines eigenen Haushalts.
-- **Öffentlich** — gelistet auf der Karte eines
-  [GFS](#gfs), mit dem du verbunden bist, damit jeder auf diesem
-  GFS ihn finden kann.
-- **Global** — weltweit veröffentlicht über deinen GFS.
+- **Privat** — nur Leute, die du einlädst.
+- **Haushalt** — alle in deinem eigenen Zuhause.
+- **Öffentlich** — deine [gekoppelten](#kopplung) Haushalte
+  können ihn unter Räume entdecken finden. Er bleibt in deinem
+  eigenen Kreis.
+- **Global** — gelistet auf jedem [GFS](#gfs), mit dem dein
+  Zuhause verbunden ist, damit jeder auf diesem GFS ihn finden
+  kann.
 
-Öffentliche und globale Spaces laufen über einen GFS; private
-und Haushalts-Spaces nicht, es sei denn, der Besitzer eines
-privaten Space schaltet den GFS dafür ein (standardmäßig ist er
-aus). Die Reichweite eines Space zu ändern ist eine Entscheidung
-aller seiner Admins — siehe
+Nur globale Spaces werden auf einem GFS gelistet. Ein
+öffentlicher Space auch, wenn ein Admin ihn von Hand dort
+veröffentlicht, und ein privater Space kann den GFS nutzen, wenn
+sein Besitzer das einschaltet (standardmäßig aus). Haushalte, mit
+denen du gekoppelt bist, bekommen die Beiträge eines Space direkt
+oder über das Mesh, egal welche Reichweite er hat. Die Reichweite
+eines Space zu ändern ist eine Entscheidung aller seiner Admins —
+siehe
 [Globale Spaces](/de/docs/global-spaces/#große-änderungen-brauchen-eine-abstimmung).
 
 ## Host
@@ -91,9 +96,10 @@ die Mitgliederliste lebt.
 
 Ein GFS ist ein **Global Federation Server** — der globale
 Föderationsserver: das Relay, das Haushalten hilft, einander zu
-finden, wenn sie sich noch nicht kennen, und das die
-versiegelten Beiträge öffentlicher und globaler Spaces
-weiterträgt. Das Social-Home-Projekt betreibt einen; jeder kann
+finden, wenn sie sich noch nicht kennen. Er listet globale
+Spaces und trägt ihre versiegelten Beiträge zu Haushalten, mit
+denen du nicht gekoppelt bist: Followern und Mitgliedern, die
+über einen GFS-Link beigetreten sind. Das Social-Home-Projekt betreibt einen; jeder kann
 [einen eigenen betreiben](/de/docs/running-a-gfs/). Ein GFS sieht
 versiegelte Umschläge und Routing-Informationen, nie den Inhalt
 eines Beitrags. Was er sehen kann und was nicht, steht auf der

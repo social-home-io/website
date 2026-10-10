@@ -1,43 +1,44 @@
 ---
 title: Wereldwijde spaces
-description: Ruimtes voor huishoudens die elkaar nog niet kennen – openbare en wereldwijde spaces, de relay die ze draagt (een die je vertrouwt, of een die je zelf draait) en wat die wel en niet kan zien.
+description: Ruimtes voor huishoudens die elkaar nog niet kennen – de vier soorten space, de relay die wereldwijde spaces draagt (een die je vertrouwt, of een die je zelf draait) en wat die wel en niet kan zien.
 order: 40
 ---
 
-De meeste spaces in Social Home zijn privé – alleen voor
-uitgenodigde huishoudens. Maar sommige communities zijn van
-nature open: een buurtmarktplaats, een hardloopclub voor de hele
-stad, een leesclub voor boeken uit het publieke domein. Daarvoor
-heeft Social Home **openbare** en **wereldwijde spaces**, en een
-kleine relay – de GFS (Global Federation Server – de wereldwijde
-federatieserver) – die huishoudens helpt elkaar te vinden.
-(Nieuw woord? Zie [GFS](/nl/docs/glossary/#gfs) in de
+De meeste spaces in Social Home worden gedeeld tussen huishoudens
+die je al kent: de familie, de buren met wie je gekoppeld bent.
+Maar sommige communities zijn van nature open: een
+buurtmarktplaats, een hardloopclub voor de hele stad, een
+leesclub voor boeken uit het publieke domein. Daarvoor heeft
+Social Home **wereldwijde spaces**, en een kleine relay – de GFS
+(Global Federation Server – de wereldwijde federatieserver) – die
+huishoudens die elkaar nooit ontmoet hebben helpt elkaar te
+vinden. (Nieuw woord? Zie [GFS](/nl/docs/glossary/#gfs) in de
 woordenlijst.)
 
 ## Vier soorten space
 
-Voordat je naar een relay grijpt, is het goed om het hele
-spectrum te kennen. Social Home heeft vier bereiken voor spaces,
-elk met een iets breder publiek:
+Elke soort reikt een stukje verder dan de vorige:
 
-| Bereik         | Zichtbaar voor                                                                | Gebruikt een relay (GFS)? |
-| -------------- | ----------------------------------------------------------------------------- | ------------------------- |
-| **Privé**      | Leden die je expliciet uitnodigt                                              | Optioneel (standaard uit) |
-| **Huishouden** | Leden van je eigen huishouden                                                 | Nee                       |
-| **Openbaar**   | Op de kaart van de GFS – iedereen die met die GFS is verbonden kan hem vinden | **Ja**                    |
-| **Wereldwijd** | Wereldwijd gepubliceerd via je GFS                                            | **Ja**                    |
+| Soort          | Wie kan hem vinden                                    | Ziet de GFS hem?                                                |
+| -------------- | ----------------------------------------------------- | --------------------------------------------------------------- |
+| **Privé**      | Alleen mensen die je uitnodigt                        | Nee, tenzij de eigenaar de GFS ervoor inschakelt                |
+| **Huishouden** | Iedereen in je huis, automatisch                      | Nee                                                             |
+| **Openbaar**   | Je gekoppelde huishoudens, onder **Ruimtes bekijken** | Nee, tenzij een beheerder hem met de hand op een GFS publiceert |
+| **Wereldwijd** | Iedereen wiens huis met dezelfde GFS is verbonden     | **Ja**, hij staat op elke GFS die je gebruikt                   |
 
-Privé- en huishoudspaces reizen rechtstreeks tussen de betrokken
-huishoudens. De eigenaar van een privéspace kan de GFS ervoor
-inschakelen – handig als leden elkaar niet rechtstreeks kunnen
-bereiken – maar hij staat uit tenzij je hem aanzet.
+Eén regel maakt de rest makkelijk: **huishoudens waarmee je
+gekoppeld bent, hebben de GFS niet nodig.** Posts bereiken ze
+rechtstreeks, of via de mesh van huishoudens die jullie allebei
+kennen, wat voor space het ook is. De GFS komt alleen in beeld
+voor huishoudens waarmee je _niet_ gekoppeld bent (of als
+terugvaloptie, als je die voor een verbinding hebt aangezet en
+de directe weg uitvalt).
 
-Openbare en wereldwijde spaces gaan allebei via de GFS. Een
-**openbare** space krijgt een speld op de kaart van de GFS
-waarmee je verbonden bent, met de locatie afgerond op ongeveer
-11 m, zodat iedereen op die GFS hem kan vinden. Een
-**wereldwijde** space wordt wereldwijd gepubliceerd via je GFS.
-De rest van deze pagina gaat over deze twee.
+Een **openbare** space blijft dus binnen je eigen kring: het is
+een space die je gekoppelde huishoudens kunnen vinden en waar ze
+om toegang kunnen vragen, niet een die de hele wereld ziet. Een
+**wereldwijde** space is die voor onbekenden. De rest van deze
+pagina gaat over wereldwijde spaces.
 
 ## Grote veranderingen vragen een stemming
 
@@ -75,23 +76,29 @@ een lid wacht in een wachtrij tot een moderator of beheerder hem
 goedkeurt) of **alleen beheerders**. Beoordeelde items waar
 niemand naar kijkt, vervallen na zeven dagen.
 
-## Wat een wereldwijde space is
+## Wat de GFS doet voor een wereldwijde space
 
-Een openbare of wereldwijde space leeft op een GFS waarmee elk
-huishouden verbinding kan maken. De relay heeft twee taken:
+Een GFS is een relay waarmee elk huishouden verbinding kan maken.
+Voor een wereldwijde space heeft hij twee taken:
 
-1. **Hij is een kaart en een gids.** Hij toont welke spaces erop
-   zijn gepubliceerd, wie ze host en hoe je lid wordt.
-2. **Hij is het verdeelpunt voor posts.** Zodra je lid bent, gaat
-   elke post die je schrijft via de relay, die hem doorstuurt
-   naar elk ander huishouden in die space.
+1. **Hij is een gids.** Hij toont de wereldwijde spaces die erop
+   zijn gepubliceerd, wie ze host, hoe je lid wordt en, als de
+   space er een heeft, een speld op de kaart, afgerond op
+   ongeveer 11 m. Iedereen die met die GFS is verbonden, vindt ze
+   onder **Ruimtes bekijken**.
+2. **Hij brengt posts naar wie je niet gekoppeld bent.** Dat zijn
+   **volgers**, huishoudens die meelezen zonder lid te worden
+   (alleen als de eigenaar volgers toestaat; standaard staat dat
+   uit), en **leden die via een GFS-link zijn toegetreden**. Leden
+   met wie je gekoppeld bent, krijgen elke post nog steeds
+   rechtstreeks of via de mesh.
 
 De relay ziet nooit de _inhoud_ van je posts. Elke post wordt
 verzegeld als hij je huis verlaat en pas weer geopend in het
-huis van elk lid als hij aankomt. De envelop wordt opgevuld tot
-een van een paar vaste groottes, zodat de relay niet eens een
-kort bericht van een lang kan onderscheiden. Hij slaat geen
-inhoud op: is een lid offline, dan houdt hij diens verzegelde
+huis van elke ontvanger. De envelop wordt opgevuld tot een van
+een paar vaste groottes, zodat de relay niet eens een kort
+bericht van een lang kan onderscheiden. Hij slaat geen inhoud op:
+is een huishouden offline, dan houdt hij diens verzegelde
 enveloppen een dag vast en laat ze daarna los.
 
 > Zie de relay als het postkantoor van een open community. Het
@@ -102,22 +109,33 @@ enveloppen een dag vast en laat ze daarna los.
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-Enveloppen zijn AES-256-GCM, ondertekend met Ed25519; de enige
-leesbare velden zijn `event_type`, `from_instance`,
-`to_instance`, `space_id` en `epoch`. Paddingbuckets:
-1 / 4 / 16 / 64 / 128 KiB (publicatie door leden), plus 191 KiB
-voor envelop-relay. Offline ontvangers worden 24 uur in de
-wachtrij gehouden, met maximaal 2000 enveloppen of 64 MiB per
-ontvanger. Alle details op de pagina
+`PUBLIC_SPACE_TIERS = {public, global}`: alleen die twee mogen
+ooit inhoud naar een GFS doorgeven. Een wereldwijde space wordt
+op elke GFS gepubliceerd waarmee het huishouden verbonden is
+zodra hij wereldwijd wordt, en van al die GFS'en teruggetrokken
+zodra hij dat niet meer is. Een openbare space bereikt gekoppelde
+huishoudens als een `SPACE_DIRECTORY_SYNC`-snapshot (naam,
+omschrijving, emoji, aantal leden, toetredingsmodus), nooit via
+een GFS; een GFS bereikt hij alleen via de knop om met de hand te
+publiceren, en hij wordt weer teruggetrokken als hij privé of
+huishouden wordt. Volgers vereisen `allow_subscribers` aan
+(standaard uit). Leden ontvangen posts altijd via de gewone
+verspreiding naar leden, rechtstreeks of via de mesh, los van de
+GFS. Enveloppen zijn AES-256-GCM, ondertekend met Ed25519.
+Paddingbuckets: 1 / 4 / 16 / 64 / 128 KiB (publicatie door
+leden), plus 191 KiB voor envelop-relay. Offline ontvangers
+worden 24 uur in de wachtrij gehouden, met maximaal 2000
+enveloppen of 64 MiB per ontvanger. Alle details op de pagina
 [beveiligingsmodel](/nl/docs/security/#wat-een-relay-ziet).
 
 </details>
 
 ## Vertrouwd of strikt
 
-Standaard draait een space in de **vertrouwde** modus (trusted):
-de relay leert welk huishouden in welke space heeft gepost, en
-wanneer – maar nooit wat. Voor communities waarvoor zelfs dat te
+Voor de posts die wel via de GFS gaan, draait een space standaard
+in de **vertrouwde** modus (trusted): de relay leert welk
+huishouden in welke space heeft gepost, en wanneer – maar nooit
+wat. Voor communities waarvoor zelfs dat te
 veel is, kan de eigenaar van de space overschakelen naar de
 **strikte** modus (strict): posts gaan naar buiten zonder enige
 afzender erop, en de relay weet alleen dat _iemand_ in de space
@@ -142,23 +160,25 @@ abonneeset.
 
 </details>
 
-## Hoe ontdekken en posten werken
+## Hoe vinden en lid worden werken
 
-1. Een huishouden maakt een space en **publiceert** hem op een
-   relay. De relay ontvangt de naam, omschrijving, omslagfoto,
-   het leeftijdsbeleid en de accentkleur van de space – genoeg
-   om hem op de kaart te zetten – maar **geen berichtinhoud**.
-2. Iedereen wiens huis met diezelfde relay is verbonden, kan de
-   kaart bekijken, de space vinden en vragen om lid te worden.
-3. Of dat wordt toegestaan, hangt af van de **toetredingsmodus**
-   van de space, die de host kiest: **Open** (iedereen kan
-   meteen lid worden) of **Verzoek** (het host-huishouden
-   beoordeelt en keurt goed). Uitnodigingslinks werken naast
-   beide.
-4. Zodra je lid bent, stromen de posts in de space als volgt:
-   `jouw huis → relay → het huis van elk ander lid`. De relay
-   staat op het pad van elk bericht en elke reactie; hij haakt
-   niet af na de kennismaking.
+1. Een huishouden maakt een space **wereldwijd**. Zijn huis
+   publiceert de naam, omschrijving, omslagfoto, het
+   leeftijdsbeleid en de accentkleur op elke GFS waarmee het
+   verbonden is: genoeg om hem te tonen, maar **geen
+   berichtinhoud**.
+2. Iedereen wiens huis met diezelfde GFS is verbonden, kan hem
+   vinden onder **Ruimtes bekijken** en vragen om lid te worden,
+   of hem volgen als de eigenaar volgers toestaat.
+3. Of een toetreding wordt toegestaan, hangt af van de
+   **toetredingsmodus** van de space: **Open** (iedereen kan
+   meteen lid worden), **Aanvragen** (een beheerder zegt ja) of
+   **Alleen op uitnodiging**. Uitnodigingslinks werken naast elk
+   daarvan.
+4. Zodra je binnen bent, reizen posts van jouw huis naar het huis
+   van elk ander lid: rechtstreeks of via de mesh voor
+   huishoudens waarmee je gekoppeld bent, via de GFS voor volgers
+   en leden die via een GFS-link zijn toegetreden.
 
 ## Twee soorten uitnodigingslink
 
@@ -192,26 +212,21 @@ Wat dat in de praktijk betekent:
 
 ## Wat gebeurt er als de relay uitvalt?
 
-De relay is het verdeelpunt voor openbare en wereldwijde spaces,
-dus zolang hij uit de lucht is, wachten posts naar die spaces.
-Er gaat niets stilletjes verloren: je huishouden blijft het
-proberen – na een paar seconden, dan een halve minuut, dan een
-paar minuten, dan elke tien – en de relay houdt, zodra hij terug
-is, nog steeds tot een dag aan verzegelde enveloppen vast voor
-leden die offline waren. Je lokale kopie wordt thuis opgeslagen
-op het moment dat je op verzenden drukt.
+Leden met wie je gekoppeld bent, merken niets: hun posts gingen
+nooit via de GFS. Volgers en leden die via een GFS-link zijn
+toegetreden, moeten wachten. Er gaat niets stilletjes verloren:
+je huishouden blijft het proberen – na een paar seconden, dan een
+halve minuut, dan een paar minuten, dan elke tien – en de relay
+houdt, zodra hij terug is, nog steeds tot een dag aan verzegelde
+enveloppen vast voor huishoudens die offline waren. Je lokale
+kopie wordt thuis opgeslagen op het moment dat je op verzenden
+drukt.
 
-In de praktijk is dit van belang wanneer:
-
-- Je relay een storing heeft. Leden die in de space met _elkaar_
-  praten, zien geen nieuwe posts tot hij terug is.
-- Je afhankelijk bent van één relay die door het project wordt
-  gedraaid. Je huishouden met een tweede relay verbinden (of er
-  zelf een draaien) is de remedie.
-
-Je space met **meerdere relays** verbinden wordt ondersteund en
-aangemoedigd voor de veerkracht. Posts gaan naar buiten via elke
-relay die je hebt verbonden.
+Heeft je space veel volgers, dan is je huishouden met een tweede
+relay verbinden (of er zelf een draaien) de remedie. Een
+wereldwijde space wordt gepubliceerd op elke relay waarmee je
+verbonden bent, en posts voor volgers gaan via al die relays naar
+buiten.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -242,28 +257,25 @@ specifieke community. Zie
 [Zelf een relay draaien](/nl/docs/running-a-gfs/) voor een
 handleiding met Docker Compose + Cloudflare.
 
-## Wat verandert ten opzichte van andere bereiken
+## Naast elkaar
 
-| Gedrag                  | Privé / huishouden                                   | Openbaar / wereldwijd                                                                          |
-| ----------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Zichtbaar voor          | alleen uitgenodigde leden / leden van het huishouden | op de kaart van de relay; iedereen die ermee verbonden is kan hem vinden                       |
-| Lid worden              | uitnodiging of lidmaatschap van het huishouden       | open / verzoek / uitnodigingslink – de host kiest per space                                    |
-| Hoe posts reizen        | rechtstreeks, van huishouden tot huishouden          | via de relay naar elk lid, elke keer                                                           |
-| Wat de relay ziet       | niets (geen relay, tenzij je hem inschakelt)         | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud                             |
-| Versleuteling           | **altijd aan**                                       | **altijd aan**                                                                                 |
-| Waar berichten leven    | in het huis van elk lid                              | in het huis van elk lid (de relay slaat nooit inhoud op)                                       |
-| Als de relay offline is | n.v.t.                                               | posts wachten en proberen opnieuw; de relay houdt een dag aan enveloppen vast als hij terug is |
-| Zichtbaar voor peers    | alleen leden                                         | alleen leden – lekt nooit naar je graaf van gekoppelde huishoudens                             |
-| Kan worden uitgezet     | ja, per stemming van beheerders                      | ja – publicatie intrekken per stemming van beheerders; de relay vergeet                        |
+| Gedrag                  | Privé / huishouden / openbaar                                    | Wereldwijd                                                                      |
+| ----------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Wie kan hem vinden      | uitgenodigde mensen / je huis / gekoppelde huishoudens           | iedereen die met dezelfde GFS is verbonden                                      |
+| Lid worden              | uitnodiging, lidmaatschap van het huishouden of toetredingsmodus | open / aanvragen / alleen op uitnodiging, plus uitnodigingslinks                |
+| Hoe posts reizen        | rechtstreeks of via de mesh                                      | hetzelfde voor gekoppelde leden; via de GFS voor de rest                        |
+| Wat de relay ziet       | niets (geen relay, tenzij ingeschakeld)                          | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud              |
+| Versleuteling           | **altijd aan**                                                   | **altijd aan**                                                                  |
+| Waar berichten leven    | in het huis van elk lid                                          | in het huis van elk lid (de relay slaat nooit inhoud op)                        |
+| Als de relay offline is | n.v.t.                                                           | volgers wachten; posts proberen opnieuw, de relay houdt een dag enveloppen vast |
+| Kan worden uitgezet     | ja, per stemming van beheerders                                  | ja: per stemming van beheerders niet-wereldwijd maken, en de relay vergeet      |
 
 ## Privacy in wereldwijde spaces
 
-Openbare en wereldwijde spaces blijven afgeschermd van de rest
-van je federatie. Ze verschijnen niet bij je gekoppelde
-huishoudens, ze worden niet meegenomen in een synchronisatie op
-huishoudniveau, en informatie die in de ene space wordt
-geplaatst, lekt nooit naar een andere (of naar je privéspaces).
-De space is een bewust bereik: alleen leden, op de relay die jij
-hebt gekozen. Wat de relay wel en niet kan zien, staat
-uitgespeld op de pagina's [privacymodel](/nl/docs/privacy/) en
+Een wereldwijde space blijft afgeschermd van de rest van je
+huishouden. Informatie die in de ene space wordt geplaatst, lekt
+nooit naar een andere, of naar je privéspaces, en de relay leert
+alleen iets over de wereldwijde spaces waaraan je meedoet. Wat de
+relay wel en niet kan zien, staat uitgespeld op de pagina's
+[privacymodel](/nl/docs/privacy/) en
 [beveiligingsmodel](/nl/docs/security/).

@@ -124,9 +124,11 @@ Recovery Kit en bewaar je die op een veilige plek.
 
 De GFS (Global Federation Server) — de wereldwijde
 federatieserver, de relay die huishoudens helpt elkaar te vinden —
-zit op het pad van elke post in een openbare of wereldwijde space.
-Hij draagt verzegelde enveloppen, opgevuld tot een paar vaste
-groottes, en waaiert ze uit naar de lid-huishoudens. Hij slaat
+brengt de posts van een wereldwijde space naar huishoudens waarmee
+je niet gekoppeld bent: volgers, en leden die via een GFS-link
+zijn toegetreden. Gekoppelde huishoudens krijgen ze rechtstreeks
+of via de mesh. Hij draagt verzegelde enveloppen, opgevuld tot
+een paar vaste groottes, en waaiert ze uit. Hij slaat
 geen inhoud op: is een huishouden offline, dan bewaart hij de
 verzegelde enveloppen een dag en laat ze daarna los. Zie
 [GFS](/nl/docs/glossary/#gfs) in de woordenlijst.

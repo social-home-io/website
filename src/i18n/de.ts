@@ -220,7 +220,7 @@ export const de: UiStrings = {
       p1Html:
         "Kopple zwei Zuhause einmal per QR-Code. Danach kannst du <em>Spaces</em> anlegen — gemeinsame Räume mit eigenem Feed, Chat und Kalender — über beide hinweg. Führe einen Buchclub, organisiere ein Straßenfest oder richte einen ruhigen Raum für die Großeltern ein.",
       p2Html:
-        'Ein kleines, quelloffenes <a href="/docs/global-spaces/">Relay</a> — der GFS — hilft Haushalten, die sich noch nicht gekoppelt haben, sich für öffentliche und globale Spaces zu finden, und trägt ihre versiegelten Beiträge weiter. Lesen kann es sie nicht: Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt. Wir betreiben einen unter <a href="/servers/">gfs.social-home.io</a> — verbinde dich mit einem Tipp.',
+        'Ein kleines, quelloffenes <a href="/docs/global-spaces/">Relay</a> — der GFS — hilft Haushalten, die sich noch nicht gekoppelt haben, sich in globalen Spaces zu finden, und trägt ihre versiegelten Beiträge weiter. Lesen kann es sie nicht: Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt. Wir betreiben einen unter <a href="/servers/">gfs.social-home.io</a> — verbinde dich mit einem Tipp.',
     },
   },
 
@@ -467,8 +467,8 @@ export const de: UiStrings = {
     legend: {
       private: "Privat — nur die Leute, die du einlädst.",
       household: "Haushalt — automatisch alle in deinem Zuhause.",
-      public: "Öffentlich — auf der Karte deines GFS gelistet, damit andere ihn finden.",
-      global: "Global — weltweit veröffentlicht über deinen GFS.",
+      public: "Öffentlich — deine gekoppelten Haushalte können ihn finden und um Beitritt bitten.",
+      global: "Global — auf deinem GFS gelistet, damit jeder ihn finden kann.",
     },
   },
 
@@ -479,13 +479,13 @@ export const de: UiStrings = {
     eyebrow: "Global Federation Server",
     h1Html: "Verbinde dich mit dem Relay, das wir <em>für dich</em> betreiben.",
     ledeHtml:
-      "Das Social-Home-Projekt betreibt einen öffentlichen Global Federation Server (GFS) — jetzt live unter <code>gfs.social-home.io</code>. Er hilft deinen öffentlichen und globalen Spaces und deinen öffentlichen Momenten, Haushalte zu erreichen, die sich noch nicht mit dir gekoppelt haben. Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt, also trägt das Relay ihn weiter, ohne ihn je zu lesen.",
+      "Das Social-Home-Projekt betreibt einen öffentlichen Global Federation Server (GFS) — jetzt live unter <code>gfs.social-home.io</code>. Er hilft deinen globalen Spaces und deinen öffentlichen Momenten, Haushalte zu erreichen, die sich noch nicht mit dir gekoppelt haben. Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt, also trägt das Relay ihn weiter, ohne ihn je zu lesen.",
     hostedBy: "Gehostet von Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Ein QR-Scan und du bist verbunden. Öffentliche Spaces erscheinen auf der Karte; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch. Inhaltsblind per Design.",
+    body: "Ein QR-Scan und du bist verbunden. Globale Spaces erscheinen unter Räume entdecken; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch. Inhaltsblind per Design.",
     bullets: [
-      "Karte öffentlicher Spaces + globale Spaces",
+      "Verzeichnis globaler Spaces",
       "Öffentliches Momentum-Verzeichnis + Follow-Graph",
       "Relay für öffentliche Highlights-Links",
       "Altersfreigabe-Richtlinie wird durchgesetzt",
@@ -515,13 +515,13 @@ export const de: UiStrings = {
     seesColNever: "Nie",
     seesRows: [
       {
-        space: "Öffentliche & globale Spaces",
+        space: "Globale Spaces",
         mode: "vertrauend · Standard",
         sees: "Welcher Haushalt in welchen Space gepostet hat, und wann.",
         never: "Den Inhalt.",
       },
       {
-        space: "Öffentliche & globale Spaces",
+        space: "Globale Spaces",
         mode: "streng · Wahl des Besitzers",
         sees: "Dasselbe — aber nicht, wer gepostet hat.",
         never: "Den Inhalt oder den Absender.",

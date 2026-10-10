@@ -65,18 +65,21 @@ La portée d'un espace définit qui peut le trouver et qui peut y
 publier. Il y en a quatre, chacune touchant un public plus large
 que la précédente :
 
-- **Privé** — les membres que vous invitez explicitement.
-- **Foyer** — les membres de votre propre foyer.
-- **Public** — listé sur la carte d'un
-  [GFS](#gfs) auquel vous êtes connecté, pour que n'importe qui sur
-  ce GFS puisse le trouver.
-- **Global** — publié dans le monde entier via votre GFS.
+- **Privé** — seulement les personnes que vous invitez.
+- **Foyer** — tout votre propre foyer.
+- **Public** — vos foyers [jumelés](#jumelage) peuvent le trouver
+  sous Parcourir les espaces. Il reste dans votre propre cercle.
+- **Global** — listé sur chaque [GFS](#gfs) auquel votre maison
+  est connectée, pour que n'importe qui sur ce GFS puisse le
+  trouver.
 
-Les espaces publics et globaux transitent par un GFS ; les espaces
-privés et du foyer, non, sauf si le propriétaire d'un espace privé
-active le GFS pour celui-ci (c'est désactivé par défaut). Changer
-la portée d'un espace est une décision qui revient à tous ses admins
-— voir
+Seuls les espaces globaux sont listés sur un GFS. Un espace public
+l'est aussi si un admin le publie à la main sur un GFS, et un
+espace privé peut utiliser le GFS si son propriétaire l'active
+(désactivé par défaut). Les foyers avec qui vous êtes jumelé
+reçoivent les publications d'un espace directement ou par le
+maillage, quelle que soit sa portée. Changer la portée d'un espace
+est une décision qui revient à tous ses admins — voir
 [Espaces globaux](/fr/docs/global-spaces/#les-grandes-décisions-se-votent).
 
 ## Hôte
@@ -90,8 +93,10 @@ vit la liste des membres.
 
 Un GFS est un **Global Federation Server** (serveur de fédération
 global) — le relais qui aide les foyers à se trouver quand ils ne
-se connaissent pas encore, et qui transporte les publications
-scellées des espaces publics et globaux. Le projet Social Home en
+se connaissent pas encore. Il liste les espaces globaux, et
+transporte leurs publications scellées vers les foyers avec qui
+vous n'êtes pas jumelé : les abonnés, et les membres qui ont
+rejoint avec un Lien GFS. Le projet Social Home en
 fait tourner un ; chacun peut
 [faire tourner le sien](/fr/docs/running-a-gfs/). Un GFS voit des
 enveloppes scellées et des informations de routage, jamais le

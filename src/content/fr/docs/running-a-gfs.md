@@ -13,11 +13,13 @@ N'importe qui peut en héberger un, et cette page vous guide en
 Le [GFS (Global Federation Server – le serveur de fédération
 global)](/fr/docs/glossary/#gfs) — le relais qui aide les foyers
 à se trouver — a trois rôles. C'est un annuaire, pour que les
-foyers puissent trouver les espaces publics et globaux. Il
-transporte les publications scellées des espaces publics et
-globaux (et des espaces privés dont le propriétaire a activé le
-GFS), pour qu'un espace continue de vivre pendant que son hôte
-dort. Et il sert d'intermédiaire pour les liens publics vers un
+foyers puissent trouver les espaces globaux. Il transporte les
+publications scellées vers des foyers qui ne sont pas jumelés
+entre eux — les abonnés d'un espace global, les membres qui ont
+rejoint avec un Lien GFS, les espaces privés dont le propriétaire
+a activé le GFS, et les foyers jumelés qui ont activé la solution
+de repli GFS — pour qu'un espace continue de vivre pendant que son
+hôte dort. Et il sert d'intermédiaire pour les liens publics vers un
 Highlight — voir
 [Highlights → partager publiquement](/fr/docs/highlights/#partager-publiquement-via-un-serveur-global)
 pour le parcours côté auteur. Dans chacun de ces rôles, il ne

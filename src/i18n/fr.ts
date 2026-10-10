@@ -221,7 +221,7 @@ export const fr: UiStrings = {
       p1Html:
         "Jumelez deux maisons une fois avec un QR code. Ensuite, vous pouvez créer des <em>espaces</em> — des salons partagés avec leur propre fil, leur discussion et leur calendrier — entre les deux. Animez un club de lecture, organisez une fête de quartier, ou gardez un salon tranquille pour les grands-parents.",
       p2Html:
-        'Un petit <a href="/docs/global-spaces/">relais</a> open source — le GFS — aide les foyers qui ne se sont pas jumelés à se trouver pour les espaces publics et globaux, et transporte leurs publications scellées. Il ne peut pas les lire : chaque publication est scellée avant de quitter votre maison. Nous en faisons tourner un sur <a href="/servers/">gfs.social-home.io</a> — connectez-vous d\'un geste.',
+        'Un petit <a href="/docs/global-spaces/">relais</a> open source — le GFS — aide les foyers qui ne se sont pas jumelés à se trouver dans les espaces globaux, et transporte leurs publications scellées. Il ne peut pas les lire : chaque publication est scellée avant de quitter votre maison. Nous en faisons tourner un sur <a href="/servers/">gfs.social-home.io</a> — connectez-vous d\'un geste.',
     },
   },
 
@@ -473,8 +473,8 @@ export const fr: UiStrings = {
     legend: {
       private: "Privé — seulement les personnes que vous invitez.",
       household: "Foyer — tout le monde chez vous, automatiquement.",
-      public: "Public — listé sur la carte de votre GFS pour que d'autres le trouvent.",
-      global: "Global — publié dans le monde entier via votre GFS.",
+      public: "Public — vos foyers jumelés peuvent le trouver et demander à le rejoindre.",
+      global: "Global — listé sur votre GFS pour que tout le monde puisse le trouver.",
     },
   },
 
@@ -485,13 +485,13 @@ export const fr: UiStrings = {
     eyebrow: "Global Federation Server",
     h1Html: "Connectez-vous au relais que nous faisons tourner <em>pour vous</em>.",
     ledeHtml:
-      "Le projet Social Home fait tourner un Global Federation Server (GFS) public — en ligne dès maintenant sur <code>gfs.social-home.io</code>. Il aide vos espaces publics et globaux et vos moments publics à atteindre des foyers qui ne se sont pas encore jumelés avec vous. Chaque publication est scellée avant de quitter votre maison, le relais la transporte donc sans jamais la lire.",
+      "Le projet Social Home fait tourner un Global Federation Server (GFS) public — en ligne dès maintenant sur <code>gfs.social-home.io</code>. Il aide vos espaces globaux et vos moments publics à atteindre des foyers qui ne se sont pas encore jumelés avec vous. Chaque publication est scellée avant de quitter votre maison, le relais la transporte donc sans jamais la lire.",
     hostedBy: "Hébergé par Social Home",
     serverName: "Global Federation Server",
     live: "En ligne",
-    body: "Un scan de QR code et vous êtes connecté. Les espaces publics apparaissent sur la carte ; les moments publics se propagent aux abonnés de chaque foyer jumelé ; les liens publics des Highlights passent aussi par ici. Aveugle au contenu par conception.",
+    body: "Un scan de QR code et vous êtes connecté. Les espaces globaux apparaissent dans Parcourir les espaces ; les moments publics se propagent aux abonnés de chaque foyer jumelé ; les liens publics des Highlights passent aussi par ici. Aveugle au contenu par conception.",
     bullets: [
-      "Carte des espaces publics + espaces globaux",
+      "Annuaire des espaces globaux",
       "Annuaire public Momentum + graphe d'abonnements",
       "Relais des liens publics Highlights",
       "Politique de limite d'âge appliquée",
@@ -521,13 +521,13 @@ export const fr: UiStrings = {
     seesColNever: "Jamais",
     seesRows: [
       {
-        space: "Espaces publics et globaux",
+        space: "Espaces globaux",
         mode: "confiance · par défaut",
         sees: "Quel foyer a publié, dans quel espace, et quand.",
         never: "Le contenu.",
       },
       {
-        space: "Espaces publics et globaux",
+        space: "Espaces globaux",
         mode: "strict · au choix du propriétaire",
         sees: "La même chose — mais pas qui a publié.",
         never: "Le contenu, ni l'expéditeur.",

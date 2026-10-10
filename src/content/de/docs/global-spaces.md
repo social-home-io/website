@@ -1,42 +1,43 @@
 ---
 title: Globale Spaces
-description: Räume für Haushalte, die sich noch nicht kennen — öffentliche und globale Spaces, das Relay, das sie transportiert (eines, dem du vertraust, oder dein eigenes), und was es sehen kann und was nicht.
+description: Räume für Haushalte, die sich noch nicht kennen — die vier Arten von Space, das Relay, das globale Spaces transportiert (eines, dem du vertraust, oder dein eigenes), und was es sehen kann und was nicht.
 order: 40
 ---
 
-Die meisten Spaces in Social Home sind privat — nur für eingeladene
-Haushalte. Aber manche Communities sind von Natur aus offen: ein
-Nachbarschafts-Marktplatz, ein Laufclub für die ganze Stadt, ein
-Buchclub für gemeinfreie Bücher. Dafür hat Social Home
-**öffentliche** und **globale Spaces** und ein kleines Relay — den
-GFS (Global Federation Server – der globale Föderationsserver) —,
-das Haushalten hilft, einander zu finden. (Neues Wort? Siehe
+Die meisten Spaces in Social Home werden zwischen Haushalten
+geteilt, die du schon kennst: die Familie, die Nachbarn, mit denen
+du gekoppelt bist. Aber manche Communities sind von Natur aus offen:
+ein Nachbarschafts-Marktplatz, ein Laufclub für die ganze Stadt, ein
+Buchclub für gemeinfreie Bücher. Dafür hat Social Home **globale
+Spaces** und ein kleines Relay, den GFS (Global Federation Server –
+der globale Föderationsserver), das Haushalten hilft, die sich nie
+begegnet sind, einander zu finden. (Neues Wort? Siehe
 [GFS](/de/docs/glossary/#gfs) im Glossar.)
 
 ## Vier Arten von Space
 
-Bevor du zu einem Relay greifst, lohnt sich ein Blick auf das ganze
-Spektrum. Social Home kennt vier Space-Reichweiten (Scopes), jede
-mit einem etwas größeren Publikum:
+Jede Art reicht ein Stück weiter als die vorherige:
 
-| Reichweite     | Sichtbar für                                                                              | Nutzt ein Relay (GFS)?       |
-| -------------- | ----------------------------------------------------------------------------------------- | ---------------------------- |
-| **Privat**     | Mitglieder, die du ausdrücklich einlädst                                                  | Optional (standardmäßig aus) |
-| **Haushalt**   | Mitglieder deines eigenen Haushalts                                                       | Nein                         |
-| **Öffentlich** | Auf der Karte des GFS gelistet — jeder, der mit diesem GFS verbunden ist, kann ihn finden | **Ja**                       |
-| **Global**     | Weltweit über deinen GFS veröffentlicht                                                   | **Ja**                       |
+| Art            | Wer kann ihn finden                                    | Sieht der GFS ihn?                                     |
+| -------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| **Privat**     | Nur Leute, die du einlädst                             | Nein, außer der Besitzer schaltet den GFS dafür ein    |
+| **Haushalt**   | Alle in deinem Zuhause, automatisch                    | Nein                                                   |
+| **Öffentlich** | Deine gekoppelten Haushalte, unter **Räume entdecken** | Nein, außer ein Admin veröffentlicht ihn von Hand dort |
+| **Global**     | Jeder, dessen Zuhause mit demselben GFS verbunden ist  | **Ja**, er ist auf jedem GFS gelistet, den du nutzt    |
 
-Private und Haushalts-Spaces reisen direkt zwischen den beteiligten
-Haushalten. Der Besitzer eines privaten Space kann den GFS dafür
-einschalten — nützlich, wenn Mitglieder sich nicht direkt erreichen
-können —, aber er ist aus, solange du ihn nicht einschaltest.
+Eine Regel macht den Rest einfach: **Haushalte, mit denen du
+gekoppelt bist, brauchen den GFS nicht.** Beiträge erreichen sie
+direkt oder über das Mesh der Haushalte, die ihr beide kennt, egal
+welche Art von Space es ist. Der GFS kommt nur für Haushalte ins
+Spiel, mit denen du _nicht_ gekoppelt bist (oder als Ausweichweg,
+wenn du das für eine Verbindung eingeschaltet hast und der direkte
+Weg ausfällt).
 
-Öffentliche und globale Spaces laufen beide über den GFS. Ein
-**öffentlicher** Space bekommt einen Pin auf der Karte des GFS, mit
-dem du verbunden bist, mit auf etwa 11 m gerundetem Standort, sodass
-jeder auf diesem GFS ihn finden kann. Ein **globaler** Space wird
-weltweit über deinen GFS veröffentlicht. Der Rest dieser Seite
-behandelt diese beiden.
+Ein **öffentlicher** Space bleibt also in deinem eigenen Kreis: Es
+ist ein Space, den deine gekoppelten Haushalte finden und um Beitritt
+bitten können, nicht einer, den die ganze Welt sieht. Ein
+**globaler** Space ist der für Fremde. Der Rest dieser Seite handelt
+von globalen Spaces.
 
 ## Große Änderungen brauchen eine Abstimmung
 
@@ -73,25 +74,30 @@ eines Mitglieds wartet in einer Warteschlange, bis ein Moderator
 oder Admin ihn freigibt) oder **nur für Admins**. Geprüfte Einträge,
 die sich niemand ansieht, verfallen nach sieben Tagen.
 
-## Was ein globaler Space ist
+## Was der GFS für einen globalen Space tut
 
-Ein öffentlicher oder globaler Space lebt auf einem GFS, mit dem
-sich jeder Haushalt verbinden kann. Das Relay hat zwei Aufgaben:
+Ein GFS ist ein Relay, mit dem sich jeder Haushalt verbinden kann.
+Für einen globalen Space hat er zwei Aufgaben:
 
-1. **Es ist Karte und Verzeichnis.** Es listet, welche Spaces dort
-   veröffentlicht wurden, wer sie hostet und wie man beitritt.
-2. **Es ist die Beitrags-Drehscheibe.** Sobald du Mitglied bist,
-   geht jeder Beitrag, den du schreibst, durch das Relay, das ihn an
-   jeden anderen Haushalt in diesem Space verteilt.
+1. **Er ist ein Verzeichnis.** Er listet die globalen Spaces, die
+   dort veröffentlicht wurden, wer sie hostet, wie man beitritt und,
+   falls der Space einen hat, einen auf etwa 11 m gerundeten
+   Karten-Pin. Jeder, der mit diesem GFS verbunden ist, findet sie
+   unter **Räume entdecken**.
+2. **Er trägt Beiträge zu Leuten, mit denen du nicht gekoppelt
+   bist.** Das sind **Follower**, Haushalte, die mitlesen, ohne
+   beizutreten (nur wenn der Besitzer Follower erlaubt; standardmäßig
+   ist das aus), und **Mitglieder, die über einen GFS-Link
+   beigetreten sind**. Mitglieder, mit denen du gekoppelt bist,
+   bekommen jeden Beitrag weiterhin direkt oder über das Mesh.
 
 Das Relay sieht nie den _Inhalt_ deiner Beiträge. Jeder Beitrag wird
 auf dem Weg aus deinem Zuhause versiegelt und erst im Zuhause jedes
-Mitglieds wieder geöffnet, wenn er ankommt. Der Umschlag wird auf
-eine von wenigen festen Größen aufgepolstert, sodass das Relay nicht
-einmal eine kurze Nachricht von einer langen unterscheiden kann. Es
-speichert keine Inhalte: Ist ein Mitglied offline, hält es dessen
-versiegelte Umschläge einen Tag lang zurück und lässt sie dann
-fallen.
+Empfängers wieder geöffnet. Der Umschlag wird auf eine von wenigen
+festen Größen aufgepolstert, sodass das Relay nicht einmal eine
+kurze Nachricht von einer langen unterscheiden kann. Es speichert
+keine Inhalte: Ist ein Haushalt offline, hält es dessen versiegelte
+Umschläge einen Tag lang zurück und lässt sie dann fallen.
 
 > Stell dir das Relay als Poststelle einer offenen Community vor.
 > Die Poststelle sieht, dass ein versiegeltes Paket an den Buchclub
@@ -101,9 +107,19 @@ fallen.
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Umschläge sind AES-256-GCM, signiert mit Ed25519; die einzigen
-lesbaren Felder sind `event_type`, `from_instance`, `to_instance`,
-`space_id` und `epoch`. Padding-Klassen: 1 / 4 / 16 / 64 / 128 KiB
+`PUBLIC_SPACE_TIERS = {public, global}`: Nur diese beiden dürfen
+überhaupt Inhalte an einen GFS weiterleiten. Ein globaler Space wird
+auf jedem GFS veröffentlicht, mit dem der Haushalt verbunden ist,
+sobald er global wird, und von allen zurückgezogen, wenn er es nicht
+mehr ist. Ein öffentlicher Space erreicht gekoppelte Haushalte als
+`SPACE_DIRECTORY_SYNC`-Snapshot (Name, Beschreibung, Emoji,
+Mitgliederzahl, Beitrittsmodus), nie über einen GFS; einen GFS
+erreicht er nur über den manuellen Veröffentlichen-Knopf und wird
+wieder zurückgezogen, wenn er privat oder Haushalt wird. Follower
+brauchen `allow_subscribers` an (standardmäßig aus). Mitglieder
+bekommen Beiträge immer über den normalen Mitglieder-Fan-out, direkt
+oder per Mesh, unabhängig vom GFS. Umschläge sind AES-256-GCM,
+signiert mit Ed25519. Padding-Klassen: 1 / 4 / 16 / 64 / 128 KiB
 (Mitglieder-Veröffentlichung), plus 191 KiB für Umschlag-Relay.
 Offline-Empfänger werden 24 h lang gepuffert, höchstens 2000
 Umschläge oder 64 MiB pro Empfänger. Alle Details auf der Seite zum
@@ -113,8 +129,9 @@ Umschläge oder 64 MiB pro Empfänger. Alle Details auf der Seite zum
 
 ## Vertrauend oder streng
 
-Standardmäßig läuft ein Space im **vertrauenden** Modus (trusted):
-Das Relay erfährt, welcher Haushalt in welchen Space gepostet hat
+Für die Beiträge, die tatsächlich über den GFS gehen, läuft ein
+Space standardmäßig im **vertrauenden** Modus (trusted): Das Relay
+erfährt, welcher Haushalt in welchen Space gepostet hat
 und wann — aber nie was. Für Communities, denen schon das zu viel
 ist, kann der Besitzer des Space in den **strengen** Modus (strict)
 wechseln: Beiträge gehen ganz ohne Absender hinaus, und das Relay
@@ -138,22 +155,23 @@ Quell-IP, Timing, die Größenklasse und die Abonnentenmenge.
 
 </details>
 
-## Wie Entdecken und Posten funktionieren
+## Wie Finden und Beitreten funktionieren
 
-1. Ein Haushalt legt einen Space an und **veröffentlicht** ihn auf
-   einem Relay. Das Relay erhält Name, Beschreibung, Titelbild,
-   Altersrichtlinie und Akzentfarbe des Space — genug, um ihn auf
-   die Karte zu setzen — aber **keine Nachrichteninhalte**.
-2. Jeder, dessen Zuhause mit demselben Relay verbunden ist, kann die
-   Karte durchstöbern, den Space finden und um Beitritt bitten.
-3. Ob der Beitritt gewährt wird, hängt vom **Beitrittsmodus** des
-   Space ab, den der Host wählt: **Offen** (jeder kann sofort
-   beitreten) oder **Anfrage** (der Host-Haushalt prüft und
-   genehmigt). Einladungslinks funktionieren zusätzlich zu beidem.
-4. Sobald du Mitglied bist, fließen Beiträge im Space so:
-   `dein Zuhause → Relay → Zuhause jedes anderen Mitglieds`. Das
-   Relay ist bei jeder Nachricht und jeder Reaktion auf dem Weg; es
-   verabschiedet sich nicht nach dem Kennenlernen.
+1. Ein Haushalt macht einen Space **global**. Sein Zuhause
+   veröffentlicht Name, Beschreibung, Titelbild, Altersrichtlinie und
+   Akzentfarbe auf jedem GFS, mit dem es verbunden ist: genug, um ihn
+   zu listen, aber **keine Nachrichteninhalte**.
+2. Jeder, dessen Zuhause mit demselben GFS verbunden ist, kann ihn
+   unter **Räume entdecken** finden und um Beitritt bitten oder
+   ihm folgen, wenn der Besitzer Follower erlaubt.
+3. Ob ein Beitritt gewährt wird, hängt vom **Beitrittsmodus** des
+   Space ab: **Offen** (jeder kann sofort beitreten), **Anfrage**
+   (ein Admin sagt Ja) oder **Nur auf Einladung**. Einladungslinks
+   funktionieren zusätzlich zu jedem davon.
+4. Sobald du drin bist, reisen Beiträge von deinem Zuhause zum
+   Zuhause jedes anderen Mitglieds: direkt oder über das Mesh für
+   Haushalte, mit denen du gekoppelt bist, über den GFS für Follower
+   und Mitglieder, die über einen GFS-Link beigetreten sind.
 
 ## Zwei Arten von Einladungslink
 
@@ -186,27 +204,21 @@ Was das in der Praxis heißt:
 
 ## Was passiert, wenn das Relay ausfällt?
 
-Das Relay ist die Beitrags-Drehscheibe für öffentliche und globale
-Spaces; solange es ausgefallen ist, warten Beiträge an diese Spaces.
-Nichts geht stillschweigend verloren: Dein Haushalt versucht es
-weiter — nach ein paar Sekunden, dann nach einer halben Minute, dann
-nach ein paar Minuten, dann alle zehn —, und das Relay hält, sobald
-es zurück ist, weiterhin bis zu einen Tag versiegelter Umschläge
-für Mitglieder bereit, die offline waren. Deine lokale Kopie ist in
-dem Moment zu Hause gespeichert, in dem du auf Senden drückst.
+Mitglieder, mit denen du gekoppelt bist, merken nichts: Ihre
+Beiträge liefen nie über den GFS. Follower und Mitglieder, die über
+einen GFS-Link beigetreten sind, müssen warten. Nichts geht
+stillschweigend verloren: Dein Haushalt versucht es weiter (nach ein
+paar Sekunden, dann nach einer halben Minute, dann nach ein paar
+Minuten, dann alle zehn), und das Relay hält, sobald es zurück ist,
+weiterhin bis zu einen Tag versiegelter Umschläge für Haushalte
+bereit, die offline waren. Deine lokale Kopie ist in dem Moment zu
+Hause gespeichert, in dem du auf Senden drückst.
 
-In der Praxis zählt das, wenn:
-
-- Dein Relay einen Ausfall hat. Mitglieder, die im Space
-  _miteinander_ reden, sehen keine neuen Beiträge, bis es zurück
-  ist.
-- Du von einem einzigen, vom Projekt betriebenen Relay abhängst.
-  Deinen Haushalt mit einem zweiten Relay zu verbinden (oder ein
-  eigenes zu betreiben) ist die Lösung.
-
-Deinen Space mit **mehreren Relays** zu verbinden wird unterstützt
-und für mehr Ausfallsicherheit empfohlen. Beiträge gehen über jedes
-Relay hinaus, mit dem du verbunden bist.
+Hat dein Space viele Follower, ist es die Lösung, deinen Haushalt
+mit einem zweiten Relay zu verbinden (oder ein eigenes zu
+betreiben). Ein globaler Space wird auf jedem Relay veröffentlicht,
+mit dem du verbunden bist, und Beiträge für Follower gehen über alle
+hinaus.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
@@ -235,28 +247,25 @@ bestimmte Community hosten. Siehe
 [Ein Relay selbst betreiben](/de/docs/running-a-gfs/) für eine
 Anleitung mit Docker Compose + Cloudflare.
 
-## Was sich gegenüber anderen Reichweiten ändert
+## Nebeneinander
 
-| Verhalten                  | Privat / Haushalt                              | Öffentlich / global                                                                         |
-| -------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| Sichtbar für               | nur Eingeladene / Haushaltsmitglieder          | auf der Karte des Relays; jeder, der damit verbunden ist, kann ihn finden                   |
-| Beitritt                   | Einladung oder Haushaltsmitgliedschaft         | offen / Anfrage / Einladungslink — der Host wählt pro Space                                 |
-| Wie Beiträge reisen        | direkt, von Haushalt zu Haushalt               | durch das Relay an jedes Mitglied, jedes Mal                                                |
-| Was das Relay sieht        | nichts (kein Relay, außer du schaltest es ein) | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag — nie Inhalte                |
-| Verschlüsselung            | **immer an**                                   | **immer an**                                                                                |
-| Wo Nachrichten liegen      | im Zuhause jedes Mitglieds                     | im Zuhause jedes Mitglieds (das Relay speichert nie Inhalte)                                |
-| Wenn das Relay offline ist | entfällt                                       | Beiträge warten und werden wiederholt; das Relay hält nach der Rückkehr einen Tag Umschläge |
-| Sichtbar für Peers         | nur Mitglieder                                 | nur Mitglieder — sickert nie in den Graphen deiner gekoppelten Haushalte                    |
-| Lässt sich abschalten      | ja, per Admin-Abstimmung                       | ja — per Admin-Abstimmung zurückziehen; das Relay vergisst ihn                              |
+| Verhalten                  | Privat / Haushalt / öffentlich                         | Global                                                                      |
+| -------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------- |
+| Wer kann ihn finden        | Eingeladene / dein Zuhause / gekoppelte Haushalte      | jeder, der mit demselben GFS verbunden ist                                  |
+| Beitritt                   | Einladung, Haushaltsmitgliedschaft oder Beitrittsmodus | offen / Anfrage / nur auf Einladung, plus Einladungslinks                   |
+| Wie Beiträge reisen        | direkt oder über das Mesh                              | genauso für gekoppelte Mitglieder; über den GFS für alle anderen            |
+| Was das Relay sieht        | nichts (kein Relay, außer eingeschaltet)               | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte |
+| Verschlüsselung            | **immer an**                                           | **immer an**                                                                |
+| Wo Nachrichten liegen      | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (das Relay speichert nie Inhalte)                |
+| Wenn das Relay offline ist | entfällt                                               | Follower warten; Beiträge werden wiederholt, das Relay hält einen Tag lang  |
+| Lässt sich abschalten      | ja, per Admin-Abstimmung                               | ja: per Admin-Abstimmung nicht mehr global machen, und das Relay vergisst   |
 
 ## Privatsphäre in globalen Spaces
 
-Öffentliche und globale Spaces bleiben vom Rest deiner Föderation
-abgeschottet. Sie tauchen bei deinen gekoppelten Haushalten nicht
-auf, sie werden in keine Synchronisation auf Haushaltsebene
-einbezogen, und was in einem Space gepostet wird, sickert nie in
-einen anderen (oder in deine privaten Spaces). Der Space ist ein
-bewusst gezogener Rahmen: nur Mitglieder, auf dem Relay, das du
-gewählt hast. Was das Relay sehen kann und was nicht, steht auf den
-Seiten zum [Datenschutzmodell](/de/docs/privacy/) und
+Ein globaler Space bleibt vom Rest deines Haushalts abgeschottet.
+Was in einem Space gepostet wird, sickert nie in einen anderen oder
+in deine privaten Spaces, und das Relay erfährt immer nur von den
+globalen Spaces, an denen du teilnimmst. Was das Relay sehen kann
+und was nicht, steht auf den Seiten zum
+[Datenschutzmodell](/de/docs/privacy/) und
 [Sicherheitsmodell](/de/docs/security/).

@@ -35,8 +35,9 @@ words used here are in [Words we use](/docs/glossary/).
 ## What the global relay sees
 
 The GFS (Global Federation Server) — the relay that helps
-households find each other — carries the posts of public and
-global spaces as sealed envelopes. What it learns about you
+households find each other — lists global spaces and carries
+their posts, as sealed envelopes, to households you aren't paired
+with. What it learns about you
 depends on how the space is set up (see
 [GFS](/docs/glossary/#gfs) in the glossary):
 
@@ -59,8 +60,9 @@ It **never** sees:
 It does see your IP address, the timing and the rough size of
 each envelope, and which households receive a space's posts.
 
-No relay is involved at all if you have no public or global
-spaces, no public Moments, no public highlight links and no
+No relay is involved at all if you have no global spaces (and
+no public space you published to a GFS by hand), no public
+Moments, no public highlight links and no
 private space with the GFS switch on. Your household then talks
 only to households you've paired with, directly.
 

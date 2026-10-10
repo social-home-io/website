@@ -11,9 +11,11 @@ you through it in about 15 minutes.
 
 The [GFS (Global Federation Server)](/docs/glossary/#gfs) — the
 relay that helps households find each other — has three jobs. It
-is a directory, so households can find public and global spaces.
-It carries sealed posts for public and global spaces (and for
-private spaces whose owner switched the GFS on), so a space keeps
+is a directory, so households can find global spaces. It carries
+sealed posts to households that aren't paired with each other —
+followers of a global space, members who joined with a GFS link,
+private spaces whose owner switched the GFS on, and paired
+households that turned on the GFS fallback — so a space keeps
 flowing while its host is asleep. And it brokers public highlight
 links — see
 [Highlights → sharing publicly](/docs/highlights/#sharing-publicly-via-a-global-server)

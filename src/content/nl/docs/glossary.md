@@ -62,17 +62,20 @@ Het bereik (scope) van een space bepaalt wie hem kan vinden en wie
 erin kan plaatsen. Er zijn er vier, elk met een breder publiek dan
 de vorige:
 
-- **Privé** — leden die je uitdrukkelijk uitnodigt.
-- **Huishouden** — de leden van je eigen huishouden.
-- **Openbaar** — staat op de kaart van een
-  [GFS](#gfs) waarmee je verbonden bent, zodat iedereen op die GFS
-  hem kan vinden.
-- **Wereldwijd** — overal ter wereld gepubliceerd via je GFS.
+- **Privé** — alleen mensen die je uitnodigt.
+- **Huishouden** — iedereen in je eigen huis.
+- **Openbaar** — je [gekoppelde](#koppelen) huishoudens kunnen hem
+  vinden onder Ruimtes bekijken. Hij blijft binnen je eigen kring.
+- **Wereldwijd** — staat op elke [GFS](#gfs) waarmee je huis
+  verbonden is, zodat iedereen op die GFS hem kan vinden.
 
-Openbare en wereldwijde spaces lopen via een GFS; privé en
-huishoudspaces niet, tenzij de eigenaar van een privé space de GFS
-ervoor inschakelt (standaard staat die uit). Het bereik van een
-space veranderen is een beslissing van al zijn beheerders — zie
+Alleen wereldwijde spaces staan op een GFS. Een openbare space
+ook, als een beheerder hem met de hand op een GFS publiceert, en
+een privé space kan de GFS gebruiken als de eigenaar dat
+inschakelt (standaard uit). Huishoudens waarmee je gekoppeld bent,
+krijgen de posts van een space rechtstreeks of via de mesh,
+ongeacht het bereik. Het bereik van een space veranderen is een
+beslissing van al zijn beheerders — zie
 [Wereldwijde spaces](/nl/docs/global-spaces/#grote-veranderingen-vragen-een-stemming).
 
 ## Host
@@ -86,8 +89,10 @@ is wel de plek waar de ledenlijst woont.
 
 Een GFS is een **Global Federation Server** — de wereldwijde
 federatieserver: de relay die huishoudens helpt elkaar te vinden
-als ze elkaar nog niet kennen, en die de verzegelde berichten van
-openbare en wereldwijde spaces draagt. Het Social Home-project
+als ze elkaar nog niet kennen. Hij toont wereldwijde spaces en
+brengt hun verzegelde berichten naar huishoudens waarmee je niet
+gekoppeld bent: volgers, en leden die via een GFS-link zijn
+toegetreden. Het Social Home-project
 draait er een; iedereen kan
 [er zelf een draaien](/nl/docs/running-a-gfs/). Een GFS ziet
 verzegelde enveloppen en routeringsinformatie, nooit de inhoud van

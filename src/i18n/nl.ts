@@ -212,7 +212,7 @@ export const nl: UiStrings = {
       p1Html:
         "Koppel twee huizen één keer met een QR-code. Daarna kun je <em>spaces</em> maken — gedeelde ruimtes met een eigen feed, chat en agenda — over beide heen. Run een leesclub, organiseer een straatfeest of houd één rustige ruimte voor de grootouders.",
       p2Html:
-        'Een kleine, open-source <a href="/docs/global-spaces/">relay</a> — de GFS — helpt huishoudens die niet gekoppeld zijn elkaar te vinden voor openbare en wereldwijde spaces en draagt hun verzegelde berichten. Lezen kan hij ze niet: elk bericht wordt verzegeld voordat het je huis verlaat. Wij draaien er een live op <a href="/servers/">gfs.social-home.io</a> — verbind met één tik.',
+        'Een kleine, open-source <a href="/docs/global-spaces/">relay</a> — de GFS — helpt huishoudens die niet gekoppeld zijn elkaar te vinden in wereldwijde spaces en draagt hun verzegelde berichten. Lezen kan hij ze niet: elk bericht wordt verzegeld voordat het je huis verlaat. Wij draaien er een live op <a href="/servers/">gfs.social-home.io</a> — verbind met één tik.',
     },
   },
 
@@ -458,8 +458,8 @@ export const nl: UiStrings = {
     legend: {
       private: "Privé — alleen de mensen die je uitnodigt.",
       household: "Huishouden — iedereen in je huis, automatisch.",
-      public: "Openbaar — staat op de kaart van je GFS zodat anderen hem kunnen vinden.",
-      global: "Wereldwijd — overal ter wereld gepubliceerd via je GFS.",
+      public: "Openbaar — je gekoppelde huishoudens kunnen hem vinden en om toegang vragen.",
+      global: "Wereldwijd — staat op je GFS zodat iedereen hem kan vinden.",
     },
   },
 
@@ -470,13 +470,13 @@ export const nl: UiStrings = {
     eyebrow: "Global Federation Server",
     h1Html: "Verbind met de relay die wij <em>voor jou</em> draaien.",
     ledeHtml:
-      "Het Social Home-project draait één openbare Global Federation Server (GFS) — nu live op <code>gfs.social-home.io</code>. Hij helpt je openbare en wereldwijde spaces en je openbare momenten om huishoudens te bereiken die nog niet met je gekoppeld zijn. Elk bericht wordt verzegeld voordat het je huis verlaat, dus de relay draagt het zonder het ooit te lezen.",
+      "Het Social Home-project draait één openbare Global Federation Server (GFS) — nu live op <code>gfs.social-home.io</code>. Hij helpt je wereldwijde spaces en je openbare momenten om huishoudens te bereiken die nog niet met je gekoppeld zijn. Elk bericht wordt verzegeld voordat het je huis verlaat, dus de relay draagt het zonder het ooit te lezen.",
     hostedBy: "Gehost door Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Eén QR-scan en je bent verbonden. Openbare spaces verschijnen op de kaart; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
+    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces verschijnen onder Ruimtes bekijken; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
     bullets: [
-      "Kaart van openbare spaces + wereldwijde spaces",
+      "Gids van wereldwijde spaces",
       "Openbare Momentum-directory + volggraaf",
       "Relay voor openbare Highlights-links",
       "Leeftijdsgrensbeleid wordt afgedwongen",
@@ -506,13 +506,13 @@ export const nl: UiStrings = {
     seesColNever: "Nooit",
     seesRows: [
       {
-        space: "Openbare & wereldwijde spaces",
+        space: "Wereldwijde spaces",
         mode: "vertrouwd · standaard",
         sees: "Welk huishouden iets plaatste, in welke space, wanneer.",
         never: "De inhoud.",
       },
       {
-        space: "Openbare & wereldwijde spaces",
+        space: "Wereldwijde spaces",
         mode: "strikt · keuze van de eigenaar",
         sees: "Hetzelfde — maar niet wie het plaatste.",
         never: "De inhoud, of de afzender.",
