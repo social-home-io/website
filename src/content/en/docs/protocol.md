@@ -149,26 +149,26 @@ Some spaces are private to invited households. A _public_ space
 is one your paired households can find and ask to join; it stays
 inside your own circle. A _global_ space — a public marketplace,
 a hobby community, a neighbourhood notice board — is for
-strangers too: a lightweight relay, the GFS (Global Federation
-Server), lists it so households who don't know each other can
-find it (see [GFS](/docs/glossary/#gfs)).
+strangers too: the owner picks one or more lightweight relays,
+GFSs (Global Federation Servers), that list it so households who
+don't know each other can find it (see [GFS](/docs/glossary/#gfs)).
 
 Paired households always get a space's posts directly or over
 the mesh. The relay only carries posts to households you aren't
 paired with — followers, and members who joined with a GFS link —
-as sealed, padded envelopes. It can't read a word. By default it knows
-which household posted and when; a space can switch to strict
-mode, where it doesn't even know who. More in
+as sealed, padded envelopes, and every listed GFS gets every post.
+It can't read a word, and members post
+anonymously. More in
 [Global spaces](/docs/global-spaces/).
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}`: only these may relay to
-a GFS. A global space is published to every connected GFS
-automatically; a public space only when an admin publishes it by
-hand. Public spaces reach paired households as a
-`SPACE_DIRECTORY_SYNC` snapshot, never via a GFS. The GFS sees routing
+Only a global space is ever listed on a GFS, and only on the GFSs
+in its owner-signed `gfs_servers` list (at most 8). Public spaces
+reach paired households as a `SPACE_DIRECTORY_SYNC` snapshot and
+never touch a GFS. Members publish anonymously to every
+listed GFS. The GFS sees routing
 metadata only (`space_id`, `event_type`, size bucket, timing,
 subscriber set, source IP); strict mode makes publishes
 identity-free. Offline members are queued 24 h; nothing else is

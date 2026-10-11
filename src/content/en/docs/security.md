@@ -127,15 +127,15 @@ stores no content: if a household is offline it keeps the sealed
 envelopes for a day, then lets them go. See
 [GFS](/docs/glossary/#gfs) in the glossary.
 
-| Mode                      | What the relay learns                                                                  |
-| ------------------------- | -------------------------------------------------------------------------------------- |
-| **Trusted** (default)     | which household posted into which listed space, at which key epoch, and when           |
-| **Strict** (opt-in)       | that _someone_ in the space posted — the sender is anonymous among the space's writers |
-| **Private space, GFS on** | which households belong to the channel — never the space's name, id, key or content    |
+| Mode                      | What the relay learns                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| **Trusted** (default)     | that _someone_ in the space posted, and when — never which household                |
+| **Strict** (opt-in)       | the same, and it can't tell which households are allowed to write                   |
+| **Private space, GFS on** | which households belong to the channel — never the space's name, id, key or content |
 
-In every mode the relay still sees the sender's IP address, the
-timing, the size bucket and which households receive a space's
-posts. A plain membership sync tells the GFS nothing.
+Only the GFSs the owner picked for a space are involved. In every
+mode the relay still sees the sender's IP address, the timing,
+the size bucket and which households receive a space's posts. A plain membership sync tells the GFS nothing.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -147,11 +147,14 @@ posts. A plain membership sync tells the GFS nothing.
   cookie-less session, and only to a GFS that has proved
   `anonymous_publish` — otherwise nothing is sent.
 - When a member publishes for itself (so the host needn't be
-  online), trusted mode signs the request with that household's
-  key; strict mode signs it with a shared per-epoch writer key
-  instead, so the GFS can't tell which member posted.
+  online), it signs with a shared per-epoch writer key in both
+  modes, so the GFS can't tell which member posted. It sends to
+  every GFS on the owner-signed list (at most 8), over a
+  cookie-less session pinned to the listed address, after that
+  GFS proves it holds the listed key. In strict mode writers also
+  subscribe in the same shuffled batch as followers.
 - Private spaces: `private_gfs` off by default; when on, an
-  opaque 128-bit channel id.
+  opaque 128-bit channel id on the GFSs the owner picks.
 - Padding buckets: 1 / 4 / 16 / 64 / 128 KiB for member
   publishes, plus a 191 KiB bucket for envelope relay.
 - Offline recipients: queued 24 h, at most 2000 envelopes or
@@ -258,8 +261,10 @@ dependencies. That is on the list, not in the pipeline.
 The things that are true today and that you should know before
 you trust us with the group chat:
 
-- In trusted mode the relay learns which household posted into
-  which space, and when.
+- A GFS the space's owner picked, but your household never
+  connected to, sees your IP address when you post there. Because
+  anonymous writers can't be told apart, a GFS can't ban one
+  household; the owner removes a writer by rotating the space key.
 - In every mode the relay sees your IP address, the timing and the
   size bucket of each envelope, and which households receive a
   space's posts.

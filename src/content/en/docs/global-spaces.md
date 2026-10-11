@@ -1,6 +1,6 @@
 ---
 title: Global spaces
-description: Rooms for households who don't already know each other — the four kinds of space, the relay that carries global spaces (one you trust, or one you run yourself), and what it can and can't see.
+description: When you need a GFS and when you don't — the four kinds of space, how the owner picks which GFSs list a global space, and what a GFS can and can't see.
 order: 40
 ---
 
@@ -13,28 +13,40 @@ Social Home has **global spaces**, and a small relay, the GFS
 met find each other. (New word? See [GFS](/docs/glossary/#gfs) in
 the glossary.)
 
+## Do I need a GFS?
+
+**Not for the people you know.** Once you've paired with a
+household, everything you share with it travels directly from
+your home to theirs, or across the mesh of households you both
+know. Private, household and public spaces all work without a GFS.
+
+You need a GFS when you want to reach households you **haven't**
+paired with:
+
+- **A global space** that strangers can find, follow or join.
+- **Following or joining** someone else's global space.
+- **A GFS link**, an invite that works without pairing first.
+- **A private space** whose members can't all reach each other
+  directly. The owner can switch the GFS on for it.
+- **A safety net** for a paired household, used only when the
+  direct path fails. It's off unless you switch it on.
+
 ## Four kinds of space
 
 Each kind reaches a little further than the one before:
 
-| Kind          | Who can find it                                 | Does the GFS see it?                              |
-| ------------- | ----------------------------------------------- | ------------------------------------------------- |
-| **Private**   | Only people you invite                          | No, unless the owner switches the GFS on for it   |
-| **Household** | Everyone in your home, automatically            | No                                                |
-| **Public**    | Your paired households, under **Browse spaces** | No, unless an admin publishes it to a GFS by hand |
-| **Global**    | Anyone whose home is connected to the same GFS  | **Yes**, it is listed on every GFS you use        |
+| Kind          | Who can find it                                     | Does a GFS see it?                                           |
+| ------------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| **Private**   | Only people you invite                              | No, unless the owner switches the GFS on and picks which GFS |
+| **Household** | Everyone in your home, automatically                | Never                                                        |
+| **Public**    | Households you're paired with, in **Browse spaces** | Never                                                        |
+| **Global**    | Anyone using one of the GFSs the owner picked       | Only the GFSs the owner picked                               |
 
-One rule makes the rest easy: **households you're paired with
-don't need the GFS.** Posts reach them directly, or across the
-mesh of households you both know, whatever kind of space it is.
-The GFS only comes in for households you _aren't_ paired with
-(or as a fallback, if you switched that on for a connection and
-the direct path is down).
-
-So a **public** space stays inside your own circle: it is a space
-your paired households can find and ask to join, not one the
-whole world can see. A **global** space is the one for strangers.
-The rest of this page is about global spaces.
+A **public** space stays inside your own circle: your paired
+households can find it and ask to join, and it never touches a
+GFS. To list a space on a GFS, you make it **global**, and the
+owner picks which GFSs list it. The rest of this page is about
+global spaces.
 
 ## Big changes take a vote
 
@@ -56,6 +68,10 @@ can dissolve the space or change who sees it on their own.
 Admins in paired households vote too; the host tallies everyone
 and only the approved result travels out.
 
+Once a space is global, **which GFSs list it is the owner's call
+alone**, with no vote. The owner can add or remove a GFS at any
+time in the space's settings.
+
 ## Who does what in a space
 
 Every space has an owner, and the owner can hand out roles. From
@@ -73,16 +89,25 @@ looks at expire after seven days.
 A GFS is a relay any household can connect to. For a global
 space it does two jobs:
 
-1. **It's a directory.** It lists the global spaces published to
-   it, who hosts them, how to join, and, if the space has one, a
-   map pin rounded to about 11 m. Anyone connected to that GFS
-   can find them under **Browse spaces**.
+1. **It's a directory.** The owner picks which GFSs list the
+   space, up to eight. Each one shows its name, who hosts it, how
+   to join and, if the space has one, a map pin rounded to about
+   11 m. Anyone using one of those GFSs can find it under
+   **Browse spaces**.
 2. **It carries posts to people you aren't paired with.** That
    means **followers**, households that read along without
    joining (only if the owner allows followers; it's off by
    default), and **members who joined with a GFS link**. Members
    you're paired with still get every post directly or over the
    mesh.
+
+**Every listed GFS gets every post.** A member sends each post to
+all the GFSs the owner picked, including ones their own household
+never connected to. So a follower who only uses GFS B still sees
+what a member posted while connected to GFS A, even while the
+host is offline. A GFS a member never connected to only sees that
+member's internet address and when they posted, never which
+household they are.
 
 The relay never sees the _contents_ of your posts. Every post is
 sealed on the way out of your home and only opened in each
@@ -99,67 +124,67 @@ their sealed envelopes for a day and then lets them go.
 <details class="tech">
 <summary>Under the hood</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}`: only those two may ever
-relay content to a GFS. A global space is published to every GFS
-the household is connected to when it becomes global, and
-withdrawn from all of them when it stops being global. A public
-space reaches paired households as a `SPACE_DIRECTORY_SYNC`
-snapshot (name, description, emoji, member count, join mode),
-never through a GFS; it reaches a GFS only through the manual
-publish button, and is withdrawn again if it turns private or
-household. Followers need `allow_subscribers` on (default off).
-Members always receive posts through the ordinary member fan-out,
-direct or mesh, independent of the GFS. Envelopes are
-AES-256-GCM, signed with Ed25519. Padding buckets: 1 / 4 / 16 /
-64 / 128 KiB (member publish), plus 191 KiB for envelope relay.
-Offline recipients are queued for 24 h, at most 2000 envelopes or
-64 MiB per recipient. Full detail on the
-[security model](/docs/security/#what-a-relay-sees) page.
+Only a global space can be listed on a GFS; publishing a public
+one answers `409 TIER_CHANGE_REQUIRED`. The owner's choice (at
+most 8) travels to members as an owner-signed list
+(`spaces.gfs_servers`) inside the encrypted `space_meta`; a
+co-admin can relay it but not change it. Leaving global or
+dissolving withdraws the space only from the GFSs that list it.
+Public spaces reach paired households as a `SPACE_DIRECTORY_SYNC`
+snapshot, never via a GFS. Members hold the writer group
+key and send every item anonymously to every listed GFS
+(`member-publish-anon`), over a cookie-less session pinned to the
+listed address, after the GFS proves it holds the listed key.
+Receivers dedupe by item id. Envelopes are AES-256-GCM, signed
+with Ed25519. Padding buckets: 1 / 4 / 16 / 64 / 128 KiB (member
+publish), plus 191 KiB for envelope relay. Offline recipients are
+queued for 24 h, at most 2000 envelopes or 64 MiB per recipient.
+Full detail on the [security model](/docs/security/#what-a-relay-sees)
+page.
 
 </details>
 
 ## Trusted or strict
 
-For the posts that do go through the GFS, a space runs in
-**trusted** mode by default: the relay learns which household
-posted into which space, and when — but never what. For communities where even that is too much, the space's
-owner can switch to **strict** mode: posts go out with no
-sender on them at all, and the relay only knows that _someone_
-in the space posted.
+The owner also chooses how members post through the GFS.
+
+- **Trusted** (the default): members post anonymously, so the GFS
+  can't tell which household posted.
+- **Strict**: on top of that, the GFS can't even tell which
+  households are allowed to write. Members and followers look the
+  same to it.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-Two paths reach the GFS. When the host household relays a post,
-the request is identity-free — `{space_id, event_type, payload}`
-on a cookie-less session — and is only sent to a GFS that has
-proved `anonymous_publish` support. When a member publishes for
-itself, trusted mode signs the request with that household's key
-(so the GFS learns who posted); strict mode signs it with a
-shared per-epoch writer key derived from the space seed, so the
-GFS can't tell members apart. A plain membership sync tells the
-GFS nothing. In both modes the GFS still sees source IP, timing,
-the size bucket and the subscriber set.
+Both modes hand every writer the per-epoch writer group key, so
+every item goes out anonymously to every listed GFS. The host
+relay is identity-free (`{space_id, event_type, payload}` on a
+cookie-less session). In strict mode writers subscribe in the
+same shuffled batch as followers. In both modes the GFS still
+sees source IP, timing, the size bucket and the subscriber set,
+and a GFS loses per-household bans for anonymous writers (per-IP
+limits remain; the owner revokes a writer by rotating the key).
 
 </details>
 
 ## How finding and joining work
 
-1. A household makes a space **global**. Its home publishes the
-   name, description, cover image, age policy and accent colour
-   to every GFS it is connected to: enough to list it, but **no
-   message content**.
-2. Anyone whose home is connected to that same GFS can find it
-   under **Browse spaces** and ask to join, or follow it if the
-   owner allows followers.
+1. The owner makes a space **global** and picks which GFSs list
+   it. Each one gets the name, description, cover image, age
+   policy and accent colour: enough to list it, but **no message
+   content**. A space can also be global but not listed anywhere
+   yet, until the owner picks a GFS.
+2. Anyone using one of those GFSs can find it under **Browse
+   spaces** and ask to join, or follow it if the owner allows
+   followers.
 3. Whether a join is granted depends on the space's **join
    mode**: **Open** (anyone can join straight away), **Request**
    (an admin says yes) or **Invite only**. Invite links work
    alongside any of them.
 4. Once you're in, posts travel from your home to every other
    member's home: directly or over the mesh for households you're
-   paired with, through the GFS for followers and members who joined
-   with a GFS link.
+   paired with, through the listed GFSs for everyone else.
 
 ## Two kinds of invite link
 
@@ -188,21 +213,20 @@ What that means in practice:
 - Every time the membership changes, the space gets a new key.
   Someone who left can't read anything posted after they left.
 
-## What happens if the relay is down?
+## What happens if a GFS is down?
 
 Members you're paired with don't notice: their posts never went
-through the GFS. Followers and members who joined with a GFS link
-have to wait. Nothing is silently dropped: your household keeps
-retrying (after a few seconds, then half a minute, then a couple
-of minutes, then every ten) and the relay, once it's back, still
-holds up to a day's worth of sealed envelopes for households that
-were offline. Your local copy is saved at home the moment you
-press send.
+through the GFS. If the space is listed on more than one GFS,
+followers on the others don't notice either. Only households that
+rely on the GFS that's down have to wait. Nothing is silently
+dropped: your household keeps retrying (after a few seconds, then
+half a minute, then a couple of minutes, then every ten) and the
+GFS, once it's back, still holds up to a day's worth of sealed
+envelopes for households that were offline. Your local copy is
+saved at home the moment you press send.
 
-If your space has many followers, connecting your household to a
-second relay (or running your own) is the cure. A global space is
-published to every relay you're connected to, and posts for
-followers go out through all of them.
+That's the best reason to list a busy global space on two GFSs,
+for example the project's one and one you run yourself.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -232,22 +256,22 @@ Compose + Cloudflare guide.
 
 ## Side by side
 
-| Behaviour           | Private / household / public                   | Global                                                       |
-| ------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| Who can find it     | invited people / your home / paired households | anyone connected to the same GFS                             |
-| Joining             | invite, household membership, or join mode     | open / request / invite only, plus invite links              |
-| How posts travel    | directly or over the mesh                      | the same for paired members; through the GFS for the rest    |
-| What the relay sees | nothing (no relay, unless switched on)         | routing data and a sealed, padded envelope, never content    |
-| Encryption          | **always on**                                  | **always on**                                                |
-| Where messages live | each member's home                             | each member's home (relay never stores content)              |
-| If relay is offline | n/a                                            | followers wait; posts retry, relay holds a day's envelopes   |
-| Can be turned off   | yes, by admin vote                             | yes: make it non-global by admin vote, and the relay forgets |
+| Behaviour           | Private / household / public                    | Global                                                             |
+| ------------------- | ----------------------------------------------- | ------------------------------------------------------------------ |
+| Who can find it     | invited people / your home / paired households  | anyone using one of the GFSs the owner picked                      |
+| Joining             | invite, household membership, or join mode      | open / request / invite only, plus invite links                    |
+| How posts travel    | directly or over the mesh                       | the same for paired members; through every listed GFS for the rest |
+| What a GFS sees     | nothing (unless a private space switches it on) | routing data and a sealed, padded envelope, never content          |
+| Encryption          | **always on**                                   | **always on**                                                      |
+| Where messages live | each member's home                              | each member's home (a GFS never stores content)                    |
+| If a GFS is offline | n/a                                             | the other listed GFSs carry on; posts retry                        |
+| Can be turned off   | yes, by admin vote                              | remove a GFS any time (owner), or leave global (admin vote)        |
 
 ## Privacy in global spaces
 
 A global space stays walled off from the rest of your household.
 Information posted in one space never bleeds into another, or
-into your private spaces, and the relay only ever learns about
-the global spaces you take part in. What the relay can and can't
+into your private spaces, and a GFS only ever learns about the
+global spaces it lists. What the relay can and can't
 see is spelled out on the [privacy model](/docs/privacy/) and
 [security model](/docs/security/) pages.

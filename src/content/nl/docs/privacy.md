@@ -42,14 +42,18 @@ enveloppen, naar huishoudens waarmee je niet gekoppeld bent. Wat hij over je te 
 space is ingesteld (zie [GFS](/nl/docs/glossary/#gfs) in de
 woordenlijst):
 
-- **Vertrouwd** (de standaard): welk huishouden in welke vermelde
-  space plaatste, en wanneer.
-- **Strikt** (opt-in per space): alleen dat _iemand_ in de space
-  plaatste. De afzender is anoniem tussen de schrijvers van de
-  space.
+- **Vertrouwd** (de standaard): alleen dat _iemand_ in de space
+  plaatste, en wanneer. Leden posten anoniem.
+- **Strikt** (opt-in per space): hetzelfde, en hij kan niet eens
+  zien welke huishoudens mogen schrijven.
 - **Een privé space met de GFS-schakelaar aan** (standaard uit):
   welke huishoudens bij het kanaal horen — nooit de naam, het id,
   de sleutel of de inhoud van de space.
+
+Alleen de GFS'en die de eigenaar van de space heeft gekozen, doen
+mee. Een GFS waarmee je huishouden nooit verbonden was, maar die
+de eigenaar heeft gekozen, ziet je internetadres als je daar
+post — nooit welk huishouden je bent.
 
 Hij ziet **nooit**:
 
@@ -65,8 +69,7 @@ elke envelop, en welke huishoudens de posts van een space
 ontvangen.
 
 Er komt helemaal geen relay aan te pas als je geen wereldwijde
-spaces hebt (en geen openbare space die je met de hand op een GFS
-hebt gepubliceerd), geen openbare momenten, geen openbare
+spaces hebt, geen openbare momenten, geen openbare
 highlight-links en geen privé space met de GFS-schakelaar aan. Je
 huishouden praat dan alleen met huishoudens waarmee je gekoppeld
 bent, rechtstreeks.
@@ -79,10 +82,10 @@ Alleen routeringsmetadata: `space_id`, `event_type`, grootteklasse
 tijdstippen, abonneeset, bron-IP. Een post die door het
 host-huishouden wordt doorgegeven is identiteitsvrij
 `{space_id, event_type, payload}` op een sessie zonder cookies;
-een lid dat voor zichzelf publiceert is in de vertrouwde modus
-ondertekend door het huishouden en in de strikte modus met een
-gedeelde schrijfsleutel per epoche. Een privé space met
-`private_gfs` aan gebruikt een ondoorzichtig 128-bits kanaal-id.
+een lid dat voor zichzelf publiceert, ondertekent in beide modi
+met een gedeelde schrijfsleutel per epoche. Een privé space met
+`private_gfs` aan gebruikt een ondoorzichtig 128-bits kanaal-id
+op de GFS'en die de eigenaar kiest.
 Offline ontvangers staan 24 h in de wachtrij (2000 enveloppen /
 64 MiB per ontvanger); daarbuiten wordt geen inhoud opgeslagen.
 

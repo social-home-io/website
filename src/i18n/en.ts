@@ -467,7 +467,7 @@ export const en: UiStrings = {
       private: "Private — only the people you invite.",
       household: "Household — everyone in your home, automatically.",
       public: "Public — your paired households can find it and ask to join.",
-      global: "Global — listed on your GFS for anyone to find.",
+      global: "Global — listed on the GFSs the owner picks, for anyone to find.",
     },
   },
 
@@ -482,7 +482,7 @@ export const en: UiStrings = {
     hostedBy: "Hosted by Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "One QR scan and you're connected. Global spaces show up in Browse spaces; public Moments fan out to followers across every paired household; Highlights public links route through here too. Content-blind by design.",
+    body: "One QR scan and you're connected. Global spaces whose owner picks this server show up in Browse spaces; public Moments fan out to followers across every paired household; Highlights public links route through here too. Content-blind by design.",
     bullets: [
       "Global space directory",
       "Public Momentum directory + follow graph",
@@ -516,13 +516,13 @@ export const en: UiStrings = {
       {
         space: "Global spaces",
         mode: "trusted · default",
-        sees: "Which household posted, into which space, when.",
+        sees: "That someone posted, into which space, when — never which household.",
         never: "The content.",
       },
       {
         space: "Global spaces",
         mode: "strict · owner's choice",
-        sees: "The same — but not who posted.",
+        sees: "The same — and not even which households may write.",
         never: "The content, or the sender.",
       },
       {

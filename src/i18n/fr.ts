@@ -474,7 +474,8 @@ export const fr: UiStrings = {
       private: "Privé — seulement les personnes que vous invitez.",
       household: "Foyer — tout le monde chez vous, automatiquement.",
       public: "Public — vos foyers jumelés peuvent le trouver et demander à le rejoindre.",
-      global: "Global — listé sur votre GFS pour que tout le monde puisse le trouver.",
+      global:
+        "Global — référencé sur les GFS choisis par le propriétaire, pour que tout le monde puisse le trouver.",
     },
   },
 
@@ -489,7 +490,7 @@ export const fr: UiStrings = {
     hostedBy: "Hébergé par Social Home",
     serverName: "Global Federation Server",
     live: "En ligne",
-    body: "Un scan de QR code et vous êtes connecté. Les espaces globaux apparaissent dans Parcourir les espaces ; les moments publics se propagent aux abonnés de chaque foyer jumelé ; les liens publics des Highlights passent aussi par ici. Aveugle au contenu par conception.",
+    body: "Un scan de QR code et vous êtes connecté. Les espaces globaux dont le propriétaire choisit ce serveur apparaissent dans Parcourir les espaces ; les moments publics se propagent aux abonnés de chaque foyer jumelé ; les liens publics des Highlights passent aussi par ici. Aveugle au contenu par conception.",
     bullets: [
       "Annuaire des espaces globaux",
       "Annuaire public Momentum + graphe d'abonnements",
@@ -523,13 +524,13 @@ export const fr: UiStrings = {
       {
         space: "Espaces globaux",
         mode: "confiance · par défaut",
-        sees: "Quel foyer a publié, dans quel espace, et quand.",
+        sees: "Que quelqu'un a publié, dans quel espace, et quand — jamais quel foyer.",
         never: "Le contenu.",
       },
       {
         space: "Espaces globaux",
         mode: "strict · au choix du propriétaire",
-        sees: "La même chose — mais pas qui a publié.",
+        sees: "La même chose — et même pas quels foyers peuvent écrire.",
         never: "Le contenu, ni l'expéditeur.",
       },
       {

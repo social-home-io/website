@@ -13,7 +13,8 @@ N'importe qui peut en héberger un, et cette page vous guide en
 Le [GFS (Global Federation Server – le serveur de fédération
 global)](/fr/docs/glossary/#gfs) — le relais qui aide les foyers
 à se trouver — a trois rôles. C'est un annuaire, pour que les
-foyers puissent trouver les espaces globaux. Il transporte les
+foyers puissent trouver les espaces globaux dont le propriétaire
+l'a choisi. Il transporte les
 publications scellées vers des foyers qui ne sont pas jumelés
 entre eux — les abonnés d'un espace global, les membres qui ont
 rejoint avec un Lien GFS, les espaces privés dont le propriétaire
@@ -184,9 +185,9 @@ usage unique et valable 10 minutes.
 Héberger un relais ne vous ouvre pas une fenêtre sur l'espace de
 qui que ce soit. Les publications arrivent scellées et complétées
 à taille fixe ; vous apprenez à quel espace appartient une
-enveloppe et quand elle est arrivée, et — dans le mode « de
-confiance » par défaut d'un espace — quel foyer l'a publiée. En
-mode strict, vous n'apprenez même pas cela. Pour le tableau
+enveloppe et quand elle est arrivée, mais pas quel foyer l'a
+publiée. En mode strict, vous ne pouvez même pas savoir quels
+foyers ont le droit d'écrire. Pour le tableau
 complet, y compris ce que le relais peut encore observer
 (horodatage, tailles, adresses IP), lisez le
 [modèle de sécurité](/fr/docs/security/).

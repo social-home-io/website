@@ -135,12 +135,13 @@ verzegelde enveloppen een dag en laat ze daarna los. Zie
 
 | Modus                     | Wat de relay te weten komt                                                                           |
 | ------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Vertrouwd** (standaard) | welk huishouden in welke vermelde space plaatste, bij welke sleutelepoche, en wanneer                |
-| **Strikt** (opt-in)       | dat _iemand_ in de space plaatste — de afzender is anoniem tussen de schrijvers van de space         |
+| **Vertrouwd** (standaard) | dat _iemand_ in de space plaatste, en wanneer — nooit welk huishouden                                |
+| **Strikt** (opt-in)       | hetzelfde, en hij kan niet zien welke huishoudens mogen schrijven                                    |
 | **Privé space, GFS aan**  | welke huishoudens bij het kanaal horen — nooit de naam, het id, de sleutel of de inhoud van de space |
 
-In elke modus ziet de relay nog steeds het IP-adres van de
-afzender, de tijdstippen, de grootteklasse en welke huishoudens de
+Alleen de GFS'en die de eigenaar voor een space heeft gekozen,
+doen mee. In elke modus ziet de relay nog steeds het IP-adres van
+de afzender, de tijdstippen, de grootteklasse en welke huishoudens de
 posts van een space ontvangen. Een gewone ledensynchronisatie
 vertelt de GFS niets.
 
@@ -155,12 +156,17 @@ vertelt de GFS niets.
   `anonymous_publish` heeft bewezen — anders wordt er niets
   verstuurd.
 - Als een lid voor zichzelf publiceert (zodat de host niet online
-  hoeft te zijn), ondertekent de vertrouwde modus het verzoek met
-  de sleutel van dat huishouden; de strikte modus ondertekent het
-  in plaats daarvan met een gedeelde schrijfsleutel per epoche,
-  zodat de GFS niet kan zien welk lid plaatste.
+  hoeft te zijn), ondertekent het in beide modi met een gedeelde
+  schrijfsleutel per epoche, zodat de GFS niet kan zien welk lid
+  plaatste. Het stuurt naar elke GFS op de door de eigenaar
+  ondertekende lijst (maximaal 8), via een sessie zonder cookies
+  die vastgepind is op het vermelde adres, nadat die GFS heeft
+  bewezen dat hij de vermelde sleutel bezit. In de strikte modus
+  abonneren schrijvers zich bovendien in dezelfde geschudde batch
+  als volgers.
 - Privé spaces: `private_gfs` standaard uit; indien aan, een
-  ondoorzichtig 128-bits kanaal-id.
+  ondoorzichtig 128-bits kanaal-id op de GFS'en die de eigenaar
+  kiest.
 - Opvulklassen: 1 / 4 / 16 / 64 / 128 KiB voor publicaties door
   leden, plus een klasse van 191 KiB voor envelop-relay.
 - Offline ontvangers: 24 h in de wachtrij, hoogstens 2000
@@ -272,8 +278,12 @@ pijplijn.
 De dingen die vandaag waar zijn en die je moet weten voordat je
 ons de groepschat toevertrouwt:
 
-- In de vertrouwde modus komt de relay te weten welk huishouden in
-  welke space plaatste, en wanneer.
+- Een GFS die de eigenaar van de space heeft gekozen, maar
+  waarmee je huishouden nooit verbonden was, ziet je IP-adres als
+  je daar post. Omdat anonieme schrijvers niet van elkaar te
+  onderscheiden zijn, kan een GFS niet één huishouden bannen; de
+  eigenaar verwijdert een schrijver door de sleutel van de space
+  te roteren.
 - In elke modus ziet de relay je IP-adres, de tijdstippen en de
   grootteklasse van elke envelop, en welke huishoudens de posts van
   een space ontvangen.
