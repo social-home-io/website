@@ -167,30 +167,30 @@ espace _public_ est un espace que vos foyers jumelés peuvent
 trouver et demander à rejoindre ; il reste dans votre propre
 cercle. Un espace _global_ — une place de marché publique, une
 communauté autour d'un loisir, le panneau d'affichage de votre
-quartier — s'adresse aussi aux inconnus : un relais léger, le GFS
-(Global Federation Server – le serveur de fédération global), le
-liste pour que des foyers qui ne se connaissent pas puissent le
-trouver (voir [GFS](/fr/docs/glossary/#gfs)).
+quartier — s'adresse aussi aux inconnus : le propriétaire choisit
+un ou plusieurs relais légers, des GFS (Global Federation Server –
+serveur de fédération global), qui le référencent pour que des
+foyers qui ne se connaissent pas puissent le trouver (voir
+[GFS](/fr/docs/glossary/#gfs)).
 
 Les foyers jumelés reçoivent toujours les publications d'un
 espace directement ou par le maillage. Le relais ne transporte
 les publications que vers les foyers avec qui vous n'êtes pas
 jumelé — les abonnés, et les membres qui ont rejoint avec un Lien
 GFS — sous forme d'enveloppes scellées et complétées à taille
-fixe. Il ne peut pas en lire un mot. Par défaut, il sait quel foyer a publié
-et quand ; un espace peut passer en mode strict, où il ne sait
-même plus qui. Plus de détails dans
+fixe, et chaque GFS référencé reçoit chaque publication. Il ne
+peut pas en lire un mot, et les membres publient anonymement.
+Plus de détails dans
 [Espaces globaux](/fr/docs/global-spaces/).
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}` : seules ces portées
-peuvent relayer vers un GFS. Un espace global est publié
-automatiquement sur chaque GFS connecté ; un espace public
-seulement quand un administrateur le publie à la main. Les
-espaces publics parviennent aux foyers jumelés sous forme
-d'instantané `SPACE_DIRECTORY_SYNC`, jamais via un GFS. Le GFS ne
+Seul un espace global est référencé sur un GFS, et seulement sur
+les GFS de sa liste `gfs_servers` signée par le propriétaire (au
+plus 8). Les espaces publics parviennent aux foyers jumelés sous
+forme d'instantané `SPACE_DIRECTORY_SYNC` et ne touchent jamais un
+GFS. Les membres publient anonymement sur chaque GFS référencé. Le GFS ne
 voit que des
 métadonnées de routage (`space_id`, `event_type`, tranche de
 taille, horodatage, ensemble des abonnés, IP source) ; le mode

@@ -64,14 +64,14 @@ are four, each one a wider audience than the last:
 - **Household** — everyone in your own home.
 - **Public** — your [paired](#pairing) households can find it
   under Browse spaces. It stays inside your own circle.
-- **Global** — listed on every [GFS](#gfs) your home is
-  connected to, for anyone on that GFS to find.
+- **Global** — listed on the [GFSs](#gfs) the owner picks, for
+  anyone using one of them to find.
 
-Only global spaces are listed on a GFS. A public space is too
-if an admin publishes it to one by hand, and a private space can
-use the GFS if its owner switches that on (off by default).
-Households you're paired with get a space's posts directly or
-over the mesh, whatever its scope. Changing a space's scope is a
+Only global spaces are listed on a GFS. Public, household and
+private spaces never are; a private space can use a GFS the owner
+picks if the owner switches that on (off by default). Households
+you're paired with get a space's posts directly or over the mesh,
+whatever its scope. Changing a space's scope is a
 decision for all of its admins — see
 [Global spaces](/docs/global-spaces/#big-changes-take-a-vote).
 
@@ -86,9 +86,10 @@ member list lives.
 
 A GFS is a **Global Federation Server** — the relay that helps
 households find each other when they don't already know one
-another. It lists global spaces, and carries their sealed posts
-to households you aren't paired with: followers, and members who
-joined with a GFS link. The Social Home project runs one; anyone can
+another. You don't need one for households you've paired with.
+A GFS lists the global spaces whose owner picked it, and carries
+their sealed posts to households you aren't paired with:
+followers, and members who joined with a GFS link. The Social Home project runs one; anyone can
 [run their own](/docs/running-a-gfs/). A GFS sees sealed
 envelopes and routing information, never the contents of a post.
 What it can and can't see is spelled out on the

@@ -459,7 +459,8 @@ export const nl: UiStrings = {
       private: "Privé — alleen de mensen die je uitnodigt.",
       household: "Huishouden — iedereen in je huis, automatisch.",
       public: "Openbaar — je gekoppelde huishoudens kunnen hem vinden en om toegang vragen.",
-      global: "Wereldwijd — staat op je GFS zodat iedereen hem kan vinden.",
+      global:
+        "Wereldwijd — vermeld op de GFS'en die de eigenaar kiest, zodat iedereen hem kan vinden.",
     },
   },
 
@@ -474,7 +475,7 @@ export const nl: UiStrings = {
     hostedBy: "Gehost door Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces verschijnen onder Ruimtes bekijken; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
+    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces waarvan de eigenaar deze server kiest, verschijnen onder Ruimtes bekijken; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
     bullets: [
       "Gids van wereldwijde spaces",
       "Openbare Momentum-directory + volggraaf",
@@ -508,13 +509,13 @@ export const nl: UiStrings = {
       {
         space: "Wereldwijde spaces",
         mode: "vertrouwd · standaard",
-        sees: "Welk huishouden iets plaatste, in welke space, wanneer.",
+        sees: "Dat iemand iets plaatste, in welke space, wanneer — nooit welk huishouden.",
         never: "De inhoud.",
       },
       {
         space: "Wereldwijde spaces",
         mode: "strikt · keuze van de eigenaar",
-        sees: "Hetzelfde — maar niet wie het plaatste.",
+        sees: "Hetzelfde — en zelfs niet welke huishoudens mogen schrijven.",
         never: "De inhoud, of de afzender.",
       },
       {

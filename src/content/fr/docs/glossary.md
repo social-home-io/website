@@ -69,13 +69,13 @@ que la précédente :
 - **Foyer** — tout votre propre foyer.
 - **Public** — vos foyers [jumelés](#jumelage) peuvent le trouver
   sous Parcourir les espaces. Il reste dans votre propre cercle.
-- **Global** — listé sur chaque [GFS](#gfs) auquel votre maison
-  est connectée, pour que n'importe qui sur ce GFS puisse le
-  trouver.
+- **Global** — référencé sur les [GFS](#gfs) choisis par le
+  propriétaire, pour que toute personne qui en utilise un puisse
+  le trouver.
 
-Seuls les espaces globaux sont listés sur un GFS. Un espace public
-l'est aussi si un admin le publie à la main sur un GFS, et un
-espace privé peut utiliser le GFS si son propriétaire l'active
+Seuls les espaces globaux sont référencés sur un GFS. Les espaces
+publics, foyer et privés ne le sont jamais ; un espace privé peut
+utiliser un GFS choisi par le propriétaire si celui-ci l'active
 (désactivé par défaut). Les foyers avec qui vous êtes jumelé
 reçoivent les publications d'un espace directement ou par le
 maillage, quelle que soit sa portée. Changer la portée d'un espace
@@ -93,8 +93,10 @@ vit la liste des membres.
 
 Un GFS est un **Global Federation Server** (serveur de fédération
 global) — le relais qui aide les foyers à se trouver quand ils ne
-se connaissent pas encore. Il liste les espaces globaux, et
-transporte leurs publications scellées vers les foyers avec qui
+se connaissent pas encore. Vous n'en avez pas besoin pour les
+foyers avec qui vous êtes jumelé. Un GFS liste les espaces
+globaux dont le propriétaire l'a choisi, et transporte leurs
+publications scellées vers les foyers avec qui
 vous n'êtes pas jumelé : les abonnés, et les membres qui ont
 rejoint avec un Lien GFS. Le projet Social Home en
 fait tourner un ; chacun peut

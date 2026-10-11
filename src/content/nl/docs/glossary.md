@@ -66,13 +66,13 @@ de vorige:
 - **Huishouden** — iedereen in je eigen huis.
 - **Openbaar** — je [gekoppelde](#koppelen) huishoudens kunnen hem
   vinden onder Ruimtes bekijken. Hij blijft binnen je eigen kring.
-- **Wereldwijd** — staat op elke [GFS](#gfs) waarmee je huis
-  verbonden is, zodat iedereen op die GFS hem kan vinden.
+- **Wereldwijd** — vermeld op de [GFS'en](#gfs) die de eigenaar
+  kiest, zodat iedereen die er een van gebruikt hem kan vinden.
 
-Alleen wereldwijde spaces staan op een GFS. Een openbare space
-ook, als een beheerder hem met de hand op een GFS publiceert, en
-een privé space kan de GFS gebruiken als de eigenaar dat
-inschakelt (standaard uit). Huishoudens waarmee je gekoppeld bent,
+Alleen wereldwijde spaces staan op een GFS. Openbare, huishouden-
+en privéspaces nooit; een privé space kan een GFS gebruiken die
+de eigenaar kiest, als de eigenaar dat inschakelt (standaard
+uit). Huishoudens waarmee je gekoppeld bent,
 krijgen de posts van een space rechtstreeks of via de mesh,
 ongeacht het bereik. Het bereik van een space veranderen is een
 beslissing van al zijn beheerders — zie
@@ -89,7 +89,9 @@ is wel de plek waar de ledenlijst woont.
 
 Een GFS is een **Global Federation Server** — de wereldwijde
 federatieserver: de relay die huishoudens helpt elkaar te vinden
-als ze elkaar nog niet kennen. Hij toont wereldwijde spaces en
+als ze elkaar nog niet kennen. Voor huishoudens waarmee je
+gekoppeld bent, heb je er geen nodig. Een GFS toont de
+wereldwijde spaces waarvan de eigenaar hem heeft gekozen, en
 brengt hun verzegelde berichten naar huishoudens waarmee je niet
 gekoppeld bent: volgers, en leden die via een GFS-link zijn
 toegetreden. Het Social Home-project

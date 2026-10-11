@@ -11,8 +11,8 @@ betreiben, und diese Seite führt dich in etwa 15 Minuten hindurch.
 
 Der [GFS (Global Federation Server – der globale Föderationsserver)](/de/docs/glossary/#gfs)
 — das Relay, das Haushalten hilft, einander zu finden — hat drei
-Aufgaben. Er ist ein Verzeichnis, damit Haushalte globale Spaces
-finden. Er transportiert versiegelte Beiträge zu Haushalten, die
+Aufgaben. Er ist ein Verzeichnis, damit Haushalte die globalen Spaces
+finden, deren Besitzer ihn gewählt haben. Er transportiert versiegelte Beiträge zu Haushalten, die
 nicht miteinander gekoppelt sind — Followern eines globalen Space,
 Mitgliedern, die über einen GFS-Link beigetreten sind, privaten
 Spaces, deren Besitzer den GFS eingeschaltet hat, und gekoppelten
@@ -178,10 +178,10 @@ gültig.
 
 Ein Relay zu betreiben gibt dir kein Fenster in irgendeinen Space.
 Beiträge kommen versiegelt und aufgepolstert an; du erfährst, zu
-welchem Space ein Umschlag gehört und wann er angekommen ist, und —
-im standardmäßigen vertrauenden Modus (trusted) eines Space —
-welcher Haushalt ihn veröffentlicht hat. Im strengen Modus (strict)
-erfährst du nicht einmal das. Das vollständige Bild, einschließlich
+welchem Space ein Umschlag gehört und wann er angekommen ist, aber
+nicht, welcher Haushalt ihn veröffentlicht hat. Im strengen Modus
+(Streng) erkennst du nicht einmal, welche Haushalte schreiben
+dürfen. Das vollständige Bild, einschließlich
 dessen, was das Relay weiterhin beobachten kann (Timing, Größen,
 IP-Adressen), steht im [Sicherheitsmodell](/de/docs/security/).
 

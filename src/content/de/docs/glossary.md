@@ -71,14 +71,13 @@ als die vorige:
 - **Öffentlich** — deine [gekoppelten](#kopplung) Haushalte
   können ihn unter Räume entdecken finden. Er bleibt in deinem
   eigenen Kreis.
-- **Global** — gelistet auf jedem [GFS](#gfs), mit dem dein
-  Zuhause verbunden ist, damit jeder auf diesem GFS ihn finden
-  kann.
+- **Global** — gelistet auf den [GFS](#gfs), die der Besitzer
+  wählt, damit jeder, der einen davon nutzt, ihn finden kann.
 
-Nur globale Spaces werden auf einem GFS gelistet. Ein
-öffentlicher Space auch, wenn ein Admin ihn von Hand dort
-veröffentlicht, und ein privater Space kann den GFS nutzen, wenn
-sein Besitzer das einschaltet (standardmäßig aus). Haushalte, mit
+Nur globale Spaces werden auf einem GFS gelistet. Öffentliche,
+Haushalts- und private Spaces nie; ein privater Space kann einen
+GFS nutzen, den der Besitzer wählt, wenn der Besitzer das
+einschaltet (standardmäßig aus). Haushalte, mit
 denen du gekoppelt bist, bekommen die Beiträge eines Space direkt
 oder über das Mesh, egal welche Reichweite er hat. Die Reichweite
 eines Space zu ändern ist eine Entscheidung aller seiner Admins —
@@ -96,10 +95,11 @@ die Mitgliederliste lebt.
 
 Ein GFS ist ein **Global Federation Server** — der globale
 Föderationsserver: das Relay, das Haushalten hilft, einander zu
-finden, wenn sie sich noch nicht kennen. Er listet globale
-Spaces und trägt ihre versiegelten Beiträge zu Haushalten, mit
-denen du nicht gekoppelt bist: Followern und Mitgliedern, die
-über einen GFS-Link beigetreten sind. Das Social-Home-Projekt betreibt einen; jeder kann
+finden, wenn sie sich noch nicht kennen. Für Haushalte, mit denen
+du gekoppelt bist, brauchst du keinen. Ein GFS listet die globalen
+Spaces, deren Besitzer ihn gewählt hat, und trägt ihre versiegelten
+Beiträge zu Haushalten, mit denen du nicht gekoppelt bist: Followern
+und Mitgliedern, die über einen GFS-Link beigetreten sind. Das Social-Home-Projekt betreibt einen; jeder kann
 [einen eigenen betreiben](/de/docs/running-a-gfs/). Ein GFS sieht
 versiegelte Umschläge und Routing-Informationen, nie den Inhalt
 eines Beitrags. Was er sehen kann und was nicht, steht auf der

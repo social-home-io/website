@@ -11,7 +11,8 @@ you through it in about 15 minutes.
 
 The [GFS (Global Federation Server)](/docs/glossary/#gfs) — the
 relay that helps households find each other — has three jobs. It
-is a directory, so households can find global spaces. It carries
+is a directory, so households can find the global spaces whose
+owners picked it. It carries
 sealed posts to households that aren't paired with each other —
 followers of a global space, members who joined with a GFS link,
 private spaces whose owner switched the GFS on, and paired
@@ -174,9 +175,9 @@ minutes.
 
 Running a relay doesn't give you a window into anyone's space.
 Posts arrive sealed and padded; you learn which space an
-envelope belongs to and when it arrived, and — in a space's
-default "trusted" mode — which household published it. In strict
-mode you don't even learn that. For the full picture, including
+envelope belongs to and when it arrived, but not which household
+published it. In strict mode you can't even tell which households
+are allowed to write. For the full picture, including
 what the relay can still observe (timing, sizes, IP addresses),
 read the [security model](/docs/security/).
 

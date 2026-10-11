@@ -44,14 +44,18 @@ bist. Was er über dich erfährt, hängt davon ab,
 wie der Space eingerichtet ist (siehe
 [GFS](/de/docs/glossary/#gfs) im Glossar):
 
-- **Vertrauend** (der Standard): welcher Haushalt in welchen
-  gelisteten Space gepostet hat, und wann.
-- **Streng** (Opt-in pro Space): nur, dass _jemand_ im Space
-  gepostet hat. Der Absender ist unter den Schreibenden des Space
-  anonym.
+- **Vertraut** (der Standard): nur, dass _jemand_ im Space
+  gepostet hat, und wann. Mitglieder posten anonym.
+- **Streng** (Opt-in pro Space): dasselbe, und er kann nicht
+  einmal erkennen, welche Haushalte schreiben dürfen.
 - **Ein privater Space mit eingeschaltetem GFS** (standardmäßig
   aus): welche Haushalte zum Kanal gehören — nie den Namen, die
   ID, den Schlüssel oder den Inhalt des Space.
+
+Beteiligt sind nur die GFS, die der Besitzer des Space gewählt
+hat. Ein GFS, mit dem dein Haushalt nie verbunden war, den der
+Besitzer aber gewählt hat, sieht deine Internetadresse, wenn du
+dort postest — nie, welcher Haushalt du bist.
 
 Er sieht **nie**:
 
@@ -66,9 +70,8 @@ Er sieht deine IP-Adresse, die Zeitpunkte und die ungefähre Größe
 jedes Umschlags sowie welche Haushalte die Beiträge eines Space
 empfangen.
 
-Gar kein Relay ist beteiligt, wenn du keine globalen Spaces (und
-keinen öffentlichen Space, den du von Hand auf einem GFS
-veröffentlicht hast), keine öffentlichen Momente, keine öffentlichen
+Gar kein Relay ist beteiligt, wenn du keine globalen Spaces, keine
+öffentlichen Momente, keine öffentlichen
 Highlight-Links und keinen privaten Space mit eingeschaltetem GFS
 hast. Dein Haushalt redet dann nur mit Haushalten, mit denen du
 gekoppelt bist, direkt.
@@ -81,11 +84,10 @@ Nur Routing-Metadaten: `space_id`, `event_type`, Größenklasse
 Umschlägen), Zeitpunkte, Abonnentenmenge, Quell-IP. Ein vom
 Host-Haushalt weitergeleiteter Beitrag ist identitätsfrei
 `{space_id, event_type, payload}` auf einer Sitzung ohne Cookies;
-ein Mitglied, das für sich selbst veröffentlicht, signiert im
-vertrauenden Modus mit dem Haushaltsschlüssel und im strengen
-Modus mit einem gemeinsamen Writer-Key pro Epoche. Ein privater
-Space mit eingeschaltetem `private_gfs` verwendet eine opake
-128-Bit-Kanal-ID. Offline-Empfänger werden 24 h in die
+ein Mitglied, das für sich selbst veröffentlicht, signiert in
+beiden Modi mit einem gemeinsamen Writer-Key pro Epoche. Ein
+privater Space mit eingeschaltetem `private_gfs` verwendet eine
+opake 128-Bit-Kanal-ID auf den GFS, die der Besitzer auswählt. Offline-Empfänger werden 24 h in die
 Warteschlange gestellt (2000 Umschläge / 64 MiB pro Empfänger);
 darüber hinaus wird kein Inhalt gespeichert.
 

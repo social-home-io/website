@@ -468,7 +468,7 @@ export const de: UiStrings = {
       private: "Privat — nur die Leute, die du einlädst.",
       household: "Haushalt — automatisch alle in deinem Zuhause.",
       public: "Öffentlich — deine gekoppelten Haushalte können ihn finden und um Beitritt bitten.",
-      global: "Global — auf deinem GFS gelistet, damit jeder ihn finden kann.",
+      global: "Global — auf den GFS gelistet, die der Besitzer wählt, damit jeder ihn finden kann.",
     },
   },
 
@@ -483,7 +483,7 @@ export const de: UiStrings = {
     hostedBy: "Gehostet von Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Ein QR-Scan und du bist verbunden. Globale Spaces erscheinen unter Räume entdecken; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch. Inhaltsblind per Design.",
+    body: "Ein QR-Scan und du bist verbunden. Globale Spaces, deren Besitzer diesen Server wählt, erscheinen unter Räume entdecken; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch. Inhaltsblind per Design.",
     bullets: [
       "Verzeichnis globaler Spaces",
       "Öffentliches Momentum-Verzeichnis + Follow-Graph",
@@ -516,14 +516,14 @@ export const de: UiStrings = {
     seesRows: [
       {
         space: "Globale Spaces",
-        mode: "vertrauend · Standard",
-        sees: "Welcher Haushalt in welchen Space gepostet hat, und wann.",
+        mode: "vertraut · Standard",
+        sees: "Dass jemand gepostet hat, in welchen Space, wann — nie, welcher Haushalt.",
         never: "Den Inhalt.",
       },
       {
         space: "Globale Spaces",
         mode: "streng · Wahl des Besitzers",
-        sees: "Dasselbe — aber nicht, wer gepostet hat.",
+        sees: "Dasselbe — und nicht einmal, welche Haushalte schreiben dürfen.",
         never: "Den Inhalt oder den Absender.",
       },
       {

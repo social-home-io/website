@@ -161,29 +161,26 @@ _öffentlicher_ Space ist einer, den deine gekoppelten Haushalte
 finden und um Beitritt bitten können; er bleibt in deinem eigenen
 Kreis. Ein _globaler_ Space — ein öffentlicher Marktplatz, eine
 Hobby-Community, das Schwarze Brett deiner Nachbarschaft — ist auch
-für Fremde: Ein leichtgewichtiges Relay, der GFS (Global Federation
-Server – der globale Föderationsserver), listet ihn, damit Haushalte,
-die sich nicht kennen, ihn finden können (siehe
-[GFS](/de/docs/glossary/#gfs)).
+für Fremde: Der Besitzer wählt ein oder mehrere leichtgewichtige
+Relays, GFS (Global Federation Server – der globale
+Föderationsserver), die ihn listen, damit Haushalte, die sich nicht
+kennen, ihn finden können (siehe [GFS](/de/docs/glossary/#gfs)).
 
 Gekoppelte Haushalte bekommen die Beiträge eines Space immer direkt
 oder über das Mesh. Das Relay trägt Beiträge nur zu Haushalten, mit
 denen du nicht gekoppelt bist — Followern und Mitgliedern, die über
 einen GFS-Link beigetreten sind —, als versiegelte, aufgepolsterte
-Umschläge. Lesen kann es kein Wort.
-Standardmäßig weiß es, welcher Haushalt wann gepostet hat; ein Space
-kann in den strengen Modus wechseln, in dem es nicht einmal das
-weiß. Mehr dazu unter [Globale Spaces](/de/docs/global-spaces/).
+Umschläge, und jeder gelistete GFS bekommt jeden Beitrag. Lesen kann
+es kein Wort, und Mitglieder posten anonym. Mehr dazu unter [Globale Spaces](/de/docs/global-spaces/).
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-`PUBLIC_SPACE_TIERS = {public, global}`: Nur diese dürfen an einen
-GFS weiterleiten. Ein globaler Space wird automatisch auf jedem
-verbundenen GFS veröffentlicht; ein öffentlicher Space nur, wenn ein
-Admin ihn von Hand veröffentlicht. Öffentliche Spaces erreichen
-gekoppelte Haushalte als `SPACE_DIRECTORY_SYNC`-Snapshot, nie über
-einen GFS. Der GFS sieht nur
+Nur ein globaler Space wird überhaupt auf einem GFS gelistet, und nur
+auf den GFS in seiner vom Besitzer signierten `gfs_servers`-Liste
+(höchstens 8). Öffentliche Spaces erreichen gekoppelte Haushalte als
+`SPACE_DIRECTORY_SYNC`-Snapshot und berühren nie einen GFS.
+Mitglieder veröffentlichen anonym auf jedem gelisteten GFS. Der GFS sieht nur
 Routing-Metadaten (`space_id`, `event_type`, Größenklasse, Timing,
 Abonnentenmenge, Quell-IP); der strenge Modus macht
 Veröffentlichungen identitätsfrei. Für Offline-Mitglieder wird 24 h

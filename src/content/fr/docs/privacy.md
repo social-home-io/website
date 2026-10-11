@@ -42,14 +42,18 @@ avec qui vous n'êtes pas jumelé. Ce qu'il apprend sur vous
 dépend de la configuration de l'espace (voir
 [GFS](/fr/docs/glossary/#gfs) dans le glossaire) :
 
-- **Confiance** (par défaut) : quel foyer a publié dans quel espace
-  listé, et quand.
-- **Strict** (activé par espace) : seulement que _quelqu'un_ dans
-  l'espace a publié. L'expéditeur est anonyme parmi les rédacteurs
-  de l'espace.
+- **Confiance** (par défaut) : seulement que _quelqu'un_ dans
+  l'espace a publié, et quand. Les membres publient anonymement.
+- **Strict** (activé par espace) : la même chose, et il ne peut
+  même pas savoir quels foyers ont le droit d'écrire.
 - **Un espace privé avec l'interrupteur GFS activé** (désactivé par
   défaut) : quels foyers appartiennent au canal — jamais le nom,
   l'identifiant, la clé ou le contenu de l'espace.
+
+Seuls les GFS choisis par le propriétaire de l'espace sont
+concernés. Un GFS auquel votre foyer ne s'est jamais connecté,
+mais que le propriétaire a choisi, voit votre adresse internet
+quand vous y publiez — jamais de quel foyer il s'agit.
 
 Il ne voit **jamais** :
 
@@ -64,9 +68,8 @@ Il voit votre adresse IP, les horaires et la taille approximative
 de chaque enveloppe, et quels foyers reçoivent les publications
 d'un espace.
 
-Aucun relais n'intervient du tout si vous n'avez ni espace global
-(ni espace public que vous avez publié à la main sur un GFS), ni
-moment public, ni lien public de highlight, ni espace
+Aucun relais n'intervient du tout si vous n'avez ni espace global,
+ni moment public, ni lien public de highlight, ni espace
 privé avec l'interrupteur GFS activé. Votre foyer ne parle alors
 qu'aux foyers avec lesquels vous êtes jumelé, directement.
 
@@ -78,10 +81,10 @@ classe de taille (1 / 4 / 16 / 64 / 128 KiB, plus 191 KiB pour le
 relais d'enveloppes), horaires, ensemble des abonnés, IP source.
 Une publication relayée par le foyer hôte est sans identité,
 `{space_id, event_type, payload}` sur une session sans cookie ; un
-membre qui publie pour lui-même signe avec la clé du foyer en mode
-de confiance et avec une clé d'écriture partagée par époque en
-mode strict. Un espace privé avec `private_gfs` activé utilise un
-identifiant de canal opaque de 128 bits. Les destinataires hors
+membre qui publie pour lui-même signe avec une clé d'écriture
+partagée par époque dans les deux modes. Un espace privé avec
+`private_gfs` activé utilise un identifiant de canal opaque de
+128 bits sur les GFS choisis par le propriétaire. Les destinataires hors
 ligne sont mis en file 24 h (2000 enveloppes / 64 MiB par
 destinataire) ; aucun contenu n'est conservé au-delà.
 

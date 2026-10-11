@@ -135,11 +135,12 @@ enveloppes scellées pendant une journée, puis les abandonne. Voir
 
 | Mode                         | Ce que le relais apprend                                                                             |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Confiance** (par défaut)   | quel foyer a publié dans quel espace listé, à quelle époque de clé, et quand                         |
-| **Strict** (sur activation)  | que _quelqu'un_ dans l'espace a publié — l'expéditeur est anonyme parmi les rédacteurs de l'espace   |
+| **Confiance** (par défaut)   | que _quelqu'un_ dans l'espace a publié, et quand — jamais quel foyer                                 |
+| **Strict** (sur activation)  | la même chose, et il ne peut pas savoir quels foyers ont le droit d'écrire                           |
 | **Espace privé, GFS activé** | quels foyers appartiennent au canal — jamais le nom, l'identifiant, la clé ou le contenu de l'espace |
 
-Dans tous les modes, le relais voit encore l'adresse IP de
+Seuls les GFS choisis par le propriétaire d'un espace sont
+concernés. Dans tous les modes, le relais voit encore l'adresse IP de
 l'expéditeur, les horaires, la classe de taille et quels foyers
 reçoivent les publications d'un espace. Une simple synchronisation
 des membres ne dit rien au GFS.
@@ -154,12 +155,17 @@ des membres ne dit rien au GFS.
   sans cookie, et seulement vers un GFS qui a prouvé
   `anonymous_publish` — sinon rien n'est envoyé.
 - Quand un membre publie pour lui-même (pour que l'hôte n'ait pas
-  besoin d'être en ligne), le mode de confiance signe la requête
-  avec la clé de ce foyer ; le mode strict la signe à la place avec
-  une clé d'écriture partagée par époque, de sorte que le GFS ne
-  peut pas dire quel membre a publié.
+  besoin d'être en ligne), il signe avec une clé d'écriture
+  partagée par époque dans les deux modes, de sorte que le GFS ne
+  peut pas dire quel membre a publié. Il envoie à chaque GFS de la
+  liste signée par le propriétaire (au plus 8), sur une session
+  sans cookie épinglée à l'adresse listée, après que ce GFS a
+  prouvé qu'il détient la clé listée. En mode strict, les
+  rédacteurs s'abonnent en plus dans le même lot mélangé que les
+  abonnés.
 - Espaces privés : `private_gfs` désactivé par défaut ; une fois
-  activé, un identifiant de canal opaque de 128 bits.
+  activé, un identifiant de canal opaque de 128 bits sur les GFS
+  choisis par le propriétaire.
 - Classes de rembourrage : 1 / 4 / 16 / 64 / 128 KiB pour les
   publications de membres, plus une classe de 191 KiB pour le
   relais d'enveloppes.
@@ -273,8 +279,12 @@ dépendances tierces. C'est sur la liste, pas dans le pipeline.
 Ce qui est vrai aujourd'hui et que vous devriez savoir avant de
 nous confier la discussion de groupe :
 
-- En mode de confiance, le relais apprend quel foyer a publié dans
-  quel espace, et quand.
+- Un GFS choisi par le propriétaire de l'espace, mais auquel votre
+  foyer ne s'est jamais connecté, voit votre adresse IP quand vous
+  y publiez. Comme les rédacteurs anonymes ne se distinguent pas,
+  un GFS ne peut pas bannir un foyer en particulier ; le
+  propriétaire retire un rédacteur en faisant tourner la clé de
+  l'espace.
 - Dans tous les modes, le relais voit votre adresse IP, les
   horaires et la classe de taille de chaque enveloppe, et quels
   foyers reçoivent les publications d'un espace.

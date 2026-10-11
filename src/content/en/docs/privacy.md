@@ -41,13 +41,18 @@ with. What it learns about you
 depends on how the space is set up (see
 [GFS](/docs/glossary/#gfs) in the glossary):
 
-- **Trusted** (the default): which household posted into which
-  listed space, and when.
-- **Strict** (opt-in per space): only that _someone_ in the space
-  posted. The sender is anonymous among the space's writers.
+- **Trusted** (the default): only that _someone_ in the space
+  posted, and when. Members post anonymously.
+- **Strict** (opt-in per space): the same, and it can't even tell
+  which households are allowed to write.
 - **A private space with the GFS switch on** (off by default):
   which households belong to the channel — never the space's
   name, id, key or content.
+
+Only the GFSs the space's owner picked are involved. A GFS your
+household never connected to, but which the owner picked, sees
+your internet address when you post there — never which
+household you are.
 
 It **never** sees:
 
@@ -60,9 +65,8 @@ It **never** sees:
 It does see your IP address, the timing and the rough size of
 each envelope, and which households receive a space's posts.
 
-No relay is involved at all if you have no global spaces (and
-no public space you published to a GFS by hand), no public
-Moments, no public highlight links and no
+No relay is involved at all if you have no global spaces, no
+public Moments, no public highlight links and no
 private space with the GFS switch on. Your household then talks
 only to households you've paired with, directly.
 
@@ -73,10 +77,10 @@ Routing metadata only: `space_id`, `event_type`, size bucket
 (1 / 4 / 16 / 64 / 128 KiB, plus 191 KiB for envelope relay),
 timing, subscriber set, source IP. A post relayed by the host
 household is identity-free `{space_id, event_type, payload}` on
-a cookie-less session; a member publishing for itself is
-household-signed in trusted mode and signed with a shared
-per-epoch writer key in strict mode. A private space with
-`private_gfs` on uses an opaque 128-bit channel id. Offline recipients are queued for 24 h
+a cookie-less session; a member publishing for itself signs
+with a shared per-epoch writer key in both modes. A private space
+with `private_gfs` on uses an opaque 128-bit channel id on the
+GFSs the owner picks. Offline recipients are queued for 24 h
 (2000 envelopes / 64 MiB per recipient); no content is stored
 beyond that.
 

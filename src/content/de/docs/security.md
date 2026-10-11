@@ -139,12 +139,13 @@ Glossar.
 
 | Modus                      | Was das Relay erfährt                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------------------------- |
-| **Vertrauend** (Standard)  | welcher Haushalt in welchen gelisteten Space gepostet hat, in welcher Schlüssel-Epoche, und wann    |
-| **Streng** (Opt-in)        | dass _jemand_ im Space gepostet hat — der Absender ist unter den Schreibenden des Space anonym      |
+| **Vertraut** (Standard)    | dass _jemand_ im Space gepostet hat, und wann — nie, welcher Haushalt                               |
+| **Streng** (Opt-in)        | dasselbe, und er kann nicht erkennen, welche Haushalte schreiben dürfen                             |
 | **Privater Space, GFS an** | welche Haushalte zum Kanal gehören — nie den Namen, die ID, den Schlüssel oder den Inhalt des Space |
 
-In jedem Modus sieht das Relay weiterhin die IP-Adresse des
-Absenders, die Zeitpunkte, die Größenklasse und welche Haushalte
+Beteiligt sind nur die GFS, die der Besitzer für einen Space
+gewählt hat. In jedem Modus sieht das Relay weiterhin die
+IP-Adresse des Absenders, die Zeitpunkte, die Größenklasse und welche Haushalte
 die Beiträge eines Space empfangen. Eine reine
 Mitgliedschafts-Synchronisation verrät dem GFS nichts.
 
@@ -159,13 +160,16 @@ payload}` auf einer Sitzung ohne Cookies, und nur an einen GFS,
   der `anonymous_publish` nachgewiesen hat — sonst wird nichts
   gesendet.
 - Wenn ein Mitglied für sich selbst veröffentlicht (damit der
-  Host nicht online sein muss), signiert der vertrauende Modus
-  die Anfrage mit dem Schlüssel dieses Haushalts; der strenge
-  Modus signiert sie stattdessen mit einem gemeinsamen Writer-Key
-  pro Epoche, sodass der GFS nicht erkennen kann, welches
-  Mitglied gepostet hat.
+  Host nicht online sein muss), signiert es in beiden Modi mit
+  einem gemeinsamen Writer-Key pro Epoche, sodass der GFS nicht
+  erkennen kann, welches Mitglied gepostet hat. Es sendet an jeden
+  GFS auf der vom Besitzer signierten Liste (höchstens 8), über
+  eine Sitzung ohne Cookies, die an die gelistete Adresse gepinnt
+  ist, nachdem dieser GFS bewiesen hat, dass er den gelisteten
+  Schlüssel besitzt. Im strengen Modus abonnieren Schreiber
+  außerdem im selben gemischten Stapel wie Follower.
 - Private Spaces: `private_gfs` standardmäßig aus; wenn an, eine
-  opake 128-Bit-Kanal-ID.
+  opake 128-Bit-Kanal-ID auf den GFS, die der Besitzer wählt.
 - Polsterungsklassen: 1 / 4 / 16 / 64 / 128 KiB für
   Mitglieder-Veröffentlichungen, plus eine 191-KiB-Klasse für das
   Weiterleiten von Umschlägen.
@@ -280,8 +284,12 @@ der Pipeline.
 Die Dinge, die heute wahr sind und die du wissen solltest, bevor
 du uns den Gruppenchat anvertraust:
 
-- Im vertrauenden Modus erfährt das Relay, welcher Haushalt in
-  welchen Space gepostet hat, und wann.
+- Ein GFS, den der Besitzer des Space gewählt hat, mit dem dein
+  Haushalt aber nie verbunden war, sieht deine IP-Adresse, wenn du
+  dort postest. Weil anonyme Schreiber nicht auseinanderzuhalten
+  sind, kann ein GFS keinen einzelnen Haushalt sperren; der
+  Besitzer entfernt einen Schreiber, indem er den Schlüssel des
+  Space rotiert.
 - In jedem Modus sieht das Relay deine IP-Adresse, die Zeitpunkte
   und die Größenklasse jedes Umschlags sowie welche Haushalte die
   Beiträge eines Space empfangen.

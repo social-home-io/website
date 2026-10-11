@@ -12,8 +12,8 @@ doorheen.
 
 De [GFS (Global Federation Server – de wereldwijde federatieserver)](/nl/docs/glossary/#gfs)
 – de relay die huishoudens helpt elkaar te vinden – heeft drie
-taken. Hij is een gids, zodat huishoudens wereldwijde spaces
-kunnen vinden. Hij draagt verzegelde posts naar huishoudens die
+taken. Hij is een gids, zodat huishoudens de wereldwijde spaces
+kunnen vinden waarvan de eigenaar hem heeft gekozen. Hij draagt verzegelde posts naar huishoudens die
 niet met elkaar gekoppeld zijn – volgers van een wereldwijde
 space, leden die via een GFS-link zijn toegetreden, privéspaces
 waarvan de eigenaar de GFS heeft ingeschakeld, en gekoppelde
@@ -179,9 +179,9 @@ minuten geldig.
 
 Een relay draaien geeft je geen inkijk in iemands space. Posts
 komen verzegeld en opgevuld binnen; je leert bij welke space een
-envelop hoort en wanneer hij is aangekomen, en – in de standaard
-"vertrouwde" modus van een space – welk huishouden hem heeft
-gepubliceerd. In de strikte modus leer je zelfs dat niet. Voor
+envelop hoort en wanneer hij is aangekomen, maar niet welk
+huishouden hem heeft gepubliceerd. In de strikte modus kun je
+zelfs niet zien welke huishoudens mogen schrijven. Voor
 het volledige beeld, inclusief wat de relay nog wél kan
 waarnemen (timing, groottes, IP-adressen), lees je het
 [beveiligingsmodel](/nl/docs/security/).
