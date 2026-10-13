@@ -165,6 +165,11 @@ export const de: UiStrings = {
           body: "Nur ein dezenter Hinweis — kein GPS-Verlauf, keine Spuren. Opt-in pro Person und pro Gerät.",
         },
         {
+          tag: "Haushalts-Dashboard",
+          title: "Eine Tafel für die Küchenwand.",
+          body: "Häng ein Tablet neben die Tür: die Pläne für heute, Stundenplanänderungen, Aufgaben und wer wo ist, auf einen Blick. Kinder, die noch nicht lesen, bekommen eine Bildansicht, und ein Tipp sperrt alles, wenn Besuch da ist.",
+        },
+        {
           tag: "Familienschutz",
           title: "Konten für Kinder, mit Leitplanken.",
           body: "Markiere das Konto eines Kindes als geschützt, lege sein Alter fest und benenne eine Aufsichtsperson. Spaces und Apps mit Altersfreigabe bleiben außer Reichweite, Direktnachrichten bleiben innerhalb der Haushalte, die du gekoppelt hast, und Aufsichtspersonen bekommen eine stille, schreibgeschützte Übersicht.",
