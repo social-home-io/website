@@ -166,6 +166,11 @@ export const fr: UiStrings = {
           body: "Un simple indicateur, rien de plus — pas d'historique GPS, pas de miettes de pain. Sur activation, par personne et par appareil.",
         },
         {
+          tag: "Tableau de bord du foyer",
+          title: "Un tableau pour le mur de la cuisine.",
+          body: "Fixez une tablette près de la porte : le programme du jour, les changements d'emploi du temps, les tâches et qui est où, d'un coup d'œil. Les enfants qui ne lisent pas encore ont une vue en images, et un toucher verrouille tout quand vous avez des invités.",
+        },
+        {
           tag: "Sécurité familiale",
           title: "Des comptes pour les enfants, avec des garde-fous.",
           body: "Marquez le compte d'un enfant comme protégé, indiquez son âge et nommez un tuteur. Les espaces et apps à limite d'âge restent hors de portée, ses messages privés restent entre les foyers que vous avez jumelés, et les tuteurs disposent d'un aperçu discret en lecture seule.",

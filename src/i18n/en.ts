@@ -167,6 +167,11 @@ export const en: UiStrings = {
           body: "A subtle indicator only — no GPS history, no breadcrumbs. Opt-in per person and per device.",
         },
         {
+          tag: "Household dashboard",
+          title: "A board for the kitchen wall.",
+          body: "Hang a tablet by the door: today's plans, school changes, chores and who's where, read at a glance. Kids who can't read yet get a picture view, and one tap locks it when guests are over.",
+        },
+        {
           tag: "Family safety",
           title: "Kids' accounts, with guardrails.",
           body: "Mark a child's account as protected, set their age, and name a guardian. Age-gated spaces and apps stay out of reach, their DMs stay within households you've paired, and guardians get a quiet read-only overview.",

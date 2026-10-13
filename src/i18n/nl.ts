@@ -157,6 +157,11 @@ export const nl: UiStrings = {
           body: "Alleen een subtiele indicator — geen gps-geschiedenis, geen spoor. Opt-in per persoon en per apparaat.",
         },
         {
+          tag: "Huishouddashboard",
+          title: "Een bord voor de keukenmuur.",
+          body: "Hang een tablet bij de deur: de plannen van vandaag, roosterwijzigingen, taken en wie waar is, in één oogopslag. Kinderen die nog niet lezen krijgen een plaatjesweergave, en één tik vergrendelt alles als er bezoek is.",
+        },
+        {
           tag: "Gezinsveiligheid",
           title: "Kinderaccounts, met vangrails.",
           body: "Markeer het account van een kind als beschermd, stel de leeftijd in en wijs een voogd aan. Spaces en apps met een leeftijdsgrens blijven buiten bereik, hun privéberichten blijven binnen de huishoudens die je hebt gekoppeld, en voogden krijgen een rustig alleen-lezen overzicht.",
