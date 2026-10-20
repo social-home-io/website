@@ -42,7 +42,7 @@ staat in de [GitHub-spec](https://github.com/social-home-io/socialhome/blob/main
   van iemand anders.
 - **[Momentum](/nl/docs/momentum/)** — een snel bericht dat naar
   vrienden en hun vrienden reist en daarna vanzelf vervaagt.
-- **[Marktplaats](/nl/docs/marketplace/)** — verkoop, geef weg of
+- **[Bazaar](/nl/docs/marketplace/)** — verkoop, geef weg of
   veil spullen binnen een space, zonder vreemden en zonder kosten.
 - **[Gezinsveiligheid](/nl/docs/family-safety/)** — beschermde
   accounts voor kinderen, spaces en apps met een leeftijdsgrens, en

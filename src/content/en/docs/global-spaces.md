@@ -78,7 +78,7 @@ Every space has an owner, and the owner can hand out roles. From
 the most to the least power: **owner**, **admin**, **moderator**,
 **member**, **follower**. A follower reads but doesn't post.
 
-Each feature in a space — posting, the calendar, the marketplace
+Each feature in a space — posting, the calendar, the Bazaar
 — can be **open** to every member, **reviewed** (a member's
 contribution waits in a queue until a moderator or admin
 approves it), or **admins only**. Reviewed items that nobody

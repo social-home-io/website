@@ -45,7 +45,7 @@ GitHub](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
 - **[Momentum](/fr/docs/momentum/)** — une publication rapide qui
   voyage jusqu'aux amis et aux amis de vos amis, puis s'efface
   d'elle-même.
-- **[Place de marché](/fr/docs/marketplace/)** — vendez, donnez ou
+- **[Bazar](/fr/docs/marketplace/)** — vendez, donnez ou
   mettez aux enchères des objets à l'intérieur d'un espace, sans
   inconnus et sans frais.
 - **[Sécurité familiale](/fr/docs/family-safety/)** — des comptes

@@ -47,7 +47,7 @@ en je huishouden laat doen:
   radiatoren ontlucht, waar de meterstanden heen gaan, de
   overdracht voor de oppas. Ze synchroniseren naar elk apparaat
   in het huishouden.
-- **📝 Sticky's voor de dingen die geen pagina verdienen.**
+- **📝 Stickies voor de dingen die geen pagina verdienen.**
   Kleurige notities die je met een tik bewerkt, geprikt op het
   canvas van een space – de moderne koelkastmagneet. Wortels in
   de onderste la; cadeau-ideeën voor een verjaardag; het

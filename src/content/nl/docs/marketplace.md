@@ -1,11 +1,11 @@
 ---
-title: Marktplaats
+title: Bazaar
 description: Een prikbord met advertenties, beperkt tot de mensen die je al vertrouwt — zet spullen te koop, geef ze weg of veil ze binnen een space, zonder platformkosten en zonder vreemden.
 order: 26
 ---
 
 De meeste marktplaatsen zetten je spullen voor vreemden neer en
-nemen een deel van de opbrengst. De **Marktplaats** van Social Home
+nemen een deel van de opbrengst. De **Bazaar** van Social Home
 doet het tegenovergestelde: advertenties leven binnen een
 **space**, dus alleen de huishoudens in die space — je straat, je
 gebouw, je bredere familie — krijgen ze ooit te zien. Geen
@@ -41,7 +41,7 @@ niemand anders. Standaard kondigt hij zichzelf niet eens aan in de
 feed van de space; zet per advertentie de feedmelding aan als je
 die extra zichtbaarheid wilt.
 
-Omdat de Marktplaats op dezelfde federatie van huishouden tot
+Omdat de Bazaar op dezelfde federatie van huishouden tot
 huishouden rijdt als al het andere, is er geen centrale catalogus
 om door te bladeren, geen derde partij die de verkoop bemiddelt,
 en zijn er geen kosten. Het is een prikbord voor mensen die elkaar

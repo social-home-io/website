@@ -44,7 +44,7 @@ GitHub](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
   Rechenzentrum von jemand anderem.
 - **[Momentum](/de/docs/momentum/)** — ein schneller Beitrag, der zu
   Freunden und deren Freunden reist und dann von selbst verblasst.
-- **[Marktplatz](/de/docs/marketplace/)** — Dinge in einem Space
+- **[Basar](/de/docs/marketplace/)** — Dinge in einem Space
   verkaufen, verschenken oder versteigern, ohne Fremde und ohne
   Gebühren.
 - **[Familienschutz](/de/docs/family-safety/)** — geschützte Konten

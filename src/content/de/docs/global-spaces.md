@@ -88,7 +88,7 @@ vergeben. Von der meisten zur wenigsten Macht: **Besitzer**,
 **Admin**, **Moderator**, **Mitglied**, **Follower**. Ein Follower
 liest, postet aber nicht.
 
-Jede Funktion in einem Space — Posten, der Kalender, der Marktplatz
+Jede Funktion in einem Space — Posten, der Kalender, der Basar
 — kann **offen** für jedes Mitglied sein, **geprüft** (der Beitrag
 eines Mitglieds wartet in einer Warteschlange, bis ein Moderator
 oder Admin ihn freigibt) oder **nur für Admins**. Geprüfte Einträge,

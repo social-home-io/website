@@ -92,8 +92,8 @@ distribuer des rôles. Du plus au moins de pouvoir :
 **propriétaire**, **administrateur**, **modérateur**, **membre**,
 **abonné**. Un abonné lit mais ne publie pas.
 
-Chaque fonction d'un espace — publier, le calendrier, la place de
-marché — peut être **ouverte** à tous les membres, **modérée**
+Chaque fonction d'un espace — publier, le calendrier, le Bazar —
+peut être **ouverte** à tous les membres, **modérée**
 (la contribution d'un membre attend dans une file jusqu'à ce
 qu'un modérateur ou un administrateur l'approuve), ou **réservée
 aux administrateurs**. Les éléments en attente que personne ne

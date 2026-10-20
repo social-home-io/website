@@ -40,7 +40,7 @@ viele Beiträge seit deinem letzten Besuch neu sind.
 <figure class="phone"><a href="/blog/2026-10-spaces/spaces-mob-light.webp"><img src="/blog/2026-10-spaces/spaces-mob-light.webp" alt="Die Spaces-Seite auf dem Handy mit Neuer Space und Mit Code beitreten oben, der offenen Einladung mit Ablehnen und Annehmen und der Liste deiner vier Spaces mit Mitgliederzahl und letzter Aktivität" width="390" height="844" loading="lazy"></a><figcaption><b>Auf dem Handy</b>Eine Einladung direkt aus der Liste annehmen.</figcaption></figure>
 </div>
 
-Entdecken hat drei Tabs: **Dein Haushalt**, **Verbundene Haushalte**
+Entdecken hat drei Tabs: **Dein Haushalt**, **Gekoppelte Haushalte**
 und **Global**. Haushalts-Spaces funktionieren jetzt so, wie die App
 sie schon immer beschrieben hat: Alle zu Hause sind Mitglied, und ein
 offener Haushalts-Space, dem du noch nicht beigetreten bist, taucht
@@ -72,7 +72,7 @@ einen Tipp von der Stelle entfernt, an der du dich darum kümmerst.
 ## Tabs, die auf deinen Bildschirm passen
 
 Ein Space kann bis zu zehn Bereiche haben: Feed, Chat, Kalender,
-Aufgaben, Seiten, Galerie, Haftnotizen, Marktplatz, Karte und
+Aufgaben, Seiten, Galerie, Stickies, Basar, Karte und
 Stundenplan. Auf dem Handy hast du früher zwei davon gesehen. Jetzt
 zeigt die Tab-Reihe so viele, wie hineinpassen, immer in derselben
 Reihenfolge, und der Rest wandert unter **Mehr**. Auf dem Desktop
@@ -171,7 +171,7 @@ Tabs.
 Der schräge, angeklebte Papier-Look ist bei Beiträgen verschwunden, in
 Spaces genauso wie im Haushalts-Feed. Karten sind flach und ruhig, wie
 auf der neu gestalteten Freunde-Seite. Das Papier bleibt an einer
-Stelle, wo es genau darum geht: an der Haftnotiz-Pinnwand.
+Stelle, wo es genau darum geht: an der Stickies-Pinnwand.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
@@ -336,7 +336,7 @@ anschließenden Sicherheits-Reviews:
 - Follower sehen eine kürzere Mitgliederliste: keinen Online-Status,
   keine Standorte, keine Vorschläge der Admins und nicht, wer sonst
   noch folgt.
-- Marktplatz-Angebote und Galerie-Alben bleiben in ihrem Space, und
+- Basar-Angebote und Galerie-Alben bleiben in ihrem Space, und
   die Suche zählt keine Treffer mehr in Spaces, in denen du nicht bist.
 - Das Koppeln schickt nie den Standort deines Zuhauses, wenn du das
   Teilen ausgeschaltet hast.
