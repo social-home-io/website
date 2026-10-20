@@ -65,7 +65,7 @@ de vorige:
 - **Privé** — alleen mensen die je uitnodigt.
 - **Huishouden** — iedereen in je eigen huis.
 - **Openbaar** — je [gekoppelde](#koppelen) huishoudens kunnen hem
-  vinden onder Ruimtes bekijken. Hij blijft binnen je eigen kring.
+  vinden onder Ontdekken. Hij blijft binnen je eigen kring.
 - **Wereldwijd** — vermeld op de [GFS'en](#gfs) die de eigenaar
   kiest, zodat iedereen die er een van gebruikt hem kan vinden.
 

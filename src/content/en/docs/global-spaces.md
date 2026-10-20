@@ -35,12 +35,12 @@ paired with:
 
 Each kind reaches a little further than the one before:
 
-| Kind          | Who can find it                                     | Does a GFS see it?                                           |
-| ------------- | --------------------------------------------------- | ------------------------------------------------------------ |
-| **Private**   | Only people you invite                              | No, unless the owner switches the GFS on and picks which GFS |
-| **Household** | Everyone in your home, automatically                | Never                                                        |
-| **Public**    | Households you're paired with, in **Browse spaces** | Never                                                        |
-| **Global**    | Anyone using one of the GFSs the owner picked       | Only the GFSs the owner picked                               |
+| Kind          | Who can find it                                | Does a GFS see it?                                           |
+| ------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| **Private**   | Only people you invite                         | No, unless the owner switches the GFS on and picks which GFS |
+| **Household** | Everyone in your home, automatically           | Never                                                        |
+| **Public**    | Households you're paired with, in **Discover** | Never                                                        |
+| **Global**    | Anyone using one of the GFSs the owner picked  | Only the GFSs the owner picked                               |
 
 A **public** space stays inside your own circle: your paired
 households can find it and ask to join, and it never touches a
@@ -93,7 +93,7 @@ space it does two jobs:
    space, up to eight. Each one shows its name, who hosts it, how
    to join and, if the space has one, a map pin rounded to about
    11 m. Anyone using one of those GFSs can find it under
-   **Browse spaces**.
+   **Discover › Global**.
 2. **It carries posts to people you aren't paired with.** That
    means **followers**, households that read along without
    joining (only if the owner allows followers; it's off by
@@ -175,8 +175,8 @@ limits remain; the owner revokes a writer by rotating the key).
    policy and accent colour: enough to list it, but **no message
    content**. A space can also be global but not listed anywhere
    yet, until the owner picks a GFS.
-2. Anyone using one of those GFSs can find it under **Browse
-   spaces** and ask to join, or follow it if the owner allows
+2. Anyone using one of those GFSs can find it under **Discover ›
+   Global** and ask to join, or follow it if the owner allows
    followers.
 3. Whether a join is granted depends on the space's **join
    mode**: **Open** (anyone can join straight away), **Request**

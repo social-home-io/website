@@ -488,7 +488,7 @@ export const de: UiStrings = {
     hostedBy: "Gehostet von Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Ein QR-Scan und du bist verbunden. Globale Spaces, deren Besitzer diesen Server wählt, erscheinen unter Räume entdecken; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch. Inhaltsblind per Design.",
+    body: "Ein QR-Scan und du bist verbunden. Globale Spaces, deren Besitzer diesen Server wählt, erscheinen unter Entdecken › Global; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch. Inhaltsblind per Design.",
     bullets: [
       "Verzeichnis globaler Spaces",
       "Öffentliches Momentum-Verzeichnis + Follow-Graph",

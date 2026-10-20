@@ -69,7 +69,7 @@ als die vorige:
 - **Privat** — nur Leute, die du einlädst.
 - **Haushalt** — alle in deinem eigenen Zuhause.
 - **Öffentlich** — deine [gekoppelten](#kopplung) Haushalte
-  können ihn unter Räume entdecken finden. Er bleibt in deinem
+  können ihn unter Entdecken finden. Er bleibt in deinem
   eigenen Kreis.
 - **Global** — gelistet auf den [GFS](#gfs), die der Besitzer
   wählt, damit jeder, der einen davon nutzt, ihn finden kann.

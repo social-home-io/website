@@ -63,7 +63,7 @@ are four, each one a wider audience than the last:
 - **Private** — only people you invite.
 - **Household** — everyone in your own home.
 - **Public** — your [paired](#pairing) households can find it
-  under Browse spaces. It stays inside your own circle.
+  in Discover on the Spaces page. It stays inside your own circle.
 - **Global** — listed on the [GFSs](#gfs) the owner picks, for
   anyone using one of them to find.
 

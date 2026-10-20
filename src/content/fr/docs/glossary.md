@@ -68,7 +68,7 @@ que la précédente :
 - **Privé** — seulement les personnes que vous invitez.
 - **Foyer** — tout votre propre foyer.
 - **Public** — vos foyers [jumelés](#jumelage) peuvent le trouver
-  sous Parcourir les espaces. Il reste dans votre propre cercle.
+  sous Découvrir. Il reste dans votre propre cercle.
 - **Global** — référencé sur les [GFS](#gfs) choisis par le
   propriétaire, pour que toute personne qui en utilise un puisse
   le trouver.

@@ -42,12 +42,12 @@ avec qui vous **n'êtes pas** jumelé :
 
 Chaque sorte va un peu plus loin que la précédente :
 
-| Sorte      | Qui peut le trouver                                                  | Un GFS le voit-il ?                                          |
-| ---------- | -------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Privé**  | Seulement les personnes que vous invitez                             | Non, sauf si le propriétaire active le GFS et choisit lequel |
-| **Foyer**  | Tout votre foyer, automatiquement                                    | Jamais                                                       |
-| **Public** | Les foyers avec qui vous êtes jumelé, dans **Parcourir les espaces** | Jamais                                                       |
-| **Global** | Toute personne qui utilise l'un des GFS choisis par le propriétaire  | Seulement les GFS choisis par le propriétaire                |
+| Sorte      | Qui peut le trouver                                                 | Un GFS le voit-il ?                                          |
+| ---------- | ------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Privé**  | Seulement les personnes que vous invitez                            | Non, sauf si le propriétaire active le GFS et choisit lequel |
+| **Foyer**  | Tout votre foyer, automatiquement                                   | Jamais                                                       |
+| **Public** | Les foyers avec qui vous êtes jumelé, dans **Découvrir**            | Jamais                                                       |
+| **Global** | Toute personne qui utilise l'un des GFS choisis par le propriétaire | Seulement les GFS choisis par le propriétaire                |
 
 Un espace **public** reste dans votre propre cercle : vos foyers
 jumelés peuvent le trouver et demander à le rejoindre, et il ne
@@ -108,8 +108,8 @@ connecter. Pour un espace global, il a deux rôles :
    référencent l'espace, jusqu'à huit. Chacun affiche son nom, qui
    l'héberge, comment le rejoindre et, si l'espace en a une, une
    épingle sur la carte arrondie à environ 11 m. Toute personne
-   qui utilise l'un de ces GFS peut le trouver sous **Parcourir
-   les espaces**.
+   qui utilise l'un de ces GFS peut le trouver sous **Découvrir ›
+   Global**.
 2. **Il transporte les publications vers les personnes avec qui
    vous n'êtes pas jumelé.** C'est-à-dire les **abonnés**, des
    foyers qui suivent la lecture sans rejoindre l'espace
@@ -205,7 +205,7 @@ révoque un rédacteur en faisant tourner la clé).
    référencé nulle part, tant que le propriétaire n'a pas choisi
    de GFS.
 2. Toute personne qui utilise l'un de ces GFS peut le trouver
-   sous **Parcourir les espaces** et demander à le rejoindre, ou
+   sous **Découvrir › Global** et demander à le rejoindre, ou
    s'y abonner si le propriétaire autorise les abonnés.
 3. Que l'adhésion soit accordée dépend du **mode d'adhésion** de
    l'espace : **Ouvert** (n'importe qui peut rejoindre tout de
