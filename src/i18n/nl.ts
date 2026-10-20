@@ -480,7 +480,7 @@ export const nl: UiStrings = {
     hostedBy: "Gehost door Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces waarvan de eigenaar deze server kiest, verschijnen onder Ruimtes bekijken; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
+    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces waarvan de eigenaar deze server kiest, verschijnen onder Ontdekken › Wereldwijd; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
     bullets: [
       "Gids van wereldwijde spaces",
       "Openbare Momentum-directory + volggraaf",

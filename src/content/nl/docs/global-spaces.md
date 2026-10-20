@@ -47,7 +47,7 @@ Elke soort reikt een stukje verder dan de vorige:
 | -------------- | ---------------------------------------------------------------- | -------------------------------------------------------- |
 | **Privé**      | Alleen mensen die je uitnodigt                                   | Nee, tenzij de eigenaar de GFS aanzet en kiest welke GFS |
 | **Huishouden** | Iedereen in je huis, automatisch                                 | Nooit                                                    |
-| **Openbaar**   | Huishoudens waarmee je gekoppeld bent, in **Ruimtes bekijken**   | Nooit                                                    |
+| **Openbaar**   | Huishoudens waarmee je gekoppeld bent, in **Ontdekken**          | Nooit                                                    |
 | **Wereldwijd** | Iedereen die een van de door de eigenaar gekozen GFS'en gebruikt | Alleen de GFS'en die de eigenaar heeft gekozen           |
 
 Een **openbare** space blijft binnen je eigen kring: je
@@ -107,7 +107,7 @@ Voor een wereldwijde space heeft hij twee taken:
    vermeld staat, maximaal acht. Elk daarvan toont de naam, wie
    hem host, hoe je lid wordt en, als de space er een heeft, een
    speld op de kaart, afgerond op ongeveer 11 m. Iedereen die een
-   van die GFS'en gebruikt, vindt hem onder **Ruimtes bekijken**.
+   van die GFS'en gebruikt, vindt hem onder **Ontdekken › Wereldwijd**.
 2. **Hij brengt posts naar wie je niet gekoppeld bent.** Dat zijn
    **volgers**, huishoudens die meelezen zonder lid te worden
    (alleen als de eigenaar volgers toestaat; standaard staat dat
@@ -195,7 +195,7 @@ eigenaar trekt een schrijver in door de sleutel te roteren).
    berichtinhoud**. Een space kan ook wereldwijd zijn maar nog
    nergens vermeld, tot de eigenaar een GFS kiest.
 2. Iedereen die een van die GFS'en gebruikt, kan hem vinden onder
-   **Ruimtes bekijken** en vragen om lid te worden, of hem volgen
+   **Ontdekken › Wereldwijd** en vragen om lid te worden, of hem volgen
    als de eigenaar volgers toestaat.
 3. Of een toetreding wordt toegestaan, hangt af van de
    **toetredingsmodus** van de space: **Open** (iedereen kan

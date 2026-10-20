@@ -41,12 +41,12 @@ du **nicht** gekoppelt bist:
 
 Jede Art reicht ein Stück weiter als die vorherige:
 
-| Art            | Wer kann ihn finden                                               | Sieht ein GFS ihn?                                               |
-| -------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------- |
-| **Privat**     | Nur Leute, die du einlädst                                        | Nein, außer der Besitzer schaltet den GFS ein und wählt, welchen |
-| **Haushalt**   | Alle in deinem Zuhause, automatisch                               | Nie                                                              |
-| **Öffentlich** | Haushalte, mit denen du gekoppelt bist, unter **Räume entdecken** | Nie                                                              |
-| **Global**     | Jeder, der einen der GFS nutzt, die der Besitzer gewählt hat      | Nur die GFS, die der Besitzer gewählt hat                        |
+| Art            | Wer kann ihn finden                                          | Sieht ein GFS ihn?                                               |
+| -------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |
+| **Privat**     | Nur Leute, die du einlädst                                   | Nein, außer der Besitzer schaltet den GFS ein und wählt, welchen |
+| **Haushalt**   | Alle in deinem Zuhause, automatisch                          | Nie                                                              |
+| **Öffentlich** | Haushalte, mit denen du gekoppelt bist, unter **Entdecken**  | Nie                                                              |
+| **Global**     | Jeder, der einen der GFS nutzt, die der Besitzer gewählt hat | Nur die GFS, die der Besitzer gewählt hat                        |
 
 Ein **öffentlicher** Space bleibt in deinem eigenen Kreis: Deine
 gekoppelten Haushalte können ihn finden und um Beitritt bitten, und
@@ -103,7 +103,7 @@ Für einen globalen Space hat er zwei Aufgaben:
    Space listen, bis zu acht. Jeder zeigt seinen Namen, wer ihn
    hostet, wie man beitritt und, falls der Space einen hat, einen
    auf etwa 11 m gerundeten Karten-Pin. Jeder, der einen dieser GFS
-   nutzt, findet ihn unter **Räume entdecken**.
+   nutzt, findet ihn unter **Entdecken › Global**.
 2. **Er trägt Beiträge zu Leuten, mit denen du nicht gekoppelt
    bist.** Das sind **Follower**, Haushalte, die mitlesen, ohne
    beizutreten (nur wenn der Besitzer Follower erlaubt; standardmäßig
@@ -192,8 +192,8 @@ den Schlüssel rotiert).
    Altersrichtlinie und Akzentfarbe: genug, um ihn zu listen, aber
    **keine Nachrichteninhalte**. Ein Space kann auch global, aber
    noch nirgends gelistet sein, bis der Besitzer einen GFS wählt.
-2. Jeder, der einen dieser GFS nutzt, kann ihn unter **Räume
-   entdecken** finden und um Beitritt bitten oder ihm folgen, wenn
+2. Jeder, der einen dieser GFS nutzt, kann ihn unter **Entdecken ›
+   Global** finden und um Beitritt bitten oder ihm folgen, wenn
    der Besitzer Follower erlaubt.
 3. Ob ein Beitritt gewährt wird, hängt vom **Beitrittsmodus** des
    Space ab: **Offen** (jeder kann sofort beitreten), **Anfrage**
