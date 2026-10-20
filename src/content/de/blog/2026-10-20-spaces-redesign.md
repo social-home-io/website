@@ -1,6 +1,6 @@
 ---
 title: "Spaces, neu gestaltet: ruhiger, schneller und lokal"
-description: Spaces bekommen ein frisches Gesicht. Eine Spaces-Seite mit Entdecken, ein Space, der mit seinen Leuten und dem Eingabefeld beginnt, Tabs, die auf deinen Bildschirm passen, Einstellungen auf einer Seite und ein Kalender, der ein Lager nur einmal zeigt. Öffentliche Spaces können jetzt Nachbarschaften für die Haushalte in der Nähe sein. Alles in Social Home 2026.10.20.
+description: Spaces bekommen ein frisches Gesicht. Eine Spaces-Seite mit Entdecken, ein Space, der mit seinen Leuten und dem Eingabefeld beginnt, Tabs, die auf deinen Bildschirm passen, Einstellungen auf einer Seite und ein Kalender, der ein Lager nur einmal zeigt. Öffentliche Spaces können jetzt lokale Gemeinschaften für die Haushalte in der Nähe sein. Alles in Social Home 2026.10.20.
 date: 2026-10-20
 author: Das Social Home Team
 image: /blog/2026-10-spaces/home-desk-light.webp
@@ -20,7 +20,7 @@ durchgegangen: eine Bestandsaufnahme der App, wie sie war,
 Layout-Experimente und ein frischer Design-Review im Vergleich mit den
 neu gestalteten Seiten Verbindungen und Freunde. Das Ergebnis steckt in
 **Social Home 2026.10.20**: ruhigere Seiten, weniger Tippen und eine
-neue Art von öffentlichem Space, die **Nachbarschaft**.
+neue Art von öffentlichem Space, die **lokale Gemeinschaft**.
 
 _Alle Bildschirme unten zeigen einen Beispielhaushalt: die Bergers, mit
 Anna, Jonas, Mia, Leo und Oma Rosa, rund um Zürich._
@@ -195,12 +195,12 @@ innerhalb der Seite, statt nach Hause.
 
 </details>
 
-## Nachbarschaften
+## Lokale Gemeinschaften
 
 Manche Gruppen ergeben nur für die Leute in der Nähe Sinn: die Eltern
 der Straße, das Foodsharing im Dorf, die Schwimmcrew am Flussbad um
-die Ecke. Ein öffentlicher Space kann jetzt eine **Nachbarschaft**
-sein, eine lokale Gemeinschaft. Beim Erstellen oder später in den
+die Ecke. Ein öffentlicher Space kann jetzt eine **lokale
+Gemeinschaft** sein. Beim Erstellen oder später in den
 Einstellungen wählst du eine Mitte auf der Karte, oder nimmst dein
 Zuhause als Mitte, und einen Umkreis von 1 bis 25 km. Von da an können
 nur Haushalte beitreten, deren Zuhause in diesem Kreis liegt.
@@ -211,12 +211,12 @@ nur Haushalte beitreten, deren Zuhause in diesem Kreis liegt.
 
 **Die Mitte bleibt bei dir.** Sie ist meistens jemandes Straße, darum
 verlässt sie dein Zuhause nie. Gekoppelte Haushalte sehen nur, dass
-der Space eine Nachbarschaft ist, und ihren Umkreis, „im Umkreis von
-2 km“. Nachbarschaften sind öffentliche Spaces und stehen darum nie
+der Space eine lokale Gemeinschaft ist, und ihren Umkreis, „im Umkreis von
+2 km“. Lokale Gemeinschaften sind öffentliche Spaces und stehen darum nie
 auf einem [GFS](/de/docs/glossary/#gfs) (Global Federation Server).
 
 Dein eigener Haushalt sieht die Karte, und Entdecken sagt dir gleich,
-ob dein Zuhause im Gebiet einer Nachbarschaft liegt, nahe am Rand oder
+ob dein Zuhause im Gebiet einer lokalen Gemeinschaft liegt, nahe am Rand oder
 außerhalb.
 
 <div class="shots">
@@ -224,7 +224,7 @@ außerhalb.
 <figure class="desk"><a href="/blog/2026-10-spaces/discover-household-desk.webp"><img src="/blog/2026-10-spaces/discover-household-desk.webp" alt="Entdecken mit Your household gewählt: Altstetten Garden Club im Umkreis von 1 km, markiert als Outside your area und ohne Beitreten-Knopf, Letten Swim Crew im Umkreis von 2 km, markiert als Near the edge, an admin will review your request, und Quartierverein Wipkingen im Umkreis von 2 km, markiert als In your area" width="1280" height="800" loading="lazy"></a><figcaption><b>Im eigenen Haushalt</b>Im Gebiet, nahe am Rand oder außerhalb.</figcaption></figure>
 </div>
 
-**Gefragt, bevor etwas gesendet wird.** Um der Nachbarschaft eines
+**Gefragt, bevor etwas gesendet wird.** Um der lokalen Gemeinschaft eines
 anderen Haushalts beizutreten, muss dein Zuhause zeigen, dass es im
 Gebiet liegt. Bevor deine Anfrage rausgeht, sagt Social Home genau, was
 gesendet wird: der ungefähre Standort deines Zuhauses, auf etwa 1 km
@@ -260,7 +260,7 @@ Das Gebiet ist eine Mitte, gespeichert auf 4 Nachkommastellen (etwa
 abgelegt. Es ist nicht Teil der Space-Konfiguration, die
 Mitgliedshaushalte bekommen. Gekoppelte Haushalte erhalten im
 Verzeichnis-Snapshot `local_community` und `radius_km`, sonst nichts.
-Eine Nachbarschaft gibt es nur bei der Reichweite Öffentlich; wer sie
+Eine lokale Gemeinschaft gibt es nur bei der Reichweite Öffentlich; wer sie
 verlässt, verliert das Gebiet.
 
 Ein Beitritt aus einem anderen Haushalt trägt `join_location`: dein
@@ -278,10 +278,10 @@ Die einzige Spur, die bleibt, ist das Urteil an einer offenen Anfrage.
 Was bleibt: Eine automatische Antwort verrät der fragenden Person,
 welche ~1-km-Zelle drin oder draußen liegt. Wer geduldig ist, könnte
 den Rand also in dieser Auflösung abtasten. Um Wiederholungen zu
-begrenzen, bekommt jede Person 10 Prüfungen pro Nachbarschaft und
+begrenzen, bekommt jede Person 10 Prüfungen pro lokaler Gemeinschaft und
 UTC-Tag und jeder andere Haushalt 20, gezählt in einer Tabelle, die
 Neustarts übersteht und Personen nur als Hash speichert.
-Nachbarschaften können keine delegierte Admin-Befugnis nutzen, sodass
+Lokale Gemeinschaften können keine delegierte Admin-Befugnis nutzen, sodass
 jeder Platz durch die Prüfung des Gastgebers geht. Die vollständigen
 Regeln stehen im Core-Repo unter `docs/protocol/local-communities.md`.
 
@@ -346,4 +346,4 @@ anschließenden Sicherheits-Reviews:
 Die neuen Spaces stecken in **Social Home 2026.10.20**. Öffne
 **Spaces**, schau, was in deinen eigenen neu ist, und wenn du in der
 Nähe deiner gekoppelten Haushalte wohnst, mach doch die Gruppe deiner
-Straße zu einer Nachbarschaft.
+Straße zu einer lokalen Gemeinschaft.
