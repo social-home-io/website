@@ -92,7 +92,7 @@ uitdelen. Van de meeste naar de minste macht: **eigenaar**,
 **beheerder**, **moderator**, **lid**, **volger**. Een volger
 leest wel, maar plaatst niets.
 
-Elke functie in een space – posten, de agenda, de marktplaats –
+Elke functie in een space – posten, de agenda, de Bazaar –
 kan **open** zijn voor elk lid, **beoordeeld** (de bijdrage van
 een lid wacht in een wachtrij tot een moderator of beheerder hem
 goedkeurt) of **alleen beheerders**. Beoordeelde items waar

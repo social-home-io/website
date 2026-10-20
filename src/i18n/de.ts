@@ -155,7 +155,7 @@ export const de: UiStrings = {
           body: "Markdown-Seiten mit Bearbeitungssperren und Wikilinks. Die Anleitung zum Heizkörper-Entlüften liegt dort, wo du sie wirklich findest — neben allen anderen Einträgen im Haushandbuch.",
         },
         {
-          tag: "Haftnotizen",
+          tag: "Stickies",
           title: "Kühlschrank-Zettel, die dir folgen.",
           body: "Farbige Notizen zum Antippen und Bearbeiten, angeheftet auf der Fläche eines Space. Karotten in der unteren Schublade; Geschenkideen zum Geburtstag; alles, was sich der Haushalt gemeinsam merken muss.",
         },
@@ -211,7 +211,7 @@ export const de: UiStrings = {
           body: "Bis zu tausend Zeichen und ein 15-Sekunden-Clip. Jeder Moment verbreitet sich drei Hops weit durch die Föderation — deine gekoppelten Haushalte und deren — und verschwindet nach einem Tag, oder nach einer Woche bei Leuten, denen du folgst.",
         },
         {
-          tag: "Marktplatz",
+          tag: "Basar",
           title: "Kaufen, verkaufen und verschenken im eigenen Kreis.",
           body: "Biete Dinge in einem Space an — Festpreis, Preisvorschlag oder zeitlich begrenzte Auktion. Nur die Haushalte in diesem Space sehen es. Keine Fremden, keine Plattformgebühren, keine Anzeigen, die an Werbekunden verkauft werden.",
         },
@@ -383,7 +383,7 @@ export const de: UiStrings = {
     sticky: {
       lineHtml:
         "🥕 Karotten in der unteren Schublade<br /><span>Sonntagsbraten — keine mehr kaufen!</span>",
-      meta: "Maria · Haftnotizen",
+      meta: "Maria · Stickies",
     },
     photo: {
       caption: "„Erste Tomate des Jahres — Haussteuer: die Hälfte geht an Mama.“",

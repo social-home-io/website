@@ -1,11 +1,11 @@
 ---
-title: Marketplace
+title: Bazaar
 description: A classifieds board scoped to the people you already trust — list things to sell, give away, or auction inside a space, with no platform fees and no strangers.
 order: 26
 ---
 
 Most marketplaces put your stuff in front of strangers and take a
-cut. Social Home's **Marketplace** does the opposite: listings
+cut. Social Home's **Bazaar** does the opposite: listings
 live inside a **space**, so only the households in that space —
 your street, your building, your extended family — ever see them.
 No platform fees, no boosted listings, no data sold to anyone.
@@ -36,7 +36,7 @@ the other households in that space — and to nobody else. By
 default it won't even announce itself in the space feed; flip on
 the feed shout-out per listing if you want the extra visibility.
 
-Because Marketplace rides the same household-to-household
+Because the Bazaar rides the same household-to-household
 federation as everything else, there's no central catalogue to
 browse, no third party brokering the sale, and no fees. It's a
 notice board for people who already know each other.

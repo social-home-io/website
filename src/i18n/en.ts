@@ -213,7 +213,7 @@ export const en: UiStrings = {
           body: "Up to a thousand characters and a 15-second clip. Each moment fans out three hops across the federation — your peers and theirs — and disappears after a day, or a week for people you follow.",
         },
         {
-          tag: "Marketplace",
+          tag: "Bazaar",
           title: "Buy, sell, and give within your circle.",
           body: "List things in a space — fixed price, best offer, or a timed auction. Only the households in that space see it. No strangers, no platform fees, no listings sold to advertisers.",
         },

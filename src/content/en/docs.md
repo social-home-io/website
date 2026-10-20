@@ -40,7 +40,7 @@ spec](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
   centre.
 - **[Momentum](/docs/momentum/)** — a quick post that travels to
   friends and their friends, then fades on its own.
-- **[Marketplace](/docs/marketplace/)** — sell, give away, or
+- **[Bazaar](/docs/marketplace/)** — sell, give away, or
   auction things inside a space, with no strangers and no fees.
 - **[Family safety](/docs/family-safety/)** — protected accounts
   for kids, age-gated spaces and apps, and a read-only guardian view.

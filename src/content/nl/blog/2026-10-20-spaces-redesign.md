@@ -56,7 +56,7 @@ invoerveld vroeger 1.133 pixels naar beneden, meer dan een volledig
 scherm scrollen. Nu begint het op 465.
 
 <div class="shots">
-<figure class="desk"><a href="/blog/2026-10-spaces/home-desk-light.webp"><img src="/blog/2026-10-spaces/home-desk-light.webp" alt="De space van de familie Berger op desktop met de tabbladen Feed, Chat, Agenda, Taken, Pagina's, Galerij, Sticky's, Bazaar, Kaart, Rooster en Meer, dan de omslag, de naam, gezichten van leden, twee regels Over, snelkoppelingen en het invoerveld, met daaronder het eerste bericht van Anna" width="1280" height="800" loading="lazy"></a><figcaption><b>De startpagina van een space</b>Omslag, mensen, Over, links, en meteen het invoerveld.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-spaces/home-desk-light.webp"><img src="/blog/2026-10-spaces/home-desk-light.webp" alt="De space van de familie Berger op desktop met de tabbladen Feed, Chat, Agenda, Taken, Pagina's, Galerij, Stickies, Bazaar, Kaart, Rooster en Meer, dan de omslag, de naam, gezichten van leden, twee regels Over, snelkoppelingen en het invoerveld, met daaronder het eerste bericht van Anna" width="1280" height="800" loading="lazy"></a><figcaption><b>De startpagina van een space</b>Omslag, mensen, Over, links, en meteen het invoerveld.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-spaces/home-mob-light.webp"><img src="/blog/2026-10-spaces/home-mob-light.webp" alt="De space van de familie Berger op een telefoon met de tabbladen Feed, Chat, Agenda, Taken en Meer, de omslag met de naam en gezichten van leden, twee regels Over, snelkoppelingen en het invoerveld binnen het eerste scherm" width="390" height="844" loading="lazy"></a><figcaption><b>Op een telefoon</b>Het invoerveld staat op het eerste scherm.</figcaption></figure>
 </div>
 
@@ -72,7 +72,7 @@ verwijderd van de plek waar je ze afhandelt.
 ## Tabbladen die op je scherm passen
 
 Een space kan tot tien onderdelen hebben: Feed, Chat, Agenda, Taken,
-Pagina's, Galerij, Sticky's, Bazaar, Kaart en Rooster. Op een telefoon
+Pagina's, Galerij, Stickies, Bazaar, Kaart en Rooster. Op een telefoon
 zag je er vroeger twee van. Nu laat de rij tabbladen er zoveel zien als
 er passen, altijd in dezelfde volgorde, en de rest verhuist naar
 **Meer**. Op een desktop zie je ze allemaal.
@@ -159,7 +159,7 @@ het over, dan houdt de space de basis: Feed, Chat en Agenda. Een
 leesclub van één persoon begint niet meer met negen tabbladen.
 
 <div class="shots">
-<figure class="phone"><a href="/blog/2026-10-spaces/create-whatfor-mob.webp"><img src="/blog/2026-10-spaces/create-whatfor-mob.webp" alt="Een nieuwe space met de naam Garden plot 14 die vraagt waar Garden plot 14 voor is, met vier keuzes Gezin, Club of groep, Buren en Alleen een feed, en knoppen voor onderdelen waarvan Chat en Agenda zijn aangevinkt en Taken, Pagina's, Galerij, Sticky's, Bazaar, Kaart en Rooster toe te voegen zijn" width="390" height="844" loading="lazy"></a><figcaption><b>Waar is hij voor?</b>Kies een vertrekpunt en voeg dan onderdelen toe of haal ze weg.</figcaption></figure>
+<figure class="phone"><a href="/blog/2026-10-spaces/create-whatfor-mob.webp"><img src="/blog/2026-10-spaces/create-whatfor-mob.webp" alt="Een nieuwe space met de naam Garden plot 14 die vraagt waar Garden plot 14 voor is, met vier keuzes Gezin, Club of groep, Buren en Alleen een feed, en knoppen voor onderdelen waarvan Chat en Agenda zijn aangevinkt en Taken, Pagina's, Galerij, Stickies, Bazaar, Kaart en Rooster toe te voegen zijn" width="390" height="844" loading="lazy"></a><figcaption><b>Waar is hij voor?</b>Kies een vertrekpunt en voeg dan onderdelen toe of haal ze weg.</figcaption></figure>
 </div>
 
 ## Platte kaarten, overal
@@ -167,7 +167,7 @@ leesclub van één persoon begint niet meer met negen tabbladen.
 De scheve, vastgeplakte papierlook is weg bij berichten, in spaces en
 in de feed van het huishouden. Kaarten zijn plat en rustig, zoals op de
 vernieuwde pagina Vrienden. Het papier blijft op één plek waar het
-juist de bedoeling is: het bord met Sticky's.
+juist de bedoeling is: het Stickies-bord.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>

@@ -147,7 +147,7 @@ export const nl: UiStrings = {
           body: "Markdown-pagina's met bewerkvergrendeling en wikilinks. De instructies voor het ontluchten van de radiator staan waar je ze echt terugvindt — naast elk ander stuk van de huishandleiding.",
         },
         {
-          tag: "Sticky's",
+          tag: "Stickies",
           title: "Koelkastbriefjes die met je meegaan.",
           body: "Gekleurde notities die je met één tik bewerkt, vastgeprikt op het canvas van een space. Wortels in de onderste la; cadeau-ideeën voor een verjaardag; alles wat het huishouden samen wil onthouden.",
         },
@@ -203,7 +203,7 @@ export const nl: UiStrings = {
           body: "Tot duizend tekens en een clip van 15 seconden. Elk moment waaiert drie stappen ver uit over de federatie — jouw gekoppelde huishoudens en de hunne — en verdwijnt na een dag, of na een week voor mensen die je volgt.",
         },
         {
-          tag: "Marktplaats",
+          tag: "Bazaar",
           title: "Kopen, verkopen en weggeven binnen je kring.",
           body: "Zet iets te koop in een space — vaste prijs, beste bod of een veiling met tijdslimiet. Alleen de huishoudens in die space zien het. Geen vreemden, geen platformkosten, geen advertenties die aan adverteerders worden doorverkocht.",
         },

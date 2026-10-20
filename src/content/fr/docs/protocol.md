@@ -50,7 +50,7 @@ vous permet de faire, vous et votre foyer :
   espace — comment purger les radiateurs, où noter les relevés de
   compteur, les consignes pour la baby-sitter. Elles se
   synchronisent sur tous les appareils du foyer.
-- **📝 Des Post-it (Stickies) pour ce qui ne mérite pas une
+- **📝 Des Stickies pour ce qui ne mérite pas une
   page.** Des notes colorées, modifiables d'un tap, épinglées sur
   le canevas d'un espace — l'aimant de frigo moderne. Les
   carottes dans le bac du bas ; des idées de cadeau

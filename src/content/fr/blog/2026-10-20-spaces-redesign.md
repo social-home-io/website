@@ -58,7 +58,7 @@ téléphone, la zone de rédaction commençait à 1 133 pixels, plus d'un
 écran entier à faire défiler. Elle commence désormais à 465.
 
 <div class="shots">
-<figure class="desk"><a href="/blog/2026-10-spaces/home-desk-light.webp"><img src="/blog/2026-10-spaces/home-desk-light.webp" alt="L'espace Berger family sur ordinateur avec la rangée d'onglets Fil, Discussion, Calendrier, Tâches, Pages, Galerie, Post-it, Bazar, Carte, Emploi du temps et Plus, puis la couverture, le nom, les visages des membres, deux lignes de présentation, les liens rapides et la zone de rédaction, avec la première publication d'Anna en dessous" width="1280" height="800" loading="lazy"></a><figcaption><b>L'accueil d'un espace</b>Couverture, membres, présentation, liens, et directement la zone de rédaction.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-spaces/home-desk-light.webp"><img src="/blog/2026-10-spaces/home-desk-light.webp" alt="L'espace Berger family sur ordinateur avec la rangée d'onglets Fil, Discussion, Calendrier, Tâches, Pages, Galerie, Stickies, Bazar, Carte, Emploi du temps et Plus, puis la couverture, le nom, les visages des membres, deux lignes de présentation, les liens rapides et la zone de rédaction, avec la première publication d'Anna en dessous" width="1280" height="800" loading="lazy"></a><figcaption><b>L'accueil d'un espace</b>Couverture, membres, présentation, liens, et directement la zone de rédaction.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-spaces/home-mob-light.webp"><img src="/blog/2026-10-spaces/home-mob-light.webp" alt="L'espace Berger family sur un téléphone avec les onglets Fil, Discussion, Calendrier, Tâches et Plus, la couverture avec le nom et les visages des membres, deux lignes de présentation, les liens rapides et la zone de rédaction dès le premier écran" width="390" height="844" loading="lazy"></a><figcaption><b>Sur un téléphone</b>La zone de rédaction est sur le premier écran.</figcaption></figure>
 </div>
 
@@ -74,7 +74,7 @@ propositions, chacune à un geste de l'endroit où vous la traitez.
 ## Des onglets qui tiennent sur votre écran
 
 Un espace peut avoir jusqu'à dix sections : Fil, Discussion,
-Calendrier, Tâches, Pages, Galerie, Post-it, Bazar, Carte et Emploi du
+Calendrier, Tâches, Pages, Galerie, Stickies, Bazar, Carte et Emploi du
 temps. Sur un téléphone, vous en voyiez deux. Désormais, la rangée
 d'onglets en affiche autant qu'il en tient, toujours dans le même
 ordre, et les autres passent sous **Plus**. Un ordinateur les affiche
@@ -167,7 +167,7 @@ l'essentiel : Fil, Discussion et Calendrier. Un club de lecture d'une
 seule personne ne démarre plus avec neuf onglets.
 
 <div class="shots">
-<figure class="phone"><a href="/blog/2026-10-spaces/create-whatfor-mob.webp"><img src="/blog/2026-10-spaces/create-whatfor-mob.webp" alt="Un nouvel espace appelé Garden plot 14 qui demande à quoi il sert, avec quatre choix Famille, Club ou groupe, Voisins et Juste un fil, et des pastilles de sections avec Discussion et Calendrier cochées, et Tâches, Pages, Galerie, Post-it, Bazar, Carte et Emploi du temps à ajouter" width="390" height="844" loading="lazy"></a><figcaption><b>À quoi sert-il ?</b>Choisissez un point de départ, puis ajoutez ou retirez des sections.</figcaption></figure>
+<figure class="phone"><a href="/blog/2026-10-spaces/create-whatfor-mob.webp"><img src="/blog/2026-10-spaces/create-whatfor-mob.webp" alt="Un nouvel espace appelé Garden plot 14 qui demande à quoi il sert, avec quatre choix Famille, Club ou groupe, Voisins et Juste un fil, et des pastilles de sections avec Discussion et Calendrier cochées, et Tâches, Pages, Galerie, Stickies, Bazar, Carte et Emploi du temps à ajouter" width="390" height="844" loading="lazy"></a><figcaption><b>À quoi sert-il ?</b>Choisissez un point de départ, puis ajoutez ou retirez des sections.</figcaption></figure>
 </div>
 
 ## Des cartes plates, partout
@@ -175,7 +175,7 @@ seule personne ne démarre plus avec neuf onglets.
 Le style papier incliné et scotché disparaît des publications, dans
 les espaces comme dans le fil du foyer. Les cartes sont plates et
 calmes, comme sur la page Amis repensée. Le papier reste à un seul
-endroit, là où il est l'essentiel : le tableau des Post-it.
+endroit, là où il est l'essentiel : le tableau des Stickies.
 
 <details class="tech">
 <summary>Sous le capot</summary>

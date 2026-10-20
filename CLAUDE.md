@@ -139,27 +139,29 @@ maintained by hand, by the same change that touches the English.
   prefix (`/de/docs/glossary/#gfs`). Image and font paths are
   shared and stay un-prefixed (`/blog/…/x.png`). A `#fragment`
   must match the id Astro derives from the _translated_ heading.
-- **Register.** German and Dutch address the reader informally
-  (du / je), like Home Assistant's own docs; French uses vous.
-- **Names stay.** Social Home, Home Assistant, GFS, Highlights,
-  Momentum, Apps, Organize, algorithm names and the mono chips are
-  not translated.
-- **Core vocabulary** (mirror of the table above):
+- **Shared glossary — read it before translating.** Words,
+  register, names that stay and typography live in
+  [`social-home-io/translations`](https://github.com/social-home-io/translations),
+  shared with the app so the site and the app use the same words.
+  Clone it next to this repo:
 
-  | English                                | Deutsch                                          | Nederlands                                | Français                                   |
-  | -------------------------------------- | ------------------------------------------------ | ----------------------------------------- | ------------------------------------------ |
-  | household / your home                  | Haushalt / dein Zuhause                          | huishouden / je thuis                     | foyer / votre maison                       |
-  | space                                  | Space                                            | space                                     | espace                                     |
-  | pair / paired households               | koppeln / gekoppelte Haushalte                   | koppelen / gekoppelde huishoudens         | jumeler / foyers jumelés                   |
-  | Connections                            | Verbindungen                                     | Verbindingen                              | Connexions                                 |
-  | GFS (gloss on first use)               | GFS (Global Federation Server)                   | GFS (Global Federation Server)            | GFS (Global Federation Server)             |
-  | GFS link / Local link                  | GFS-Link / Lokaler Link                          | GFS-link / Lokale link                    | Lien GFS / Lien local                      |
-  | relay                                  | Relay                                            | relay                                     | relais                                     |
-  | Follower                               | Follower                                         | volger                                    | abonné                                     |
-  | Social Home (Early) add-on             | Social Home (Early) Add-on                       | Social Home (Early) add-on                | module complémentaire Social Home (Early)  |
-  | sealed, encrypted home to home         | versiegelt, verschlüsselt von Zuhause zu Zuhause | verzegeld, versleuteld van huis tot huis  | scellé, chiffré de maison à maison         |
-  | Under the hood                         | Unter der Haube                                  | Onder de motorkap                         | Sous le capot                              |
-  | Marketplace / Pages / Stickies / Tasks | Marktplatz / Seiten / Haftnotizen / Aufgaben     | Marktplaats / Pagina's / Sticky's / Taken | Place de marché / Pages / Post-it / Tâches |
+  ```sh
+  git clone https://github.com/social-home-io/translations.git ../translations
+  ```
+
+  Follow `../translations/GUIDE.md` and
+  `../translations/glossary/<locale>.md`. The glossary wins over
+  any existing translation here or in the app; if it is wrong,
+  change it there first (a PR to that repo), then the site.
+
+- **The essentials** (the glossary has the full list): German and
+  Dutch use du / je, French uses vous. Social Home, Home Assistant,
+  GFS, Highlights, Momentum, Organize, Apps, Stickies, algorithm
+  names and the mono chips are never translated. Spaces are
+  "Space" in German and "space" in Dutch, never Raum / ruimte;
+  paired households are "gekoppelt" / "gekoppeld" / "jumelés"; the
+  summary line is "Unter der Haube" / "Onder de motorkap" /
+  "Sous le capot".
 
 ## Adding a doc page
 

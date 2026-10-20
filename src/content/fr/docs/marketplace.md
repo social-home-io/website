@@ -1,11 +1,11 @@
 ---
-title: Place de marché
+title: Bazar
 description: Un tableau de petites annonces limité aux personnes en qui vous avez déjà confiance — vendez, donnez ou mettez aux enchères des objets à l'intérieur d'un espace, sans frais de plateforme et sans inconnus.
 order: 26
 ---
 
 La plupart des places de marché mettent vos affaires sous les yeux
-d'inconnus et prennent une commission. La **Place de marché** de
+d'inconnus et prennent une commission. Le **Bazar** de
 Social Home fait l'inverse : les annonces vivent à l'intérieur d'un
 **espace**, de sorte que seuls les foyers de cet espace — votre rue,
 votre immeuble, votre famille élargie — les voient. Pas de frais de
@@ -42,7 +42,7 @@ personne d'autre. Par défaut, elle ne s'annonce même pas dans le
 fil de l'espace ; activez l'annonce dans le fil, par annonce, si
 vous voulez un peu plus de visibilité.
 
-Parce que la Place de marché emprunte la même fédération de foyer à
+Parce que le Bazar emprunte la même fédération de foyer à
 foyer que tout le reste, il n'y a aucun catalogue central à
 parcourir, aucun tiers pour négocier la vente, et aucuns frais.
 C'est un panneau d'affichage pour des gens qui se connaissent déjà.

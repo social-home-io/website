@@ -47,7 +47,7 @@ deinem Haushalt tun:
   Heizkörper entlüftet, wo die Zählerstände hinkommen, die Übergabe
   an den Babysitter. Sie synchronisieren sich auf jedes Gerät im
   Haushalt.
-- **📝 Haftnotizen (Stickies) für alles, was keine Seite verdient.**
+- **📝 Stickies für alles, was keine Seite verdient.**
   Bunte Notizen zum Antippen und Bearbeiten, an eine Space-Pinnwand
   geheftet — der moderne Kühlschrankmagnet. Karotten in der unteren
   Schublade; Geschenkideen zum Geburtstag; die Einkaufsliste für die

@@ -1,11 +1,11 @@
 ---
-title: Marktplatz
+title: Basar
 description: Ein Kleinanzeigenbrett nur für die Leute, denen du ohnehin vertraust — Dinge in einem Space verkaufen, verschenken oder versteigern, ohne Plattformgebühren und ohne Fremde.
 order: 26
 ---
 
 Die meisten Marktplätze stellen deine Sachen vor Fremde und
-behalten einen Anteil. Der **Marktplatz** von Social Home macht
+behalten einen Anteil. Der **Basar** von Social Home macht
 das Gegenteil: Anzeigen leben in einem **Space**, sodass nur die
 Haushalte in diesem Space — deine Straße, dein Haus, deine
 erweiterte Familie — sie je zu sehen bekommen. Keine
@@ -44,7 +44,7 @@ und zu niemandem sonst. Standardmäßig kündigt sie sich nicht
 einmal im Space-Feed an; schalte den Feed-Hinweis pro Anzeige
 ein, wenn du die zusätzliche Sichtbarkeit möchtest.
 
-Weil der Marktplatz über dieselbe Föderation von Haushalt zu
+Weil der Basar über dieselbe Föderation von Haushalt zu
 Haushalt läuft wie alles andere, gibt es keinen zentralen
 Katalog zum Stöbern, keinen Dritten, der den Verkauf vermittelt,
 und keine Gebühren. Es ist ein Schwarzes Brett für Leute, die

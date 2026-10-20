@@ -156,7 +156,7 @@ export const fr: UiStrings = {
           body: "Des pages Markdown avec verrous d'édition et wikiliens. La notice pour purger les radiateurs vit là où vous la retrouverez vraiment — à côté de toutes les autres entrées du manuel de la maison.",
         },
         {
-          tag: "Post-it",
+          tag: "Stickies",
           title: "Des notes aimantées au frigo qui vous suivent.",
           body: "Des notes de couleur, modifiables d'un tapotement, épinglées sur le canevas d'un espace. Les carottes dans le bac du bas ; des idées de cadeaux d'anniversaire ; tout ce dont le foyer doit se souvenir ensemble.",
         },
@@ -212,7 +212,7 @@ export const fr: UiStrings = {
           body: "Jusqu'à mille caractères et un clip de 15 secondes. Chaque moment se propage sur trois sauts à travers la fédération — vos foyers jumelés et les leurs — et disparaît après un jour, ou une semaine pour les personnes que vous suivez.",
         },
         {
-          tag: "Place de marché",
+          tag: "Bazar",
           title: "Achetez, vendez et donnez dans votre cercle.",
           body: "Mettez des objets en vente dans un espace — prix fixe, meilleure offre ou enchère à durée limitée. Seuls les foyers de cet espace les voient. Pas d'inconnus, pas de frais de plateforme, pas d'annonces vendues aux annonceurs.",
         },
