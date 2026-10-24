@@ -97,10 +97,8 @@ verlaat, krijgt de club een nieuwe sleutel; die persoon kan niets
 lezen wat daarna is geplaatst. Als een beheerder wordt verwijderd,
 verandert ook de sleutel die beheerdersbeslissingen ondertekent.
 
-De sleutels op je schijf zijn ingepakt onder een hoofdsleutel. Heb
-je de add-on geïnstalleerd, dan reizen ze mee met je normale Home
-Assistant-back-up; op een losstaande installatie download je een
-Recovery Kit en bewaar je die op een veilige plek.
+De sleutels op je schijf zijn ingepakt onder een hoofdsleutel. Gebruik je de Home Assistant App, dan reizen ze mee met je normale Home
+Assistant-back-up; met Docker of Python download je een Recovery Kit en bewaar je die op een veilige plek.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -113,8 +111,8 @@ Recovery Kit en bewaar je die op een veilige plek.
   wijziging in het ledenbestand. Autoriteitssleutel geroteerd bij
   intrekking van een beheerder.
 - In rust: sleutels ingepakt onder een KEK (key-encryption key).
-  Recovery Kit `.shrk` = scrypt + AES-256-GCM, voor losstaande
-  installaties; de Home Assistant-back-up dekt add-on-installaties.
+  Recovery Kit `.shrk` = scrypt + AES-256-GCM, voor installaties met Docker en
+  Python; de Home Assistant-back-up dekt de app.
 - Restrisico: de sleuteluitwisseling is alleen X25519 — nog niet
   post-quantum. Hybride handtekeningen maken de sleuteluitwisseling
   niet post-quantum.

@@ -57,7 +57,7 @@ export const fr: UiStrings = {
       {
         heading: "Faire tourner",
         links: [
-          { href: "/docs/getting-started/", label: "Ajouter à Home Assistant" },
+          { href: "/docs/install-home-assistant/", label: "Ajouter à Home Assistant" },
           { href: "/servers/", label: "Notre serveur" },
           { href: "/docs/running-a-gfs/", label: "Héberger un relais" },
           { href: "https://github.com/social-home-io/socialhome/releases", label: "Versions" },
@@ -329,11 +329,11 @@ export const fr: UiStrings = {
 
   installBanner: {
     headline: "Installez en deux clics.",
-    body: "Ajoutez le dépôt de modules complémentaires Social Home à votre Home Assistant. Le module complémentaire vous configure automatiquement comme admin, génère un jeton et enregistre l'intégration correspondante via la découverte du Supervisor — rien à saisir.",
+    body: "Ajoutez l'app Social Home à votre Home Assistant. Elle fait de vous l'admin et se connecte elle-même à Home Assistant — il n'y a rien à saisir. Pas de Home Assistant OS ? Docker et Python fonctionnent aussi.",
     primaryCta: "Ajouter à Home Assistant",
     readGuide: "Lire le guide d'installation",
     shellLabel: "Ce que vous verrez dans Home Assistant",
-    terminalTitle: "Home Assistant · Boutique des modules complémentaires",
+    terminalTitle: "Home Assistant · Boutique d'apps",
   },
 
   familyWall: {

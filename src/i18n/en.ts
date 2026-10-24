@@ -60,7 +60,7 @@ export const en: UiStrings = {
       {
         heading: "Run",
         links: [
-          { href: "/docs/getting-started/", label: "Add to Home Assistant" },
+          { href: "/docs/install-home-assistant/", label: "Add to Home Assistant" },
           { href: "/servers/", label: "Our server" },
           { href: "/docs/running-a-gfs/", label: "Host a relay" },
           { href: "https://github.com/social-home-io/socialhome/releases", label: "Releases" },
@@ -328,11 +328,11 @@ export const en: UiStrings = {
 
   installBanner: {
     headline: "Install in two clicks.",
-    body: "Add the Social Home add-on repository to your Home Assistant. The add-on auto-provisions you as admin, mints a token, and registers the matching integration via Supervisor discovery — there's nothing to type.",
+    body: "Add the Social Home app to your Home Assistant. It makes you the admin and connects itself to Home Assistant — there's nothing to type. Not on Home Assistant OS? Docker and Python work too.",
     primaryCta: "Add to Home Assistant",
     readGuide: "Read the install guide",
     shellLabel: "What you'll see in Home Assistant",
-    terminalTitle: "Home Assistant · Add-on store",
+    terminalTitle: "Home Assistant · App store",
   },
 
   familyWall: {

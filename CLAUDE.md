@@ -45,7 +45,7 @@ in the meta-repo.
   `public/fonts/` — never load them from a CDN.
 - **No analytics, no third-party JS, no third-party requests, no
   auth.** The site is static; the only outbound link of
-  consequence is the add-on install redirect on
+  consequence is the Home Assistant app install redirect on
   `my.home-assistant.io`.
 - **No hand-maintained changelog.** Releases live on GitHub
   Releases; blog posts name the release they shipped in.
@@ -95,7 +95,7 @@ a protocol nerd can read the same page.
    | GFS (Global Federation Server), then GFS | relay server, GS, hub |
    | GFS link / Local link                    | relay link / internal |
    | Follower                                 | subscriber            |
-   | Social Home (Early) add-on               | dev / beta add-on     |
+   | Home Assistant app, Social Home (Early)  | add-on, dev / beta    |
    | sealed, encrypted home to home           | end-to-end encrypted  |
 
    First use of "GFS" on a page gets the short gloss and a link
@@ -104,8 +104,8 @@ a protocol nerd can read the same page.
    **Home, not Home Assistant.** The unit that sends, receives,
    stores and pairs is "your home" / "your household". Home
    Assistant is named only as the way to install Social Home: the
-   "Add to Home Assistant" CTA, the install banner, Getting
-   started, the add-on's backup and account sentences. Never
+   "Add to Home Assistant" CTA, the install banner, the install
+   pages, the app's backup and account sentences. Never
    "sealed from your Home Assistant to theirs"; always "sealed
    from your home to theirs".
 
@@ -178,6 +178,18 @@ maintained by hand, by the same change that touches the English.
    `src/content/nl/docs/<slug>.md` and
    `src/content/fr/docs/<slug>.md` (and the `docs.md` entry) in
    the same PR. The `[lang]/[...slug].astro` route picks them up.
+
+## Install pages
+
+We recommend Home Assistant OS with the Social Home app; every
+install path says so and keeps the one-click "Add to Home
+Assistant" button in front. `getting-started.md` is the overview
+(one-click first, then a table of the other ways);
+`install-home-assistant.md` (the app, then "Home Assistant without
+apps" with the integration from HACS), `install-docker.md` and
+`install-python.md` are the step-by-step guides. Keep the tone calm
+for Home Assistant users: plain steps first, ports, env vars and
+modes inside "Under the hood".
 
 ## Brand cues
 

@@ -121,9 +121,8 @@ zum [Sicherheitsmodell](/de/docs/security/).
 ## Dinge, die Social Home nicht hat
 
 - Ein Konto in einer Social-Home-Cloud (es gibt keine).
-- Eine Kopie deiner Daten irgendwo anders. Wenn du das Add-on
-  installiert hast, ist Social Home Teil deines normalen Home
-  Assistant Backups; bei einer eigenständigen Installation lädst
+- Eine Kopie deiner Daten irgendwo anders. Wenn du die Home Assistant App nutzt, ist Social Home Teil deines normalen Home
+  Assistant Backups; mit Docker oder Python lädst
   du ein Recovery Kit herunter und bewahrst es an einem sicheren
   Ort auf.
 - Telemetrie, Analytics, Absturzberichte oder A/B-Tests.

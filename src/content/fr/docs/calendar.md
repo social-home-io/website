@@ -78,9 +78,8 @@ enceinte, tamiser les lumières, ou tout ce que le foyer a câblé.
 <summary>Sous le capot</summary>
 
 Le point d'accroche pour les automatisations est un événement sur
-le bus d'événements de Home Assistant, émis via l'intégration
-livrée avec le module complémentaire ; n'importe quelle
-automatisation peut se déclencher dessus.
+le bus d'événements de Home Assistant, émis dès que Social Home tourne avec Home Assistant (l'app, ou
+Docker et Python en mode `ha`) ; n'importe quelle automatisation peut se déclencher dessus.
 
 </details>
 

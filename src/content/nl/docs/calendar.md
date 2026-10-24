@@ -80,8 +80,9 @@ ook heeft aangesloten.
 <summary>Onder de motorkap</summary>
 
 De automatiseringshook is een event op de eventbus van Home
-Assistant, afgevuurd via de integratie die de add-on meelevert;
-elke automatisering kan erop triggeren.
+Assistant, afgevuurd zodra Social Home met Home Assistant draait (de app, of
+Docker en Python in de modus `ha`); elke automatisering kan erop
+triggeren.
 
 </details>
 

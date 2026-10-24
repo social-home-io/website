@@ -74,7 +74,7 @@ je netwerk bereikbaar te zijn, heb je een van deze nodig:
 
 - **Nabu Casa Remote UI** (het makkelijkst), of
 - Een **externe URL** (ingesteld in de netwerkinstellingen van
-  Home Assistant als je de add-on draait) + een port forward /
+  Home Assistant als je de Home Assistant App draait) + een port forward /
   reverse proxy, of
 - Een **TURN-server** voor de WebRTC-fallback wanneer geen van
   beide kanten rechtstreeks bereikbaar is.
@@ -82,7 +82,7 @@ je netwerk bereikbaar te zijn, heb je een van deze nodig:
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-Als je de add-on hebt geïnstalleerd, stuurt de Home
+Gebruik je de Home Assistant App, dan stuurt de Home
 Assistant-integratie automatisch de URL die Home Assistant als
 externe URL rapporteert naar Social Home. Staat Nabu Casa aan,
 dan wint de Nabu Casa-URL; anders wordt de door de beheerder

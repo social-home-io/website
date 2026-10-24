@@ -92,8 +92,8 @@ that pauses is messaging _outside_ the house.
 <details class="tech">
 <summary>Under the hood</summary>
 
-If you installed the add-on, it is part of your normal Home Assistant backup;
-standalone installs get a Recovery Kit (`.shrk`, scrypt +
+If you use the Home Assistant app, it is part of your normal Home Assistant backup;
+Docker and Python installs get a Recovery Kit (`.shrk`, scrypt +
 AES-256-GCM) for the keys.
 
 </details>

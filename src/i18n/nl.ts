@@ -50,7 +50,7 @@ export const nl: UiStrings = {
       {
         heading: "Draaien",
         links: [
-          { href: "/docs/getting-started/", label: "Toevoegen aan Home Assistant" },
+          { href: "/docs/install-home-assistant/", label: "Toevoegen aan Home Assistant" },
           { href: "/servers/", label: "Onze server" },
           { href: "/docs/running-a-gfs/", label: "Een relay hosten" },
           { href: "https://github.com/social-home-io/socialhome/releases", label: "Releases" },
@@ -319,11 +319,11 @@ export const nl: UiStrings = {
 
   installBanner: {
     headline: "Installeren in twee klikken.",
-    body: "Voeg de add-on-repository van Social Home toe aan je Home Assistant. De add-on maakt je automatisch beheerder, maakt een token aan en registreert de bijbehorende integratie via Supervisor-discovery — je hoeft niets in te typen.",
+    body: "Voeg de Social Home-app toe aan je Home Assistant. Hij maakt je beheerder en verbindt zichzelf met Home Assistant — je hoeft niets in te typen. Geen Home Assistant OS? Docker en Python kan ook.",
     primaryCta: "Toevoegen aan Home Assistant",
     readGuide: "Lees de installatiehandleiding",
     shellLabel: "Wat je in Home Assistant ziet",
-    terminalTitle: "Home Assistant · Add-on winkel",
+    terminalTitle: "Home Assistant · App-winkel",
   },
 
   familyWall: {

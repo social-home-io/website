@@ -74,7 +74,7 @@ l'un des éléments suivants :
 
 - **Nabu Casa Remote UI** (le plus simple), ou
 - Une **URL externe** (définie dans les paramètres réseau de Home
-  Assistant si vous utilisez le module complémentaire) + une
+  Assistant si vous utilisez la Home Assistant App) + une
   redirection de port / un proxy inverse, ou
 - Un **serveur TURN** pour le repli WebRTC quand aucun des deux
   côtés ne peut être joint directement.
@@ -82,7 +82,7 @@ l'un des éléments suivants :
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Si vous avez installé le module complémentaire, l'intégration
+Si vous utilisez la Home Assistant App, l'intégration
 Home Assistant pousse automatiquement vers Social Home l'URL que
 Home Assistant signale comme externe. Si Nabu Casa est actif,
 l'URL Nabu Casa l'emporte ; sinon, l'`external_url` défini par

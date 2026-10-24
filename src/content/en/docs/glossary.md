@@ -13,7 +13,7 @@ the technical detail on every page sits in a collapsible
 ## Household
 
 A household is one home running Social Home — one server,
-usually installed as a Home Assistant add-on — and the
+usually installed as the Home Assistant app — and the
 people who live behind it — you, your partner, the kids, the
 flatmate. Everything a household does (the shopping list, the
 calendar, the photos, the chat) is stored on that one server.

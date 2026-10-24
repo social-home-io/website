@@ -24,7 +24,7 @@ Les dépôts sont petits et bien documentés :
 - **Bibliothèque cliente** —
   [`social-home-io/socialhome-client`](https://github.com/social-home-io/socialhome-client).
   Client HTTP/WS purement asynchrone, sans dépendance à HA.
-- **Module complémentaire HA** —
+- **Home Assistant App** —
   [`social-home-io/ha-app`](https://github.com/social-home-io/ha-app).
   Deux canaux (stable + Early), bashio + tempio.
 - **Site web** — ce dépôt, sur

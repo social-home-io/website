@@ -23,7 +23,7 @@ De repo's zijn klein en goed gedocumenteerd:
 - **Clientbibliotheek** —
   [`social-home-io/socialhome-client`](https://github.com/social-home-io/socialhome-client).
   Pure async HTTP/WS-client, zonder HA-afhankelijkheid.
-- **HA add-on** —
+- **Home Assistant App** —
   [`social-home-io/ha-app`](https://github.com/social-home-io/ha-app).
   Twee kanalen (stable + Early), bashio + tempio.
 - **Website** — deze repo op

@@ -71,14 +71,14 @@ outside your network you need either:
 
 - **Nabu Casa Remote UI** (easiest), or
 - An **external URL** (set in Home Assistant's network settings if
-  you run the add-on) + a port forward / reverse proxy, or
+  you run the Home Assistant app) + a port forward / reverse proxy, or
 - A **TURN server** for the WebRTC fallback when neither side
   can be reached directly.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-If you installed the add-on, the Home Assistant integration pushes
+If you use the Home Assistant app, the Home Assistant integration pushes
 whichever URL Home Assistant reports as the external one to Social
 Home automatically. If Nabu Casa is on, the Nabu Casa URL wins;
 otherwise the admin-set `external_url` is used.
