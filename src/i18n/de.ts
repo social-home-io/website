@@ -57,7 +57,7 @@ export const de: UiStrings = {
       {
         heading: "Betreiben",
         links: [
-          { href: "/docs/getting-started/", label: "Zu Home Assistant hinzufügen" },
+          { href: "/docs/install-home-assistant/", label: "Zu Home Assistant hinzufügen" },
           { href: "/servers/", label: "Unser Server" },
           { href: "/docs/running-a-gfs/", label: "Ein Relay betreiben" },
           { href: "https://github.com/social-home-io/socialhome/releases", label: "Releases" },
@@ -328,11 +328,11 @@ export const de: UiStrings = {
 
   installBanner: {
     headline: "In zwei Klicks installiert.",
-    body: "Füge das Add-on-Repository von Social Home zu deinem Home Assistant hinzu. Das Add-on richtet dich automatisch als Admin ein, erzeugt ein Token und registriert die passende Integration über die Supervisor-Erkennung — du musst nichts eintippen.",
+    body: "Füge die Social Home App zu deinem Home Assistant hinzu. Sie macht dich zum Admin und verbindet sich selbst mit Home Assistant — es gibt nichts einzutippen. Kein Home Assistant OS? Docker und Python gehen auch.",
     primaryCta: "Zu Home Assistant hinzufügen",
     readGuide: "Installationsanleitung lesen",
     shellLabel: "Was du in Home Assistant sehen wirst",
-    terminalTitle: "Home Assistant · Add-on-Store",
+    terminalTitle: "Home Assistant · App-Store",
   },
 
   familyWall: {

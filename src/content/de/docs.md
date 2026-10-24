@@ -5,8 +5,8 @@ order: 0
 ---
 
 Social Home ist ein privates, föderiertes soziales Netzwerk für
-deinen Haushalt, das bei dir zu Hause lebt — du installierst es
-als Home Assistant Add-on. Es ist zwei Dinge auf einmal: ein
+deinen Haushalt, das bei dir zu Hause lebt — die meisten Haushalte installieren es als Home Assistant App,
+Docker und Python gehen auch. Es ist zwei Dinge auf einmal: ein
 **Haushalts-Betriebssystem** — Kalender, Einkaufsliste,
 Anwesenheit, Fotos — und ein **föderiertes soziales Gewebe** —
 Feeds, Direktnachrichten und gemeinsame Spaces, die die Menschen
@@ -21,8 +21,11 @@ GitHub](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
 
 ## Hier anfangen
 
-- **[Erste Schritte](/de/docs/getting-started/)** — das Social Home
-  Add-on in etwa fünf Minuten zu Home Assistant hinzufügen.
+- **[Erste Schritte](/de/docs/getting-started/)** — die Social Home App in etwa fünf Minuten zu Home Assistant
+  hinzufügen oder einen anderen Weg wählen.
+- **[Auf Home Assistant installieren](/de/docs/install-home-assistant/)**,
+  **[mit Docker](/de/docs/install-docker/)** oder
+  **[mit Python](/de/docs/install-python/)** — Schritt für Schritt.
 - **[Wörter, die wir verwenden](/de/docs/glossary/)** — Haushalt,
   Space, Reichweite, GFS, Kopplung: das Dutzend Wörter, das
   überall vorkommt.

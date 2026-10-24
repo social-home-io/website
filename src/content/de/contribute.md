@@ -24,7 +24,7 @@ Die Repos sind klein und gut dokumentiert:
 - **Client-Bibliothek** —
   [`social-home-io/socialhome-client`](https://github.com/social-home-io/socialhome-client).
   Reiner asynchroner HTTP/WS-Client, keine HA-Abhängigkeit.
-- **HA Add-on** —
+- **Home Assistant App** —
   [`social-home-io/ha-app`](https://github.com/social-home-io/ha-app).
   Zwei Kanäle (stable + Early), bashio + tempio.
 - **Website** — dieses Repo unter

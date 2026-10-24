@@ -14,8 +14,7 @@ capot » que vous pouvez ignorer ou ouvrir à votre guise.
 ## Foyer
 
 Un foyer, c'est une maison qui fait tourner Social Home — un
-serveur, généralement installé comme module complémentaire Home
-Assistant — et les personnes qui vivent derrière — vous, votre
+serveur, généralement installé comme Home Assistant App — et les personnes qui vivent derrière — vous, votre
 partenaire, les enfants, le colocataire. Tout ce qu'un foyer fait
 (la liste de courses, le calendrier, les photos, la discussion) est
 stocké sur ce seul serveur. Quand cette documentation dit « votre

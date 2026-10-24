@@ -74,7 +74,7 @@ Netzwerks erreichbar zu sein, brauchst du entweder:
 
 - **Nabu Casa Remote UI** (am einfachsten), oder
 - eine **externe URL** (in den Netzwerkeinstellungen von Home
-  Assistant gesetzt, wenn du das Add-on nutzt) + eine
+  Assistant gesetzt, wenn du die Home Assistant App nutzt) + eine
   Portweiterleitung / einen Reverse-Proxy, oder
 - einen **TURN-Server** für den WebRTC-Fallback, wenn keine Seite
   direkt erreichbar ist.
@@ -82,7 +82,7 @@ Netzwerks erreichbar zu sein, brauchst du entweder:
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Wenn du das Add-on installiert hast, übergibt die
+Wenn du die Home Assistant App nutzt, übergibt die
 Home-Assistant-Integration automatisch die URL an Social Home, die
 Home Assistant als externe meldet. Ist Nabu Casa an, gewinnt die
 Nabu-Casa-URL; andernfalls wird die vom Admin gesetzte

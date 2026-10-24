@@ -117,10 +117,8 @@ du [modèle de sécurité](/fr/docs/security/).
 ## Ce que Social Home n'a pas
 
 - Un compte sur un cloud Social Home (il n'y en a pas).
-- Une copie de vos données ailleurs. Si vous avez installé le
-  module complémentaire, Social Home fait partie de votre
-  sauvegarde Home Assistant habituelle ; sur une installation
-  autonome, téléchargez un kit de récupération (Recovery Kit) et
+- Une copie de vos données ailleurs. Si vous utilisez la Home Assistant App, Social Home fait partie de votre
+  sauvegarde Home Assistant habituelle ; avec Docker ou Python, téléchargez un kit de récupération (Recovery Kit) et
   gardez-le en lieu sûr.
 - De la télémétrie, de la mesure d'audience, des rapports de
   plantage ou des tests A/B.

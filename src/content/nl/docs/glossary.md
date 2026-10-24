@@ -14,7 +14,7 @@ overslaan of openen.
 ## Huishouden
 
 Een huishouden is één huis waar Social Home draait — één server,
-meestal geïnstalleerd als Home Assistant add-on — en de mensen die
+meestal geïnstalleerd als Home Assistant App — en de mensen die
 erachter wonen — jij, je partner, de kinderen, de huisgenoot.
 Alles wat een huishouden doet (de boodschappenlijst, de agenda, de
 foto's, de chat) wordt opgeslagen op die ene server. Als deze docs

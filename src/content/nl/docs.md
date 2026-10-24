@@ -5,8 +5,8 @@ order: 0
 ---
 
 Social Home is een privé, gefedereerd sociaal netwerk voor je
-huishouden dat in je huis woont — je installeert het als Home
-Assistant add-on. Het is twee dingen tegelijk: een
+huishouden dat in je huis woont — de meeste huishoudens installeren het als Home Assistant App, en
+Docker en Python kan ook. Het is twee dingen tegelijk: een
 **huishoud-OS** — agenda, boodschappenlijst, aanwezigheid, foto's —
 en een **gefedereerd sociaal weefsel** — feeds, privéberichten en
 gedeelde spaces die de mensen omspannen die je echt kent.
@@ -19,8 +19,11 @@ staat in de [GitHub-spec](https://github.com/social-home-io/socialhome/blob/main
 
 ## Begin hier
 
-- **[Aan de slag](/nl/docs/getting-started/)** — voeg de
-  Social Home add-on in ongeveer vijf minuten toe aan Home Assistant.
+- **[Aan de slag](/nl/docs/getting-started/)** — voeg de Social Home-app in ongeveer vijf minuten toe aan Home
+  Assistant, of kies een andere manier.
+- **[Installeren op Home Assistant](/nl/docs/install-home-assistant/)**,
+  **[met Docker](/nl/docs/install-docker/)** of
+  **[met Python](/nl/docs/install-python/)** — stap voor stap.
 - **[Woorden die we gebruiken](/nl/docs/glossary/)** — huishouden,
   space, bereik, GFS, koppelen: het dozijn woorden dat overal
   terugkomt.

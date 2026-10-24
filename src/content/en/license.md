@@ -5,7 +5,7 @@ order: 99
 ---
 
 Every repo in the Social Home project — server, client, HA
-integration, HA add-on, and this website — is licensed under
+integration, Home Assistant app, and this website — is licensed under
 the **Mozilla Public License Version 2.0** (SPDX:
 `MPL-2.0`).
 

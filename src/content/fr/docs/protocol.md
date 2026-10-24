@@ -102,9 +102,8 @@ de la maison.
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Si vous avez installé le module complémentaire, il fait partie de
-votre sauvegarde Home Assistant habituelle ; les installations
-autonomes reçoivent un kit de récupération (`.shrk`, scrypt +
+Si vous utilisez la Home Assistant App, il fait partie de
+votre sauvegarde Home Assistant habituelle ; les installations Docker et Python reçoivent un kit de récupération (`.shrk`, scrypt +
 AES-256-GCM) pour les clés.
 
 </details>

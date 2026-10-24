@@ -78,8 +78,9 @@ der Haushalt verdrahtet hat.
 <summary>Unter der Haube</summary>
 
 Der Automations-Hook ist ein Ereignis auf dem Event-Bus von Home
-Assistant, ausgelöst über die Integration, die das Add-on mitbringt;
-jede Automation kann darauf triggern.
+Assistant, ausgelöst, wann immer Social Home mit Home Assistant läuft (die App
+oder Docker und Python im Modus `ha`); jede Automation kann darauf
+triggern.
 
 </details>
 

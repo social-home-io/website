@@ -118,9 +118,8 @@ velden op een envelop zijn `event_type`, `from_instance`,
 ## Dingen die Social Home niet heeft
 
 - Een account in een Social Home-cloud (die is er niet).
-- Een kopie van je gegevens ergens anders. Heb je de add-on
-  geïnstalleerd, dan maakt Social Home deel uit van je normale Home
-  Assistant-back-up; op een losstaande installatie download je een
+- Een kopie van je gegevens ergens anders. Gebruik je de Home Assistant App, dan maakt Social Home deel uit van je normale Home
+  Assistant-back-up; met Docker of Python download je een
   Recovery Kit en bewaar je die op een veilige plek.
 - Telemetrie, analytics, crashrapportage of A/B-testen.
 - Een advertentieplek.

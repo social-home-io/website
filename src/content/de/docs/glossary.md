@@ -15,7 +15,7 @@ Details stecken auf jeder Seite in einem aufklappbaren
 ## Haushalt
 
 Ein Haushalt ist ein Zuhause, in dem Social Home läuft — ein
-Server, meist als Home Assistant Add-on installiert — und die
+Server, meist als Home Assistant App installiert — und die
 Menschen, die dahinter wohnen — du, dein Partner oder deine
 Partnerin, die Kinder, die Mitbewohnerin. Alles, was ein Haushalt
 tut (die Einkaufsliste, der Kalender, die Fotos, der Chat), wird

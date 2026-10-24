@@ -1,85 +1,52 @@
 ---
 title: Premiers pas
-description: Installez le module complémentaire Social Home, validez l'invite d'intégration en un clic, et c'est fini. Cinq minutes environ, café compris.
+description: Le plus simple est de faire tourner Social Home comme app dans Home Assistant — un clic, environ cinq minutes. Docker et Python fonctionnent aussi.
 order: 10
 ---
 
-Social Home s'installe comme module complémentaire Home Assistant ;
-il vous faut donc un Home Assistant avec le Supervisor — c'est-à-dire
-**Home Assistant OS** ou **Home Assistant Supervised**, sur une
-machine aarch64 (Raspberry Pi, Home Assistant Green/Yellow) ou
-amd64, avec Home Assistant **2026.3 ou plus récent**. Si vous
-utilisez plutôt la version Container ou Core, vous pouvez faire
-tourner Social Home comme
-[conteneur Docker autonome](https://github.com/social-home-io/socialhome#docker)
-(il expose les ports 8099 et 8124) et ajouter l'intégration à la
-main.
+Social Home tourne chez vous, sur un ordinateur que vous avez déjà. La
+façon la plus simple — et celle que nous recommandons — est l'**app
+Social Home pour Home Assistant**. Si vous utilisez Home Assistant OS
+(sur un Home Assistant Green ou Yellow, un Raspberry Pi ou un mini-PC)
+ou Home Assistant Supervised, c'est un clic et environ cinq minutes,
+café compris.
 
-## 1. Ajouter le dépôt de modules complémentaires
+[**Ajouter Social Home à Home Assistant →**](https://my.home-assistant.io/redirect/supervisor_addon/?addon=752dab87_socialhome&repository_url=https%3A%2F%2Fgithub.com%2Fsocial-home-io%2Fha-app)
 
-Cliquez sur le
-[bouton « Ajouter à Home Assistant » en un clic](https://my.home-assistant.io/redirect/supervisor_addon/?addon=752dab87_socialhome&repository_url=https%3A%2F%2Fgithub.com%2Fsocial-home-io%2Fha-app)
-— il ajoute le dépôt et ouvre la page du module complémentaire pour
-vous.
+Le bouton ouvre votre Home Assistant, ajoute l'app et vous montre le
+bouton **Installer**. L'app s'occupe de tout : votre compte et la
+connexion à Home Assistant. Il n'y a rien à saisir et aucun port à
+ouvrir. Le [guide pas à pas](/fr/docs/install-home-assistant/) vous
+accompagne et montre à quoi vous attendre.
 
-Vous préférez le faire à la main ? Dans Home Assistant, ouvrez
-**Paramètres → Modules complémentaires → Boutique des modules
-complémentaires**. Cliquez sur le menu à trois points en haut à
-droite et choisissez **Dépôts**. Collez cette URL :
+## Autres façons d'installer
 
-```
-https://github.com/social-home-io/ha-app
-```
+Pas de Home Assistant OS ? Social Home tourne aussi ailleurs. Le fil,
+l'agenda, les espaces et le jumelage fonctionnent partout de la même
+façon ; ce qui change, c'est ce que vous configurez à la main.
+Quelques extras viennent de Home Assistant — la voix, les
+notifications via l'app Home Assistant Companion, et les lieux et
+personnes qui suivent votre Home Assistant — il faut donc Home
+Assistant à côté de Social Home pour en profiter.
 
-Deux nouveaux modules complémentaires apparaissent : **Social
-Home** (stable, recommandé) et **Social Home (Early)** (versions
-candidates, une version en avance sur la stable — pour les foyers
-qui aiment essayer en premier).
+| Comment                                                                               | Idéal pour                                                               | Effort             |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------ |
+| [Home Assistant App](/fr/docs/install-home-assistant/)                                | Home Assistant OS — **recommandé**                                       | un clic            |
+| [Home Assistant sans apps](/fr/docs/install-home-assistant/#home-assistant-sans-apps) | Home Assistant Container ou Core, plus l'intégration depuis HACS         | environ 20 minutes |
+| [Conteneur Docker](/fr/docs/install-docker/)                                          | un serveur domestique ou un NAS avec Docker, avec ou sans Home Assistant | environ 15 minutes |
+| [Python](/fr/docs/install-python/)                                                    | essayer sur votre ordinateur portable, ou un serveur que vous gérez      | environ 15 minutes |
 
-## 2. Installer **Social Home**
+Vous hésitez ? Si votre Home Assistant a une page **Apps** dans
+**Paramètres**, choisissez l'app.
 
-Cliquez sur **Installer**. Les images sont préconstruites, cela
-prend donc environ une minute. Cliquez ensuite sur **Démarrer** et
-ouvrez l'onglet **Journal** pour confirmer que l'amorçage a réussi :
+## Après l'installation
 
-```
-[INFO] Starting Social Home...
-[INFO] Configuration written to /data/social_home.toml
-[INFO] HA owner detected: alex · provisioned as admin
-[INFO] Integration token written to /data/integration_token.txt
-[INFO] Discovery pushed to Supervisor
-```
-
-## 3. Ajouter l'intégration
-
-Le module complémentaire embarque l'intégration Home Assistant et
-la copie dans `custom_components` au démarrage — rien à
-télécharger, rien à installer d'ailleurs. En quelques secondes,
-Home Assistant affiche une carte de découverte sous **Paramètres →
-Appareils et services**. Cliquez sur **Configurer** sur la carte
-Social Home. Il n'y a rien à saisir — le module complémentaire a
-déjà créé un admin et généré un jeton.
-
-## 4. Ouvrir l'interface web
-
-Cliquez sur l'entrée **Social Home** dans la barre latérale de HA
-(l'icône est une petite maison avec une bulle de discussion). La
-page s'ouvre via Home Assistant Ingress sur le port 8099 ; il n'y a
-donc aucun port à rediriger et rien à exposer — si vous pouvez
-joindre votre Home Assistant, vous pouvez joindre Social Home. La
-première requête vous enregistre comme membre ordinaire ;
-l'utilisateur admin créé par le module complémentaire au premier
-démarrage est le vôtre par défaut.
-
-## Et ensuite
-
-- Jumelez un autre foyer : **Paramètres → Connexions → Jumeler un
-  foyer** dans l'interface web. Voir
-  [Des foyers fédérés](/fr/docs/federation/) pour le parcours par
-  scan de QR code.
-- Définissez une URL externe pour que les autres foyers puissent
-  vous joindre. HA transmet automatiquement à Social Home ce que
-  vous mettez dans **Paramètres → Réseau → URL externe** (ou votre
-  interface distante Nabu Casa) — aucune étape manuelle.
-- Si vous avez une configuration vocale HA avec micro, essayez
+- **Faites venir votre foyer.** Chaque personne de votre maison a son
+  propre compte. Avec la Home Assistant App, quiconque ouvre Social
+  Home depuis la barre latérale de Home Assistant en reçoit un
+  automatiquement.
+- **Jumeler un autre foyer :** **Paramètres → Connexions → Jumeler un
+  foyer**. Voir [Des foyers fédérés](/fr/docs/federation/) pour la
+  démarche avec le QR code.
+- Avec un assistant vocal dans Home Assistant, essayez
   _« Hey HA, ajoute de l'huile d'olive à la liste de courses. »_

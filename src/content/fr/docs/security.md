@@ -97,9 +97,8 @@ rien lire de ce qui est publié ensuite. Quand un admin est retiré,
 la clé qui signe les décisions des admins change aussi.
 
 Les clés sur votre disque sont enveloppées sous une clé maîtresse.
-Si vous avez installé le module complémentaire, elles voyagent
-avec votre sauvegarde Home Assistant habituelle ; sur une
-installation autonome, vous téléchargez un kit de récupération
+Si vous utilisez la Home Assistant App, elles voyagent
+avec votre sauvegarde Home Assistant habituelle ; avec Docker ou Python, vous téléchargez un kit de récupération
 (Recovery Kit) et le gardez en lieu sûr.
 
 <details class="tech">
@@ -113,8 +112,8 @@ installation autonome, vous téléchargez un kit de récupération
   révocation d'un admin.
 - Au repos : clés enveloppées sous une KEK (clé de chiffrement de
   clés). Recovery Kit `.shrk` = scrypt + AES-256-GCM, pour les
-  installations autonomes ; la sauvegarde Home Assistant couvre les
-  installations en module complémentaire.
+  installations Docker et Python ; la sauvegarde Home Assistant couvre
+  l'app.
 - Résiduel : l'échange de clés est uniquement X25519 — pas encore
   post-quantique. Les signatures hybrides ne rendent pas l'échange
   de clés post-quantique.

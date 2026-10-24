@@ -5,7 +5,7 @@ order: 99
 ---
 
 Chaque dépôt du projet Social Home — serveur, client, intégration
-HA, module complémentaire HA et ce site web — est publié sous la
+HA, Home Assistant App et ce site web — est publié sous la
 **Mozilla Public License Version 2.0** (SPDX :
 `MPL-2.0`).
 

@@ -74,8 +74,8 @@ household has wired up.
 <summary>Under the hood</summary>
 
 The automation hook is an event on the Home Assistant event bus,
-fired through the integration the add-on ships; any automation
-can trigger on it.
+fired whenever Social Home runs with Home Assistant (the app, or
+Docker and Python in `ha` mode); any automation can trigger on it.
 
 </details>
 

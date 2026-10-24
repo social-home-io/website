@@ -98,8 +98,8 @@ huis.
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-Als je de add-on hebt geïnstalleerd, maakt hij deel uit van je
-normale Home Assistant-back-up; standalone installaties krijgen
+Gebruik je de Home Assistant App, dan maakt hij deel uit van je
+normale Home Assistant-back-up; installaties met Docker en Python krijgen
 een Recovery Kit (`.shrk`, scrypt + AES-256-GCM) voor de
 sleutels.
 

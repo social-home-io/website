@@ -98,8 +98,8 @@ Schreiben mit Leuten _außerhalb_ des Hauses pausiert.
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Wenn du das Add-on installiert hast, ist es Teil deines normalen
-Home-Assistant-Backups; eigenständige Installationen bekommen für
+Wenn du die Home Assistant App nutzt, ist es Teil deines normalen
+Home-Assistant-Backups; Installationen mit Docker und Python bekommen für
 die Schlüssel ein Recovery Kit (`.shrk`, scrypt + AES-256-GCM).
 
 </details>

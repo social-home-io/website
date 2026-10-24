@@ -95,8 +95,8 @@ an admin is removed, the key that signs admin decisions changes
 too.
 
 The keys on your disk are wrapped under a master key. If you
-installed the add-on, they travel with your normal Home Assistant
-backup; on a standalone install you download a Recovery Kit and keep it
+use the Home Assistant app, they travel with your normal Home Assistant
+backup; with Docker or Python you download a Recovery Kit and keep it
 somewhere safe.
 
 <details class="tech">
@@ -109,8 +109,8 @@ somewhere safe.
 - Space content: per-epoch AES-256-GCM key, rotated on every
   membership change. Authority key rotated on admin revocation.
 - At rest: keys wrapped under a KEK (key-encryption key). Recovery
-  Kit `.shrk` = scrypt + AES-256-GCM, for standalone installs; the
-  Home Assistant backup covers add-on installs.
+  Kit `.shrk` = scrypt + AES-256-GCM, for Docker and Python installs;
+  the Home Assistant backup covers the app.
 - Residual: key exchange is X25519 only — not yet post-quantum.
   Hybrid signatures do not make the key exchange post-quantum.
 

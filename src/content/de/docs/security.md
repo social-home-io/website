@@ -100,9 +100,8 @@ wird. Wenn ein Admin entfernt wird, ändert sich auch der
 Schlüssel, der Admin-Entscheidungen signiert.
 
 Die Schlüssel auf deiner Festplatte sind unter einem
-Hauptschlüssel verpackt. Wenn du das Add-on installiert hast,
-reisen sie mit deinem normalen Home Assistant Backup mit; bei
-einer eigenständigen Installation lädst du ein Recovery Kit
+Hauptschlüssel verpackt. Wenn du die Home Assistant App nutzt,
+reisen sie mit deinem normalen Home Assistant Backup mit; mit Docker oder Python lädst du ein Recovery Kit
 herunter und bewahrst es an einem sicheren Ort auf.
 
 <details class="tech">
@@ -117,8 +116,8 @@ herunter und bewahrst es an einem sicheren Ort auf.
   beim Entfernen eines Admins rotiert.
 - Im Ruhezustand: Schlüssel verpackt unter einem KEK
   (Key-Encryption Key). Recovery Kit `.shrk` = scrypt +
-  AES-256-GCM, für eigenständige Installationen; das Home
-  Assistant Backup deckt Add-on-Installationen ab.
+  AES-256-GCM, für Installationen mit Docker und Python; das Home Assistant
+  Backup deckt die App ab.
 - Restrisiko: Der Schlüsselaustausch ist nur X25519 — noch nicht
   post-quantum. Hybride Signaturen machen den Schlüsselaustausch
   nicht post-quantum.

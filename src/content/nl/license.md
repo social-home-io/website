@@ -5,7 +5,7 @@ order: 99
 ---
 
 Elke repo in het Social Home-project — server, client,
-HA-integratie, HA add-on en deze website — is gelicentieerd onder
+HA-integratie, Home Assistant App en deze website — is gelicentieerd onder
 de **Mozilla Public License Version 2.0** (SPDX:
 `MPL-2.0`).
 
