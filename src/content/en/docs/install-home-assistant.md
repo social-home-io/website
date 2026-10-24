@@ -118,7 +118,11 @@ Social Home three extra settings:
 | `SH_HA_URL`   | the address of your Home Assistant, e.g. `http://homeassistant.local:8123` |
 | `SH_HA_TOKEN` | the token from step 1                                                      |
 
-For Docker, that's three more `-e` lines (or three lines under
+Prefer a settings file? The same three go into `socialhome.toml` as
+`mode = "ha"` under `[server]`, and `url` and `token` under
+`[homeassistant]` — see
+[the settings file](/docs/install-docker/#5-fine-tune-with-a-settings-file-optional).
+For Docker, it's three more `-e` lines (or three lines under
 `environment:` in Compose):
 
 ```sh

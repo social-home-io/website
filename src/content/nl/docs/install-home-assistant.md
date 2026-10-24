@@ -123,6 +123,10 @@ geef Social Home drie extra instellingen mee:
 | `SH_HA_URL`   | het adres van je Home Assistant, bijv. `http://homeassistant.local:8123` |
 | `SH_HA_TOKEN` | het token uit stap 1                                                     |
 
+Liever een instellingenbestand? Dezelfde drie komen in
+`socialhome.toml` als `mode = "ha"` onder `[server]`, en `url` en
+`token` onder `[homeassistant]` — zie
+[het instellingenbestand](/nl/docs/install-docker/#5-bijstellen-met-een-instellingenbestand-optioneel).
 Voor Docker zijn dat drie extra `-e`-regels (of drie regels onder
 `environment:` in Compose):
 

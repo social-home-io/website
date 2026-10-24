@@ -56,6 +56,27 @@ directement (ou vous vous jumelez via un GFS), et une sauvegarde plus
 un **Kit de récupération** dans **Admin → Sauvegarde**. Voir
 [Installer avec Docker](/fr/docs/install-docker/#3-être-joignable-par-les-autres-foyers).
 
+## Affiner avec un fichier de réglages (facultatif)
+
+Les réglages de tous les jours se trouvent dans l'interface web. Pour
+les quelques éléments que Social Home lit au démarrage — un serveur
+TURN pour les appels, une limite de stockage, votre propre GFS, la
+connexion à Home Assistant — il existe un fichier de réglages. Copiez
+le fichier d'exemple, où chaque réglage est commenté et expliqué, là
+où Social Home le cherche :
+
+```sh
+mkdir -p ~/.config/socialhome
+curl -o ~/.config/socialhome/socialhome.toml https://raw.githubusercontent.com/social-home-io/socialhome/main/socialhome.toml.example
+```
+
+Retirez le `#` devant les lignes voulues, mettez vos valeurs et
+redémarrez Social Home. Une variable d'environnement l'emporte
+toujours sur le fichier, et un fichier contenant une faute est ignoré
+en entier — vérifiez donc que votre changement a été pris en compte.
+Plus de détails dans
+[Installer avec Docker](/fr/docs/install-docker/#5-affiner-avec-un-fichier-de-réglages-facultatif).
+
 ## Mettre à jour
 
 ```sh

@@ -55,6 +55,25 @@ directly (or pair through a GFS), and a backup plus a **Recovery Kit**
 from **Admin → Backup**. See
 [Install with Docker](/docs/install-docker/#3-let-other-households-reach-you).
 
+## Fine-tune with a settings file (optional)
+
+Everyday settings live in the web UI. For the few things Social Home
+reads when it starts — a TURN server for calls, a storage limit, your
+own GFS, the Home Assistant connection — there is a settings file.
+Copy the example, where every setting is commented out and explained,
+to the place Social Home looks for it:
+
+```sh
+mkdir -p ~/.config/socialhome
+curl -o ~/.config/socialhome/socialhome.toml https://raw.githubusercontent.com/social-home-io/socialhome/main/socialhome.toml.example
+```
+
+Remove the `#` in front of the lines you want, set your values and
+restart Social Home. An environment variable always wins over the
+file, and a file with a typo is skipped as a whole, so check that your
+change took effect. More in
+[Install with Docker](/docs/install-docker/#5-fine-tune-with-a-settings-file-optional).
+
 ## Updating
 
 ```sh
