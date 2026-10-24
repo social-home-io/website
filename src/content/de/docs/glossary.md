@@ -113,6 +113,18 @@ mit dir gekoppelt sein, weil der GFS die Vorstellung übernimmt.
 Ein **Lokaler Link** funktioniert nur für Haushalte, mit denen du
 bereits verbunden bist, und berührt nie einen GFS.
 
+## Viewer
+
+Der Social Home Viewer ist die Seite, in der sich ein öffentlicher
+Link im Browser öffnet — für Menschen, die nicht auf Social Home
+sind: ein öffentliches Highlight, ein geteilter Moment, die Seite
+eines globalen Space, ein GFS-Einladungslink oder ein
+Momentum-Profil. Er liegt unter `viewer.social-home.io`, nicht auf
+einem GFS, deshalb können die Betreiber eines GFS ihn nicht
+verändern. Jede Version ist eingefroren und lässt sich mit dem
+Release vergleichen, aus dem sie stammt. Siehe
+[Sicherheitsmodell → Öffentliche Links](/de/docs/security/#öffentliche-links).
+
 ## Follower
 
 Ein Follower ist jemand, der einen Space liest, ohne Mitglied zu

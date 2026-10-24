@@ -114,6 +114,18 @@ pas besoin d'être jumelée avec vous, parce que le GFS fait les
 présentations. Un **Lien local** ne fonctionne que pour les foyers
 auxquels vous êtes déjà connecté, et ne touche jamais un GFS.
 
+## Visionneuse
+
+La visionneuse Social Home est la page dans laquelle un lien public
+s'ouvre dans un navigateur, pour les personnes qui ne sont pas sur
+Social Home : un highlight public, un moment partagé, la page d'un
+espace global, un lien d'invitation GFS ou un profil Momentum. Elle
+se trouve sur `viewer.social-home.io`, pas sur un GFS : les personnes
+qui gèrent un GFS ne peuvent donc pas la modifier. Chaque version est
+figée et peut être comparée à la version de Social Home dont elle
+provient. Voir
+[Modèle de sécurité → Liens publics](/fr/docs/security/#liens-publics).
+
 ## Abonné
 
 Un abonné est quelqu'un qui lit un espace sans en être membre. Les

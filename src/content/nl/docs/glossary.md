@@ -109,6 +109,17 @@ want de GFS zorgt voor de kennismaking. Een **Lokale link** werkt
 alleen voor huishoudens waarmee je al verbonden bent, en raakt
 nooit een GFS aan.
 
+## Viewer
+
+De Social Home-viewer is de pagina waarin een openbare link opent in
+een browser, voor mensen die niet op Social Home zitten: een openbaar
+highlight, een gedeeld moment, de pagina van een wereldwijde space,
+een GFS-uitnodigingslink of een Momentum-profiel. Hij staat op
+`viewer.social-home.io`, niet op een GFS, dus wie een GFS draait kan
+hem niet veranderen. Elke versie ligt vast en is te controleren
+tegen de release waar hij uit komt. Zie
+[Beveiligingsmodel → Openbare links](/nl/docs/security/#openbare-links).
+
 ## Volger
 
 Een volger is iemand die een space leest zonder er lid van te

@@ -190,7 +190,9 @@ limits remain; the owner revokes a writer by rotating the key).
 
 - A **GFS link** works for anyone. The person opening it doesn't
   need to be paired with you — the GFS makes the introduction.
-  Treat it like a key: whoever has it can get in.
+  Treat it like a key: whoever has it can get in. Opened in a
+  browser, it shows the space's invite code and QR code in the
+  [Social Home viewer](/docs/glossary/#viewer), a page no GFS serves.
 - A **Local link** only works for households you're already
   connected to, and never touches a GFS. Use it for the family
   space or the three neighbours you already know.

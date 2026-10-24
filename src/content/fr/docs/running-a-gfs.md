@@ -25,7 +25,8 @@ Highlight — voir
 [Highlights → partager publiquement](/fr/docs/highlights/#partager-publiquement-via-un-serveur-global)
 pour le parcours côté auteur. Dans chacun de ces rôles, il ne
 manipule que des enveloppes : il ne lit jamais un message, ne
-stocke jamais une image de Highlight. Héberger votre propre
+stocke jamais une image de Highlight et ne sert jamais la page
+qu'ouvre un lien public. Héberger votre propre
 relais, c'est laisser votre communauté décider qui peut la
 rejoindre, sans aucune partie unique au centre.
 
@@ -191,6 +192,59 @@ foyers ont le droit d'écrire. Pour le tableau
 complet, y compris ce que le relais peut encore observer
 (horodatage, tailles, adresses IP), lisez le
 [modèle de sécurité](/fr/docs/security/).
+
+## Vos pages publiques
+
+Les personnes qui ne sont pas sur Social Home atteignent votre relais
+par des liens : la page d'un espace global (`/spaces/…`), un lien
+d'invitation GFS (`/join/…`) et un profil Momentum (`/moments/…`).
+Votre relais ne dessine pas ces pages lui-même. Il les confie à la
+[visionneuse Social Home](/fr/docs/glossary/#visionneuse) sur
+`viewer.social-home.io`, qui lit ce dont elle a besoin auprès de
+votre relais et l'affiche dans la langue du visiteur. Les liens
+publics de highlights et de moments s'ouvrent dans la même
+visionneuse.
+
+C'est une protection pour les personnes qui utilisent votre relais —
+et pour vous. Vous ne pouvez pas lire un highlight partagé via votre
+relais, et vous ne pourriez pas modifier la page qui l'ouvre, même
+si quelqu'un vous le demandait. Les applications de messagerie
+reçoivent toujours un aperçu avec le nom et la photo de l'espace ou
+de la personne : votre relais leur répond avec une petite page sans
+scripts.
+
+Il n'y a rien à configurer. Si vous préférez ne pas dépendre de la
+visionneuse du projet, hébergez vous-même les fichiers publiés de la
+visionneuse et faites pointer le réglage ci-dessous vers eux. Ou
+videz-le, et votre relais dessine de nouveau ses pages lui-même.
+C'est moins sûr : pour les liens de highlight, votre relais redevient
+responsable de la page qui lit la clé.
+
+<details class="tech">
+<summary>Sous le capot</summary>
+
+- Réglage : `[server] public_viewer_base_url` /
+  `GFS_PUBLIC_VIEWER_BASE_URL`, par défaut
+  `https://viewer.social-home.io`. Les foyers ont le leur :
+  `[highlights] public_viewer_base_url` /
+  `SH_HIGHLIGHTS_PUBLIC_VIEWER_BASE_URL`. Seul `https://` est
+  utilisé ; tout le reste revient en arrière avec un avertissement
+  dans le journal.
+- Le passage n'est pas une redirection ouverte : la cible est le
+  réglage, la version de visionneuse versionnée et votre propre
+  `base_url` ; seul un identifiant dans l'alphabet de la visionneuse
+  est transmis, dans le fragment.
+- La visionneuse lit `GET /gfs/pages/spaces/{id}`,
+  `POST /gfs/pages/invite` (jeton dans le corps) et
+  `GET /gfs/pages/people/{user}` : anonymes, CORS sans identifiants,
+  dans la limite de fréquence des pages de 30 / min / IP.
+- Pour les highlights publics, `GET /gfs/highlights/ice-servers`
+  fournit à chaque réponse un identifiant TURN fraîchement créé quand
+  `[webrtc] turn_url` et `turn_secret` sont définis (valable
+  `turn_ttl_seconds`, 600 par défaut) — jamais un identifiant fixe.
+  Limitez aussi le débit sur le serveur TURN lui-même.
+
+</details>
 
 ## Mettre à jour
 

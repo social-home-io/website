@@ -152,15 +152,43 @@ versies per pijler.
   op naam, handle of bio; één klik om te volgen. Hun volgende
   moment belandt in je inbox naast de momenten van gekoppelde
   huishoudens — gemarkeerd met een chip „via {gfs}”.
-- **Vanaf het open web.** Elke GFS host een openbare landingspagina
-  op `/users` (de directory) en `/users/<id>` (pagina per auteur
-  met avatar, bio, aantal volgers en een deeplink die de volgflow
-  op jouw Social Home opent). Handig om je Momentum-profiel te
-  delen met mensen die nog niet op een Social Home zitten.
+- **Vanaf het open web.** Elke GFS toont zijn openbare auteurs op
+  `/moments`, en elke auteur heeft een profielpagina op
+  `/moments/<id>` met foto, bio en een knop **Volgen**. Het profiel
+  opent in de [Social Home-viewer](/nl/docs/glossary/#viewer), een
+  pagina die geen GFS aanbiedt. Handig om je Momentum-profiel te delen
+  met mensen die nog niet op een Social Home zitten. Het profiel laat
+  zien wie je bent, niet wat je gepost hebt.
 
 De directorykaarten gebruiken dezelfde avatar + bio + weergavenaam
 die gekoppelde huishoudens zien — er is geen aparte „openbare
 persona” om bij te houden.
+
+### Eén moment delen
+
+Wil je één openbaar moment laten zien aan iemand zonder Social Home,
+open het dan en tik op **Deellink kopiëren**. De link opent precies
+dat moment — en niets anders wat je gepost hebt — in de Social
+Home-viewer, tot het moment afloopt. Dat werkt zelfs als je huis
+offline is: de GFS bewaart een verzegelde kopie die hij zelf niet
+kan openen, en de sleutel is het deel van de link na de `#`, dat
+browsers nooit naar een server sturen. Een deellink kun je alleen
+terugnemen door het moment te verwijderen, dus deel hem als een
+sleutel.
+
+<details class="tech">
+<summary>Onder de motorkap</summary>
+
+De link is
+`viewer.social-home.io/v/<hash>/#g=<GFS>&a=<author>&m=<moment>&b=<share copy>&k=<item key>`.
+`k` is de item-sleutel van het moment, nooit een generatie- of
+stapsleutel. De deelkopie (tekst, tijden, weergavenaam,
+mediabeschrijving) is eronder verzegeld, opgevuld tot 4 KB en wordt
+pas naar de GFS geüpload als je om een link vraagt. De viewer haalt
+die kopie en het bestand anoniem op, controleert elk SHA-256-adres en
+opent ze met WebCrypto. Het huis van de auteur wordt nooit benaderd.
+
+</details>
 
 ## Snelheidslimiet
 

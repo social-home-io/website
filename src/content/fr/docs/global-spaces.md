@@ -223,6 +223,10 @@ révoque un rédacteur en faisant tourner la clé).
   l'ouvre n'a pas besoin d'être jumelée avec vous — le GFS fait
   les présentations. Traitez-le comme une clé : quiconque le
   possède peut entrer.
+  Ouvert dans un navigateur, il affiche le code d'invitation et le
+  QR code de l'espace dans la
+  [visionneuse Social Home](/fr/docs/glossary/#visionneuse), une page
+  qu'aucun GFS ne sert.
 - Un **Lien local** ne fonctionne que pour les foyers auxquels
   vous êtes déjà connecté, et ne touche jamais un GFS.
   Utilisez-le pour l'espace familial ou les trois voisins que

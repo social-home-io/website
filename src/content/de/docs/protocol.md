@@ -192,21 +192,25 @@ lang gepuffert; sonst wird nichts gespeichert.
 
 Dieselbe Art Relay hat noch eine zweite Aufgabe: ein einzelnes
 Highlight an Menschen außerhalb von Social Home weiterzureichen.
-Wenn du einen Highlight-Link veröffentlichst, erzeugt das Relay eine
-URL, die jeder im Browser öffnen kann — aber die Bytes des
-Highlights fließen direkt von deinem Heimserver in den Browser des
-Besuchers. Kommt dieser direkte Weg nicht zustande, reicht das Relay
-die Frames nur durch, solange du online bist, und speichert keinen
-davon. Siehe
+Wenn du einen Highlight-Link veröffentlichst, erstellt dein
+Haushalt einen Link zum [Social Home Viewer](/de/docs/glossary/#viewer)
+— einer Seite, die kein Relay ausliefert —, den jeder im Browser
+öffnen kann. Die Bytes des Highlights fließen direkt von deinem
+Zuhause in den Browser des Besuchers, so versiegelt, dass nur
+dieser Browser sie öffnen kann. Kommt dieser direkte Weg nicht
+zustande, reicht das Relay die versiegelten Frames nur durch,
+solange du online bist, und speichert keinen davon. Siehe
 [Highlights](/de/docs/highlights/#öffentlich-teilen-über-einen-global-server)
 für den Ablauf aus Sicht des Autors.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-WebRTC-direkt vom Server des Autors in den Browser; HTTP-Durchleitung
-als Fallback nur, solange der Autor online ist. Null Highlight- oder
-Moment-Bytes werden auf dem GFS gespeichert.
+WebRTC-direkt vom Zuhause des Autors in den Browser; HTTP-Durchleitung
+als Fallback nur, solange der Autor online ist. Jeder Frame ist an
+den flüchtigen Schlüssel des Viewers und das Link-Geheimnis im
+URL-Fragment versiegelt. Null Highlight-Bytes werden auf dem GFS
+gespeichert, und der GFS liefert keinen Code des Viewers aus.
 
 </details>
 

@@ -145,15 +145,42 @@ copy refreshes on save — one identity, no per-pillar overrides.
   name, handle, or bio; one click to follow. Their next moment
   lands in your inbox alongside paired-household moments —
   flagged with a "via {gfs}" chip.
-- **From the open web.** Each GFS hosts a public landing at
-  `/users` (the directory) and `/users/<id>` (per-author page
-  with avatar, bio, follower count, and a deeplink that opens
-  the follow flow on your Social Home). Useful for sharing your
-  Momentum profile with people who aren't on a Social Home yet.
+- **From the open web.** Each GFS lists its public authors at
+  `/moments`, and every author has a profile page at
+  `/moments/<id>` with their picture, bio and a **Follow** button.
+  The profile opens in the [Social Home viewer](/docs/glossary/#viewer),
+  a page no GFS serves. Useful for sharing your Momentum profile
+  with people who aren't on a Social Home yet. The profile shows
+  who you are, not what you posted.
 
 The directory cards use the same avatar + bio + display name
 that paired households see — there's no separate "public
 persona" to maintain.
+
+### Share one moment
+
+To show a single public moment to someone without Social Home,
+open it and tap **Copy share link**. The link opens that one
+moment — and nothing else you posted — in the Social Home viewer,
+until the moment ends. It works even while your home is offline:
+the GFS keeps a sealed copy it can't open itself, and the key is
+the part of the link after the `#`, which browsers never send to
+a server. A share link can't be taken back short of deleting the
+moment, so share it like a key.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+The link is
+`viewer.social-home.io/v/<hash>/#g=<GFS>&a=<author>&m=<moment>&b=<share copy>&k=<item key>`.
+`k` is the moment's item key, never a generation or step key. The
+share copy (text, times, display name, media descriptor) is sealed
+under it, padded to 4 KB and uploaded to the GFS only when you ask
+for a link. The viewer fetches it and the file anonymously, checks
+each SHA-256 address and opens them with WebCrypto. The author's
+home is never contacted.
+
+</details>
 
 ## Rate limit
 

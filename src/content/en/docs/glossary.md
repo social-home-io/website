@@ -103,6 +103,16 @@ you, because the GFS makes the introduction. A **Local link** only
 works for households you are already connected to, and never
 touches a GFS at all.
 
+## Viewer
+
+The Social Home viewer is the page a public link opens in a
+browser, for people who aren't on Social Home: a public highlight,
+a shared moment, a global space's page, a GFS invite link or a
+Momentum profile. It lives at `viewer.social-home.io`, not on any
+GFS, so the people who run a GFS can't change it. Every version is
+frozen and can be checked against the release it came from. See
+[Security model → Public links](/docs/security/#public-links).
+
 ## Follower
 
 A follower is someone who reads a space without being a member

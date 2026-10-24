@@ -193,23 +193,26 @@ gezet; verder wordt niets opgeslagen.
 
 ## Openbare highlight-links
 
-Dezelfde soort relay heeft nog een tweede taak: één highlight
-overhandigen aan mensen buiten Social Home. Als je een
-highlight-link publiceert, maakt de relay een URL aan die
-iedereen in een browser kan openen – maar de bytes van de
-highlight stromen rechtstreeks van je thuisserver naar de
-browser van de bezoeker. Lukt dat directe pad niet, dan geeft de
-relay de frames alleen door zolang jij online bent, en slaat er
-geen enkele van op. Zie
-[Highlights](/nl/docs/highlights/#openbaar-delen-via-een-global-server)
+Hetzelfde soort relay heeft nog een tweede taak: één highlight
+doorgeven aan mensen buiten Social Home. Als je een highlight-link
+publiceert, maakt je huishouden een link naar de
+[Social Home-viewer](/nl/docs/glossary/#viewer) — een pagina die geen
+relay aanbiedt — die iedereen in een browser kan openen. De bytes
+van het highlight stromen rechtstreeks van je huis naar de browser
+van de bezoeker, zo verzegeld dat alleen die browser ze kan openen.
+Lukt die directe weg niet, dan geeft de relay de verzegelde frames
+alleen door zolang je online bent, en bewaart hij er geen een van.
+Zie [Highlights](/nl/docs/highlights/#openbaar-delen-via-een-global-server)
 voor de kant van de auteur.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-WebRTC-direct van de server van de auteur naar de browser;
-HTTP-doorgifte alleen als fallback zolang de auteur online is.
-Er worden nul highlight- of moment-bytes op de GFS opgeslagen.
+WebRTC rechtstreeks van het huis van de auteur naar de browser;
+HTTP-doorgifte als terugval alleen zolang de auteur online is. Elk
+frame is verzegeld aan de tijdelijke sleutel van de viewer en het
+linkgeheim in het URL-fragment. Er worden nul highlight-bytes op de
+GFS opgeslagen, en de GFS biedt geen code van de viewer aan.
 
 </details>
 

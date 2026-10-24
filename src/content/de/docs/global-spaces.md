@@ -209,6 +209,9 @@ den Schlüssel rotiert).
 - Ein **GFS-Link** funktioniert für jeden. Wer ihn öffnet, muss
   nicht mit dir gekoppelt sein — der GFS übernimmt die Vorstellung.
   Behandle ihn wie einen Schlüssel: Wer ihn hat, kommt rein.
+  Im Browser geöffnet, zeigt er den Einladungscode und den QR-Code
+  des Space im [Social Home Viewer](/de/docs/glossary/#viewer), einer
+  Seite, die kein GFS ausliefert.
 - Ein **Lokaler Link** funktioniert nur für Haushalte, mit denen du
   schon verbunden bist, und berührt nie einen GFS. Nimm ihn für den
   Familien-Space oder die drei Nachbarn, die du schon kennst.

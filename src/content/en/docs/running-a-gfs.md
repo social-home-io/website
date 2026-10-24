@@ -22,7 +22,7 @@ links — see
 [Highlights → sharing publicly](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow. In every job it only ever handles
 envelopes: it never reads a message, never stores a highlight
-frame. Hosting your own relay means your community decides who
+frame, and never serves the page a public link opens. Hosting your own relay means your community decides who
 can join, and there's no single party at the centre.
 
 ## What you need
@@ -180,6 +180,52 @@ published it. In strict mode you can't even tell which households
 are allowed to write. For the full picture, including
 what the relay can still observe (timing, sizes, IP addresses),
 read the [security model](/docs/security/).
+
+## Your public pages
+
+People who aren't on Social Home reach your relay through links: a
+global space's page (`/spaces/…`), a GFS invite link (`/join/…`)
+and a Momentum profile (`/moments/…`). Your relay doesn't draw those
+pages itself. It hands them to the
+[Social Home viewer](/docs/glossary/#viewer) at
+`viewer.social-home.io`, which reads what it needs from your relay
+and shows it in the visitor's language. Public highlight and moment
+links open in the same viewer.
+
+That is a protection for the people who use your relay — and for
+you. You can't read a highlight shared through your relay, and you
+couldn't change the page that opens it even if someone asked you
+to. Chat apps still get a preview with the space's or person's
+name and picture: your relay answers them with a small page without
+scripts.
+
+There's nothing to set up. If you'd rather not depend on the
+project's viewer, host the published viewer files yourself and
+point the setting below at them. Or clear it, and your relay draws
+its own pages again. That's less safe: for highlight links it puts
+your relay back in charge of the page that reads the key.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+- Setting: `[server] public_viewer_base_url` /
+  `GFS_PUBLIC_VIEWER_BASE_URL`, default `https://viewer.social-home.io`.
+  Households have their own: `[highlights] public_viewer_base_url` /
+  `SH_HIGHLIGHTS_PUBLIC_VIEWER_BASE_URL`. Only `https://` is used;
+  anything else falls back with a warning in the log.
+- The hand-off is not an open redirect: the target is the setting,
+  the committed viewer version and your own `base_url`; only an id in
+  the viewer's alphabet is passed on, in the fragment.
+- The viewer reads `GET /gfs/pages/spaces/{id}`,
+  `POST /gfs/pages/invite` (token in the body) and
+  `GET /gfs/pages/people/{user}`: anonymous, CORS without
+  credentials, in the pages' 30 / min / IP rate limit.
+- For public highlights, `GET /gfs/highlights/ice-servers` hands out a
+  TURN credential minted per answer when `[webrtc] turn_url` and
+  `turn_secret` are set (valid `turn_ttl_seconds`, default 600) —
+  never a static one. Rate-limit the TURN server itself too.
+
+</details>
 
 ## Updating
 

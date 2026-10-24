@@ -53,41 +53,66 @@ Sometimes you want to send a highlight to someone who isn't on Social
 Home — a friend on Twitter, a relative who only checks email. From
 the highlight viewer, the author can tap **Publish public link** and
 pick a paired [GFS (Global Federation Server)](/docs/glossary/#gfs)
-— the relay that helps households find each other. The GFS hands
-back a URL like
+— the relay that helps households find each other. You get back a
+link to the [Social Home viewer](/docs/glossary/#viewer), like
 
 ```
-https://gfs.example/highlight/{instance}/{highlight}/{token}
+https://viewer.social-home.io/v/0123456789abcdef/#g=…&i=…&h=…&t=…&k=…
 ```
 
-Anyone with that URL can open the highlight in a browser. The
-pictures travel directly from your server to the visitor's
-browser; the GFS only introduces the two. If that direct path
-can't be set up (a strict office network, say), the GFS passes the
-frames through — but only while your home is online, and
-it stores none of them. The same retention you set on the
-highlight applies to the public link too: when the highlight would
-have been purged for paired households, the public URL stops
-working.
+Anyone with that link can open the highlight in a browser. The page
+shows who shared it — your name, picture and bio — and then the
+frames. The pictures travel directly from your home to the
+visitor's browser; the GFS only introduces the two. If that direct
+path can't be set up (a strict office network, say), the GFS passes
+the frames through — but only while your home is online, and it
+stores none of them.
 
-You can mint several tokens per highlight (one per platform, say) and
-revoke any of them individually. The author can also pull every
-token at once with **Unpublish** if the link gets out of hand.
+On both paths the highlight is sealed from your home to the
+visitor's browser. The key is the part of the link after the `#`,
+which browsers never send to a server, so the GFS can't open the
+highlight even though it helps deliver it. And the page that reads
+the key is not served by the GFS: it comes from the Social Home
+viewer, a fixed set of files whose every version can be checked. Whoever
+runs the GFS can neither read your highlight nor change the page
+your visitor sees.
 
-This is the only Social Home surface where content is intentionally
-readable without a household identity, and it's per-highlight
-opt-in — nothing leaves your home server until you flip the toggle.
+The same retention you set on the highlight applies to the public
+link too: when the highlight would have been purged for paired
+households, the link stops working.
+
+You can make several links per highlight (one per platform, say) and
+remove any of them individually. The author can also pull every
+link at once with **Remove all public links for this highlight** if
+a link gets out of hand.
+
+This is the only Social Home surface where a highlight is
+intentionally readable without a household identity, and it's
+per-highlight opt-in — nothing leaves your home until you create a
+link. Treat the link like a key: whoever has it can watch.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-The GFS brokers a WebRTC handshake between the author's server and
-the visitor's browser; highlight bytes then flow over that
-direct connection. When WebRTC fails, the GFS falls back to an
-HTTP pass-through that streams frames from the author's server
-while it is reachable — zero highlight bytes are written to the
-relay's disk in either path. Tokens are per-highlight, per-link,
-and revocable individually or all at once.
+- The GFS brokers a WebRTC handshake between the author's home and
+  the visitor's browser; highlight bytes then flow over that direct
+  connection. When WebRTC fails, the GFS falls back to an HTTP
+  pass-through that streams frames from the author's home while it
+  is reachable. Zero highlight bytes are written to the GFS's disk in
+  either path.
+- Sealing: the viewer sends an ephemeral P-256 key (`vk`) with its
+  offer; the author's home seals every frame with AES-256-GCM under
+  `HKDF-SHA256(ECDH, salt = k)`. `k` is derived from the author's
+  identity seed and the token, and lives only in the fragment.
+- The link's `v/<hash>/` names one content-addressed viewer version;
+  its script is pinned by SRI, its CSP is strict, and the versions are
+  published append-only by
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer).
+  The GFS answers the viewer's anonymous signalling routes with CORS,
+  never with credentials.
+- Tokens are per-highlight, per-link, and revocable individually or
+  all at once. A failed open always reads "This isn't available right
+  now", whether the link is revoked, expired or the author is offline.
 
 </details>
 
