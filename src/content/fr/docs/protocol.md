@@ -201,23 +201,27 @@ sont mis en file d'attente 24 h ; rien d'autre n'est stocké.
 
 ## Liens publics vers un Highlight
 
-Ce même type de relais a aussi un second rôle : transmettre un
-seul Highlight à des personnes extérieures à Social Home. Quand
-vous publiez un lien vers un Highlight, le relais crée une URL
-que n'importe qui peut ouvrir dans un navigateur — mais les
-octets du Highlight circulent directement de votre maison vers le
-navigateur du visiteur. Si ce chemin direct ne peut pas être
-établi, le relais fait transiter les images uniquement pendant
-que vous êtes en ligne, et n'en stocke aucune. Voir
+Le même genre de relais a aussi un second rôle : transmettre un
+seul highlight à des personnes hors de Social Home. Quand vous
+publiez un lien de highlight, votre foyer crée un lien vers la
+[visionneuse Social Home](/fr/docs/glossary/#visionneuse) — une page
+qu'aucun relais ne sert — que tout le monde peut ouvrir dans un
+navigateur. Les octets du highlight vont directement de votre maison
+au navigateur du visiteur, scellés pour que seul ce navigateur puisse
+les ouvrir. Si ce chemin direct ne peut pas s'établir, le relais fait
+passer les images scellées seulement tant que vous êtes en ligne, et
+n'en stocke aucune. Voir
 [Highlights](/fr/docs/highlights/#partager-publiquement-via-un-serveur-global)
 pour le parcours côté auteur.
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-WebRTC direct du serveur de l'auteur vers le navigateur ; passage
-HTTP en repli, uniquement tant que l'auteur est en ligne. Aucun
-octet de Highlight ou de moment n'est stocké sur le GFS.
+WebRTC en direct de la maison de l'auteur vers le navigateur ; relais
+HTTP en repli seulement tant que l'auteur est en ligne. Chaque image
+est scellée pour la clé éphémère de la visionneuse et le secret du
+lien dans le fragment de l'URL. Aucun octet de highlight n'est stocké
+sur le GFS, et le GFS ne sert aucun code de la visionneuse.
 
 </details>
 

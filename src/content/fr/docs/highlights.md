@@ -60,47 +60,74 @@ la barre latérale.
 Parfois, vous voulez envoyer un highlight à quelqu'un qui n'est pas
 sur Social Home — un ami sur Twitter, un parent qui ne consulte que
 ses e-mails. Depuis la visionneuse de highlight, l'auteur peut
-taper sur **Publier un lien public** et choisir un
+taper sur **Créer un lien public** et choisir un
 [GFS (Global Federation Server)](/fr/docs/glossary/#gfs) jumelé —
-le relais qui aide les foyers à se trouver. Le GFS renvoie une URL
-du type
+le relais qui aide les foyers à se trouver. Vous obtenez un lien vers
+la [visionneuse Social Home](/fr/docs/glossary/#visionneuse), du type
 
 ```
-https://gfs.example/highlight/{instance}/{highlight}/{token}
+https://viewer.social-home.io/v/0123456789abcdef/#g=…&i=…&h=…&t=…&k=…
 ```
 
-Toute personne disposant de cette URL peut ouvrir le highlight dans
-un navigateur. Les images voyagent directement de votre serveur au
-navigateur du visiteur ; le GFS ne fait que les présenter l'un à
-l'autre. Si ce chemin direct ne peut pas être établi (un réseau
-d'entreprise strict, par exemple), le GFS fait passer les frames —
-mais seulement tant que votre maison est en ligne, et il n'en
-stocke aucune. La durée de conservation que vous avez fixée sur le
-highlight s'applique aussi au lien public : quand le highlight
-aurait été purgé pour les foyers jumelés, l'URL publique cesse de
-fonctionner.
+Toute personne qui a ce lien peut ouvrir le highlight dans un
+navigateur. La page montre qui l'a partagé — votre nom, votre photo
+et votre bio — puis les images. Les images voyagent directement de
+votre maison au navigateur du visiteur ; le GFS se contente de les
+présenter l'un à l'autre. Si ce chemin direct ne peut pas s'établir
+(un réseau de bureau strict, par exemple), le GFS fait passer les
+images — mais seulement tant que votre maison est en ligne, et il
+n'en stocke aucune.
 
-Vous pouvez générer plusieurs jetons par highlight (un par
-plateforme, par exemple) et révoquer chacun d'eux individuellement.
-L'auteur peut aussi retirer tous les jetons d'un coup avec
-**Dépublier** si le lien circule trop.
+Sur les deux chemins, le highlight est scellé de votre maison
+jusqu'au navigateur du visiteur. La clé est la partie du lien après
+le `#`, que les navigateurs n'envoient jamais à un serveur : le GFS
+ne peut donc pas ouvrir le highlight, même s'il aide à le livrer. Et
+la page qui lit la clé n'est pas servie par le GFS : elle vient de la
+visionneuse Social Home, un ensemble fixe de fichiers dont chaque
+version peut être vérifiée. Qui gère le GFS ne peut ni lire votre
+highlight ni modifier la page que voit votre visiteur.
 
-C'est la seule surface de Social Home où le contenu est
-volontairement lisible sans identité de foyer, et c'est une
-activation par highlight — rien ne quitte votre serveur à la maison
-tant que vous n'avez pas basculé l'interrupteur.
+La durée de conservation que vous avez fixée pour le highlight
+s'applique aussi au lien public : quand le highlight aurait été
+supprimé pour les foyers jumelés, le lien cesse de fonctionner.
+
+Vous pouvez créer plusieurs liens par highlight (un par plateforme,
+par exemple) et supprimer chacun séparément. L'auteur peut aussi
+retirer tous les liens d'un coup avec **Supprimer tous les liens
+publics de ce highlight** si un lien vous échappe.
+
+C'est le seul endroit de Social Home où un highlight est lisible
+volontairement sans identité de foyer, et c'est un choix par
+highlight — rien ne quitte votre maison tant que vous n'avez pas
+créé de lien. Traitez le lien comme une clé : quiconque le possède
+peut regarder.
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Le GFS négocie une poignée de main WebRTC entre le serveur de
-l'auteur et le navigateur du visiteur ; les octets du highlight
-circulent ensuite sur cette connexion directe. Quand WebRTC
-échoue, le GFS se replie sur un passage HTTP qui diffuse les frames
-depuis le serveur de l'auteur tant qu'il est joignable — dans les
-deux cas, zéro octet de highlight n'est écrit sur le disque du
-relais. Les jetons sont par highlight, par lien, et révocables
-individuellement ou tous à la fois.
+- Le GFS négocie une poignée de main WebRTC entre la maison de
+  l'auteur et le navigateur du visiteur ; les octets du highlight
+  passent ensuite par cette connexion directe. Si WebRTC échoue, le
+  GFS se rabat sur un relais HTTP qui transmet les images depuis la
+  maison de l'auteur tant qu'elle est joignable. Aucun octet de
+  highlight n'est écrit sur le disque du GFS, sur aucun des deux
+  chemins.
+- Scellement : la visionneuse envoie une clé P-256 éphémère (`vk`)
+  avec son offre ; la maison de l'auteur scelle chaque image en
+  AES-256-GCM sous `HKDF-SHA256(ECDH, salt = k)`. `k` est dérivé de la
+  graine d'identité de l'auteur et du jeton, et ne vit que dans le
+  fragment.
+- `v/<hash>/` dans le lien désigne une seule version de la
+  visionneuse, adressée par son contenu ; son script est épinglé par
+  SRI, sa CSP est stricte, et les versions ne sont qu'ajoutées,
+  publiées par
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer).
+  Le GFS répond aux routes de signalisation anonymes de la
+  visionneuse avec CORS, jamais avec des identifiants.
+- Les jetons sont propres à chaque highlight et à chaque lien, et
+  révocables un par un ou tous à la fois. Un échec affiche toujours
+  « Ce n'est pas disponible pour le moment », que le lien soit
+  révoqué, expiré ou que l'auteur soit hors ligne.
 
 </details>
 

@@ -56,48 +56,71 @@ Highlights vind je onder **Praten → Highlights** in de zijbalk.
 
 Soms wil je een highlight sturen naar iemand die niet op Social
 Home zit — een vriend op Twitter, een familielid dat alleen e-mail
-leest. In de highlight-viewer kan de auteur op **Openbare link
-publiceren** tikken en een gekoppelde
+leest. Vanuit de highlight-viewer kan de auteur op **Openbare link
+maken** tikken en een gekoppelde
 [GFS (Global Federation Server)](/nl/docs/glossary/#gfs) kiezen —
-de relay die huishoudens helpt elkaar te vinden. De GFS geeft een
-URL terug zoals
+de relay die huishoudens helpt elkaar te vinden. Je krijgt een link
+naar de [Social Home-viewer](/nl/docs/glossary/#viewer), zoals
 
 ```
-https://gfs.example/highlight/{instance}/{highlight}/{token}
+https://viewer.social-home.io/v/0123456789abcdef/#g=…&i=…&h=…&t=…&k=…
 ```
 
-Iedereen met die URL kan de highlight in een browser openen. De
-beelden reizen rechtstreeks van jouw server naar de browser van de
-bezoeker; de GFS brengt de twee alleen met elkaar in contact. Als
-die rechtstreekse route niet kan worden opgezet (een streng
-kantoornetwerk, bijvoorbeeld), geeft de GFS de frames door — maar
-alleen zolang je huis online is, en hij slaat er geen enkele van
-op. Dezelfde bewaartermijn die je op de highlight hebt ingesteld,
-geldt ook voor de openbare link: zodra de highlight voor
-gekoppelde huishoudens gewist zou zijn, werkt de openbare URL niet
-meer.
+Iedereen met die link kan het highlight in een browser openen. De
+pagina laat zien wie het gedeeld heeft — je naam, foto en bio — en
+daarna de frames. De beelden reizen rechtstreeks van je huis naar de
+browser van de bezoeker; de GFS stelt de twee alleen aan elkaar
+voor. Als die directe weg niet lukt (een streng kantoornetwerk,
+bijvoorbeeld), geeft de GFS de frames door — maar alleen zolang je
+huis online is, en hij bewaart er geen een van.
 
-Je kunt per highlight meerdere tokens aanmaken (één per platform,
-bijvoorbeeld) en elk ervan afzonderlijk intrekken. De auteur kan
-met **Publicatie ongedaan maken** ook alle tokens in één keer
-intrekken als de link uit de hand loopt.
+Op beide wegen is het highlight verzegeld van je huis tot de browser
+van de bezoeker. De sleutel is het deel van de link na de `#`, dat
+browsers nooit naar een server sturen. Daarom kan de GFS het
+highlight niet openen, ook al helpt hij het af te leveren. En de
+pagina die de sleutel leest, komt niet van de GFS: die komt van de
+Social Home-viewer, een vaste set bestanden waarvan je elke versie
+kunt controleren. Wie de GFS draait, kan je highlight niet lezen en
+de pagina die je bezoeker ziet niet veranderen.
 
-Dit is het enige onderdeel van Social Home waar inhoud bewust
-leesbaar is zonder huishoudidentiteit, en het is opt-in per
-highlight — niets verlaat je thuisserver totdat je de schakelaar
-omzet.
+Dezelfde bewaartermijn die je voor het highlight hebt ingesteld,
+geldt ook voor de openbare link: wanneer het highlight voor
+gekoppelde huishoudens zou zijn opgeruimd, werkt de link niet meer.
+
+Je kunt meerdere links per highlight maken (één per platform,
+bijvoorbeeld) en elk ervan afzonderlijk verwijderen. De auteur kan
+ook alle links tegelijk intrekken met **Alle openbare links voor dit
+highlight verwijderen** als een link uit de hand loopt.
+
+Dit is de enige plek in Social Home waar een highlight bewust
+leesbaar is zonder huishoudidentiteit, en het is per highlight
+opt-in — niets verlaat je huis totdat je een link maakt. Behandel de
+link als een sleutel: wie hem heeft, kan kijken.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-De GFS bemiddelt een WebRTC-handshake tussen de server van de
-auteur en de browser van de bezoeker; de highlight-bytes stromen
-daarna over die rechtstreekse verbinding. Als WebRTC mislukt, valt
-de GFS terug op een HTTP-pass-through die frames streamt vanaf de
-server van de auteur zolang die bereikbaar is — in geen van beide
-gevallen wordt er ook maar één highlight-byte naar de schijf van
-de relay geschreven. Tokens zijn per highlight, per link, en
-afzonderlijk of allemaal tegelijk in te trekken.
+- De GFS bemiddelt een WebRTC-handshake tussen het huis van de
+  auteur en de browser van de bezoeker; de highlight-bytes stromen
+  daarna over die directe verbinding. Als WebRTC faalt, valt de GFS
+  terug op een HTTP-doorgifte die frames van het huis van de auteur
+  streamt zolang het bereikbaar is. Op geen van beide wegen wordt een
+  highlight-byte naar de schijf van de GFS geschreven.
+- Verzegeling: de viewer stuurt met zijn aanbod een tijdelijke
+  P-256-sleutel (`vk`) mee; het huis van de auteur verzegelt elk
+  frame met AES-256-GCM onder `HKDF-SHA256(ECDH, salt = k)`. `k` wordt
+  afgeleid uit de identiteitsseed van de auteur en het token, en
+  staat alleen in het fragment.
+- `v/<hash>/` in de link wijst naar precies één inhoudsgeadresseerde
+  viewerversie; het script is vastgezet met SRI, de CSP is streng, en
+  versies worden alleen toegevoegd, gepubliceerd door
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer).
+  De GFS beantwoordt de anonieme signaleringsroutes van de viewer
+  met CORS, nooit met inloggegevens.
+- Tokens gelden per highlight en per link, en zijn afzonderlijk of
+  allemaal tegelijk in te trekken. Een mislukte poging toont altijd
+  „Dit is nu niet beschikbaar”, of de link nu is ingetrokken, is
+  verlopen of de auteur offline is.
 
 </details>
 

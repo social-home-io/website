@@ -40,6 +40,7 @@ geheimhouding van apparaat tot apparaat.
 | de GFS draait die jij gebruikt             | verzegelde enveloppen, routeringsgegevens en tijdstippen — nooit één woord inhoud                                       |
 | het netwerk afluistert                     | verzegeld, opgevuld verkeer tussen bekende adressen                                                                     |
 | uit een space is verwijderd                | niets wat na zijn vertrek is geplaatst — de space kreeg een nieuwe sleutel                                              |
+| je openbare link krijgt                    | dat ene highlight of moment, geopend in een viewer die de GFS niet draait — dus de GFS kan het nog steeds niet lezen    |
 | een rondslingerende uitnodigingslink vindt | toegang tot de space, als het een GFS-link was — behandel die als sleutels; een Lokale link doet niets voor een vreemde |
 | root heeft op de server van je huis        | alles — het is jouw server; bescherm hem zoals de rest van je thuisnetwerk                                              |
 | beheerder is van een space waar jij in zit | alles in die space, net als elk ander lid — beheerders zijn geen achterdeur                                             |
@@ -215,6 +216,70 @@ GFS komt er niet aan te pas.
 
 </details>
 
+## Openbare links
+
+Een openbare highlight-link, de deellink van een moment, de pagina
+van een wereldwijde space, een GFS-uitnodigingslink en een
+Momentum-profiel worden geopend door mensen die niet op Social Home
+zitten, in een gewone browser. Ze openen allemaal in de
+[Social Home-viewer](/nl/docs/glossary/#viewer) op
+`viewer.social-home.io` — een pagina die de GFS niet aanbiedt.
+
+Dat doet ertoe vanwege de plek van de sleutel. Een highlight- of
+momentlink draagt zijn sleutel na de `#`, en dat deel sturen browsers
+nooit naar een server, dus de GFS krijgt hem nooit. Maar de pagina
+die de link opent, is de code die de sleutel leest. Als de GFS die
+pagina aanbood, kon hij er een aanbieden die de sleutel kopieert. Met
+de viewer kunnen de mensen die een GFS draaien niet lezen wat je deelt
+en de pagina die je bezoeker ziet niet veranderen. De GFS helpt nog
+steeds een link af te leveren — verzegelde bytes, nooit de sleutel.
+
+De viewer is gemaakt om gecontroleerd te worden, niet om blind te
+vertrouwen:
+
+- Elke versie heeft een eigen adres, en de bestanden erachter
+  veranderen nooit. Een link noemt precies de versie waarvoor hij
+  gemaakt is.
+- De pagina vertelt de browser precies welk script hij moet draaien;
+  één gewijzigde byte en de browser weigert het.
+- De viewer wordt twee keer gebouwd — door de Social Home-release en
+  nog eens door de aparte repository
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer)
+  — en alleen gepubliceerd als beide builds gelijk zijn. Versies
+  worden alleen toegevoegd, dus oude links blijven openen.
+
+Wat je in plaats daarvan vertrouwt, is de host van de viewer: GitHub
+Pages en de organisatie `social-home-io`. Een zelf gehoste GFS of
+huishouden kan naar een eigen kopie van de bestanden wijzen.
+
+<details class="tech">
+<summary>Onder de motorkap</summary>
+
+- Pad `v/<hash>/`: de eerste 16 hextekens van de sha384 van de pagina,
+  die de SRI-hash van het script en de hashes van de styles bevat. Het
+  manifest `socialhome/pinned_viewer.json` is ingecheckt; CI bouwt de
+  viewer twee keer en faalt bij elk verschil in bytes.
+- CSP van de pagina: `default-src 'none'`, script per hash,
+  `img-src blob: data:`, `base-uri 'none'`, `form-action 'none'`;
+  `no-referrer`. Elk verzoek gaat naar de GFS uit het fragment, met
+  `credentials: 'omit'` en `redirect: 'error'`; een GFS zonder
+  `https` weigert de viewer.
+- Highlight-streams: AES-256-GCM per frame onder
+  `HKDF-SHA256(ECDH(P-256), salt = linkgeheim)`, op het directe
+  DataChannel en de relay-terugval gelijk.
+- `/spaces/{id}`, `/join/{token}` en `/moments/{user}` van de GFS
+  antwoorden met een inerte overdrachtspagina (alleen preview-tags,
+  `default-src 'none'`); de viewer leest `/gfs/pages/*` cross-origin
+  zonder inloggegevens en toont de Over-tekst als nodes, nooit als
+  HTML.
+- Eigen origin `viewer.social-home.io`, geen gedeelde
+  `github.io`-origin die een andere site van de organisatie met een
+  service worker zou kunnen inpikken.
+- De `gh-pages`-branch van de viewer-repo is via een ruleset
+  append-only.
+
+</details>
+
 ## De kleine dingen
 
 - Een space die op de GFS-kaart staat, heeft zijn locatie afgerond
@@ -290,6 +355,18 @@ ons de groepschat toevertrouwt:
 - De sleuteluitwisseling is nog niet post-quantum; alleen
   handtekeningen hebben een opt-in post-quantumvariant.
 - Er is nog geen geautomatiseerd scannen van afhankelijkheden.
+- Openbare links openen in de [viewer](#openbare-links), dus je
+  vertrouwt de host ervan — GitHub Pages en de organisatie
+  `social-home-io` — om de uitgebrachte bestanden aan te bieden. De
+  vingerafdrukken maken een verwisselde pagina herkenbaar, maar alleen
+  als iemand het controleert.
+- Een openbare highlight- of momentlink is een sleutel. Wie hem heeft,
+  kan hem openen, en hij staat in de browsergeschiedenis van iedereen
+  die hem opende. De deellink van een moment kun je alleen terugnemen
+  door het moment te verwijderen.
+- De GFS ziet wanneer een openbare link wordt geopend, en vanaf welk
+  adres. Een highlight dat opent, laat zien dat je huis op dat moment
+  online was.
 
 ## Een probleem melden
 

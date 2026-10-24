@@ -212,6 +212,9 @@ eigenaar trekt een schrijver in door de sleutel te roteren).
 - Een **GFS-link** werkt voor iedereen. Wie hem opent, hoeft niet
   met jou gekoppeld te zijn – de GFS regelt de kennismaking.
   Behandel hem als een sleutel: wie hem heeft, kan binnen.
+  Geopend in een browser toont hij de uitnodigingscode en QR-code
+  van de space in de [Social Home-viewer](/nl/docs/glossary/#viewer),
+  een pagina die geen GFS aanbiedt.
 - Een **Lokale link** werkt alleen voor huishoudens waarmee je al
   verbonden bent, en komt nooit bij een GFS. Gebruik hem voor de
   familiespace of de drie buren die je al kent.

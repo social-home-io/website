@@ -487,11 +487,12 @@ export const en: UiStrings = {
     hostedBy: "Hosted by Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "One QR scan and you're connected. Global spaces whose owner picks this server show up in Discover › Global; public Moments fan out to followers across every paired household; Highlights public links route through here too. Content-blind by design.",
+    body: "One QR scan and you're connected. Global spaces whose owner picks this server show up in Discover › Global; public Moments fan out to followers across every paired household; Highlights public links route through here too, and open in the Social Home viewer, a page this server doesn't serve. Content-blind by design.",
     bullets: [
       "Global space directory",
       "Public Momentum directory + follow graph",
       "Highlights public-link relay",
+      "Public links open in a viewer this server doesn't run",
       "Age-gate policy enforced",
       "Sealed posts queued for offline households, then gone",
       "Never reads message, photo, or call content",

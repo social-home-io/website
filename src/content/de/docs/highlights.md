@@ -61,47 +61,77 @@ Seitenleiste.
 Manchmal möchtest du ein Highlight jemandem schicken, der nicht
 auf Social Home ist — einem Freund auf Twitter, einer Verwandten,
 die nur ihre E-Mails liest. Im Highlight-Viewer kann der Autor
-auf **Öffentlichen Link veröffentlichen** tippen und einen
-gekoppelten [GFS (Global Federation Server)](/de/docs/glossary/#gfs)
-wählen — das Relay, das Haushalten hilft, einander zu finden. Der
-GFS gibt eine URL zurück wie
+auf **Öffentlichen Link erstellen** tippen und einen gekoppelten
+[GFS (Global Federation Server)](/de/docs/glossary/#gfs) wählen —
+das Relay, das Haushalten hilft, einander zu finden. Du bekommst
+einen Link zum [Social Home Viewer](/de/docs/glossary/#viewer),
+etwa so:
 
 ```
-https://gfs.example/highlight/{instance}/{highlight}/{token}
+https://viewer.social-home.io/v/0123456789abcdef/#g=…&i=…&h=…&t=…&k=…
 ```
 
-Jeder mit dieser URL kann das Highlight im Browser öffnen. Die
-Bilder reisen direkt von deinem Server zum Browser des Besuchers;
-der GFS stellt die beiden nur einander vor. Wenn dieser direkte
-Weg nicht aufgebaut werden kann (etwa in einem strengen
-Büronetzwerk), reicht der GFS die Frames durch — aber nur,
-solange dein Zuhause online ist, und er speichert keinen davon.
+Jeder mit diesem Link kann das Highlight im Browser öffnen. Die
+Seite zeigt, wer es geteilt hat — deinen Namen, dein Bild und
+deine Bio — und dann die Frames. Die Bilder reisen direkt von
+deinem Zuhause zum Browser des Besuchers; der GFS stellt die
+beiden nur einander vor. Wenn dieser direkte Weg nicht aufgebaut
+werden kann (etwa in einem strengen Büronetzwerk), reicht der GFS
+die Frames durch — aber nur, solange dein Zuhause online ist, und
+er speichert keinen davon.
+
+Auf beiden Wegen ist das Highlight von deinem Zuhause bis zum
+Browser des Besuchers versiegelt. Der Schlüssel ist der Teil des
+Links nach dem `#`, den Browser nie an einen Server schicken —
+deshalb kann der GFS das Highlight nicht öffnen, obwohl er hilft,
+es zuzustellen. Und die Seite, die den Schlüssel liest, liefert
+nicht der GFS aus: Sie kommt vom Social Home Viewer, einem festen
+Satz Dateien, dessen Versionen sich alle überprüfen lassen. Wer den
+GFS betreibt, kann dein Highlight weder lesen noch die Seite
+verändern, die dein Besucher sieht.
+
 Dieselbe Aufbewahrungsfrist, die du für das Highlight gesetzt
 hast, gilt auch für den öffentlichen Link: Wenn das Highlight für
-gekoppelte Haushalte gelöscht worden wäre, hört die öffentliche
-URL auf zu funktionieren.
+gekoppelte Haushalte gelöscht worden wäre, funktioniert der Link
+nicht mehr.
 
-Du kannst mehrere Tokens pro Highlight erzeugen (zum Beispiel
-eines pro Plattform) und jedes einzeln widerrufen. Der Autor kann
-mit **Veröffentlichung aufheben** auch alle Tokens auf einmal
-zurückziehen, falls der Link außer Kontrolle gerät.
+Du kannst mehrere Links pro Highlight erstellen (zum Beispiel
+einen pro Plattform) und jeden einzeln entfernen. Der Autor kann
+mit **Alle öffentlichen Links für dieses Highlight entfernen**
+auch alle auf einmal zurückziehen, falls ein Link außer Kontrolle
+gerät.
 
-Das ist die einzige Oberfläche in Social Home, auf der Inhalte
-absichtlich ohne Haushaltsidentität lesbar sind, und sie ist pro
-Highlight Opt-in — nichts verlässt deinen Heimserver, bis du den
-Schalter umlegst.
+Das ist die einzige Stelle in Social Home, an der ein Highlight
+absichtlich ohne Haushaltsidentität lesbar ist, und sie ist pro
+Highlight Opt-in — nichts verlässt dein Zuhause, bis du einen Link
+erstellst. Behandle den Link wie einen Schlüssel: Wer ihn hat,
+kann zuschauen.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Der GFS vermittelt einen WebRTC-Handshake zwischen dem Server des
-Autors und dem Browser des Besuchers; die Highlight-Bytes fließen
-dann über diese direkte Verbindung. Schlägt WebRTC fehl, fällt
-der GFS auf eine HTTP-Durchleitung zurück, die Frames vom Server
-des Autors streamt, solange er erreichbar ist — auf keinem der
-beiden Wege wird ein einziges Highlight-Byte auf die Festplatte
-des Relays geschrieben. Tokens gelten pro Highlight und pro Link
-und sind einzeln oder alle auf einmal widerrufbar.
+- Der GFS vermittelt einen WebRTC-Handshake zwischen dem Zuhause
+  des Autors und dem Browser des Besuchers; die Highlight-Bytes
+  fließen dann über diese direkte Verbindung. Schlägt WebRTC fehl,
+  fällt der GFS auf eine HTTP-Durchleitung zurück, die Frames vom
+  Zuhause des Autors streamt, solange es erreichbar ist. Auf keinem
+  der beiden Wege wird ein Highlight-Byte auf die Festplatte des
+  GFS geschrieben.
+- Versiegelung: Der Viewer schickt mit seinem Angebot einen
+  flüchtigen P-256-Schlüssel (`vk`); das Zuhause des Autors
+  versiegelt jeden Frame mit AES-256-GCM unter
+  `HKDF-SHA256(ECDH, salt = k)`. `k` wird aus dem Identitäts-Seed des
+  Autors und dem Token abgeleitet und steht nur im Fragment.
+- `v/<hash>/` im Link benennt genau eine inhaltsadressierte
+  Viewer-Version; ihr Skript ist per SRI fixiert, ihre CSP streng,
+  und die Versionen werden nur hinzugefügt, veröffentlicht von
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer).
+  Der GFS beantwortet die anonymen Signalisierungsrouten des Viewers
+  mit CORS, nie mit Zugangsdaten.
+- Tokens gelten pro Highlight und pro Link und sind einzeln oder
+  alle auf einmal widerrufbar. Ein fehlgeschlagenes Öffnen zeigt
+  immer „Das ist gerade nicht verfügbar“ — ob der Link widerrufen,
+  abgelaufen oder der Autor offline ist.
 
 </details>
 

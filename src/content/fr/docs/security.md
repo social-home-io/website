@@ -34,14 +34,15 @@ par appareil et aucune prétention de secret d'appareil à appareil.
 
 ## Contre qui cela vous protège
 
-| Quelqu'un qui…                                   | …obtient                                                                                                                |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| fait tourner le GFS que vous utilisez            | des enveloppes scellées, des données de routage et des horaires — jamais un mot de contenu                              |
-| observe le réseau                                | du trafic scellé et rembourré entre des adresses connues                                                                |
-| a été retiré d'un espace                         | rien de ce qui a été publié après son départ — l'espace a reçu une nouvelle clé                                         |
-| trouve un lien d'invitation égaré                | l'entrée dans l'espace, si c'était un Lien GFS — traitez-les comme des clés ; un Lien local ne sert à rien à un inconnu |
-| a les droits root sur le serveur de votre maison | tout — c'est votre serveur ; protégez-le comme le reste de votre réseau domestique                                      |
-| est admin d'un espace où vous êtes               | tout ce qui est dans cet espace, comme n'importe quel membre — les admins ne sont pas une porte dérobée                 |
+| Quelqu'un qui…                                   | …obtient                                                                                                                   |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| fait tourner le GFS que vous utilisez            | des enveloppes scellées, des données de routage et des horaires — jamais un mot de contenu                                 |
+| observe le réseau                                | du trafic scellé et rembourré entre des adresses connues                                                                   |
+| a été retiré d'un espace                         | rien de ce qui a été publié après son départ — l'espace a reçu une nouvelle clé                                            |
+| reçoit votre lien public                         | ce seul highlight ou moment, ouvert dans une visionneuse que le GFS ne gère pas — le GFS ne peut donc toujours pas le lire |
+| trouve un lien d'invitation égaré                | l'entrée dans l'espace, si c'était un Lien GFS — traitez-les comme des clés ; un Lien local ne sert à rien à un inconnu    |
+| a les droits root sur le serveur de votre maison | tout — c'est votre serveur ; protégez-le comme le reste de votre réseau domestique                                         |
+| est admin d'un espace où vous êtes               | tout ce qui est dans cet espace, comme n'importe quel membre — les admins ne sont pas une porte dérobée                    |
 
 Les deux dernières lignes sont les lignes honnêtes : Social Home
 protège votre foyer de l'extérieur, pas de lui-même.
@@ -216,6 +217,73 @@ les foyers ; le GFS n'intervient pas.
 
 </details>
 
+## Liens publics
+
+Un lien public vers un highlight, le lien de partage d'un moment, la
+page d'un espace global, un lien d'invitation GFS et un profil
+Momentum sont ouverts par des personnes qui ne sont pas sur Social
+Home, dans un navigateur ordinaire. Ils s'ouvrent tous dans la
+[visionneuse Social Home](/fr/docs/glossary/#visionneuse) sur
+`viewer.social-home.io` — une page que le GFS ne sert pas.
+
+C'est important à cause de l'endroit où se trouve la clé. Un lien de
+highlight ou de moment porte sa clé après le `#`, et les navigateurs
+n'envoient jamais cette partie à un serveur : le GFS ne la reçoit
+donc jamais. Mais la page qui ouvre le lien est le code qui lit la
+clé. Si le GFS servait cette page, il pourrait en servir une qui
+copie la clé. Avec la visionneuse, les personnes qui gèrent un GFS ne
+peuvent ni lire ce que vous partagez ni modifier la page que voit
+votre visiteur. Le GFS aide toujours à livrer un lien — des octets
+scellés, jamais la clé.
+
+La visionneuse est faite pour être vérifiée, pas crue sur parole :
+
+- Chaque version a sa propre adresse, et les fichiers derrière ne
+  changent jamais. Un lien désigne la version exacte pour laquelle il
+  a été créé.
+- La page indique au navigateur exactement quel script exécuter ; un
+  seul octet modifié et le navigateur le refuse.
+- La visionneuse est construite deux fois — par la version de Social
+  Home, puis par le dépôt séparé
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer)
+  — et publiée seulement si les deux constructions sont identiques.
+  Les versions ne sont qu'ajoutées : les anciens liens continuent de
+  s'ouvrir.
+
+Ce à quoi vous faites confiance à la place, c'est l'hébergeur de la
+visionneuse : GitHub Pages et l'organisation `social-home-io`. Un GFS
+ou un foyer auto-hébergé peut pointer vers sa propre copie des
+fichiers.
+
+<details class="tech">
+<summary>Sous le capot</summary>
+
+- Chemin `v/<hash>/` : les 16 premiers caractères hexadécimaux du
+  sha384 de la page, qui porte le hash SRI du script et les hashs des
+  styles. Le manifeste `socialhome/pinned_viewer.json` est versionné ;
+  la CI construit la visionneuse deux fois et échoue au moindre octet
+  différent.
+- CSP de la page : `default-src 'none'`, script par hash,
+  `img-src blob: data:`, `base-uri 'none'`, `form-action 'none'` ;
+  `no-referrer`. Chaque requête va au GFS indiqué dans le fragment,
+  avec `credentials: 'omit'` et `redirect: 'error'` ; la visionneuse
+  refuse un GFS sans `https`.
+- Flux de highlight : AES-256-GCM par image sous
+  `HKDF-SHA256(ECDH(P-256), salt = secret du lien)`, sur le
+  DataChannel direct comme sur le repli par relais.
+- Les routes `/spaces/{id}`, `/join/{token}` et `/moments/{user}` du
+  GFS répondent par une page de passage inerte (balises d'aperçu
+  seulement, `default-src 'none'`) ; la visionneuse lit
+  `/gfs/pages/*` en cross-origin sans identifiants et affiche les
+  textes « À propos » comme des nœuds, jamais comme du HTML.
+- Origine propre `viewer.social-home.io`, et non une origine
+  `github.io` partagée qu'un autre site de l'organisation pourrait
+  occuper avec un service worker.
+- La branche `gh-pages` du dépôt de la visionneuse est en ajout seul
+  par une règle (ruleset).
+
+</details>
+
 ## Les petits détails
 
 - Un espace épinglé sur la carte du GFS a sa position arrondie à
@@ -291,6 +359,18 @@ nous confier la discussion de groupe :
 - L'échange de clés n'est pas encore post-quantique ; seules les
   signatures ont une variante post-quantique en option.
 - Il n'y a pas encore d'analyse automatisée des dépendances.
+- Les liens publics s'ouvrent dans la [visionneuse](#liens-publics) :
+  vous faites donc confiance à son hébergeur — GitHub Pages et
+  l'organisation `social-home-io` — pour servir les fichiers publiés.
+  Les empreintes rendent une page remplacée détectable, mais seulement
+  si quelqu'un vérifie.
+- Un lien public de highlight ou de moment est une clé. Quiconque le
+  possède peut l'ouvrir, et il reste dans l'historique du navigateur de
+  toutes les personnes qui l'ont ouvert. Le lien de partage d'un moment
+  ne peut être repris qu'en supprimant le moment.
+- Le GFS voit quand un lien public est ouvert, et depuis quelle
+  adresse. Un highlight qui s'ouvre montre que votre maison était en
+  ligne à ce moment-là.
 
 ## Signaler un problème
 

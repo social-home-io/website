@@ -38,6 +38,7 @@ key and no claim of device-to-device secrecy.
 | runs the GFS you use              | sealed envelopes, routing data and timing — never a word of content                                    |
 | watches the network               | sealed, padded traffic between known addresses                                                         |
 | was removed from a space          | nothing posted after they left — the space got a new key                                               |
+| receives your public link         | that one highlight or moment, opened in a viewer the GFS doesn't run — so the GFS still can't read it  |
 | finds a stray invite link         | into the space, if it was a GFS link — treat those like keys; a Local link does nothing for a stranger |
 | has root on your home's server    | everything — it is your server; protect it like the rest of your home network                          |
 | is an admin of a space you are in | everything in that space, same as any member — admins aren't a backdoor                                |
@@ -202,6 +203,62 @@ travel directly between households; the GFS is not involved.
 
 </details>
 
+## Public links
+
+A public highlight link, a moment's share link, a global space's
+page, a GFS invite link and a Momentum profile are opened by people
+who aren't on Social Home, in an ordinary browser. They all open in
+the [Social Home viewer](/docs/glossary/#viewer) at
+`viewer.social-home.io` — a page the GFS doesn't serve.
+
+That matters because of where the key is. A highlight or moment
+link carries its key after the `#`, and browsers never send that
+part to a server, so the GFS never gets it. But the page that opens
+the link is the code that reads the key. If the GFS served that
+page, it could serve one that copies the key. With the viewer, the
+people who run a GFS can't read what you share and can't change the
+page your visitor sees. The GFS still helps deliver a link —
+sealed bytes, never the key.
+
+The viewer is built to be checked, not trusted blindly:
+
+- Every version has its own address, and the files behind it never
+  change. A link names the exact version it was made for.
+- The page tells the browser exactly which script to run; one
+  changed byte and the browser refuses it.
+- The viewer is built twice — by the Social Home release and again by
+  the separate [`social-home-io/viewer`](https://github.com/social-home-io/viewer)
+  repository — and published only when both builds match. Versions
+  are only ever added, so old links keep opening.
+
+What you trust instead is the viewer's host: GitHub Pages and the
+`social-home-io` organisation. A self-hosted GFS or household can
+point at its own copy of the files.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+- Path `v/<hash>/`: the first 16 hex characters of the sha384 of the
+  page, which carries the script's SRI hash and the styles' hashes.
+  The manifest `socialhome/pinned_viewer.json` is committed; CI
+  builds the viewer twice and fails on any byte difference.
+- Page CSP: `default-src 'none'`, script by hash, `img-src blob: data:`,
+  `base-uri 'none'`, `form-action 'none'`; `no-referrer`. Every request
+  goes to the GFS named in the fragment with `credentials: 'omit'` and
+  `redirect: 'error'`; the viewer refuses a non-`https` GFS.
+- Highlight streams: AES-256-GCM per frame under
+  `HKDF-SHA256(ECDH(P-256), salt = link secret)`, on the direct
+  DataChannel and the relay fallback alike.
+- The GFS's `/spaces/{id}`, `/join/{token}` and `/moments/{user}` answer
+  an inert hand-off page (preview tags only, `default-src 'none'`); the
+  viewer reads `/gfs/pages/*` cross-origin without credentials and
+  renders About text as nodes, never HTML.
+- Own origin `viewer.social-home.io`, not a shared `github.io` origin
+  another org site could claim with a service worker.
+- `gh-pages` of the viewer repo is append-only by ruleset.
+
+</details>
+
 ## The small things
 
 - A space pinned on the GFS map has its location rounded to
@@ -271,6 +328,17 @@ you trust us with the group chat:
 - Key exchange is not yet post-quantum; only signatures have an
   opt-in post-quantum variant.
 - There is no automated dependency scanning yet.
+- Public links open in the [viewer](#public-links), so you trust its
+  host — GitHub Pages and the `social-home-io` organisation — to
+  serve the released files. The fingerprints make a swapped page
+  detectable, but only if someone checks.
+- A public highlight or moment link is a key. Whoever has it can
+  open it, and it sits in the browser history of everyone who
+  opened it. A moment's share link can't be taken back short of
+  deleting the moment.
+- The GFS sees when a public link is opened, and from which
+  address. A highlight that opens shows that your home was online
+  at that moment.
 
 ## Reporting a problem
 

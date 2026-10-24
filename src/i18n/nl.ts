@@ -480,11 +480,12 @@ export const nl: UiStrings = {
     hostedBy: "Gehost door Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces waarvan de eigenaar deze server kiest, verschijnen onder Ontdekken › Wereldwijd; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs. Inhoudsblind van ontwerp.",
+    body: "Eén QR-scan en je bent verbonden. Wereldwijde spaces waarvan de eigenaar deze server kiest, verschijnen onder Ontdekken › Wereldwijd; openbare momenten waaieren uit naar volgers in elk gekoppeld huishouden; openbare links van Highlights lopen ook hierlangs en openen in de Social Home-viewer, een pagina die deze server niet aanbiedt. Inhoudsblind van ontwerp.",
     bullets: [
       "Gids van wereldwijde spaces",
       "Openbare Momentum-directory + volggraaf",
       "Relay voor openbare Highlights-links",
+      "Openbare links openen in een viewer die deze server niet draait",
       "Leeftijdsgrensbeleid wordt afgedwongen",
       "Verzegelde berichten in de wachtrij voor offline huishoudens, daarna weg",
       "Leest nooit de inhoud van berichten, foto's of gesprekken",

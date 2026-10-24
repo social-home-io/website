@@ -162,16 +162,46 @@ aktualisiert — eine Identität, keine Sonderregeln pro Säule.
   Folgen. Ihr nächster Moment landet in deinem Posteingang neben
   den Momenten gekoppelter Haushalte — markiert mit einem
   „via {gfs}“-Chip.
-- **Aus dem offenen Web.** Jeder GFS hostet eine öffentliche
-  Startseite unter `/users` (das Verzeichnis) und `/users/<id>`
-  (Seite pro Autor mit Avatar, Bio, Follower-Zahl und einem
-  Deeplink, der den Folgen-Ablauf in deinem Social Home öffnet).
-  Praktisch, um dein Momentum-Profil mit Leuten zu teilen, die
-  noch nicht auf einem Social Home sind.
+- **Aus dem offenen Web.** Jeder GFS listet seine öffentlichen
+  Autoren unter `/moments`, und jeder Autor hat unter
+  `/moments/<id>` eine Profilseite mit Bild, Bio und einem
+  **Folgen**-Button. Das Profil öffnet sich im
+  [Social Home Viewer](/de/docs/glossary/#viewer), einer Seite, die
+  kein GFS ausliefert. Praktisch, um dein Momentum-Profil mit Leuten
+  zu teilen, die noch nicht auf einem Social Home sind. Das Profil
+  zeigt, wer du bist, nicht was du gepostet hast.
 
 Die Verzeichniskarten verwenden denselben Avatar, dieselbe Bio
 und denselben Anzeigenamen, die gekoppelte Haushalte sehen — es
 gibt keine separate „öffentliche Persona“ zu pflegen.
+
+### Einen Moment teilen
+
+Um einen einzelnen öffentlichen Moment jemandem ohne Social Home zu
+zeigen, öffne ihn und tippe auf **Link zum Teilen kopieren**. Der
+Link öffnet genau diesen Moment — und nichts anderes, was du
+gepostet hast — im Social Home Viewer, bis der Moment endet. Das
+klappt sogar, während dein Zuhause offline ist: Der GFS bewahrt
+eine versiegelte Kopie auf, die er selbst nicht öffnen kann, und
+der Schlüssel ist der Teil des Links nach dem `#`, den Browser nie
+an einen Server schicken. Ein Link zum Teilen lässt sich nur
+zurückholen, indem du den Moment löschst — teile ihn also wie
+einen Schlüssel.
+
+<details class="tech">
+<summary>Unter der Haube</summary>
+
+Der Link lautet
+`viewer.social-home.io/v/<hash>/#g=<GFS>&a=<author>&m=<moment>&b=<share copy>&k=<item key>`.
+`k` ist der Item-Schlüssel des Moments, nie ein Generations- oder
+Stufenschlüssel. Die Teilkopie (Text, Zeiten, Anzeigename,
+Medienbeschreibung) ist darunter versiegelt, auf 4 KB gepolstert und
+wird erst auf den GFS geladen, wenn du nach einem Link fragst. Der
+Viewer holt sie und die Datei anonym, prüft jede SHA-256-Adresse und
+öffnet sie mit WebCrypto. Das Zuhause des Autors wird nie
+kontaktiert.
+
+</details>
 
 ## Ratenbegrenzung
 

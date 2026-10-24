@@ -23,7 +23,8 @@ highlight-links – zie
 [Highlights → openbaar delen](/nl/docs/highlights/#openbaar-delen-via-een-global-server)
 voor de kant van de auteur. Bij elke taak verwerkt hij alleen
 enveloppen: hij leest nooit een bericht, slaat nooit een
-highlight-frame op. Je eigen relay hosten betekent dat je
+highlight-frame op en biedt nooit de pagina aan die een openbare
+link opent. Je eigen relay hosten betekent dat je
 community bepaalt wie mag meedoen, en dat er geen enkele partij
 in het centrum zit.
 
@@ -185,6 +186,55 @@ zelfs niet zien welke huishoudens mogen schrijven. Voor
 het volledige beeld, inclusief wat de relay nog wél kan
 waarnemen (timing, groottes, IP-adressen), lees je het
 [beveiligingsmodel](/nl/docs/security/).
+
+## Je openbare pagina's
+
+Mensen die niet op Social Home zitten, bereiken je relay via links:
+de pagina van een wereldwijde space (`/spaces/…`), een
+GFS-uitnodigingslink (`/join/…`) en een Momentum-profiel
+(`/moments/…`). Je relay tekent die pagina's niet zelf. Hij geeft ze
+door aan de [Social Home-viewer](/nl/docs/glossary/#viewer) op
+`viewer.social-home.io`, die bij je relay ophaalt wat hij nodig heeft
+en het toont in de taal van de bezoeker. Openbare highlight- en
+momentlinks openen in dezelfde viewer.
+
+Dat beschermt de mensen die je relay gebruiken — en jou. Je kunt geen
+highlight lezen dat via je relay wordt gedeeld, en je zou de pagina
+die het opent niet kunnen veranderen, zelfs niet als iemand je
+erom vroeg. Chat-apps krijgen nog steeds een voorbeeld met de naam en
+foto van de space of persoon: je relay beantwoordt ze met een kleine
+pagina zonder scripts.
+
+Er valt niets in te stellen. Wil je niet afhangen van de viewer van
+het project, host de gepubliceerde viewerbestanden dan zelf en laat
+de instelling hieronder ernaar wijzen. Of maak hem leeg, dan tekent
+je relay zijn pagina's weer zelf. Dat is minder veilig: voor
+highlight-links gaat je relay dan weer over de pagina die de sleutel
+leest.
+
+<details class="tech">
+<summary>Onder de motorkap</summary>
+
+- Instelling: `[server] public_viewer_base_url` /
+  `GFS_PUBLIC_VIEWER_BASE_URL`, standaard `https://viewer.social-home.io`.
+  Huishoudens hebben hun eigen: `[highlights] public_viewer_base_url` /
+  `SH_HIGHLIGHTS_PUBLIC_VIEWER_BASE_URL`. Alleen `https://` wordt
+  gebruikt; al het andere valt terug met een waarschuwing in het log.
+- De overdracht is geen open redirect: het doel is de instelling, de
+  ingecheckte viewerversie en je eigen `base_url`; alleen een id in
+  het alfabet van de viewer wordt doorgegeven, in het fragment.
+- De viewer leest `GET /gfs/pages/spaces/{id}`,
+  `POST /gfs/pages/invite` (token in de body) en
+  `GET /gfs/pages/people/{user}`: anoniem, CORS zonder
+  inloggegevens, binnen de snelheidslimiet van de pagina's van
+  30 / min / IP.
+- Voor openbare highlights geeft `GET /gfs/highlights/ice-servers`
+  per antwoord een vers aangemaakt TURN-wachtwoord uit als
+  `[webrtc] turn_url` en `turn_secret` zijn ingesteld (geldig
+  `turn_ttl_seconds`, standaard 600) — nooit een vast wachtwoord.
+  Begrens ook op de TURN-server zelf.
+
+</details>
 
 ## Bijwerken
 

@@ -180,20 +180,24 @@ stored.
 
 The same kind of relay also has a second job: handing off a
 single highlight to people outside Social Home. When you publish
-a highlight link, the relay mints a URL that anyone can open in a
-browser — but the highlight bytes flow directly from your home
-server to the visitor's browser. If that direct path can't be
-made, the relay passes the frames through only while you're
-online, and stores none of them. See
+a highlight link, your household makes a link to the
+[Social Home viewer](/docs/glossary/#viewer) — a page no relay
+serves — that anyone can open in a browser. The highlight bytes
+flow directly from your home to the visitor's browser, sealed so
+that only that browser can open them. If that direct path can't
+be made, the relay passes the sealed frames through only while
+you're online, and stores none of them. See
 [Highlights](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-WebRTC-direct from the author's server to the browser; HTTP
-pass-through as fallback only while the author is online. Zero
-highlight or moment bytes are stored on the GFS.
+WebRTC-direct from the author's home to the browser; HTTP
+pass-through as fallback only while the author is online. Every
+frame is sealed to the viewer's ephemeral key and the link secret
+in the URL fragment. Zero highlight bytes are stored on the GFS,
+and the GFS serves none of the viewer's code.
 
 </details>
 

@@ -35,14 +35,15 @@ auf Geheimhaltung von Gerät zu Gerät.
 
 ## Vor wem es dich schützt
 
-| Jemand, der…                                    | …bekommt                                                                                                              |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| den GFS betreibt, den du nutzt                  | versiegelte Umschläge, Routing-Daten und Zeitpunkte — nie ein Wort Inhalt                                             |
-| das Netzwerk beobachtet                         | versiegelten, gepolsterten Verkehr zwischen bekannten Adressen                                                        |
-| aus einem Space entfernt wurde                  | nichts, was nach dem Weggang gepostet wurde — der Space hat einen neuen Schlüssel bekommen                            |
-| einen verirrten Einladungslink findet           | Zutritt zum Space, wenn es ein GFS-Link war — behandle sie wie Schlüssel; ein Lokaler Link nützt einem Fremden nichts |
-| Root-Zugriff auf den Server deines Zuhauses hat | alles — es ist dein Server; schütze ihn wie den Rest deines Heimnetzwerks                                             |
-| Admin eines Space ist, in dem du bist           | alles in diesem Space, wie jedes Mitglied — Admins sind keine Hintertür                                               |
+| Jemand, der…                                    | …bekommt                                                                                                                                           |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| den GFS betreibt, den du nutzt                  | versiegelte Umschläge, Routing-Daten und Zeitpunkte — nie ein Wort Inhalt                                                                          |
+| das Netzwerk beobachtet                         | versiegelten, gepolsterten Verkehr zwischen bekannten Adressen                                                                                     |
+| aus einem Space entfernt wurde                  | nichts, was nach dem Weggang gepostet wurde — der Space hat einen neuen Schlüssel bekommen                                                         |
+| deinen öffentlichen Link bekommt                | genau dieses eine Highlight oder diesen Moment, geöffnet in einem Viewer, den der GFS nicht betreibt — der GFS kann ihn also weiterhin nicht lesen |
+| einen verirrten Einladungslink findet           | Zutritt zum Space, wenn es ein GFS-Link war — behandle sie wie Schlüssel; ein Lokaler Link nützt einem Fremden nichts                              |
+| Root-Zugriff auf den Server deines Zuhauses hat | alles — es ist dein Server; schütze ihn wie den Rest deines Heimnetzwerks                                                                          |
+| Admin eines Space ist, in dem du bist           | alles in diesem Space, wie jedes Mitglied — Admins sind keine Hintertür                                                                            |
 
 Die letzten beiden Zeilen sind die ehrlichen: Social Home schützt
 deinen Haushalt von außen, nicht vor sich selbst.
@@ -220,6 +221,70 @@ zwischen Haushalten; der GFS ist nicht beteiligt.
 
 </details>
 
+## Öffentliche Links
+
+Ein öffentlicher Highlight-Link, der Link zum Teilen eines Moments,
+die Seite eines globalen Space, ein GFS-Einladungslink und ein
+Momentum-Profil werden von Menschen geöffnet, die nicht auf Social
+Home sind, in einem ganz normalen Browser. Sie alle öffnen sich im
+[Social Home Viewer](/de/docs/glossary/#viewer) unter
+`viewer.social-home.io` — einer Seite, die der GFS nicht ausliefert.
+
+Das zählt, weil es darauf ankommt, wo der Schlüssel liegt. Ein
+Highlight- oder Moment-Link trägt seinen Schlüssel nach dem `#`, und
+diesen Teil schicken Browser nie an einen Server — der GFS bekommt
+ihn also nie. Aber die Seite, die den Link öffnet, ist der Code, der
+den Schlüssel liest. Würde der GFS diese Seite ausliefern, könnte er
+eine ausliefern, die den Schlüssel kopiert. Mit dem Viewer können die
+Betreiber eines GFS weder lesen, was du teilst, noch die Seite
+verändern, die dein Besucher sieht. Der GFS hilft weiterhin, einen
+Link zuzustellen — versiegelte Bytes, nie den Schlüssel.
+
+Der Viewer ist dafür gebaut, überprüft zu werden, nicht blind
+vertraut:
+
+- Jede Version hat ihre eigene Adresse, und die Dateien dahinter
+  ändern sich nie. Ein Link nennt genau die Version, für die er
+  erstellt wurde.
+- Die Seite sagt dem Browser genau, welches Skript er ausführen
+  soll; ein einziges geändertes Byte, und der Browser verweigert es.
+- Der Viewer wird zweimal gebaut — vom Social Home Release und noch
+  einmal vom separaten Repository
+  [`social-home-io/viewer`](https://github.com/social-home-io/viewer)
+  — und nur veröffentlicht, wenn beide Builds übereinstimmen.
+  Versionen kommen nur hinzu, alte Links öffnen sich also weiterhin.
+
+Stattdessen vertraust du dem Host des Viewers: GitHub Pages und der
+Organisation `social-home-io`. Ein selbst betriebener GFS oder
+Haushalt kann auf eine eigene Kopie der Dateien zeigen.
+
+<details class="tech">
+<summary>Unter der Haube</summary>
+
+- Pfad `v/<hash>/`: die ersten 16 Hex-Zeichen des sha384 der Seite,
+  die den SRI-Hash des Skripts und die Hashes der Styles trägt. Das
+  Manifest `socialhome/pinned_viewer.json` ist eingecheckt; CI baut
+  den Viewer zweimal und schlägt bei jedem abweichenden Byte fehl.
+- CSP der Seite: `default-src 'none'`, Skript per Hash,
+  `img-src blob: data:`, `base-uri 'none'`, `form-action 'none'`;
+  `no-referrer`. Jede Anfrage geht an den GFS aus dem Fragment, mit
+  `credentials: 'omit'` und `redirect: 'error'`; einen GFS ohne
+  `https` lehnt der Viewer ab.
+- Highlight-Streams: AES-256-GCM pro Frame unter
+  `HKDF-SHA256(ECDH(P-256), salt = Link-Geheimnis)`, auf dem direkten
+  DataChannel wie auf dem Relay-Fallback.
+- `/spaces/{id}`, `/join/{token}` und `/moments/{user}` des GFS
+  antworten mit einer inerten Übergabeseite (nur Vorschau-Tags,
+  `default-src 'none'`); der Viewer liest `/gfs/pages/*` cross-origin
+  ohne Zugangsdaten und rendert Info-Texte als Knoten, nie als HTML.
+- Eigener Origin `viewer.social-home.io`, kein geteilter
+  `github.io`-Origin, den eine andere Seite der Organisation mit einem
+  Service Worker belegen könnte.
+- Der `gh-pages`-Branch des Viewer-Repos ist per Ruleset
+  append-only.
+
+</details>
+
 ## Die kleinen Dinge
 
 - Ein Space, der auf der GFS-Karte angeheftet ist, bekommt seinen
@@ -296,6 +361,18 @@ du uns den Gruppenchat anvertraust:
 - Der Schlüsselaustausch ist noch nicht post-quantum; nur
   Signaturen haben eine optionale Post-Quantum-Variante.
 - Es gibt noch kein automatisches Dependency-Scanning.
+- Öffentliche Links öffnen sich im [Viewer](#öffentliche-links), also
+  vertraust du seinem Host — GitHub Pages und der Organisation
+  `social-home-io` —, die veröffentlichten Dateien auszuliefern. Die
+  Fingerabdrücke machen eine ausgetauschte Seite erkennbar, aber nur,
+  wenn jemand nachsieht.
+- Ein öffentlicher Highlight- oder Moment-Link ist ein Schlüssel. Wer
+  ihn hat, kann ihn öffnen, und er steht im Browserverlauf von allen,
+  die ihn geöffnet haben. Den Link zum Teilen eines Moments kannst du
+  nur zurückholen, indem du den Moment löschst.
+- Der GFS sieht, wann ein öffentlicher Link geöffnet wird und von
+  welcher Adresse. Ein Highlight, das sich öffnet, zeigt, dass dein
+  Zuhause in diesem Moment online war.
 
 ## Ein Problem melden
 

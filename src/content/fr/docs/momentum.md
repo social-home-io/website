@@ -155,16 +155,45 @@ seule identité, pas de variante par pilier.
   suivre. Leur prochain moment arrive dans votre boîte de réception
   à côté des moments des foyers jumelés — signalé par une puce
   « via {gfs} ».
-- **Depuis le web ouvert.** Chaque GFS héberge une page publique
-  sur `/users` (l'annuaire) et `/users/<id>` (page par auteur avec
-  avatar, bio, nombre d'abonnés et un lien profond qui ouvre le
-  parcours d'abonnement sur votre Social Home). Pratique pour
-  partager votre profil Momentum avec des gens qui ne sont pas
-  encore sur Social Home.
+- **Depuis le web ouvert.** Chaque GFS liste ses auteurs publics
+  sur `/moments`, et chaque auteur a une page de profil sur
+  `/moments/<id>` avec sa photo, sa bio et un bouton **Suivre**. Le
+  profil s'ouvre dans la
+  [visionneuse Social Home](/fr/docs/glossary/#visionneuse), une page
+  qu'aucun GFS ne sert. Pratique pour partager votre profil Momentum
+  avec des gens qui ne sont pas encore sur Social Home. Le profil
+  montre qui vous êtes, pas ce que vous avez publié.
 
 Les cartes de l'annuaire utilisent les mêmes avatar + bio + nom
 affiché que voient les foyers jumelés — il n'y a pas de « persona
 publique » à part à entretenir.
+
+### Partager un seul moment
+
+Pour montrer un seul moment public à quelqu'un qui n'a pas Social
+Home, ouvrez-le et touchez **Copier le lien de partage**. Le lien
+ouvre ce moment précis — et rien d'autre de ce que vous avez publié —
+dans la visionneuse Social Home, jusqu'à la fin du moment. Cela
+fonctionne même quand votre maison est hors ligne : le GFS garde une
+copie scellée qu'il ne peut pas ouvrir lui-même, et la clé est la
+partie du lien après le `#`, que les navigateurs n'envoient jamais à
+un serveur. Un lien de partage ne peut être repris qu'en supprimant
+le moment : partagez-le comme une clé.
+
+<details class="tech">
+<summary>Sous le capot</summary>
+
+Le lien est
+`viewer.social-home.io/v/<hash>/#g=<GFS>&a=<author>&m=<moment>&b=<share copy>&k=<item key>`.
+`k` est la clé d'élément du moment, jamais une clé de génération ou
+d'étape. La copie de partage (texte, horaires, nom affiché,
+descripteur du média) est scellée sous cette clé, complétée à 4 Ko et
+envoyée au GFS seulement quand vous demandez un lien. La visionneuse
+la récupère, avec le fichier, de façon anonyme, vérifie chaque adresse
+SHA-256 et les ouvre avec WebCrypto. La maison de l'auteur n'est
+jamais contactée.
+
+</details>
 
 ## Limite de fréquence
 

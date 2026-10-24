@@ -22,7 +22,8 @@ Highlight-Links — siehe
 [Highlights → öffentlich teilen](/de/docs/highlights/#öffentlich-teilen-über-einen-global-server)
 für den Ablauf aus Sicht des Autors. Bei jeder dieser Aufgaben
 hantiert er nur mit Umschlägen: Er liest nie eine Nachricht,
-speichert nie einen Highlight-Frame. Ein eigenes Relay zu hosten
+speichert nie einen Highlight-Frame und liefert nie die Seite aus,
+die ein öffentlicher Link öffnet. Ein eigenes Relay zu hosten
 heißt, dass deine Community entscheidet, wer beitreten darf, und
 dass es keine einzelne Partei im Zentrum gibt.
 
@@ -184,6 +185,55 @@ nicht, welcher Haushalt ihn veröffentlicht hat. Im strengen Modus
 dürfen. Das vollständige Bild, einschließlich
 dessen, was das Relay weiterhin beobachten kann (Timing, Größen,
 IP-Adressen), steht im [Sicherheitsmodell](/de/docs/security/).
+
+## Deine öffentlichen Seiten
+
+Menschen, die nicht auf Social Home sind, erreichen dein Relay über
+Links: die Seite eines globalen Space (`/spaces/…`), einen
+GFS-Einladungslink (`/join/…`) und ein Momentum-Profil
+(`/moments/…`). Dein Relay zeichnet diese Seiten nicht selbst. Es
+übergibt sie an den [Social Home Viewer](/de/docs/glossary/#viewer)
+unter `viewer.social-home.io`, der sich holt, was er von deinem
+Relay braucht, und es in der Sprache des Besuchers anzeigt.
+Öffentliche Highlight- und Moment-Links öffnen sich im selben Viewer.
+
+Das schützt die Menschen, die dein Relay nutzen — und dich. Du kannst
+kein Highlight lesen, das über dein Relay geteilt wird, und du
+könntest die Seite, die es öffnet, nicht verändern, selbst wenn dich
+jemand darum bäte. Chat-Apps bekommen trotzdem eine Vorschau mit dem
+Namen und Bild des Space oder der Person: Dein Relay beantwortet sie
+mit einer kleinen Seite ohne Skripte.
+
+Einzurichten gibt es nichts. Wenn du nicht vom Viewer des Projekts
+abhängen willst, hoste die veröffentlichten Viewer-Dateien selbst
+und lass die Einstellung unten darauf zeigen. Oder leere sie, dann
+zeichnet dein Relay seine Seiten wieder selbst. Das ist weniger
+sicher: Bei Highlight-Links ist dann wieder dein Relay für die Seite
+zuständig, die den Schlüssel liest.
+
+<details class="tech">
+<summary>Unter der Haube</summary>
+
+- Einstellung: `[server] public_viewer_base_url` /
+  `GFS_PUBLIC_VIEWER_BASE_URL`, Standard `https://viewer.social-home.io`.
+  Haushalte haben ihre eigene: `[highlights] public_viewer_base_url` /
+  `SH_HIGHLIGHTS_PUBLIC_VIEWER_BASE_URL`. Verwendet wird nur
+  `https://`; alles andere fällt mit einer Warnung im Log zurück.
+- Die Übergabe ist kein offener Redirect: Das Ziel sind die
+  Einstellung, die eingecheckte Viewer-Version und deine eigene
+  `base_url`; weitergegeben wird nur eine ID im Alphabet des Viewers,
+  im Fragment.
+- Der Viewer liest `GET /gfs/pages/spaces/{id}`,
+  `POST /gfs/pages/invite` (Token im Body) und
+  `GET /gfs/pages/people/{user}`: anonym, CORS ohne Zugangsdaten, im
+  Ratenlimit der Seiten von 30 / min / IP.
+- Für öffentliche Highlights gibt `GET /gfs/highlights/ice-servers`
+  pro Antwort ein frisch erzeugtes TURN-Passwort aus, wenn
+  `[webrtc] turn_url` und `turn_secret` gesetzt sind (gültig
+  `turn_ttl_seconds`, Standard 600) — nie ein statisches. Begrenze
+  auch auf dem TURN-Server selbst die Rate.
+
+</details>
 
 ## Aktualisieren
 
