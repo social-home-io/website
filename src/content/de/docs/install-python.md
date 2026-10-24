@@ -56,6 +56,26 @@ sollen (oder du koppelst über einen GFS), und ein Backup plus ein
 **Wiederherstellungs-Kit** unter **Admin → Sicherung**. Siehe
 [Mit Docker installieren](/de/docs/install-docker/#3-für-andere-haushalte-erreichbar-sein).
 
+## Mit einer Einstellungsdatei feinjustieren (optional)
+
+Die alltäglichen Einstellungen liegen in der Weboberfläche. Für die
+paar Dinge, die Social Home beim Start liest — einen TURN-Server für
+Anrufe, ein Speicherlimit, deinen eigenen GFS, die Verbindung zu Home
+Assistant — gibt es eine Einstellungsdatei. Kopier die Beispieldatei,
+in der jede Einstellung auskommentiert und erklärt ist, an die Stelle,
+an der Social Home sie sucht:
+
+```sh
+mkdir -p ~/.config/socialhome
+curl -o ~/.config/socialhome/socialhome.toml https://raw.githubusercontent.com/social-home-io/socialhome/main/socialhome.toml.example
+```
+
+Entferne das `#` vor den Zeilen, die du willst, setz deine Werte und
+starte Social Home neu. Eine Umgebungsvariable gewinnt immer gegen die
+Datei, und eine Datei mit Tippfehler wird komplett übersprungen — prüf
+also, ob deine Änderung angekommen ist. Mehr dazu unter
+[Mit Docker installieren](/de/docs/install-docker/#5-mit-einer-einstellungsdatei-feinjustieren-optional).
+
 ## Aktualisieren
 
 ```sh

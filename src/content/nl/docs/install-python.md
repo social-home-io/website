@@ -56,6 +56,26 @@ kunnen bereiken (of je koppelt via een GFS), en een back-up plus een
 **Herstelkit** onder **Admin → Back-up**. Zie
 [Installeren met Docker](/nl/docs/install-docker/#3-bereikbaar-zijn-voor-andere-huishoudens).
 
+## Bijstellen met een instellingenbestand (optioneel)
+
+De dagelijkse instellingen staan in de webinterface. Voor de paar
+dingen die Social Home bij het starten leest — een TURN-server voor
+gesprekken, een opslaglimiet, je eigen GFS, de verbinding met Home
+Assistant — is er een instellingenbestand. Kopieer het
+voorbeeldbestand, waarin elke instelling uitgecommentarieerd en
+uitgelegd is, naar de plek waar Social Home het zoekt:
+
+```sh
+mkdir -p ~/.config/socialhome
+curl -o ~/.config/socialhome/socialhome.toml https://raw.githubusercontent.com/social-home-io/socialhome/main/socialhome.toml.example
+```
+
+Haal het `#` weg voor de regels die je wilt, vul je waarden in en
+start Social Home opnieuw. Een omgevingsvariabele wint altijd van het
+bestand, en een bestand met een typfout wordt in zijn geheel
+overgeslagen — controleer dus of je wijziging is doorgekomen. Meer in
+[Installeren met Docker](/nl/docs/install-docker/#5-bijstellen-met-een-instellingenbestand-optioneel).
+
 ## Bijwerken
 
 ```sh

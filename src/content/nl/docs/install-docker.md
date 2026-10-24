@@ -87,6 +87,59 @@ je zelf kiest. Hij brengt je huishouden en de gekoppelde huishoudens
 terug op nieuwe hardware als er ooit een schijf sneuvelt. Maak een
 nieuwe nadat je met iemand nieuw hebt gekoppeld.
 
+## 5. Bijstellen met een instellingenbestand (optioneel)
+
+De meeste huishoudens hebben dit nooit nodig: de dagelijkse
+instellingen staan in de webinterface. Een instellingenbestand,
+`socialhome.toml`, is voor de paar dingen die Social Home bij het
+starten leest — bijvoorbeeld de TURN-server die je gesprekken achter
+strenge netwerken gebruiken, een opslaglimiet, je eigen GFS voor de
+stap „Verbinden met de GFS” bij de eerste start, of de verbinding met
+Home Assistant in plaats van via omgevingsvariabelen.
+
+1. Download naast je `docker-compose.yml` het voorbeeldbestand. Elke
+   instelling erin staat uitgecommentarieerd en is uitgelegd:
+
+   ```sh
+   curl -o socialhome.toml https://raw.githubusercontent.com/social-home-io/socialhome/main/socialhome.toml.example
+   ```
+
+2. Haal het `#` weg voor de regels die je wilt en vul je waarden in,
+   bijvoorbeeld:
+
+   ```toml
+   [storage]
+   max_storage_bytes = 21474836480   # 20 GB
+
+   [webrtc]
+   turn_url = "turn:turn.example.com:3478"
+   turn_secret = "het-gedeelde-geheim-van-je-turn-server"
+   ```
+
+3. Geef het bestand aan de container en vertel Social Home waar het
+   staat — twee regels extra in `docker-compose.yml`:
+
+   ```yaml
+   services:
+     socialhome:
+       # … zoals hierboven …
+       environment:
+         SH_CONFIG: /config/socialhome.toml
+       volumes:
+         - socialhome-data:/data
+         - ./socialhome.toml:/config/socialhome.toml:ro
+   ```
+
+4. Opnieuw starten: `docker compose up -d`. Social Home leest het
+   bestand alleen bij het starten, dus start na elke wijziging opnieuw.
+
+Twee dingen om te weten. Een omgevingsvariabele wint altijd van het
+bestand: een instelling die je ook met `-e` of onder `environment:`
+meegeeft, negeert het bestand. En als het bestand een typfout heeft
+die Social Home niet kan lezen, start het in plaats daarvan met de
+standaardwaarden — controleer na het bewerken of je wijziging is
+doorgekomen.
+
 ## Bijwerken
 
 ```sh
@@ -112,11 +165,23 @@ blijven, gebruik dan de tag ervan, bijvoorbeeld
   huishouddashboard voor de wandtablet, dat uit blijft tot een
   beheerder het aanzet; stel hem alleen open als je het gebruikt, en
   alleen in je thuisnetwerk.
-- Elke instelling in `socialhome.toml` heeft een
-  `SH_*`-omgevingsvariabele, die voorgaat op het bestand; wijs met
-  `SH_CONFIG` een bestand aan om er een te gebruiken. Het
-  voorbeeldbestand is
-  [`socialhome.toml.example`](https://github.com/social-home-io/socialhome/blob/main/socialhome.toml.example).
+- Instellingen zijn gelaagd: `SH_*`-omgevingsvariabelen, dan het
+  TOML-bestand op `SH_CONFIG` (standaard
+  `~/.config/socialhome/socialhome.toml`, in de container
+  `/home/hsuser/.config/…`, buiten het datavolume — vandaar de mount),
+  dan ingebouwde standaardwaarden. Een bestand dat ontbreekt of niet te
+  lezen is, wordt in zijn geheel overgeslagen. De image zet
+  `SH_DATA_DIR` en `SH_MODE`, dus `[storage] data_dir` en
+  `[server] mode` in het bestand hebben onder Docker geen effect.
+- Sleutels: `[server]`, `[storage]`, `[federation]` komen overeen met
+  de naam van de instelling; sleutels in `[webrtc]`, `[gfs]`,
+  `[highlights]` krijgen de sectie als voorvoegsel
+  (`[gfs] default_url` = `SH_GFS_DEFAULT_URL`);
+  `[homeassistant] url` / `token` = `SH_HA_URL` / `SH_HA_TOKEN`. De
+  referentie is [`socialhome.toml.example`](https://github.com/social-home-io/socialhome/blob/main/socialhome.toml.example).
+- Het bestand moet leesbaar zijn voor uid 10001. Staat er een Home
+  Assistant-token in, houd het dan weg van andere gebruikers op de
+  host: `sudo chgrp 10001 socialhome.toml && chmod 640 socialhome.toml`.
 - Een bind mount in plaats van het volume? Maak de map schrijfbaar voor
   uid 10001 (`sudo chown 10001:10001 ./data`).
 - Healthcheck: `GET /healthz`.
