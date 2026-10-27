@@ -15,46 +15,17 @@ bericht dat van je huishouden naar je gekoppelde huishoudens reist, en
 naar die van hen. Allebei zijn ze bedoeld om licht te zijn. En allebei
 moeten ze precies doen wat ze zeggen.
 
-Daarom kregen ze dezelfde behandeling als
-[spaces](/nl/blog/2026-10-20-spaces-redesign/): drie reviewrondes langs
-elk scherm, van het invoerveld tot de pagina achter een openbare link,
-met hetzelfde voorbeeldhuishouden, de Bergers. De review vond twee
-plekken waar iets meer mensen bereikte dan de auteur had gekozen. Die
-hebben we eerst opgelost. De rest van het herontwerp zit in **Social
-Home 2026.10.27**.
+Nu krijgen ze allebei een frisse look, net als
+[spaces](/nl/blog/2026-10-20-spaces-redesign/) vorige week, en allebei
+zeggen ze wie wat ziet en hoe lang, voordat je deelt. Het zit allemaal
+in **Social Home 2026.10.27**.
 
-## Eerst de oplossingen
-
-We vertellen het je liever zelf:
-
-- **Een beeld van een highlight kon meer mensen bereiken dan je
-  koos.** Je hebt één highlight per dag, en het publiek werd bepaald
-  door het eerste beeld. Een later beeld „alleen voor Anna” ging naar
-  iedereen die het eerste kon zien. Nu gaat een beeld altijd naar het
-  publiek van vandaag, en het invoerveld laat je zien wie dat is
-  voordat je iets plaatst.
-- **Een antwoord kon standaard openbaar worden gedeeld.** Als je
-  momenten openbaar deelt via een GFS, stond de schakelaar voor
-  openbaar in het antwoordveld al aan, ook onder een moment dat alleen
-  voor het huishouden was. Nu kan een antwoord alleen openbaar zijn als
-  het moment waarop het antwoordt openbaar is, en de schakelaar staat
-  pas aan als jij hem aanzet.
-- **Wie een highlight bekeek, kon zien wie er nog meer gekozen was.**
-  Nu zien ze alleen een kort label zoals „Gekozen mensen”, en elk
-  huishouden krijgt alleen zijn eigen deel van de lijst.
-- **Antwoorden sloegen blokkades en kinderbescherming over.** Ze volgen
-  nu dezelfde regels als momenten.
-
-Heb je nooit highlights „alleen voor” iemand of openbaar delen
-gebruikt, dan raakte dit je niet. Deed je dat wel, dan hoef je niets te
-doen: de oplossingen werken zodra je bijwerkt.
+_Alle schermen hieronder tonen een voorbeeldhuishouden: de Bergers._
 
 ## Highlights: wie is nieuw, en wie ziet de jouwe
 
-De pagina Highlights liet vroeger een ring per persoon _per dag_ zien,
-zodat één drukke vriend drie keer kon verschijnen, en je eigen
-highlight zag er altijd ongezien uit. Nu heeft hij twee tabbladen,
-**Vandaag** en **Archief**.
+De pagina Highlights heeft nu twee tabbladen, **Vandaag** en
+**Archief**.
 
 **Vandaag** begint met je eigen highlight: hoeveel beelden, hoeveel
 mensen het zagen en voor wie het is. Daaronder één rij per persoon,
@@ -75,8 +46,7 @@ voor **Momentum** met hoeveel nieuwe momenten er wachten. Is er niets
 nieuws, dan blijft de kaart uit beeld.
 
 **Archief** is nu een lijst met dagen, de nieuwste eerst, met een
-maandkiezer en **Alleen die van mij**. Vroeger was het een
-kalenderraster dat grotendeels leeg was. Iedereen bepaalt zelf hoe lang
+maandkiezer en **Alleen die van mij**. Iedereen bepaalt zelf hoe lang
 zijn highlights blijven staan, van 1 tot 90 dagen, en het archief zegt
 dat ook in plaats van een getal te beloven.
 
@@ -103,26 +73,24 @@ verwijderen.
 <figure class="phone"><a href="/blog/2026-10-momentum/change-today-mob.webp"><img src="/blog/2026-10-momentum/change-today-mob.webp" alt="Een paneel met de titel Wie je highlight van vandaag ziet over de pagina Toevoegen aan je highlight van vandaag, met de keuzes Alle gekoppelde huishoudens, Alleen jouw huishouden (gekozen, met de opmerking dat gekoppelde huishoudens alle 5 beelden kwijtraken) en Huishoudens of personen kiezen, en een opmerking dat het geldt voor elk beeld van vandaag en dat wie al heeft gekeken het misschien nog weet, met de knoppen Behouden en Voor iedereen wijzigen" width="390" height="575" loading="lazy"></a><figcaption><b>Wijzigen voor heel vandaag</b>Je ziet wat er verandert voordat je bevestigt.</figcaption></figure>
 </div>
 
-Er is nu één invoerveld voor highlights. Snel delen, dat altijd naar
-iedereen ging en „voor de rest van vandaag” zei terwijl highlights in
-werkelijkheid wekenlang blijven, is weg.
+Er is nu één invoerveld voor highlights, en het laat altijd zien naar
+wie de beelden gaan en hoe lang ze blijven.
 
 ## Een highlight bekijken
 
 De viewer heeft nu echte knoppen, 44 pixels groot en leesbaar in licht
 en donker: **pauzeren**, een menu en sluiten. Spatie of K pauzeert, de
 pijltjestoetsen gaan van beeld naar beeld, en video's starten zonder
-geluid, zodat ze ook echt afspelen. Een venster over een beeld pauzeert
-het, dus „Gezien door” sluit zichzelf niet meer na zes seconden.
+geluid, zodat ze ook echt afspelen. Open je een menu of „Gezien door”
+over een beeld, dan pauzeert het.
 
 - **Reacties worden onthouden.** Je emoji blijft gemarkeerd, tik er
   nog eens op om hem terug te nemen, en de auteur krijgt te horen wie
   er reageerde.
 - **Antwoord … privé** stuurt het beeld naar een chat met de persoon
-  die het plaatste. Vroeger opende dat een lege lijst met chats.
+  die het plaatste.
 - **Voor de auteur** kan het menu dit ene beeld of je hele highlight
-  van vandaag verwijderen, en de grote rode knop „Beeld verwijderen”
-  onderaan is weg.
+  van vandaag verwijderen.
 - Ben je aan het eind, dan gaat de viewer verder naar de volgende
   persoon met iets nieuws.
 
@@ -131,17 +99,15 @@ het, dus „Gezien door” sluit zichzelf niet meer na zes seconden.
 Momentum heeft nu drie tabbladen: **Momenten**, **Van jou** en
 **Ontdekken**. Momenten zijn platte kaarten zoals in de feed van het
 huishouden, antwoorden lees je als een draad, en de knop **#** filtert
-op hashtag. Hashtags werken nu in elke taal: #Kürbisfest werd vroeger
-#k.
+op hashtag, in elke taal: #Kürbisfest blijft #Kürbisfest.
 
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-momentum/momentum-mob.webp"><img src="/blog/2026-10-momentum/momentum-mob.webp" alt="Momentum op een telefoon met de tabbladen Momenten, Van jou en Ontdekken, een knop voor hashtags en instellingen, dan Deel een moment met de regel Gekoppelde huishoudens en die van hen, tot 3 stappen, 24 u, dan je eigen moment van 12 minuten geleden en het moment van Maximiliane met twee hartjes" width="390" height="493" loading="lazy"></a><figcaption><b>Momentum</b>Het invoerveld zegt hoe ver een moment gaat.</figcaption></figure>
 </div>
 
 **Je eigen momenten blijven.** Anderen zien een moment 24 uur, of
-langer als ze je volgen. Die van jou verdwenen vroeger net zo van je
-eigen scherm. Nu blijft elk moment dat je plaatst onder **Van jou**
-staan, met wie het ziet en tot wanneer. Bij afgelopen momenten staat
+langer als ze je volgen. Voor jou blijft elk moment dat je plaatst
+onder **Van jou** staan, met wie het ziet en tot wanneer. Bij afgelopen momenten staat
 „Alleen jij ziet het nu”. De beheerder van je huishouden kan instellen
 hoeveel ruimte foto's en video's per persoon mogen gebruiken
 (standaard 2 GB). Daarboven gaan de oudste foto's als eerste weg en
@@ -159,9 +125,8 @@ moment nog steeds 24 uur.
 
 ## Een moment schrijven: waar het heen gaat, en wanneer
 
-Het oude invoerveld zei „vink uit om het in je huishouden te houden”.
-Dat klopte nooit: momenten gingen altijd naar gekoppelde huishoudens en
-verder, tot 3 stappen. Nu zegt het invoerveld dat in één regel,
+Een moment gaat naar je gekoppelde huishoudens en verder, tot 3
+stappen, en het invoerveld zegt dat nu in één regel,
 „Gekoppelde huishoudens en die van hen, tot 3 stappen · 24 u”, met een
 ⓘ voor de details.
 
@@ -181,13 +146,11 @@ delen**, met een link vanuit Van jou en vanuit het invoerveld.
 
 ## Ontdekken en één keer Volgen
 
-**Ontdekken** kon je vroeger alleen bereiken door het adres in te
-typen. Nu is het een tabblad in Momentum, zodra je huishouden verbonden
+**Ontdekken** is nu een tabblad in Momentum, dat er is zodra je huishouden verbonden
 is met een [GFS (Global Federation Server)](/nl/docs/glossary/#gfs), de
 relay die huishoudens helpt elkaar te vinden.
 
-Het profielpaneel van een persoon had een Volgen dat voor verschillende
-mensen iets anders betekende. Nu is er één **Volgen**, en het zegt wat
+Het profielpaneel van een persoon heeft één **Volgen**, en het zegt wat
 het doet. Bij iemand uit een gekoppeld huishouden zie je de momenten zo
 lang als die persoon ze bewaart, en het blijft tussen jullie
 huishoudens. Bij iemand die je alleen via een GFS kent, staat er „de
@@ -195,9 +158,8 @@ GFS weet dan dat je deze persoon volgt”.
 
 ## Reacties reiken verder, en de tellingen kloppen
 
-Tot nu toe deed een reactie op een moment van een vriend van een
-vriend, of van iemand die je via een GFS volgt, helemaal niets, terwijl
-de app hem als verstuurd liet zien. Nu komen die reacties aan. Ze zijn
+Je kunt nu reageren op momenten van vrienden van vrienden, twee of drie
+stappen verderop, en van mensen die je via een GFS volgt. Ze zijn
 verzegeld voor het huishouden van de auteur: de huishoudens en de GFS
 die ze doorgeven, kunnen niet zien wie er reageerde, met welke emoji of
 waarop.
@@ -245,8 +207,7 @@ reactie zonder getal.
 
 Een beschermd account, meestal dat van een kind, ziet nu alleen
 momenten van het eigen huishouden en direct gekoppelde huishoudens. Dat
-is dezelfde kring die zijn eigen momenten bereiken. Het ziet geen
-momenten meer van onbekenden twee of drie stappen verderop, heeft geen
+is dezelfde kring die zijn eigen momenten bereiken. Het heeft geen
 tabblad Ontdekken en geen schakelaar voor openbaar, en de pagina legt
 dat in gewone woorden uit.
 
@@ -260,8 +221,7 @@ De pagina van de [Social Home-viewer](/nl/blog/2026-10-24-pinned-viewer/)
 die een openbare link naar een highlight of moment opent, kreeg een
 bedieningsbalk: vorige, pauzeren, volgende en geluid uit. Hij vertelt
 je vriend ook of de video rechtstreeks van je huis komt of via de GFS,
-nog steeds versleuteld. En **Openbare link maken** werkt weer: die vond
-je GFS niet meer.
+nog steeds versleuteld.
 
 Kan een link niet openen, dan is de melding duidelijk. Een highlight
 dat niet bereikbaar is, zegt altijd „Dit is nu niet beschikbaar”, of de
@@ -271,18 +231,15 @@ link zegt dat hij onvolledig is. Een link naar een moment kan wel
 „niet meer beschikbaar” zeggen, omdat die nooit contact met je huis
 maakt.
 
-## En veel kleine dingen
+## En nog een paar dingen
 
-- Emoji zijn overal in kleur. 😂 😮 😢 werden op Linux en ChromeOS als
-  zwarte omtrekken getekend.
-- Lukt het laden niet, dan zegt de app dat en biedt hij **Opnieuw
-  proberen** aan, in plaats van „Nog geen momenten”.
 - Antwoorden openen op hun plek op de pagina van het moment en kunnen
   een foto of video bevatten.
-- Namen in het Arabisch of Hebreeuws duwen leestekens niet meer naar
-  het verkeerde eind, en de pagina's spiegelen voor talen die van
-  rechts naar links lopen.
-- Je eigen highlight ziet er niet meer ongezien uit.
+- Lukt het laden niet, dan zegt de pagina dat en biedt ze **Opnieuw
+  proberen** aan.
+- Momentum en Highlights lezen van rechts naar links voor Arabisch en
+  Hebreeuws, en namen in elk schrift houden hun leestekens waar ze
+  horen.
 
 ## Probeer het
 
