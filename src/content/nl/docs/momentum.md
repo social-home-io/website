@@ -1,6 +1,6 @@
 ---
 title: Momentum
-description: Eenmalige berichten die drie hops ver uitwaaieren over de federatie. Tot 1 000 tekens plus een afbeelding of een clip van 15 seconden; weg na een dag, of na een week voor mensen die je volgt.
+description: Korte berichten die drie stappen ver reizen langs gekoppelde huishoudens. Tot 1 000 tekens plus een afbeelding of een clip van 15 seconden; weg na een dag, of zo lang als de auteur kiest voor wie hem volgt. Je eigen momenten blijven onder Van jou.
 order: 24
 ---
 
@@ -9,9 +9,11 @@ een _moment_ — waaiert uit over gekoppelde huishoudens _en hun
 gekoppelde huishoudens_, tot drie hops (stappen) ver. Antwoorden
 zijn zelf ook momenten, gekoppeld aan het moment dat ze
 beantwoorden, zodat een draad als één geheel leest. De hele pijler
-staat onder **Praten → Momentum** in de zijbalk; het dashboard
-**Bladeren → Momentenarchief** groepeert elk ontvangen moment per
-dag binnen de bewaartermijn.
+staat onder **Praten → Momentum** in de zijbalk, met drie
+tabbladen: **Momenten** (alles wat jou bereikte), **Van jou** (alles
+wat je plaatste) en **Ontdekken** (openbare auteurs op een GFS). De
+knop **#** filtert op hashtag, in elke taal. Start toont een regel
+„Momentum · 3 nieuw” als er nieuwe momenten wachten.
 
 ## Wat je kunt plaatsen
 
@@ -19,6 +21,9 @@ dag binnen de bewaartermijn.
 - Optioneel één **afbeelding** _of_ één **videoclip van hoogstens
   15 seconden**. De editor weigert langere clips al vóór het
   uploaden, zodat je geen bandbreedte verspilt.
+- De regel onder het invoerveld zegt waar het moment heen gaat:
+  „Gekoppelde huishoudens en die van hen, tot 3 stappen · 24 u”.
+  Tik op ⓘ voor de details.
 - Antwoorden hangen aan het moment dat ze beantwoorden. De draad
   blijft plat — een antwoord op een antwoord hangt aan de
   oorspronkelijke draadwortel, zodat de detailweergave van boven
@@ -34,14 +39,44 @@ bij aanmaak de draadwortel als ouder.
 
 ## Bewaartermijn
 
-- **24 uur** standaard voor momenten van mensen die je niet
-  volgt.
-- **7 dagen** voor momenten van iedereen op je volglijst.
-- De bewaarplanner gooit elk uur elke rij weg die over de absolute
-  grens van 7 dagen is; het zichtbare venster wordt per kijker
-  berekend bij het ophalen van de lijst. Je kunt volgen / ontvolgen
-  via het ⋯-menu op elk moment, of via **Instellingen → Privacy →
-  Volgend**.
+- **24 uur** voor iedereen die je niet volgt.
+- **Zo lang als jij kiest** voor mensen die je volgen: 1, 3, 7
+  (standaard), 14 of 30 dagen, onder **Instellingen → Privacy →
+  Momentum → Je volgers houden je momenten**. Het geldt voor
+  momenten die je vanaf dat moment plaatst.
+- **Je eigen momenten blijven.** Alles wat je plaatst, blijft onder
+  **Van jou** staan, met wie het ziet en tot wanneer, ook als het
+  voor alle anderen is afgelopen. De beheerder van je huishouden kan
+  onder **Admin → Opslag** instellen hoeveel ruimte foto's en video's
+  per persoon mogen innemen (standaard 2 GB); daarboven gaan de
+  oudste foto's en video's als eerste weg en blijft de tekst staan.
+- **Bewaar het moment van iemand anders** via het ⋯-menu, en het
+  blijft bij je tot de auteur het verwijdert. Een verwijdering haalt
+  ook bewaarde kopieën weg, dus Bewaren verschijnt alleen waar een
+  verwijdering je kopie kan bereiken: een moment uit je huishouden,
+  uit een direct gekoppeld huishouden of van een GFS die
+  verwijderingen bijhoudt.
+
+Volg iemand via het profielpaneel van die persoon. Bij iemand uit
+een gekoppeld huishouden zie je de momenten zo lang als die persoon
+ze bewaart, en het volgen blijft tussen jullie huishoudens. Bij
+iemand die je alleen via een GFS kent, loopt het volgen via die GFS,
+die dan weet dat je deze persoon volgt.
+
+<details class="tech">
+<summary>Onder de motorkap</summary>
+
+Het venster voor volgers reist mee in de ondertekende `expires_at`
+van het moment, zodat elk ontvangend huishouden zich eraan houdt;
+waarden worden afgekapt op 30 dagen. De verwijdering van een auteur
+wordt 30 dagen lang opnieuw geprobeerd, doorgevers geven hem alleen
+door als hij iets veranderde, en een GFS bewaart de ondertekende
+verwijderingscertificaten (zonder inhoud) 30 dagen voor volgers die
+opnieuw verbinding maken. Bewaren is een pin per persoon
+(`PUT /api/moments/{id}/save`) op de kopie die je huishouden al
+heeft; de auteur komt er niets over te weten.
+
+</details>
 
 ## Federatie — de relay in 3 hops
 
@@ -90,17 +125,26 @@ auteur.
 ## Hoe ver je wilt kijken
 
 Drie hops is de limiet op draadniveau; je kunt hem per account
-lager zetten. **Instellingen → Privacy → Zichtbaarheid Momentum**
-kiest tussen **1 hop** (alleen je gekoppelde huishoudens),
-**2 hops** (ook hun gekoppelde huishoudens) en **3 hops**
-(standaard — het volledige relaybereik). De instelling verandert
+lager zetten. **Instellingen → Privacy → Momentum → Momenten tonen
+tot** kiest tussen **1 stap** (alleen je gekoppelde huishoudens),
+**2 stappen** (ook hun gekoppelde huishoudens) en **3 stappen**
+(standaard — elk moment dat je bereikt). De instelling verandert
 alleen wat _jij_ ziet; je huishouden geeft nog steeds de volle
 drie hops door, zodat de rest van het mesh intact blijft.
+
+## Beschermde accounts
+
+Een beschermd account, meestal dat van een kind, ziet alleen
+momenten van het eigen huishouden en direct gekoppelde huishoudens,
+dezelfde kring die zijn eigen momenten en antwoorden bereiken. Het
+heeft geen tabblad Ontdekken en kan niet openbaar plaatsen. Zie
+[Gezinsveiligheid](/nl/docs/family-safety/).
 
 ## Doorgeven zonder opslaan
 
 Als een inkomend moment binnenkomt en niemand in je huishouden het
-kan zien — zeg dat iedereen max-hops op 1 heeft gezet, of dat ze
+kan zien — zeg dat iedereen „Momenten tonen tot” op 1 stap heeft
+gezet, of dat ze
 allemaal de auteur blokkeren — slaat je huishouden de lokale kopie
 helemaal over en stuurt het alleen door naar de volgende hop. Pure
 doorvoer: geen schrijfactie naar schijf, geen bewaarwerk, geen
@@ -138,16 +182,22 @@ de rij via `/api/admin/reports` is opgelost of afgewezen.
 Drie hops dekken gekoppelde huishoudens, maar het bredere netwerk
 loopt via de [GFS (Global Federation Server)](/nl/docs/glossary/#gfs)
 — de relay die huishoudens helpt elkaar te vinden. Meld je aan
-bij **Instellingen → Privacy → Openbare Momentum**, kies een GFS,
-en je momenten waaieren uit naar iedereen daar die je volgt. Wat
-de GFS over je weet, is precies wat je instelt bij **Instellingen
+bij **Instellingen → Privacy → Openbaar delen** (ook gelinkt vanuit
+**Van jou** en het invoerveld) en kies een GFS. Openbaar blijft
+voor elk moment **uit** tot je in het invoerveld „Ook openbaar op …”
+aanzet; op de knop staat dan **Openbaar plaatsen**. Wil je liever
+dat elk nieuw moment openbaar is, zet daar dan **Nieuwe momenten
+openbaar maken** aan. Openbaar kies je bij het schrijven, niet
+achteraf. Een antwoord kan alleen openbaar zijn als het moment
+waarop het antwoordt openbaar is. Openbare momenten waaieren uit
+naar iedereen op die GFS die je volgt. Wat de GFS over je weet, is precies wat je instelt bij **Instellingen
 → Profiel**: weergavenaam, bio, avatar. Werk die bij en de kopie
 op de GFS ververst bij het opslaan — één identiteit, geen aparte
 versies per pijler.
 
 ### Ontdekken en volgen
 
-- **In je Social Home.** **Praten → Momentum → Ontdekken** toont
+- **In je Social Home.** Het tabblad **Ontdekken** in Momentum toont
   elke openbare auteur op elke GFS waarmee je gekoppeld bent. Zoek
   op naam, handle of bio; één klik om te volgen. Hun volgende
   moment belandt in je inbox naast de momenten van gekoppelde
@@ -193,8 +243,11 @@ opent ze met WebCrypto. Het huis van de auteur wordt nooit benaderd.
 ## Snelheidslimiet
 
 Eén moment **op het hoogste niveau** per auteur per **15 minuten**.
-Antwoorden en reacties zijn uitgezonderd — een heen-en-weer-draad
-hoort niet stil te vallen in afwachting van de timer.
+Het invoerveld zegt het je voordat je schrijft: „Je volgende moment
+kan om 13:24”. Intussen kun je al schrijven; tot dan staat op de
+knop „Plaatsen om 13:24”. Antwoorden en reacties zijn uitgezonderd
+— een heen-en-weer-draad hoort niet stil te vallen in afwachting
+van de timer.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -207,18 +260,39 @@ ingaat.
 
 ## Reacties
 
-Kies uit een snelle rij emoji op de detailpagina, of tik op een
-bestaande reactie om de jouwe te zetten / te wijzigen. Reacties
-gaan alleen terug naar het huishouden van de auteur, en de teller
-op diens scherm werkt live bij.
+Kies uit een snelle rij emoji, of tik nog een keer op je reactie om
+hem terug te nemen. Reacties gaan alleen naar het huishouden van de
+auteur, ook bij auteurs twee of drie stappen ver en auteurs die je
+via een GFS volgt. Onderweg zijn ze verzegeld voor het huishouden
+van de auteur, zodat de huishoudens en de GFS die ze doorgeven niet
+kunnen zien wie er reageerde of met welke emoji.
+
+Alleen het huishouden van de auteur kent het volledige aantal, dus
+dat stuurt de totalen een paar keer terug zolang het moment vers
+is, en alleen als ze veranderd zijn. Nooit wie er reageerde. Tot de
+eerste totalen binnen zijn, zie je alleen je eigen reactie, en je
+nieuwe reactie telt mee bij de volgende update van de auteur.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-Reacties reizen over een unicast-terugkanaal naar het huishouden
-van de auteur; de update komt aan als een
-`moment.reaction_changed`-WebSocket-frame in de sessie van de
-auteur.
+- Een reactie van verder weg wordt ondertekend door je huishouden
+  (Ed25519), opgevuld tot 1 KB en verzegeld voor de
+  key-wrap-sleutel van het huishouden van de auteur (X25519). Over
+  het mesh reist ze terug langs het pad van het moment, met
+  retourtokens zonder status (AES-256-GCM, HKDF uit het
+  routeringsgeheim van elke doorgever). Een moment houdt tot 3
+  retourpaden via verschillende buren bij; elke reactie gaat langs 2
+  daarvan.
+- Via een GFS gaat ze alleen naar het huishouden van de auteur, als
+  je de auteur daar volgt.
+- Totalen omvatten de 8 meest gebruikte emoji plus het totaal,
+  ondertekend door het huishouden van de auteur, op 10 minuten,
+  6 uur en 3 dagen na het plaatsen over het mesh, en op 10 minuten,
+  3 uur en 24 uur via de GFS (daar verzegeld en opgevuld tot
+  640 bytes).
+- In de eigen sessie van de auteur komt de update aan als een
+  `moment.reaction_changed`-WebSocket-frame.
 
 </details>
 
@@ -250,11 +324,12 @@ beheerders halen ze op via `/api/admin/reports?status=pending`.
 | ------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `GET`                     | `/api/moments`                     | Momenten weergeven die zichtbaar zijn voor de aanroeper (houdt rekening met blokkades en volgen). |
 | `POST`                    | `/api/moments`                     | Een moment aanmaken. Body: `{content, media_url?, media_type?, duration_ms?, parent_moment_id?}`. |
-| `GET`                     | `/api/moments/archive`             | Volledige lijst binnen de bewaartermijn voor het kalenderdashboard.                               |
+| `GET`                     | `/api/moments/archive`             | Je eigen momenten en die je bewaard hebt (Van jou).                                               |
 | `GET`                     | `/api/moments/{id}`                | Detail met antwoorden + reacties.                                                                 |
 | `DELETE`                  | `/api/moments/{id}`                | Verwijderen door auteur of beheerder.                                                             |
 | `PUT` / `DELETE`          | `/api/moments/{id}/reaction`       | Je eigen emoji zetten / wissen.                                                                   |
 | `POST`                    | `/api/moments/{id}/report`         | Een `content_reports`-rij indienen.                                                               |
+| `PUT` / `DELETE`          | `/api/moments/{id}/save`           | Het moment van iemand anders bewaren / niet meer bewaren.                                         |
 | `GET` / `POST` / `DELETE` | `/api/moments/follows[/{user_id}]` | Je volglijst beheren.                                                                             |
 
 De huishoudschakelaar `feat_momentum` in **Instellingen →

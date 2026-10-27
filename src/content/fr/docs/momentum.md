@@ -1,6 +1,6 @@
 ---
 title: Momentum
-description: Des publications éphémères qui se propagent sur trois sauts à travers la fédération. Jusqu'à 1 000 caractères plus une image ou un clip de 15 secondes ; disparues après un jour, ou une semaine pour les personnes que vous suivez.
+description: De courtes publications qui voyagent sur trois sauts à travers les foyers jumelés. Jusqu'à 1 000 caractères plus une image ou un clip de 15 secondes ; disparues après un jour, ou aussi longtemps que l'auteur le choisit pour ses abonnés. Les vôtres restent dans Les vôtres.
 order: 24
 ---
 
@@ -9,9 +9,12 @@ publication — un _moment_ — se propage à travers les foyers jumelés
 _et leurs foyers jumelés_, jusqu'à trois sauts de distance. Les
 réponses sont elles-mêmes des moments, liés à celui auquel elles
 répondent, pour qu'un fil se lise d'un seul tenant. Tout le pilier
-se trouve sous **Discussions → Momentum** dans la barre latérale ;
-le tableau de bord **Explorer → Archive des moments** regroupe
-chaque moment reçu par jour, dans la fenêtre de conservation.
+se trouve sous **Discussions → Momentum** dans la barre latérale,
+avec trois onglets : **Moments** (tout ce qui vous est parvenu),
+**Les vôtres** (tout ce que vous avez publié) et **Découvrir** (les
+auteurs publics sur un GFS). Le bouton **#** filtre par hashtag,
+dans toutes les langues. L'Accueil affiche une ligne « Momentum ·
+3 nouveaux » quand de nouveaux moments vous attendent.
 
 ## Ce que vous pouvez publier
 
@@ -20,6 +23,9 @@ chaque moment reçu par jour, dans la fenêtre de conservation.
 - Au choix, une seule **image** _ou_ un seul **clip vidéo de
   15 secondes au maximum**. L'éditeur rejette les clips plus longs
   avant l'envoi, pour que vous ne gaspilliez pas de bande passante.
+- La ligne sous la zone de rédaction dit où va le moment : « Foyers
+  jumelés et les leurs, jusqu'à 3 étapes · 24 h ». Touchez ⓘ pour
+  les détails.
 - Les réponses se rattachent au moment auquel elles répondent. Le
   fil reste plat — une réponse à une réponse se rattache à la
   racine du fil d'origine, pour que la vue détaillée se lise de
@@ -35,15 +41,47 @@ sont rattachées à la racine du fil à la création.
 
 ## Conservation
 
-- **24 heures** par défaut pour les moments de personnes que vous
-  ne suivez pas.
-- **7 jours** pour les moments de toute personne de votre liste
-  d'abonnements.
-- Le planificateur de conservation horaire supprime chaque ligne
-  au-delà du plafond absolu de 7 jours ; la fenêtre visible est
-  calculée par lecteur au moment de l'affichage. Vous pouvez
-  suivre / ne plus suivre depuis le menu ⋯ de n'importe quel
-  moment, ou depuis **Paramètres → Confidentialité → Abonnements**.
+- **24 heures** pour tous ceux qui ne vous suivent pas.
+- **Aussi longtemps que vous le choisissez** pour vos abonnés : 1,
+  3, 7 (par défaut), 14 ou 30 jours, sous **Paramètres →
+  Confidentialité → Momentum → Vos abonnés gardent vos moments
+  pendant**. Cela s'applique aux moments que vous publiez à partir
+  de ce moment-là.
+- **Vos propres moments restent.** Tout ce que vous publiez reste
+  dans **Les vôtres**, avec qui le voit et jusqu'à quand, même une
+  fois terminé pour tous les autres. L'admin de votre foyer peut
+  fixer la place que les photos et vidéos peuvent occuper par
+  personne sous **Admin → Stockage** (2 Go par défaut) ; au-delà,
+  les photos et vidéos les plus anciennes partent en premier et le
+  texte reste.
+- **Enregistrez le moment de quelqu'un d'autre** depuis son menu ⋯
+  et il reste avec vous jusqu'à ce que son auteur le supprime. Une
+  suppression retire aussi les copies enregistrées : Enregistrer
+  n'apparaît donc que là où une suppression peut atteindre votre
+  copie, c'est-à-dire pour un moment de votre foyer, d'un foyer
+  directement jumelé, ou d'un GFS qui garde les traces de
+  suppression.
+
+Suivez quelqu'un depuis sa fiche. Pour une personne d'un foyer
+jumelé, vous voyez ses moments aussi longtemps qu'elle les garde, et
+l'abonnement reste entre vos foyers. Pour une personne que vous ne
+connaissez que par un GFS, l'abonnement passe par ce GFS, qui sait
+alors que vous la suivez.
+
+<details class="tech">
+<summary>Sous le capot</summary>
+
+La durée pour les abonnés voyage dans le champ signé `expires_at`
+du moment, pour que chaque foyer destinataire la respecte ; les
+valeurs sont plafonnées à 30 jours. La suppression par un auteur est
+retentée pendant 30 jours, les relais ne la transmettent que si elle
+a changé quelque chose, et un GFS garde les certificats de
+suppression signés (sans contenu) pendant 30 jours pour les abonnés
+qui se reconnectent. Les enregistrements sont un épinglage par
+personne (`PUT /api/moments/{id}/save`) sur la copie que votre foyer
+détient déjà ; l'auteur n'en apprend rien.
+
+</details>
 
 ## Fédération — le relais à 3 sauts
 
@@ -90,12 +128,21 @@ arrivée d'un relayeur plutôt que de la maison de l'auteur.
 ## Jusqu'où vous voulez voir
 
 Trois sauts, c'est le plafond au niveau du réseau ; vous pouvez le
-réduire par compte. **Paramètres → Confidentialité → Visibilité
-Momentum** permet de choisir entre **1 saut** (seulement vos foyers
-jumelés), **2 sauts** (leurs foyers jumelés aussi) et **3 sauts**
-(par défaut — toute la portée du relais). Ce réglage ne change que
+réduire par compte. **Paramètres → Confidentialité → Momentum →
+Afficher les moments jusqu'à** permet de choisir entre **1 étape**
+(seulement vos foyers jumelés), **2 étapes** (leurs foyers jumelés
+aussi) et **3 étapes** (par défaut — tous les moments qui vous
+parviennent). Ce réglage ne change que
 ce que _vous_ voyez ; votre foyer relaie toujours les trois sauts
 complets, pour que le reste du maillage reste intact.
+
+## Comptes protégés
+
+Un compte protégé, en général celui d'un enfant, ne voit que les
+moments de son propre foyer et des foyers directement jumelés, le
+même cercle que celui qu'atteignent ses propres moments et
+réponses. Il n'a pas d'onglet Découvrir et ne peut pas publier en
+public. Voir [Sécurité familiale](/fr/docs/family-safety/).
 
 ## Transmettre sans conserver
 
@@ -139,17 +186,24 @@ du relais est levée une fois la ligne résolue ou rejetée via
 
 Trois sauts couvrent les foyers jumelés, mais le réseau plus large
 passe par le [GFS (Global Federation Server)](/fr/docs/glossary/#gfs)
-— le relais qui aide les foyers à se trouver. Activez-le dans
-**Paramètres → Confidentialité → Momentum public**, choisissez un
-GFS, et vos moments se propagent à tous ceux qui vous y suivent. Ce
-que le GFS sait de vous est exactement ce que vous avez réglé dans
+— le relais qui aide les foyers à se trouver. Inscrivez-vous dans
+**Paramètres → Confidentialité → Partage public** (aussi accessible
+depuis **Les vôtres** et la zone de rédaction) et choisissez un GFS.
+Le public reste **désactivé** pour chaque moment tant que vous
+n'activez pas « Aussi public sur … » dans la zone de rédaction ; le
+bouton indique alors **Publier publiquement**. Si vous préférez que
+chaque nouveau moment soit public, activez **Rendre publics les
+nouveaux moments** à cet endroit. Le public se choisit en écrivant,
+pas après. Une réponse ne peut être publique que si le moment auquel
+elle répond l'est. Les moments publics se propagent à tous ceux qui
+vous suivent sur ce GFS. Ce que le GFS sait de vous est exactement ce que vous avez réglé dans
 **Paramètres → Profil** : nom affiché, bio, avatar. Mettez-les à
 jour et la copie du GFS se rafraîchit à l'enregistrement — une
 seule identité, pas de variante par pilier.
 
 ### Découvrir et suivre
 
-- **Dans votre Social Home.** **Discussions → Momentum → Découvrir**
+- **Dans votre Social Home.** L'onglet **Découvrir** de Momentum
   liste chaque auteur public sur chaque GFS avec lequel vous êtes
   jumelé. Recherchez par nom, identifiant ou bio ; un clic pour
   suivre. Leur prochain moment arrive dans votre boîte de réception
@@ -198,7 +252,10 @@ jamais contactée.
 ## Limite de fréquence
 
 Un moment **de premier niveau** par auteur toutes les
-**15 minutes**. Les réponses et les réactions en sont exemptées —
+**15 minutes**. La zone de rédaction vous prévient avant que vous
+écriviez : « Vous pourrez publier votre prochain moment à 13:24 ».
+Vous pouvez écrire en attendant ; le bouton indique « Publier à
+13:24 » jusque-là. Les réponses et les réactions en sont exemptées —
 un échange dans un fil ne devrait pas s'arrêter net en attendant le
 minuteur.
 
@@ -213,17 +270,39 @@ quand elle se déclenche.
 
 ## Réactions
 
-Choisissez dans une rangée rapide d'emoji sur la page de détail, ou
-tapez sur une réaction existante pour définir / changer la vôtre.
-Les réactions ne remontent qu'au foyer de l'auteur, et le compteur
-sur son écran se met à jour en direct.
+Choisissez dans une rangée rapide d'emoji, ou touchez à nouveau
+votre réaction pour la retirer. Les réactions ne vont qu'au foyer de
+l'auteur, y compris pour les auteurs à deux ou trois sauts et ceux
+que vous suivez via un GFS. En chemin, elles sont scellées pour le
+foyer de l'auteur : les foyers et le GFS qui les transmettent ne
+peuvent voir ni qui a réagi, ni avec quel emoji.
+
+Seul le foyer de l'auteur connaît le total, il renvoie donc les
+compteurs quelques fois tant que le moment est récent, et seulement
+quand ils ont changé. Jamais qui a réagi. Tant que les premiers
+totaux ne sont pas arrivés, vous ne voyez que votre propre réaction,
+et votre nouvelle réaction rejoint le compteur à la prochaine mise à
+jour de l'auteur.
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Les réactions empruntent un canal de retour unicast vers le foyer
-de l'auteur ; la mise à jour arrive sous forme de trame WebSocket
-`moment.reaction_changed` dans la session de l'auteur.
+- Une réaction lointaine est signée par votre foyer (Ed25519),
+  complétée à 1 Ko et scellée pour la clé d'encapsulation du foyer
+  de l'auteur (X25519). Sur le maillage, elle remonte le chemin du
+  moment grâce à des jetons de retour sans état (AES-256-GCM, HKDF
+  depuis le secret de routage de chaque relais). Un moment garde
+  jusqu'à 3 chemins de retour par des voisins différents ; chaque
+  réaction en emprunte 2.
+- Via un GFS, elle va uniquement au foyer de l'auteur, si vous y
+  suivez l'auteur.
+- Les totaux couvrent les 8 emoji les plus utilisés plus le total
+  général, signés par le foyer de l'auteur, à 10 minutes, 6 heures
+  et 3 jours après la publication sur le maillage, et à 10 minutes,
+  3 heures et 24 heures via le GFS (scellés et complétés à
+  640 octets dans ce cas).
+- Dans la session de l'auteur, la mise à jour arrive sous forme de
+  trame WebSocket `moment.reaction_changed`.
 
 </details>
 
@@ -255,11 +334,12 @@ Les signalements sont des lignes de la file unifiée
 | ------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `GET`                     | `/api/moments`                     | Liste les moments visibles par l'appelant (tient compte des blocages et des abonnements).      |
 | `POST`                    | `/api/moments`                     | Crée un moment. Corps : `{content, media_url?, media_type?, duration_ms?, parent_moment_id?}`. |
-| `GET`                     | `/api/moments/archive`             | Liste complète de la fenêtre de conservation pour le tableau de bord calendaire.               |
+| `GET`                     | `/api/moments/archive`             | Vos propres moments et ceux que vous avez enregistrés (Les vôtres).                            |
 | `GET`                     | `/api/moments/{id}`                | Détail avec réponses + réactions.                                                              |
 | `DELETE`                  | `/api/moments/{id}`                | Suppression par l'auteur ou un admin.                                                          |
 | `PUT` / `DELETE`          | `/api/moments/{id}/reaction`       | Définit / efface votre propre emoji.                                                           |
 | `POST`                    | `/api/moments/{id}/report`         | Dépose une ligne `content_reports`.                                                            |
+| `PUT` / `DELETE`          | `/api/moments/{id}/save`           | Enregistre / retire le moment de quelqu'un d'autre.                                            |
 | `GET` / `POST` / `DELETE` | `/api/moments/follows[/{user_id}]` | Gère votre liste d'abonnements.                                                                |
 
 L'interrupteur de foyer `feat_momentum` dans **Paramètres →

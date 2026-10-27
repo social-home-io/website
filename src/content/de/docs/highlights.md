@@ -13,7 +13,13 @@ Aufbewahrungsfrist, die du festlegst — und wird dann von der
 Festplatte gelöscht, auf deinem Server.
 
 Highlights findest du unter **Reden → Highlights** in der
-Seitenleiste.
+Seitenleiste, mit zwei Tabs. **Heute** zeigt dein eigenes Highlight
+(wie viele Frames, von wie vielen gesehen und für wen es ist), dann
+eine Zeile pro Person, aufgeteilt in **Neu** und **Gesehen**, jeweils
+mit für wen es war und, kurz vor Schluss, wann es endet. **Archiv**
+listet ältere Highlights Tag für Tag, mit einer Monatsauswahl und
+**Nur meine**. Die Ringe der Leute, die etwas Neues haben, sitzen auf
+**Start**, in einer Karte, die verschwindet, wenn nichts neu ist.
 
 ## So funktioniert es
 
@@ -21,26 +27,40 @@ Seitenleiste.
   kleines Album aus _Frames_; jeder Beitrag am selben Tag hängt
   einen Frame an das heutige Highlight an, statt ein neues
   anzulegen. Neuer Tag → neuer Highlight-Eintrag.
-- **Publikum.** Beim Posten wählst du aus drei Optionen:
+- **Ein Publikum für den Tag.** Der erste Frame von heute legt fest,
+  wer das ganze Highlight sieht, ausgehend von deiner
+  Standardeinstellung unter **Einstellungen → Privatsphäre →
+  Highlights**:
   - **Alle gekoppelten Haushalte** — jeder bestätigte gekoppelte
     Haushalt.
-  - **Bestimmte Haushalte** — die Haushalte, die du auswählst.
-  - **Bestimmte Personen** — einzelne Personen in diesen
-    Haushalten.
+  - **Nur dein Haushalt.**
+  - **Haushalte oder Personen auswählen…** — die Haushalte oder
+    einzelnen Personen, die du auswählst.
+
+  Fügst du später Frames hinzu, zeigt das Eingabefeld, an wen sie
+  gehen. **Für den ganzen Tag ändern…** verkleinert oder erweitert
+  das Publikum für alle Frames auf einmal und sagt dir vorher, wer
+  das Highlight dazubekommt und wer es verliert. Wer schon
+  zugeschaut hat, hat es gesehen. Hat das Highlight einen
+  öffentlichen Link, kannst du ihn im selben Schritt entfernen.
+
 - **Aufbewahrung.** Standard 30 Tage, pro Autor einstellbar von
-  1 bis 90 Tagen unter **Einstellungen → Datenschutz**. Der
+  1 bis 90 Tagen unter **Einstellungen → Privatsphäre**. Der
   Aufbewahrungs-Scheduler räumt abgelaufene Einträge stündlich
   weg.
-- **Antworten & Reaktionen.** Tippe auf einen Frame, um mit einem
-  Emoji zu reagieren; wische nach oben oder tippe auf den ✉-Chip,
-  um per Direktnachricht zu antworten, mit einem Schnappschuss
-  des Frames im Anhang — so bleibt das Gespräch verständlich,
-  auch wenn der ursprüngliche Frame längst abgelaufen ist.
-- **Archiv.** **Stöbern → Highlight-Archiv** ist ein
-  Kalenderraster aller Highlights, die noch innerhalb ihrer
-  Aufbewahrungsfrist sind — deine und die jedes gekoppelten
-  Haushalts. Tage mit Highlights sind anklickbar; tippe auf ein
-  Datum, um zu sehen, wer an diesem Tag gepostet hat.
+- **Ansehen.** Der Viewer hat Knöpfe für Pausieren, ein Menü und
+  Schließen; die Leertaste oder K pausiert, und die Pfeiltasten
+  springen zwischen den Frames. Videos starten stumm. Am Ende geht
+  es weiter zur nächsten Person, die etwas Neues hat.
+- **Antworten & Reaktionen.** Reagiere mit einem Emoji unter dem
+  Frame; deine Reaktion bleibt markiert, und ein erneutes Tippen
+  nimmt sie zurück. Der Autor wird benachrichtigt. **… privat
+  antworten** schickt den Frame in deinen Chat mit dem Autor — so
+  bleibt das Gespräch verständlich, auch wenn der Frame längst
+  abgelaufen ist.
+- **Für den Autor.** Das ⋯-Menü löscht einen Frame oder das ganze
+  heutige Highlight, teilt es im Feed oder einem Space oder
+  erstellt einen öffentlichen Link.
 
 ## Datenschutz
 
@@ -50,7 +70,11 @@ Seitenleiste.
 - Frames werden von deinem Haushalt signiert; ein empfangender
   Haushalt verwirft Fälschungen, bevor sie je in seiner Datenbank
   landen.
-- Die persönliche Blockierliste (**Einstellungen → Datenschutz →
+- Wer ein Highlight ansieht, sieht nur ein kurzes Label dafür, für
+  wen es war („Ausgewählte Leute“, „Nur Haushalt“), nie die Liste,
+  und jeder Haushalt bekommt nur seinen eigenen Teil des
+  Publikums.
+- Die persönliche Blockierliste (**Einstellungen → Privatsphäre →
   Blockierte Konten**) verbirgt jedes Highlight eines blockierten
   Autors auf jeder Oberfläche — Posteingang, Archiv und die Ringe
   oben auf der Seite — ohne ein „du wurdest blockiert“-Signal
@@ -159,7 +183,9 @@ Highlights reisen zwischen Haushalten auf dieselbe Weise wie
 Direktnachrichten und Space-Inhalte: versiegelt, signiert und
 beim Eintreffen auf Wiederholungen geprüft. Reaktionen und
 Lesebestätigungen finden ihren Weg zurück zum Haushalt des
-Autors, damit der Chip auf dem Frame richtig zählt.
+Autors, damit „Gesehen von“ richtig zählt. Wird das heutige
+Publikum erweitert, gehen die Frames von heute einmal an jeden
+Haushalt, der dazugekommen ist.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
@@ -169,6 +195,10 @@ mit Direktnachrichten und Space-Inhalten teilen: signierte
 Umschläge, durch den Replay-Cache geschützt, Routing-Felder im
 Klartext und jedes Inhaltsfeld verschlüsselt. Reaktionen und
 Lesebestätigungen laufen über einen Unicast-Rückkanal zum
-Haushalt des Autors.
+Haushalt des Autors. Das Erweitern des Tagespublikums schickt
+höchstens 30 Frames, einmal, an jeden neu hinzugekommenen Haushalt;
+beim Verkleinern löscht ein Haushalt, der herausfällt, das
+Highlight. Änderungen am Publikum sind auf 6 pro Stunde und Autor
+begrenzt.
 
 </details>

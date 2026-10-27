@@ -208,7 +208,7 @@ export const de: UiStrings = {
         {
           tag: "Momentum",
           title: "Einmalige Beiträge, die reisen.",
-          body: "Bis zu tausend Zeichen und ein 15-Sekunden-Clip. Jeder Moment verbreitet sich drei Hops weit durch die Föderation — deine gekoppelten Haushalte und deren — und verschwindet nach einem Tag, oder nach einer Woche bei Leuten, denen du folgst.",
+          body: "Bis zu tausend Zeichen und ein 15-Sekunden-Clip. Jeder Moment verbreitet sich drei Hops weit durch die Föderation — deine gekoppelten Haushalte und deren — und verschwindet dort nach einem Tag, bei deinen Followern nach bis zu 30 Tagen. Deine eigenen bleiben dir.",
         },
         {
           tag: "Basar",

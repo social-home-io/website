@@ -11,7 +11,13 @@ paired household. It expires on its own — 30 days by default, or
 whatever retention window you set — and is then purged from disk,
 on your server.
 
-Highlights live under **Talk → Highlights** in the sidebar.
+Highlights live under **Talk → Highlights** in the sidebar, with two
+tabs. **Today** shows your own highlight (how many frames, seen by how
+many, and who it's for), then one row per person, split into **New**
+and **Seen**, each with who it was for and, near the end, when it
+ends. **Archive** lists older highlights day by day, with a month
+picker and **Only mine**. The rings of people with something new sit
+on **Home**, in one card that hides when nothing is new.
 
 ## How it works
 
@@ -19,21 +25,36 @@ Highlights live under **Talk → Highlights** in the sidebar.
   _frames_; each post during the same day appends a frame to
   today's highlight rather than creating a new one. New day → new
   highlight row.
-- **Audience.** You pick from three options when you post:
+- **One audience for the day.** Today's first frame sets who sees
+  the whole highlight, starting from your default in **Settings →
+  Privacy → Highlights**:
   - **All paired households** — every confirmed paired household.
-  - **Specific households** — the households you choose.
-  - **Specific people** — particular people in those households.
+  - **Your household only.**
+  - **Choose households or people…** — the households or particular
+    people you pick.
+
+  When you add frames later, the composer shows who they go to.
+  **Change for all of today…** narrows or widens every frame at
+  once, and tells you first who will gain the highlight and who
+  will lose it. People who already watched keep what they saw. If
+  the highlight has a public link, you can remove it in the same
+  step.
+
 - **Retention.** Default 30 days, configurable per author from
   1 to 90 days in **Settings → Privacy**. The retention scheduler
   prunes expired rows hourly.
-- **Replies & reactions.** Tap a frame to react with an emoji;
-  swipe up or hit the ✉ chip to reply via DM with a snapshot of
-  the frame attached, so the conversation stays meaningful even
-  after the original frame expires.
-- **Archive.** **Browse → Highlight archive** is a calendar grid of
-  every highlight still inside its retention window — yours and
-  every paired household's. Days with highlights are clickable;
-  tap a date to see who posted that day.
+- **Watching.** The viewer has pause, a menu and close buttons;
+  Space or K pauses and the arrow keys move between frames. Videos
+  start muted. At the end it moves on to the next person with
+  something new.
+- **Replies & reactions.** React with an emoji under the frame;
+  your reaction stays marked, and tapping it again takes it back.
+  The author is notified. **Reply to … privately** sends the frame
+  into your chat with the author, so the conversation stays
+  meaningful even after the frame expires.
+- **For the author.** The ⋯ menu deletes one frame or the whole of
+  today's highlight, shares it into the feed or a space, or makes a
+  public link.
 
 ## Privacy
 
@@ -42,6 +63,9 @@ Highlights live under **Talk → Highlights** in the sidebar.
   on the way can open them.
 - Frames are signed by your household; a receiving household
   drops forgeries before they ever land in its database.
+- People watching a highlight see only a short label for who it
+  was for ("Picked people", "Household only"), never the list, and
+  each household receives only its own part of the audience.
 - The personal block list (**Settings → Privacy → Blocked
   accounts**) hides every highlight from a blocked author across
   every surface — inbox, archive, and the rings on top of the
@@ -137,7 +161,8 @@ list them at `/api/admin/reports?status=pending`.
 Highlights travel between households the same way DMs and space
 content do: sealed, signed, and checked for replays on arrival.
 Reactions and view-receipts find their way back to the author's
-household so the chip on the frame counts correctly.
+household so "seen by" counts correctly. Widening today's audience
+sends today's frames once to each household that was added.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -146,6 +171,9 @@ Highlights use the §24.11 inbound pipeline shared with DMs and
 space content: signed envelopes, replay-cache protected, routing
 fields in plaintext and every content field encrypted. Reactions
 and view-receipts ride a unicast back-channel to the author's
-household.
+household. Widening the day's audience sends at most 30 frames,
+once, to each newly added household; narrowing makes a household
+that drops out delete the highlight. Audience changes are limited
+to 6 an hour per author.
 
 </details>

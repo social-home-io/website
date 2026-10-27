@@ -11,41 +11,66 @@ _Highlights_-inbox van elk gekoppeld huishouden. Het verloopt
 vanzelf — standaard na 30 dagen, of na de bewaartermijn die je
 instelt — en wordt daarna van de schijf gewist, op jouw server.
 
-Highlights vind je onder **Praten → Highlights** in de zijbalk.
+Highlights vind je onder **Praten → Highlights** in de zijbalk, met
+twee tabbladen. **Vandaag** toont je eigen highlight (hoeveel
+beelden, door hoeveel mensen gezien en voor wie het is), en daarna
+één rij per persoon, verdeeld in **Nieuw** en **Gezien**, elk met
+voor wie het was en, tegen het einde, wanneer het verdwijnt.
+**Archief** zet oudere highlights dag voor dag op een rij, met een
+maandkiezer en **Alleen die van mij**. De ringen van mensen met iets
+nieuws staan op **Start**, in één kaart die verdwijnt als er niets
+nieuws is.
 
 ## Hoe het werkt
 
 - **Eén highlight per auteur per dag.** Een highlight is een klein
-  album van _frames_; elke post op dezelfde dag voegt een frame
-  toe aan de highlight van vandaag in plaats van een nieuwe te
+  album van _beelden_; elke post op dezelfde dag voegt een beeld
+  toe aan het highlight van vandaag in plaats van een nieuw te
   maken. Nieuwe dag → nieuwe highlight.
-- **Publiek.** Bij het plaatsen kies je uit drie opties:
+- **Eén publiek voor de dag.** Het eerste beeld van vandaag bepaalt
+  wie het hele highlight ziet, te beginnen met je standaard in
+  **Instellingen → Privacy → Highlights**:
   - **Alle gekoppelde huishoudens** — elk bevestigd gekoppeld
     huishouden.
-  - **Specifieke huishoudens** — de huishoudens die je kiest.
-  - **Specifieke mensen** — bepaalde mensen in die huishoudens.
+  - **Alleen jouw huishouden.**
+  - **Huishoudens of personen kiezen…** — de huishoudens of
+    bepaalde mensen die je kiest.
+
+  Voeg je later beelden toe, dan toont het invoerveld naar wie ze
+  gaan. **Wijzigen voor heel vandaag…** maakt het publiek van elk
+  beeld in één keer kleiner of groter, en vertelt je eerst wie het
+  highlight erbij krijgt en wie het kwijtraakt. Wie al heeft
+  gekeken, heeft het gezien. Heeft het highlight een openbare link,
+  dan kun je die in dezelfde stap verwijderen.
+
 - **Bewaartermijn.** Standaard 30 dagen, per auteur instelbaar van
   1 tot 90 dagen in **Instellingen → Privacy**. De bewaarplanner
   ruimt verlopen rijen elk uur op.
-- **Antwoorden & reacties.** Tik op een frame om met een emoji te
-  reageren; veeg omhoog of tik op de ✉-chip om via een
-  privébericht te antwoorden, met een momentopname van het frame
-  erbij, zodat het gesprek betekenis houdt, ook nadat het
-  oorspronkelijke frame is verlopen.
-- **Archief.** **Bladeren → Highlight-archief** is een
-  kalenderraster van elke highlight die nog binnen zijn
-  bewaartermijn zit — die van jou en die van elk gekoppeld
-  huishouden. Dagen met highlights zijn klikbaar; tik op een datum
-  om te zien wie die dag iets plaatste.
+- **Bekijken.** De viewer heeft knoppen om te pauzeren, een menu en
+  een knop om te sluiten; spatie of K pauzeert en de
+  pijltjestoetsen gaan van beeld naar beeld. Video's starten zonder
+  geluid. Aan het einde gaat hij verder naar de volgende persoon
+  met iets nieuws.
+- **Antwoorden & reacties.** Reageer met een emoji onder het beeld;
+  je reactie blijft gemarkeerd, en nog een keer tikken neemt hem
+  terug. De auteur krijgt een melding. **Antwoord … privé** stuurt
+  het beeld naar je chat met de auteur, zodat het gesprek betekenis
+  houdt, ook nadat het beeld is verlopen.
+- **Voor de auteur.** Het ⋯-menu verwijdert één beeld of je hele
+  highlight van vandaag, deelt het in de feed of een space, of maakt
+  een openbare link.
 
 ## Privacy
 
-- Highlight-frames worden verzegeld van jouw huis tot dat van het
+- Beelden van een highlight worden verzegeld van jouw huis tot dat van het
   andere huishouden, net zoals privéberichten. Niets onderweg kan
   ze openen.
 - Frames worden ondertekend door je huishouden; een ontvangend
   huishouden gooit vervalsingen weg voordat ze ooit in zijn
   database belanden.
+- Wie een highlight bekijkt, ziet alleen een kort label voor wie
+  het was („Gekozen mensen”, „Alleen huishouden”), nooit de lijst,
+  en elk huishouden krijgt alleen zijn eigen deel van het publiek.
 - De persoonlijke blokkeerlijst (**Instellingen → Privacy →
   Geblokkeerde accounts**) verbergt elke highlight van een
   geblokkeerde auteur op elk scherm — inbox, archief en de ringen
@@ -68,10 +93,10 @@ https://viewer.social-home.io/v/0123456789abcdef/#g=…&i=…&h=…&t=…&k=…
 
 Iedereen met die link kan het highlight in een browser openen. De
 pagina laat zien wie het gedeeld heeft — je naam, foto en bio — en
-daarna de frames. De beelden reizen rechtstreeks van je huis naar de
+daarna de beelden. Die reizen rechtstreeks van je huis naar de
 browser van de bezoeker; de GFS stelt de twee alleen aan elkaar
 voor. Als die directe weg niet lukt (een streng kantoornetwerk,
-bijvoorbeeld), geeft de GFS de frames door — maar alleen zolang je
+bijvoorbeeld), geeft de GFS de beelden door — maar alleen zolang je
 huis online is, en hij bewaart er geen een van.
 
 Op beide wegen is het highlight verzegeld van je huis tot de browser
@@ -103,12 +128,12 @@ link als een sleutel: wie hem heeft, kan kijken.
 - De GFS bemiddelt een WebRTC-handshake tussen het huis van de
   auteur en de browser van de bezoeker; de highlight-bytes stromen
   daarna over die directe verbinding. Als WebRTC faalt, valt de GFS
-  terug op een HTTP-doorgifte die frames van het huis van de auteur
+  terug op een HTTP-doorgifte die beelden van het huis van de auteur
   streamt zolang het bereikbaar is. Op geen van beide wegen wordt een
   highlight-byte naar de schijf van de GFS geschreven.
 - Verzegeling: de viewer stuurt met zijn aanbod een tijdelijke
   P-256-sleutel (`vk`) mee; het huis van de auteur verzegelt elk
-  frame met AES-256-GCM onder `HKDF-SHA256(ECDH, salt = k)`. `k` wordt
+  beeld met AES-256-GCM onder `HKDF-SHA256(ECDH, salt = k)`. `k` wordt
   afgeleid uit de identiteitsseed van de auteur en het token, en
   staat alleen in het fragment.
 - `v/<hash>/` in de link wijst naar precies één inhoudsgeadresseerde
@@ -147,7 +172,9 @@ Highlights reizen tussen huishoudens op dezelfde manier als
 privéberichten en space-inhoud: verzegeld, ondertekend en bij
 aankomst gecontroleerd op herhalingen. Reacties en
 weergavebevestigingen vinden hun weg terug naar het huishouden van
-de auteur, zodat de chip op het frame goed telt.
+de auteur, zodat „gezien door” goed telt. Wordt het publiek van
+vandaag groter, dan gaan de beelden van vandaag één keer naar elk
+huishouden dat erbij kwam.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -157,6 +184,9 @@ met privéberichten en space-inhoud: ondertekende enveloppen,
 beschermd door een replay-cache, routeringsvelden in platte tekst
 en elk inhoudsveld versleuteld. Reacties en weergavebevestigingen
 reizen over een unicast-terugkanaal naar het huishouden van de
-auteur.
+auteur. Een groter publiek voor de dag stuurt hoogstens 30 beelden,
+één keer, naar elk nieuw toegevoegd huishouden; bij een kleiner
+publiek verwijdert een huishouden dat afvalt het highlight. Het
+publiek kan per auteur maximaal 6 keer per uur veranderen.
 
 </details>

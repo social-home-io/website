@@ -210,7 +210,7 @@ export const en: UiStrings = {
         {
           tag: "Momentum",
           title: "One-shot posts that travel.",
-          body: "Up to a thousand characters and a 15-second clip. Each moment fans out three hops across the federation — your peers and theirs — and disappears after a day, or a week for people you follow.",
+          body: "Up to a thousand characters and a 15-second clip. Each moment fans out three hops across the federation — your peers and theirs — and disappears for them after a day, or after up to 30 days for people who follow you. Yours stay with you.",
         },
         {
           tag: "Bazaar",
