@@ -14,43 +14,16 @@ people you pick. A **moment** is a short post that travels from your
 household to your paired households and theirs. Both are meant to be
 light. Both should also do exactly what they say.
 
-So we gave them the same treatment as
-[Spaces](/blog/2026-10-20-spaces-redesign/): three review rounds over
-every screen, from the composer to the public link page, with the same
-sample household, the Bergers. The review found two places where
-something reached more people than its author had chosen. Those were
-fixed first. The rest of the redesign ships in **Social Home
-2026.10.27**.
+Now both get a fresh look, like
+[Spaces](/blog/2026-10-20-spaces-redesign/) last week, and both say who
+sees what and for how long, before you share. It all ships in **Social
+Home 2026.10.27**.
 
-## First, the fixes
-
-We'd rather you hear this from us:
-
-- **A highlight frame could reach more people than you picked.** A
-  highlight is one per day, and its audience was set by the first
-  frame. A later frame "only for Anna" went to everyone who could see
-  the first one. A frame now always goes to today's audience, and the
-  composer shows you who that is before you post.
-- **A reply could be shared publicly by default.** If you share moments
-  publicly through a GFS, the reply box started with the public switch
-  on, even under a household-only moment. Now a reply can only be
-  public when the moment it answers is public, and the switch is never
-  on until you turn it on.
-- **Viewers of a highlight could learn who else was picked.** Now they
-  see only a short label like "Picked people", and each household
-  receives only its own part of the list.
-- **Replies skipped blocks and child protection.** They now follow the
-  same rules as moments.
-
-If you never used "only for" highlights or public sharing, none of this
-touched you. If you did, nothing needs doing: the fixes are in place
-once you update.
+_All screens below show a sample household: the Bergers._
 
 ## Highlights: who's new, and who sees yours
 
-The Highlights page used to show a ring per person _per day_, so one
-busy friend could appear three times, and your own highlight always
-looked unseen. Now it has two tabs, **Today** and **Archive**.
+The Highlights page now has two tabs, **Today** and **Archive**.
 
 **Today** starts with your own highlight: how many frames, how many
 people saw it, and who it's for. Below, one row per person, split into
@@ -70,8 +43,7 @@ of the Feed with the people who have something new, and a line for
 new, the card stays out of the way.
 
 **Archive** is now a list of days, newest first, with a month picker
-and **Only mine**. It used to be a calendar grid that was mostly empty.
-Each person decides how long their highlights stay, from 1 to 90 days,
+and **Only mine**. Each person decides how long their highlights stay, from 1 to 90 days,
 and the archive says so instead of promising a number.
 
 <div class="shots">
@@ -95,25 +67,22 @@ the highlight has a public link, you can remove it in the same step.
 <figure class="phone"><a href="/blog/2026-10-momentum/change-today-mob.webp"><img src="/blog/2026-10-momentum/change-today-mob.webp" alt="A sheet titled Who sees today's highlight over the Add to today's highlight page, with the choices All paired households, Your household only (picked, with the note that paired households lose all 5 frames) and Choose households or people, and a note that it applies to every frame from today and that anyone who already watched may remember it, with Keep and Change buttons" width="390" height="575" loading="lazy"></a><figcaption><b>Change for all of today</b>It says what changes before you confirm.</figcaption></figure>
 </div>
 
-There's now one composer for highlights. Quick share, which always went
-to everyone and said "for the rest of today" when highlights really
-stay for weeks, is gone.
+There's now one composer for highlights, and it always shows who the
+frames go to and how long they stay.
 
 ## Watching a highlight
 
 The viewer has real buttons now, 44 pixels big and readable in light
 and dark: **pause**, a menu, and close. Space or K pauses, the arrow keys
 move between frames, and videos start muted so they actually play.
-Opening a dialog over a frame pauses it, so "Seen by" no longer closes
-itself after six seconds.
+Opening a menu or "Seen by" over a frame pauses it.
 
 - **Reactions are remembered.** Your emoji stays marked, tap it again to
   take it back, and the author is told who reacted.
 - **Reply privately** sends the frame into a chat with the person who
-  posted it. It used to open an empty chat list.
+  posted it.
 - **For the author**, the menu can delete this one frame or the whole
-  of today's highlight, and the big red "Delete frame" button is gone
-  from the footer.
+  of today's highlight.
 - When you reach the end, the viewer moves on to the next person with
   something new.
 
@@ -121,16 +90,16 @@ itself after six seconds.
 
 Momentum now has three tabs: **Moments**, **Yours** and **Discover**.
 Moments are flat cards like the household Feed, replies read as a
-thread, and the **#** button filters by hashtag. Hashtags work in any
-language now: #Kürbisfest used to become #k.
+thread, and the **#** button filters by hashtag, in any language:
+#Kürbisfest stays #Kürbisfest.
 
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-momentum/momentum-mob.webp"><img src="/blog/2026-10-momentum/momentum-mob.webp" alt="Momentum on a phone with the tabs Moments, Yours and Discover, a hashtag button and settings, then Share a moment with the line Paired households and theirs, up to 3 hops, 24 h, then your own moment from 12 minutes ago and Maximiliane's moment with two hearts" width="390" height="493" loading="lazy"></a><figcaption><b>Momentum</b>The composer says how far a moment goes.</figcaption></figure>
 </div>
 
 **Your own moments stay.** Other people see a moment for 24 hours, or
-longer if they follow you. Yours used to vanish from your own screen
-just the same. Now every moment you post stays under **Yours**, with
+longer if they follow you. For you, every moment you post stays under
+**Yours**, with
 who sees it and until when. Ended ones read "Only you see this now."
 Your household's admin can set how much space pictures and videos may
 use per person (2 GB by default). Past that, the oldest pictures go
@@ -148,9 +117,8 @@ each one for 24 hours.
 
 ## Writing a moment: where it goes, and when
 
-The old composer said "untick to keep it in your household". That was
-never true: moments always went to paired households and on, up to 3
-hops. Now the composer says so in one line, "Paired households and
+A moment goes to your paired households and on, up to 3 hops, and the
+composer now says so in one line, "Paired households and
 theirs, up to 3 hops · 24 h", with an ⓘ for the details.
 
 - **The 15-minute limit shows before you write.** "You can post your
@@ -168,22 +136,19 @@ linked from Yours and from the composer.
 
 ## Discover and one Follow
 
-**Discover** used to be reachable only by typing its address. Now it's
-a Momentum tab, as soon as your household is connected to a
+**Discover** is now a Momentum tab, there as soon as your household is connected to a
 [GFS (Global Federation Server)](/docs/glossary/#gfs), the relay that
 helps households find each other.
 
-The person sheet used to have a Follow that meant different things for
-different people. Now there is one **Follow**, and it says what it does.
+The person sheet has one **Follow**, and it says what it does.
 For someone from a paired household, you see their moments for as long
 as they keep them, and it stays between your households. For someone
 you only know from a GFS, it says "the GFS learns that you follow them".
 
 ## Reactions reach further, and counts add up
 
-Until now, reacting to a moment from a friend of a friend, or from
-someone you follow through a GFS, did nothing at all, while the app
-showed it as sent. Now those reactions arrive. They're sealed for the
+You can now react to moments from friends of friends, two or three
+hops away, and from people you follow through a GFS. They're sealed for the
 author's household: the households and the GFS that pass them along
 can't see who reacted, with which emoji, or to what.
 
@@ -226,9 +191,8 @@ number.
 
 A protected account, usually a child's, now sees moments only from its
 own household and directly paired households. That's the same circle
-its own moments reach. It no longer sees moments from strangers two or
-three hops away, has no Discover tab and no public switch, and the page
-tells them so in plain words.
+its own moments reach. It has no Discover tab and no public switch, and
+the page says so in plain words.
 
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-momentum/protected-mob.webp"><img src="/blog/2026-10-momentum/protected-mob.webp" alt="Momentum for a protected account on a phone, with only the Moments and Yours tabs, a card saying Your account is protected: you see moments from your household and paired households, and yours go to paired households only, never further and never public, then the composer with the line Your household and paired households, 24 h, and moments from Anna and Maximiliane" width="390" height="608" loading="lazy"></a><figcaption><b>A protected account</b>No Discover, no public, and an honest reach line.</figcaption></figure>
@@ -239,8 +203,7 @@ tells them so in plain words.
 The [Social Home viewer](/blog/2026-10-24-pinned-viewer/) page that
 opens a public highlight or moment link got a control bar: previous,
 pause, next and mute. It also tells your friend whether the video comes
-directly from your home or through the GFS, still encrypted. And
-**Publish public link** works again: it had stopped finding your GFS.
+directly from your home or through the GFS, still encrypted.
 
 When a link can't open, the message is plain. A highlight that can't be
 reached always says "This isn't available right now", whether the link
@@ -249,17 +212,13 @@ tells a stranger whether you're at home. A damaged link says it's
 incomplete. A moment link can say "no longer available", because it
 never contacts your home at all.
 
-## And many small things
+## And a few more things
 
-- Emoji show in colour everywhere. 😂 😮 😢 were drawn as black outlines
-  on Linux and ChromeOS.
-- A failed load says so and offers **Try again**, instead of "No moments
-  yet".
 - Replies open in place on the moment page and can carry a photo or
   video.
-- Names in Arabic or Hebrew no longer push punctuation to the wrong
-  end, and the pages mirror for right-to-left languages.
-- Your own highlight no longer looks unseen.
+- When something can't load, the page says so and offers **Try again**.
+- Momentum and Highlights read right to left for Arabic and Hebrew, and
+  names in any script keep their punctuation where it belongs.
 
 ## Try it
 

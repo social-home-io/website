@@ -49,6 +49,11 @@ in the meta-repo.
   `my.home-assistant.io`.
 - **No hand-maintained changelog.** Releases live on GitHub
   Releases; blog posts name the release they shipped in.
+- **Blog posts are about features.** Say what a household can do
+  now, not what was broken: no fixes section, no "used to…",
+  "no longer…" or "works again" comparisons. Never mention how the
+  work was made: no review rounds, design audits, mockups, AI or
+  agents. Bug fixes belong in the GitHub release notes.
 
 ## Two readers, one page
 

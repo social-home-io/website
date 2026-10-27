@@ -15,45 +15,16 @@ kurzer Beitrag, der von deinem Haushalt zu deinen gekoppelten Haushalten
 reist und von dort weiter. Beides soll leicht sein. Und beides soll
 genau das tun, was es sagt.
 
-Also haben sie dieselbe Behandlung bekommen wie
-[Spaces](/de/blog/2026-10-20-spaces-redesign/): drei Review-Runden über
-jeden Bildschirm, vom Eingabefeld bis zur Seite für öffentliche Links,
-mit demselben Beispielhaushalt, den Bergers. Dabei kamen zwei Stellen
-ans Licht, an denen etwas mehr Leute erreichte, als sein Autor gewählt
-hatte. Die haben wir zuerst behoben. Der Rest der Neugestaltung steckt
-in **Social Home 2026.10.27**.
+Jetzt bekommen beide ein frisches Gesicht, wie letzte Woche
+[Spaces](/de/blog/2026-10-20-spaces-redesign/), und beide sagen dir,
+wer was sieht und wie lange, bevor du teilst. Alles steckt in **Social
+Home 2026.10.27**.
 
-## Zuerst die Korrekturen
-
-Das sollst du lieber von uns hören:
-
-- **Ein Highlight-Bild konnte mehr Leute erreichen, als du ausgewählt
-  hattest.** Es gibt ein Highlight pro Tag, und sein Publikum legte das
-  erste Bild fest. Ein späteres Bild „nur für Anna“ ging an alle, die
-  das erste sehen konnten. Jetzt geht ein Bild immer an das Publikum von
-  heute, und das Eingabefeld zeigt dir vor dem Posten, wer das ist.
-- **Eine Antwort konnte standardmäßig öffentlich geteilt werden.** Wenn
-  du Momente öffentlich über einen GFS teilst, stand der
-  Öffentlich-Schalter im Antwortfeld schon auf an, sogar unter einem
-  Moment nur für den Haushalt. Jetzt kann eine Antwort nur öffentlich
-  sein, wenn der Moment, auf den sie antwortet, öffentlich ist, und der
-  Schalter ist nie an, bevor du ihn einschaltest.
-- **Wer ein Highlight ansah, konnte erfahren, wer sonst noch ausgewählt
-  war.** Jetzt sieht man nur ein kurzes Label wie „Ausgewählte Leute“,
-  und jeder Haushalt bekommt nur seinen eigenen Teil der Liste.
-- **Antworten haben Blockierungen und den Kinderschutz übergangen.**
-  Jetzt gelten für sie dieselben Regeln wie für Momente.
-
-Wenn du nie Highlights „nur für“ bestimmte Leute oder öffentliches
-Teilen genutzt hast, betraf dich nichts davon. Wenn doch, musst du
-nichts tun: Die Korrekturen greifen, sobald du aktualisierst.
+_Alle Bildschirme unten zeigen einen Beispielhaushalt: die Bergers._
 
 ## Highlights: Wer ist neu, und wer sieht deins
 
-Die Highlights-Seite zeigte früher einen Ring pro Person _und Tag_,
-sodass eine fleißige Freundin dreimal auftauchen konnte, und dein
-eigenes Highlight sah immer ungesehen aus. Jetzt hat sie zwei Tabs,
-**Heute** und **Archiv**.
+Die Highlights-Seite hat jetzt zwei Tabs, **Heute** und **Archiv**.
 
 **Heute** beginnt mit deinem eigenen Highlight: wie viele Bilder, wie
 viele Leute es gesehen haben und für wen es ist. Darunter eine Zeile pro
@@ -73,8 +44,7 @@ oben im Feed mit den Leuten, die etwas Neues haben, und eine Zeile für
 hält sich die Karte zurück.
 
 Das **Archiv** ist jetzt eine Liste von Tagen, die neuesten zuerst, mit
-einer Monatsauswahl und **Nur meine**. Früher war es ein Kalenderraster,
-das meistens leer war. Jede Person entscheidet selbst, wie lange ihre
+einer Monatsauswahl und **Nur meine**. Jede Person entscheidet selbst, wie lange ihre
 Highlights bleiben, von 1 bis 90 Tagen, und das Archiv sagt genau das,
 statt eine Zahl zu versprechen.
 
@@ -101,9 +71,8 @@ Schritt entfernen.
 <figure class="phone"><a href="/blog/2026-10-momentum/change-today-mob.webp"><img src="/blog/2026-10-momentum/change-today-mob.webp" alt="Ein Fenster mit dem Titel Wer dein heutiges Highlight sieht über der Seite Zum heutigen Highlight hinzufügen, mit den Optionen Alle gekoppelten Haushalte, Nur dein Haushalt (ausgewählt, mit dem Hinweis, dass gekoppelte Haushalte alle 5 Bilder verlieren) und Haushalte oder Personen auswählen, einem Hinweis, dass es für jedes Bild von heute gilt und wer schon zugeschaut hat, es gesehen hat, und den Knöpfen Behalten und Für alle ändern" width="390" height="575" loading="lazy"></a><figcaption><b>Für den ganzen Tag ändern</b>Es sagt dir, was sich ändert, bevor du bestätigst.</figcaption></figure>
 </div>
 
-Für Highlights gibt es jetzt nur noch ein Eingabefeld. Das schnelle
-Teilen, das immer an alle ging und „für den Rest des Tages“ sagte,
-obwohl Highlights in Wirklichkeit wochenlang bleiben, ist weg.
+Für Highlights gibt es jetzt ein Eingabefeld, und es zeigt immer, an
+wen die Bilder gehen und wie lange sie bleiben.
 
 ## Ein Highlight ansehen
 
@@ -111,17 +80,15 @@ Der Viewer hat jetzt richtige Knöpfe, 44 Pixel groß und im hellen wie
 im dunklen Design gut lesbar: **Pausieren**, ein Menü und Schließen. Die
 Leertaste oder K pausiert, die Pfeiltasten springen zwischen den
 Bildern, und Videos starten stumm, damit sie auch wirklich abspielen.
-Öffnest du ein Fenster über einem Bild, pausiert es, sodass sich
-„Gesehen von“ nicht mehr nach sechs Sekunden von selbst schließt.
+Öffnest du ein Menü oder „Gesehen von“ über einem Bild, pausiert es.
 
 - **Reaktionen bleiben gemerkt.** Dein Emoji bleibt markiert, ein
   erneutes Tippen nimmt es zurück, und der Autor erfährt, wer reagiert
   hat.
 - **Privat antworten** schickt das Bild in einen Chat mit der Person,
-  die es gepostet hat. Früher öffnete sich eine leere Chatliste.
+  die es gepostet hat.
 - **Für den Autor** kann das Menü dieses eine Bild oder das ganze
-  heutige Highlight löschen, und der große rote Knopf „Bild löschen“ ist
-  aus der Fußzeile verschwunden.
+  heutige Highlight löschen.
 - Am Ende geht der Viewer weiter zur nächsten Person, die etwas Neues
   hat.
 
@@ -129,17 +96,16 @@ Bildern, und Videos starten stumm, damit sie auch wirklich abspielen.
 
 Momentum hat jetzt drei Tabs: **Momente**, **Deine** und **Entdecken**.
 Momente sind flache Karten wie im Haushalts-Feed, Antworten lesen sich
-als Thread, und der **#**-Knopf filtert nach Hashtag. Hashtags
-funktionieren jetzt in jeder Sprache: Aus #Kürbisfest wurde früher #k.
+als Thread, und der **#**-Knopf filtert nach Hashtag, in jeder Sprache:
+#Kürbisfest bleibt #Kürbisfest.
 
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-momentum/momentum-mob.webp"><img src="/blog/2026-10-momentum/momentum-mob.webp" alt="Momentum auf dem Handy mit den Tabs Momente, Deine und Entdecken, einem Hashtag-Knopf und den Einstellungen, dann Teile einen Moment mit der Zeile Gekoppelte Haushalte und von dort weiter, bis zu 3 Schritte, 24 Std., dann dein eigener Moment von vor 12 Minuten und Maximilianes Moment mit zwei Herzen" width="390" height="493" loading="lazy"></a><figcaption><b>Momentum</b>Das Eingabefeld sagt, wie weit ein Moment reist.</figcaption></figure>
 </div>
 
 **Deine eigenen Momente bleiben.** Andere sehen einen Moment 24 Stunden
-lang, oder länger, wenn sie dir folgen. Deine verschwanden früher genauso
-von deinem eigenen Bildschirm. Jetzt bleibt jeder Moment, den du postest,
-unter **Deine**, mit wer ihn sieht und bis wann. Abgelaufene sagen „Nur
+lang, oder länger, wenn sie dir folgen. Bei dir bleibt jeder Moment, den
+du postest, unter **Deine**, mit wer ihn sieht und bis wann. Abgelaufene sagen „Nur
 du siehst das jetzt.“ Der Admin deines Haushalts kann festlegen, wie viel
 Platz Bilder und Videos pro Person belegen dürfen (standardmäßig 2 GB).
 Darüber gehen die ältesten Bilder zuerst, und der Text bleibt.
@@ -156,10 +122,8 @@ anderen sehen jeden Moment weiterhin 24 Stunden lang.
 
 ## Einen Moment schreiben: wohin er geht, und wann
 
-Das alte Eingabefeld sagte: „Haken entfernen, um ihn in deinem Haushalt
-zu behalten“. Das stimmte nie: Momente gingen immer an gekoppelte
-Haushalte und weiter, bis zu 3 Schritte. Jetzt sagt das Eingabefeld das
-in einer Zeile, „Gekoppelte Haushalte und von dort weiter, bis zu 3
+Ein Moment geht an deine gekoppelten Haushalte und weiter, bis zu
+3 Schritte, und das Eingabefeld sagt das jetzt in einer Zeile, „Gekoppelte Haushalte und von dort weiter, bis zu 3
 Schritte · 24 Std.“, mit einem ⓘ für die Details.
 
 - **Die 15-Minuten-Grenze zeigt sich, bevor du schreibst.** „Dein
@@ -179,24 +143,20 @@ teilen** umgezogen, verlinkt von Deine und vom Eingabefeld aus.
 
 ## Entdecken und ein Folgen
 
-**Entdecken** war früher nur erreichbar, wenn man die Adresse eintippte.
-Jetzt ist es ein Tab in Momentum, sobald dein Haushalt mit einem
+**Entdecken** ist jetzt ein Tab in Momentum und erscheint, sobald dein Haushalt mit einem
 [GFS (Global Federation Server)](/de/docs/glossary/#gfs) verbunden ist,
 dem Relay, das Haushalten hilft, einander zu finden.
 
-Das Personenfenster hatte früher ein Folgen, das für verschiedene Leute
-Verschiedenes bedeutete. Jetzt gibt es ein **Folgen**, und es sagt, was
-es tut. Bei jemandem aus einem gekoppelten Haushalt siehst du die
+Das Personenfenster hat ein **Folgen**, und es sagt, was es tut. Bei jemandem aus einem gekoppelten Haushalt siehst du die
 Momente so lange, wie die Person sie behält, und es bleibt zwischen
 euren Haushalten. Bei jemandem, den du nur über einen GFS kennst, steht
 da: „der GFS erfährt, dass du dieser Person folgst“.
 
 ## Reaktionen reichen weiter, und die Zahlen stimmen
 
-Bisher passierte gar nichts, wenn du auf einen Moment vom Freund eines
-Freundes reagiert hast oder von jemandem, dem du über einen GFS folgst,
-während die App die Reaktion als gesendet anzeigte. Jetzt kommen diese
-Reaktionen an. Sie sind für den Haushalt des Autors versiegelt: Die
+Du kannst jetzt auf Momente von Freunden von Freunden reagieren, zwei
+oder drei Schritte entfernt, und von Leuten, denen du über einen GFS
+folgst. Die Reaktionen sind für den Haushalt des Autors versiegelt: Die
 Haushalte und der GFS, die sie weiterreichen, sehen nicht, wer reagiert
 hat, mit welchem Emoji oder worauf.
 
@@ -243,8 +203,7 @@ deine eigene Reaktion ohne Zahl.
 
 Ein geschütztes Konto, meist das eines Kindes, sieht Momente jetzt nur
 noch aus seinem eigenen Haushalt und aus direkt gekoppelten Haushalten.
-Das ist derselbe Kreis, den seine eigenen Momente erreichen. Es sieht
-keine Momente mehr von Fremden zwei oder drei Schritte entfernt, hat
+Das ist derselbe Kreis, den seine eigenen Momente erreichen. Es hat
 keinen Tab Entdecken und keinen Öffentlich-Schalter, und die Seite sagt
 das in einfachen Worten.
 
@@ -258,9 +217,7 @@ Die Seite im [Social Home Viewer](/de/blog/2026-10-24-pinned-viewer/),
 die einen öffentlichen Link zu einem Highlight oder Moment öffnet, hat
 eine Steuerleiste bekommen: zurück, Pause, weiter und Ton aus. Sie sagt
 deiner Freundin auch, ob das Video direkt von deinem Zuhause kommt oder
-über den GFS, weiterhin verschlüsselt. Und **Öffentlichen Link
-erstellen** funktioniert wieder: Es hatte deinen GFS nicht mehr
-gefunden.
+über den GFS, weiterhin verschlüsselt.
 
 Lässt sich ein Link nicht öffnen, ist die Meldung klar. Ein Highlight,
 das nicht erreichbar ist, sagt immer „Das ist gerade nicht verfügbar“,
@@ -270,18 +227,15 @@ beschädigter Link sagt, dass er unvollständig ist. Ein Link zu einem
 Moment darf „nicht mehr verfügbar“ sagen, weil er dein Zuhause überhaupt
 nie kontaktiert.
 
-## Und viele kleine Dinge
+## Und noch ein paar Dinge
 
-- Emoji sind überall farbig. 😂 😮 😢 wurden unter Linux und ChromeOS als
-  schwarze Umrisse gezeichnet.
-- Wenn etwas nicht lädt, sagt die App das und bietet **Erneut
-  versuchen** an, statt „Noch keine Momente“.
 - Antworten öffnen sich direkt auf der Seite des Moments und können ein
   Foto oder Video mitbringen.
-- Namen auf Arabisch oder Hebräisch schieben Satzzeichen nicht mehr ans
-  falsche Ende, und die Seiten spiegeln sich für Sprachen, die von
-  rechts nach links laufen.
-- Dein eigenes Highlight sieht nicht mehr ungesehen aus.
+- Wenn etwas nicht lädt, sagt die Seite das und bietet **Erneut
+  versuchen** an.
+- Momentum und Highlights laufen für Arabisch und Hebräisch von rechts
+  nach links, und Namen in jeder Schrift behalten ihre Satzzeichen dort,
+  wo sie hingehören.
 
 ## Probier es aus
 

@@ -15,49 +15,17 @@ vidéos de votre journée, pour les personnes que vous choisissez. Un
 vos foyers jumelés et les leurs. Les deux se veulent légers. Les deux
 doivent aussi faire exactement ce qu'ils annoncent.
 
-Nous leur avons donc réservé le même traitement qu'aux
-[espaces](/fr/blog/2026-10-20-spaces-redesign/) : trois tours de revue
-sur chaque écran, de la zone de rédaction à la page du lien public,
-avec le même foyer d'exemple, les Berger. La revue a trouvé deux
-endroits où quelque chose atteignait plus de personnes que son auteur
-ne l'avait choisi. Ils ont été corrigés en premier. Le reste de la
-refonte arrive dans **Social Home 2026.10.27**.
+Les deux font peau neuve, comme les
+[espaces](/fr/blog/2026-10-20-spaces-redesign/) la semaine dernière, et
+les deux disent qui voit quoi et pendant combien de temps, avant que
+vous partagiez. Tout cela arrive dans **Social Home 2026.10.27**.
 
-## D'abord, les corrections
-
-Nous préférons que vous l'appreniez de notre bouche :
-
-- **Une image de highlight pouvait atteindre plus de personnes que
-  celles que vous aviez choisies.** Il y a un highlight par jour, et
-  son public était fixé par la première image. Une image ajoutée plus
-  tard « seulement pour Anna » partait chez tous ceux qui pouvaient
-  voir la première. Désormais, une image va toujours au public du jour,
-  et la zone de rédaction vous montre de qui il s'agit avant que vous
-  publiiez.
-- **Une réponse pouvait être partagée publiquement par défaut.** Si
-  vous partagez des moments publiquement via un GFS, la zone de réponse
-  démarrait avec l'interrupteur public activé, même sous un moment
-  réservé au foyer. Désormais, une réponse ne peut être publique que si
-  le moment auquel elle répond l'est, et l'interrupteur n'est jamais
-  activé tant que vous ne l'activez pas.
-- **Les personnes qui regardaient un highlight pouvaient savoir qui
-  d'autre avait été choisi.** Elles ne voient plus qu'une courte
-  étiquette comme « Personnes choisies », et chaque foyer ne reçoit
-  que sa propre partie de la liste.
-- **Les réponses ignoraient les blocages et la protection des
-  enfants.** Elles suivent désormais les mêmes règles que les moments.
-
-Si vous n'avez jamais utilisé les highlights « seulement pour » ni le
-partage public, rien de tout cela ne vous a concerné. Si vous les avez
-utilisés, vous n'avez rien à faire : les corrections sont en place dès
-la mise à jour.
+_Tous les écrans ci-dessous montrent un foyer d'exemple : les Berger._
 
 ## Highlights : qui est nouveau, et qui voit le vôtre
 
-La page Highlights affichait un anneau par personne _et par jour_ : un
-ami très actif pouvait donc apparaître trois fois, et votre propre
-highlight semblait toujours non vu. Elle a maintenant deux onglets,
-**Aujourd'hui** et **Archives**.
+La page Highlights a maintenant deux onglets, **Aujourd'hui** et
+**Archives**.
 
 **Aujourd'hui** commence par votre propre highlight : combien d'images,
 combien de personnes l'ont vu, et à qui il s'adresse. En dessous, une
@@ -79,8 +47,7 @@ Quand il n'y a rien de nouveau, la carte se fait discrète.
 
 Les **Archives** sont désormais une liste de jours, du plus récent au
 plus ancien, avec un sélecteur de mois et **Seulement les miens**.
-C'était une grille de calendrier, le plus souvent vide. Chaque personne
-décide combien de temps ses highlights restent, de 1 à 90 jours, et
+Chaque personne décide combien de temps ses highlights restent, de 1 à 90 jours, et
 les archives le disent au lieu de promettre un chiffre.
 
 <div class="shots">
@@ -107,28 +74,24 @@ supprimer dans la même étape.
 <figure class="phone"><a href="/blog/2026-10-momentum/change-today-mob.webp"><img src="/blog/2026-10-momentum/change-today-mob.webp" alt="Un panneau intitulé Qui voit votre highlight du jour par-dessus la page Ajouter à votre highlight du jour, avec les choix Tous les foyers jumelés, Votre foyer uniquement (sélectionné, avec la note que les foyers jumelés perdent les 5 images) et Choisir des foyers ou des personnes, et une note indiquant que cela s'applique à chaque image du jour et que les personnes qui ont déjà regardé peuvent s'en souvenir, avec les boutons Conserver et Modifier" width="390" height="575" loading="lazy"></a><figcaption><b>Modifier pour toute la journée</b>Il dit ce qui change avant que vous confirmiez.</figcaption></figure>
 </div>
 
-Il n'y a plus qu'une seule zone de rédaction pour les highlights. Le
-partage rapide, qui allait toujours à tout le monde et annonçait « pour
-le reste de la journée » alors que les highlights restent en réalité
-des semaines, a disparu.
+Il n'y a plus qu'une seule zone de rédaction pour les highlights, et
+elle montre toujours à qui vont les images et combien de temps elles
+restent.
 
 ## Regarder un highlight
 
 La visionneuse a maintenant de vrais boutons, de 44 pixels et lisibles
 en thème clair comme sombre : **pause**, un menu et fermer. Espace ou K
 met en pause, les flèches passent d'une image à l'autre, et les vidéos
-démarrent sans le son pour qu'elles se lancent vraiment. Ouvrir une
-fenêtre par-dessus une image la met en pause : « Vu par » ne se ferme
-donc plus tout seul au bout de six secondes.
+démarrent sans le son pour qu'elles se lancent vraiment. Ouvrir un
+menu ou « Vu par » par-dessus une image la met en pause.
 
 - **Les réactions sont mémorisées.** Votre emoji reste marqué, touchez-le
   à nouveau pour le retirer, et l'auteur apprend qui a réagi.
 - **Répondre en privé** envoie l'image dans une discussion avec la
-  personne qui l'a publiée. Avant, cela ouvrait une liste de
-  discussions vide.
+  personne qui l'a publiée.
 - **Pour l'auteur**, le menu permet de supprimer cette seule image ou
-  tout le highlight du jour, et le gros bouton rouge « Supprimer
-  l'image » a quitté le bas de l'écran.
+  tout le highlight du jour.
 - Arrivée à la fin, la visionneuse passe à la personne suivante qui a
   quelque chose de nouveau.
 
@@ -137,17 +100,16 @@ donc plus tout seul au bout de six secondes.
 Momentum a désormais trois onglets : **Moments**, **Les vôtres** et
 **Découvrir**. Les moments sont des cartes plates comme dans le Fil du
 foyer, les réponses se lisent comme un fil, et le bouton **#** filtre
-par hashtag. Les hashtags fonctionnent maintenant dans toutes les
-langues : #Kürbisfest devenait #k.
+par hashtag, dans toutes les langues : #Kürbisfest reste
+#Kürbisfest.
 
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-momentum/momentum-mob.webp"><img src="/blog/2026-10-momentum/momentum-mob.webp" alt="Momentum sur un téléphone avec les onglets Moments, Les vôtres et Découvrir, un bouton hashtag et les paramètres, puis Partagez un moment avec la ligne Foyers jumelés et les leurs, jusqu'à 3 étapes, 24 h, puis votre propre moment d'il y a 12 minutes et le moment de Maximiliane avec deux cœurs" width="390" height="493" loading="lazy"></a><figcaption><b>Momentum</b>La zone de rédaction dit jusqu'où va un moment.</figcaption></figure>
 </div>
 
 **Vos propres moments restent.** Les autres voient un moment pendant
-24 heures, ou plus longtemps s'ils vous suivent. Les vôtres
-disparaissaient de votre propre écran de la même façon. Désormais,
-chaque moment que vous publiez reste dans **Les vôtres**, avec qui le
+24 heures, ou plus longtemps s'ils vous suivent. Pour vous, chaque
+moment que vous publiez reste dans **Les vôtres**, avec qui le
 voit et jusqu'à quand. Ceux qui sont terminés indiquent « Vous seul le
 voyez maintenant. » L'admin de votre foyer peut fixer la place que les
 photos et vidéos peuvent occuper par personne (2 Go par défaut).
@@ -168,10 +130,8 @@ Momentum**. Tous les autres voient toujours chacun d'eux pendant
 
 ## Écrire un moment : où il va, et quand
 
-L'ancienne zone de rédaction disait « décochez pour le garder dans
-votre foyer ». Cela n'a jamais été vrai : les moments allaient
-toujours aux foyers jumelés et plus loin, jusqu'à 3 étapes. Désormais,
-la zone de rédaction le dit en une ligne, « Foyers jumelés et les
+Un moment va à vos foyers jumelés et plus loin, jusqu'à 3 étapes, et
+la zone de rédaction le dit désormais en une ligne, « Foyers jumelés et les
 leurs, jusqu'à 3 étapes · 24 h », avec un ⓘ pour les détails.
 
 - **La limite de 15 minutes s'affiche avant que vous écriviez.**
@@ -190,23 +150,20 @@ rédaction.
 
 ## Découvrir et un seul Suivre
 
-**Découvrir** n'était accessible qu'en tapant son adresse. C'est
-désormais un onglet de Momentum, dès que votre foyer est connecté à un
+**Découvrir** est désormais un onglet de Momentum, présent dès que votre foyer est connecté à un
 [GFS (Global Federation Server)](/fr/docs/glossary/#gfs), le relais qui
 aide les foyers à se trouver.
 
-La fiche d'une personne avait un Suivre qui voulait dire des choses
-différentes selon les personnes. Il n'y a plus qu'un seul **Suivre**,
-et il dit ce qu'il fait. Pour une personne d'un foyer jumelé, vous
+La fiche d'une personne a un seul **Suivre**, et il dit ce qu'il fait. Pour une personne d'un foyer jumelé, vous
 voyez ses moments aussi longtemps qu'elle les garde, et cela reste
 entre vos foyers. Pour une personne que vous ne connaissez que par un
 GFS, il indique « le GFS apprend que vous suivez cette personne ».
 
 ## Les réactions vont plus loin, et les compteurs s'additionnent
 
-Jusqu'ici, réagir au moment d'un ami d'un ami, ou de quelqu'un que vous
-suivez via un GFS, ne faisait rien du tout, alors que l'app l'affichait
-comme envoyé. Désormais, ces réactions arrivent. Elles sont scellées
+Vous pouvez désormais réagir aux moments d'amis d'amis, à deux ou
+trois étapes, et des personnes que vous suivez via un GFS. Ces
+réactions sont scellées
 pour le foyer de l'auteur : les foyers et le GFS qui les transmettent
 ne peuvent voir ni qui a réagi, ni avec quel emoji, ni à quoi.
 
@@ -252,10 +209,9 @@ votre propre réaction sans chiffre.
 
 Un compte protégé, en général celui d'un enfant, ne voit désormais que
 les moments de son propre foyer et des foyers directement jumelés.
-C'est le même cercle que celui qu'atteignent ses propres moments. Il ne
-voit plus les moments d'inconnus à deux ou trois étapes, n'a ni onglet
-Découvrir ni interrupteur public, et la page le lui explique avec des
-mots simples.
+C'est le même cercle que celui qu'atteignent ses propres moments. Il
+n'a ni onglet Découvrir ni interrupteur public, et la page le dit avec
+des mots simples.
 
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-momentum/protected-mob.webp"><img src="/blog/2026-10-momentum/protected-mob.webp" alt="Momentum pour un compte protégé sur un téléphone, avec seulement les onglets Moments et Les vôtres, une carte indiquant Votre compte est protégé : vous voyez les moments de votre foyer et des foyers jumelés, et les vôtres vont seulement aux foyers jumelés, jamais plus loin et jamais en public, puis la zone de rédaction avec la ligne Votre foyer et les foyers jumelés, 24 h, et des moments d'Anna et de Maximiliane" width="390" height="608" loading="lazy"></a><figcaption><b>Un compte protégé</b>Pas de Découvrir, pas de public, et une ligne de portée honnête.</figcaption></figure>
@@ -267,8 +223,7 @@ La page de la [visionneuse Social Home](/fr/blog/2026-10-24-pinned-viewer/)
 qui ouvre le lien public d'un highlight ou d'un moment a reçu une barre
 de commandes : précédent, pause, suivant et son. Elle indique aussi à
 votre ami si la vidéo vient directement de votre maison ou passe par le
-GFS, toujours chiffrée. Et **Publier un lien public** fonctionne à
-nouveau : il ne trouvait plus votre GFS.
+GFS, toujours chiffrée.
 
 Quand un lien ne peut pas s'ouvrir, le message est clair. Un highlight
 injoignable affiche toujours « Ce n'est pas disponible pour le
@@ -278,18 +233,15 @@ vous êtes chez vous. Un lien abîmé indique qu'il est incomplet. Un lien
 de moment peut dire « n'est plus disponible », parce qu'il ne contacte
 jamais votre maison.
 
-## Et plein de petites choses
+## Et quelques autres choses
 
-- Les emoji s'affichent en couleur partout. 😂 😮 😢 étaient dessinés
-  en contours noirs sous Linux et ChromeOS.
-- Un chargement qui échoue le dit et propose **Réessayer**, au lieu de
-  « Aucun moment pour l'instant ».
 - Les réponses s'ouvrent sur place dans la page du moment et peuvent
   contenir une photo ou une vidéo.
-- Les noms en arabe ou en hébreu ne repoussent plus la ponctuation du
-  mauvais côté, et les pages s'inversent pour les langues de droite à
-  gauche.
-- Votre propre highlight ne semble plus non vu.
+- Quand quelque chose ne peut pas se charger, la page le dit et propose
+  **Réessayer**.
+- Momentum et Highlights se lisent de droite à gauche en arabe et en
+  hébreu, et les noms dans toutes les écritures gardent leur
+  ponctuation au bon endroit.
 
 ## À vous de jouer
 
