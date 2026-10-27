@@ -200,7 +200,7 @@ export const nl: UiStrings = {
         {
           tag: "Momentum",
           title: "Eenmalige berichten die reizen.",
-          body: "Tot duizend tekens en een clip van 15 seconden. Elk moment waaiert drie stappen ver uit over de federatie — jouw gekoppelde huishoudens en de hunne — en verdwijnt na een dag, of na een week voor mensen die je volgt.",
+          body: "Tot duizend tekens en een clip van 15 seconden. Elk moment waaiert drie stappen ver uit over de federatie — jouw gekoppelde huishoudens en de hunne — en verdwijnt daar na een dag, bij je volgers na maximaal 30 dagen. Je eigen momenten blijven bij jou.",
         },
         {
           tag: "Bazaar",

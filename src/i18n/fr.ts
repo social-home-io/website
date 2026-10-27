@@ -209,7 +209,7 @@ export const fr: UiStrings = {
         {
           tag: "Momentum",
           title: "Des publications éphémères qui voyagent.",
-          body: "Jusqu'à mille caractères et un clip de 15 secondes. Chaque moment se propage sur trois sauts à travers la fédération — vos foyers jumelés et les leurs — et disparaît après un jour, ou une semaine pour les personnes que vous suivez.",
+          body: "Jusqu'à mille caractères et un clip de 15 secondes. Chaque moment se propage sur trois sauts à travers la fédération — vos foyers jumelés et les leurs — et y disparaît après un jour, ou après 30 jours au plus chez vos abonnés. Les vôtres restent chez vous.",
         },
         {
           tag: "Bazar",

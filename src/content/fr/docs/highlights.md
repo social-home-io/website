@@ -12,7 +12,15 @@ défaut, ou la durée de conservation que vous avez choisie — et est
 ensuite purgé du disque, sur votre serveur.
 
 Les Highlights se trouvent sous **Discussions → Highlights** dans
-la barre latérale.
+la barre latérale, avec deux onglets. **Aujourd'hui** montre votre
+propre highlight (combien d'images, vu par combien de personnes, et
+à qui il s'adresse), puis une ligne par personne, réparties entre
+**Nouveau** et **Vus**, chacune avec à qui elle s'adressait et,
+vers la fin, quand elle se termine. **Archives** liste les
+highlights plus anciens jour par jour, avec un sélecteur de mois et
+**Seulement les miens**. Les anneaux des personnes qui ont quelque
+chose de nouveau se trouvent sur l'**Accueil**, dans une carte qui
+se masque quand il n'y a rien de nouveau.
 
 ## Comment ça marche
 
@@ -20,26 +28,38 @@ la barre latérale.
   petit album de _frames_ ; chaque publication au cours de la même
   journée ajoute une frame au highlight du jour plutôt que d'en
   créer un nouveau. Nouveau jour → nouvelle ligne de highlight.
-- **Public.** Vous choisissez parmi trois options au moment de
-  publier :
+- **Un seul public pour la journée.** La première image du jour
+  fixe qui voit tout le highlight, en partant de votre choix par
+  défaut dans **Paramètres → Confidentialité → Highlights** :
   - **Tous les foyers jumelés** — chaque foyer jumelé confirmé.
-  - **Certains foyers** — les foyers que vous choisissez.
-  - **Certaines personnes** — des personnes précises dans ces
-    foyers.
+  - **Votre foyer uniquement.**
+  - **Choisir des foyers ou des personnes…** — les foyers ou les
+    personnes précises que vous choisissez.
+
+  Quand vous ajoutez des images plus tard, la zone de rédaction
+  montre à qui elles vont. **Modifier pour toute la journée…**
+  restreint ou élargit toutes les images d'un coup, et vous dit
+  d'abord qui gagnera le highlight et qui le perdra. Les personnes
+  qui l'ont déjà regardé gardent ce qu'elles ont vu. Si le
+  highlight a un lien public, vous pouvez le supprimer dans la même
+  étape.
+
 - **Conservation.** 30 jours par défaut, réglable par auteur de
   1 à 90 jours dans **Paramètres → Confidentialité**. Le
   planificateur de conservation purge les lignes expirées toutes
   les heures.
-- **Réponses et réactions.** Tapez sur une frame pour réagir avec
-  un emoji ; balayez vers le haut ou tapez sur la puce ✉ pour
-  répondre par message privé avec un instantané de la frame joint,
-  pour que la conversation garde son sens même après l'expiration
-  de la frame d'origine.
-- **Archive.** **Explorer → Archive des Highlights** est une grille
-  calendaire de tous les highlights encore dans leur fenêtre de
-  conservation — les vôtres et ceux de chaque foyer jumelé. Les
-  jours avec des highlights sont cliquables ; tapez sur une date
-  pour voir qui a publié ce jour-là.
+- **Regarder.** La visionneuse a des boutons pause, menu et
+  fermer ; Espace ou K met en pause et les flèches passent d'une
+  frame à l'autre. Les vidéos démarrent sans le son. À la fin, elle
+  passe à la personne suivante qui a quelque chose de nouveau.
+- **Réponses et réactions.** Réagissez avec un emoji sous la
+  frame ; votre réaction reste marquée, et la toucher à nouveau la
+  retire. L'auteur est prévenu. **Répondre en privé à …** envoie la
+  frame dans votre discussion avec l'auteur, pour que la
+  conversation garde son sens même après l'expiration de la frame.
+- **Pour l'auteur.** Le menu ⋯ supprime une frame ou tout le
+  highlight du jour, le partage dans le fil ou un espace, ou crée un
+  lien public.
 
 ## Confidentialité
 
@@ -49,6 +69,10 @@ la barre latérale.
 - Les frames sont signées par votre foyer ; un foyer destinataire
   rejette les contrefaçons avant même qu'elles n'atteignent sa base
   de données.
+- Les personnes qui regardent un highlight ne voient qu'une courte
+  étiquette indiquant à qui il s'adressait (« Personnes choisies »,
+  « Foyer uniquement »), jamais la liste, et chaque foyer ne reçoit
+  que sa propre partie du public.
 - La liste de blocage personnelle (**Paramètres → Confidentialité →
   Comptes bloqués**) masque chaque highlight d'un auteur bloqué sur
   toutes les surfaces — boîte de réception, archive et les anneaux
@@ -154,8 +178,9 @@ Les signalements sont des lignes de la table unifiée
 Les Highlights voyagent entre foyers de la même manière que les
 messages privés et le contenu des espaces : scellés, signés et
 vérifiés contre le rejeu à l'arrivée. Les réactions et les accusés
-de lecture retrouvent le chemin du foyer de l'auteur pour que la
-puce sur la frame compte juste.
+de lecture retrouvent le chemin du foyer de l'auteur pour que « vu par » compte juste. Élargir le public du
+jour envoie les frames du jour une seule fois à chaque foyer
+ajouté.
 
 <details class="tech">
 <summary>Sous le capot</summary>
@@ -165,6 +190,9 @@ les messages privés et le contenu des espaces : enveloppes signées,
 protégées par cache anti-rejeu, champs de routage en clair et
 chaque champ de contenu chiffré. Les réactions et les accusés de
 lecture empruntent un canal de retour unicast vers le foyer de
-l'auteur.
+l'auteur. Élargir le public du jour envoie au maximum 30 frames,
+une seule fois, à chaque foyer nouvellement ajouté ; le restreindre
+fait supprimer le highlight par le foyer qui en sort. Les
+changements de public sont limités à 6 par heure et par auteur.
 
 </details>

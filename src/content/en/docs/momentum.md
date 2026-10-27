@@ -1,6 +1,6 @@
 ---
 title: Momentum
-description: One-shot posts that fan out three hops across the federation. Up to 1 000 characters plus an image or 15-second clip; gone after a day, or a week for people you follow.
+description: Short posts that travel three hops across paired households. Up to 1 000 characters plus an image or 15-second clip; gone after a day, or as long as the author chooses for people who follow them. Your own stay under Yours.
 order: 24
 ---
 
@@ -8,9 +8,11 @@ order: 24
 a _moment_ — fans out across paired households _and their
 paired households_ up to three hops away. Replies are themselves
 moments, linked to the one they answer so a thread reads as one.
-The whole pillar lives under **Talk → Momentum** in the sidebar;
-the **Browse → Moments archive** dashboard groups every received
-moment by day inside the retention window.
+The whole pillar lives under **Talk → Momentum** in the sidebar,
+with three tabs: **Moments** (everything that reached you),
+**Yours** (everything you posted) and **Discover** (public authors
+on a GFS). The **#** button filters by hashtag, in any language.
+Home shows a "Momentum · 3 new" line when new moments are waiting.
 
 ## What you can post
 
@@ -19,6 +21,8 @@ moment by day inside the retention window.
 - Optionally a single **image** _or_ a single **video clip up to
   15 seconds**. The composer rejects longer clips before the
   upload so you don't waste bandwidth.
+- The line under the composer says where the moment goes: "Paired
+  households and theirs, up to 3 hops · 24 h". Tap ⓘ for the details.
 - Replies attach to the moment they answer. Threading stays
   flat — a reply to a reply attaches to the original thread root
   so the detail view reads top-down without nested branches.
@@ -33,13 +37,42 @@ to the thread root on creation.
 
 ## Retention
 
-- **24 hours** by default for moments from people you don't
-  follow.
-- **7 days** for moments from anyone on your follow list.
-- The hourly retention scheduler drops every row past the
-  absolute 7-day cap; the visible window is computed per-viewer
-  at list time. You can follow / unfollow from the ⋯ menu on
-  any moment, or from **Settings → Privacy → Following**.
+- **24 hours** for everyone who doesn't follow you.
+- **As long as you choose** for people who follow you: 1, 3, 7
+  (default), 14 or 30 days, under **Settings → Privacy → Momentum →
+  People who follow you keep your moments for**. It applies to
+  moments you post from then on.
+- **Your own moments stay.** Everything you post stays under
+  **Yours**, with who sees it and until when, after it has ended
+  for everyone else. Your household's admin can set how much space
+  pictures and videos may take per person under **Admin → Storage**
+  (2 GB by default); past it, the oldest pictures and videos go
+  first and the text stays.
+- **Save someone else's moment** from its ⋯ menu and it stays with
+  you until its author deletes it. A delete removes saved copies
+  too, so Save only appears where a delete can reach your copy: a
+  moment from your household, a directly paired household, or a GFS
+  that keeps delete records.
+
+Follow someone from their person sheet. For a person from a paired
+household, you see their moments for as long as they keep them, and
+the follow stays between your households. For someone you only know
+from a GFS, the follow goes through that GFS, which then knows you
+follow them.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+The follower window travels in the moment's signed `expires_at`, so
+every receiving household honours it; values are capped at 30 days.
+An author's delete is retried for 30 days, relays pass it on only
+when it changed something, and a GFS keeps the signed delete
+certificates (no content) for 30 days for followers that reconnect.
+Saves are a per-person pin (`PUT /api/moments/{id}/save`) on the
+copy your household already holds; the author learns nothing about
+them.
+
+</details>
 
 ## Federation — the 3-hop relay
 
@@ -85,12 +118,19 @@ rather than the author's home.
 ## How far you want to look
 
 Three hops is the wire-level cap; you can dial it down per
-account. **Settings → Privacy → Momentum visibility** picks
-between **1 hop** (only your paired households),
-**2 hops** (their paired households too), and **3 hops** (default — the full
-relay reach). The setting only changes what _you_ see; your
+account. **Settings → Privacy → Momentum → Show moments up to**
+picks between **1 step** (only your paired households),
+**2 steps** (their paired households too), and **3 steps** (default — every
+moment that reaches you). The setting only changes what _you_ see; your
 household still relays the full three hops onward so the rest of
 the mesh stays intact.
+
+## Protected accounts
+
+A protected account, usually a child's, sees moments only from its
+own household and directly paired households, the same circle its
+own moments and replies reach. It has no Discover tab and can't post
+publicly. See [Family safety](/docs/family-safety/).
 
 ## Forwarding without storing
 
@@ -131,16 +171,22 @@ hold lifts once the row is resolved or dismissed via
 
 Three hops cover paired households, but the wider network goes
 through the [GFS (Global Federation Server)](/docs/glossary/#gfs)
-— the relay that helps households find each other. Opt in at
-**Settings → Privacy → Public Momentum**, pick a GFS, and your
-moments fan out to everyone there who follows you. What the GFS
+— the relay that helps households find each other. Sign up at
+**Settings → Privacy → Public sharing** (also linked from **Yours**
+and the composer) and pick a GFS. Public stays **off** for each
+moment until you switch on "Also public on …" in the composer; the
+button then reads **Post publicly**. If you'd rather every new
+moment be public, switch on **Make new moments public** there.
+Public is chosen when you write, not afterwards. A reply can only be
+public when the moment it answers is public. Public moments fan out
+to everyone on that GFS who follows you. What the GFS
 knows about you is exactly what you set in **Settings →
 Profile**: display name, bio, avatar. Update those and the GFS
 copy refreshes on save — one identity, no per-pillar overrides.
 
 ### Discover and follow
 
-- **In your Social Home.** **Talk → Momentum → Discover** lists
+- **In your Social Home.** The **Discover** tab in Momentum lists
   every public author on each GFS you've paired with. Search by
   name, handle, or bio; one click to follow. Their next moment
   lands in your inbox alongside paired-household moments —
@@ -184,9 +230,12 @@ home is never contacted.
 
 ## Rate limit
 
-One **top-level** moment per author per **15 minutes**. Replies
-and reactions are exempt — a back-and-forth thread shouldn't
-grind to a halt waiting for the timer.
+One **top-level** moment per author per **15 minutes**. The
+composer tells you before you write: "You can post your next moment
+at 13:24". You can write in the meantime; the button reads "Post at
+13:24" until then. Replies and reactions are exempt — a
+back-and-forth thread shouldn't grind to a halt waiting for the
+timer.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -198,17 +247,36 @@ returns a 429 `MOMENT_RATE_LIMIT` error code when it kicks in.
 
 ## Reactions
 
-Pick from a quick row of emoji on the detail page, or tap an
-existing reaction to set / change yours. Reactions go back to
-the author's household only, and the count on their screen
-updates live.
+Pick from a quick row of emoji, or tap your reaction again to take
+it back. Reactions go to the author's household only, also for
+authors two or three hops away and authors you follow through a
+GFS. On the way they are sealed for the author's household, so the
+households and the GFS that pass them along can't see who reacted
+or with which emoji.
+
+Only the author's household knows the full count, so it sends the
+totals back out a few times while the moment is fresh, and only
+when they changed. Never who reacted. Until the first totals
+arrive you see just your own reaction, and your new reaction joins
+the number at the author's next update.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-Reactions ride a unicast back-channel to the author's household;
-the update lands as a `moment.reaction_changed` WebSocket frame
-in the author's session.
+- A far reaction is signed by your household (Ed25519), padded to
+  1 KB and sealed to the author household's key-wrap key (X25519).
+  Over the mesh it travels back along the moment's path using
+  stateless return tokens (AES-256-GCM, HKDF from each relay's
+  routing secret). A moment keeps up to 3 return paths through
+  different neighbours; each reaction goes along 2 of them.
+- Through a GFS it goes to the author's household only, if you
+  follow the author there.
+- Totals cover the 8 most used emoji plus the overall count, signed
+  by the author's household, at 10 minutes, 6 hours and 3 days
+  after posting on the mesh, and 10 minutes, 3 hours and 24 hours
+  through the GFS (sealed and padded to 640 bytes there).
+- In the author's own session the update lands as a
+  `moment.reaction_changed` WebSocket frame.
 
 </details>
 
@@ -239,11 +307,12 @@ list them at `/api/admin/reports?status=pending`.
 | ------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
 | `GET`                     | `/api/moments`                     | List moments visible to the caller (block-aware, follow-aware).                               |
 | `POST`                    | `/api/moments`                     | Create a moment. Body: `{content, media_url?, media_type?, duration_ms?, parent_moment_id?}`. |
-| `GET`                     | `/api/moments/archive`             | Full retention-window list for the calendar dashboard.                                        |
+| `GET`                     | `/api/moments/archive`             | Your own moments and the ones you saved (Yours).                                              |
 | `GET`                     | `/api/moments/{id}`                | Detail with replies + reactions.                                                              |
 | `DELETE`                  | `/api/moments/{id}`                | Author or admin delete.                                                                       |
 | `PUT` / `DELETE`          | `/api/moments/{id}/reaction`       | Set / clear your own emoji.                                                                   |
 | `POST`                    | `/api/moments/{id}/report`         | File a `content_reports` row.                                                                 |
+| `PUT` / `DELETE`          | `/api/moments/{id}/save`           | Save / unsave someone else's moment.                                                          |
 | `GET` / `POST` / `DELETE` | `/api/moments/follows[/{user_id}]` | Manage your follow list.                                                                      |
 
 The `feat_momentum` household toggle in **Settings →

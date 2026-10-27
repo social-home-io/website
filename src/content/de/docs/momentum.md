@@ -1,6 +1,6 @@
 ---
 title: Momentum
-description: Einmalige Beiträge, die sich drei Hops weit durch die Föderation verbreiten. Bis zu 1 000 Zeichen plus ein Bild oder ein 15-Sekunden-Clip; nach einem Tag weg, oder nach einer Woche bei Leuten, denen du folgst.
+description: Kurze Beiträge, die drei Schritte weit über gekoppelte Haushalte reisen. Bis zu 1 000 Zeichen plus ein Bild oder ein 15-Sekunden-Clip; nach einem Tag weg, oder so lange, wie der Autor es wählt, bei Leuten, die ihm folgen. Deine eigenen bleiben unter Deine.
 order: 24
 ---
 
@@ -10,9 +10,11 @@ Haushalte _und deren gekoppelte Haushalte_ bis zu drei Hops
 weit. Antworten sind selbst Momente, verknüpft mit dem, auf den
 sie antworten, damit sich ein Thread wie aus einem Guss liest.
 Die ganze Säule lebt unter **Reden → Momentum** in der
-Seitenleiste; das Dashboard **Stöbern → Momente-Archiv**
-gruppiert jeden empfangenen Moment innerhalb der
-Aufbewahrungsfrist nach Tag.
+Seitenleiste, mit drei Tabs: **Momente** (alles, was dich erreicht
+hat), **Deine** (alles, was du gepostet hast) und **Entdecken**
+(öffentliche Autoren auf einem GFS). Der **#**-Knopf filtert nach
+Hashtag, in jeder Sprache. Start zeigt eine Zeile „Momentum · 3 neu“,
+wenn neue Momente warten.
 
 ## Was du posten kannst
 
@@ -22,6 +24,9 @@ Aufbewahrungsfrist nach Tag.
   **Videoclip bis 15 Sekunden**. Der Editor lehnt längere Clips
   schon vor dem Upload ab, damit du keine Bandbreite
   verschwendest.
+- Die Zeile unter dem Eingabefeld sagt, wohin der Moment geht:
+  „Gekoppelte Haushalte und von dort weiter, bis zu 3 Schritte ·
+  24 Std.“. Tippe auf ⓘ für die Details.
 - Antworten hängen sich an den Moment, auf den sie antworten.
   Die Verschachtelung bleibt flach — eine Antwort auf eine
   Antwort hängt sich an die ursprüngliche Thread-Wurzel, damit
@@ -38,14 +43,45 @@ werden beim Anlegen auf die Thread-Wurzel umgehängt.
 
 ## Aufbewahrung
 
-- **24 Stunden** standardmäßig für Momente von Leuten, denen du
-  nicht folgst.
-- **7 Tage** für Momente von allen auf deiner Follow-Liste.
-- Der stündliche Aufbewahrungs-Scheduler löscht jede Zeile
-  jenseits der absoluten 7-Tage-Grenze; das sichtbare Fenster
-  wird pro Betrachter beim Auflisten berechnet. Folgen /
-  Entfolgen kannst du über das ⋯-Menü an jedem Moment oder unter
-  **Einstellungen → Datenschutz → Gefolgt**.
+- **24 Stunden** für alle, die dir nicht folgen.
+- **So lange, wie du es wählst**, für Leute, die dir folgen: 1, 3,
+  7 (Standard), 14 oder 30 Tage, unter **Einstellungen →
+  Privatsphäre → Momentum → Deine Follower behalten deine
+  Momente**. Das gilt für Momente, die du ab dann postest.
+- **Deine eigenen Momente bleiben.** Alles, was du postest, bleibt
+  unter **Deine**, mit wer es sieht und bis wann, auch nachdem es
+  für alle anderen abgelaufen ist. Der Admin deines Haushalts kann
+  unter **Admin → Speicher** festlegen, wie viel Platz Bilder und
+  Videos pro Person belegen dürfen (standardmäßig 2 GB); darüber
+  gehen die ältesten Bilder und Videos zuerst, und der Text bleibt.
+- **Merke dir den Moment von jemand anderem** über sein ⋯-Menü,
+  und er bleibt bei dir, bis sein Autor ihn löscht. Ein Löschen
+  entfernt auch gemerkte Kopien, deshalb erscheint Merken nur dort,
+  wo ein Löschen deine Kopie erreichen kann: bei einem Moment aus
+  deinem Haushalt, aus einem direkt gekoppelten Haushalt oder von
+  einem GFS, der Löschungen aufbewahrt.
+
+Folgen kannst du jemandem über das Personenfenster. Bei einer
+Person aus einem gekoppelten Haushalt siehst du die Momente so
+lange, wie sie sie behält, und das Folgen bleibt zwischen euren
+Haushalten. Bei jemandem, den du nur über einen GFS kennst, läuft
+das Folgen über diesen GFS, der dann weiß, dass du der Person
+folgst.
+
+<details class="tech">
+<summary>Unter der Haube</summary>
+
+Das Follower-Fenster reist im signierten `expires_at` des Moments
+mit, sodass jeder empfangende Haushalt es einhält; die Werte sind
+auf 30 Tage begrenzt. Das Löschen eines Autors wird 30 Tage lang
+erneut versucht, Relays reichen es nur weiter, wenn es etwas
+geändert hat, und ein GFS bewahrt die signierten Löschzertifikate
+(ohne Inhalt) 30 Tage lang für Follower auf, die sich wieder
+verbinden. Merken ist eine Markierung pro Person
+(`PUT /api/moments/{id}/save`) auf der Kopie, die dein Haushalt
+schon hat; der Autor erfährt nichts davon.
+
+</details>
 
 ## Föderation — das 3-Hop-Relay
 
@@ -95,13 +131,22 @@ kam.
 ## Wie weit du schauen willst
 
 Drei Hops sind die Obergrenze auf Protokollebene; pro Konto
-kannst du sie herunterdrehen. **Einstellungen → Datenschutz →
-Momentum-Sichtbarkeit** wählt zwischen **1 Hop** (nur deine
-gekoppelten Haushalte), **2 Hops** (auch deren gekoppelte
-Haushalte) und **3 Hops** (Standard — die volle Relay-Reichweite).
+kannst du sie herunterdrehen. **Einstellungen → Privatsphäre →
+Momentum → Momente zeigen bis** wählt zwischen **1 Schritt** (nur
+deine gekoppelten Haushalte), **2 Schritte** (auch deren gekoppelte
+Haushalte) und **3 Schritte** (Standard — jeder Moment, der dich
+erreicht).
 Die Einstellung ändert nur, was _du_ siehst; dein Haushalt leitet
 weiterhin die vollen drei Hops weiter, damit der Rest des Mesh
 intakt bleibt.
+
+## Geschützte Konten
+
+Ein geschütztes Konto, meist das eines Kindes, sieht Momente nur
+aus seinem eigenen Haushalt und aus direkt gekoppelten Haushalten,
+demselben Kreis, den seine eigenen Momente und Antworten erreichen.
+Es hat keinen Tab Entdecken und kann nicht öffentlich posten. Siehe
+[Familienschutz](/de/docs/family-safety/).
 
 ## Weiterleiten ohne zu speichern
 
@@ -146,17 +191,24 @@ Drei Hops decken gekoppelte Haushalte ab, aber das weitere
 Netzwerk läuft über den
 [GFS (Global Federation Server)](/de/docs/glossary/#gfs) — den
 globalen Föderationsserver, das Relay, das Haushalten hilft,
-einander zu finden. Schalte es unter **Einstellungen →
-Datenschutz → Öffentliches Momentum** ein, wähle einen GFS, und
-deine Momente verbreiten sich zu allen dort, die dir folgen. Was
-der GFS über dich weiß, ist genau das, was du unter
+einander zu finden. Melde dich unter **Einstellungen →
+Privatsphäre → Öffentlich teilen** an (auch verlinkt von **Deine**
+und vom Eingabefeld aus) und wähle einen GFS. Öffentlich bleibt
+für jeden Moment **aus**, bis du im Eingabefeld „Auch öffentlich
+auf …“ einschaltest; dann steht auf dem Knopf **Öffentlich
+posten**. Soll jeder neue Moment öffentlich sein, schalte dort
+**Neue Momente öffentlich teilen** ein. Ob öffentlich, entscheidest
+du beim Schreiben, nicht danach. Eine Antwort kann nur öffentlich
+sein, wenn der Moment, auf den sie antwortet, öffentlich ist.
+Öffentliche Momente verbreiten sich zu allen auf diesem GFS, die
+dir folgen. Was der GFS über dich weiß, ist genau das, was du unter
 **Einstellungen → Profil** festlegst: Anzeigename, Bio, Avatar.
 Änderst du diese, wird die GFS-Kopie beim Speichern
 aktualisiert — eine Identität, keine Sonderregeln pro Säule.
 
 ### Entdecken und folgen
 
-- **In deinem Social Home.** **Reden → Momentum → Entdecken**
+- **In deinem Social Home.** Der Tab **Entdecken** in Momentum
   listet jeden öffentlichen Autor auf jedem GFS, mit dem du
   gekoppelt bist. Suche nach Name, Handle oder Bio; ein Klick zum
   Folgen. Ihr nächster Moment landet in deinem Posteingang neben
@@ -205,8 +257,11 @@ kontaktiert.
 
 ## Ratenbegrenzung
 
-Ein **Top-Level**-Moment pro Autor alle **15 Minuten**. Antworten
-und Reaktionen sind ausgenommen — ein Hin und Her im Thread soll
+Ein **Top-Level**-Moment pro Autor alle **15 Minuten**. Das
+Eingabefeld sagt es dir, bevor du schreibst: „Dein nächster Moment
+geht um 13:24“. Du kannst in der Zwischenzeit schreiben; bis dahin
+steht auf dem Knopf „Posten um 13:24“. Antworten und Reaktionen
+sind ausgenommen — ein Hin und Her im Thread soll
 nicht ins Stocken geraten, weil der Timer noch läuft.
 
 <details class="tech">
@@ -220,18 +275,40 @@ greift.
 
 ## Reaktionen
 
-Wähle aus einer schnellen Emoji-Reihe auf der Detailseite oder
-tippe auf eine vorhandene Reaktion, um deine zu setzen / zu
-ändern. Reaktionen gehen nur zurück zum Haushalt des Autors, und
-die Zahl auf dessen Bildschirm aktualisiert sich live.
+Wähle aus einer schnellen Emoji-Reihe oder tippe erneut auf deine
+Reaktion, um sie zurückzunehmen. Reaktionen gehen nur an den
+Haushalt des Autors, auch bei Autoren zwei oder drei Schritte
+entfernt und bei Autoren, denen du über einen GFS folgst. Unterwegs
+sind sie für den Haushalt des Autors versiegelt, sodass die
+Haushalte und der GFS, die sie weiterreichen, nicht sehen, wer
+reagiert hat oder mit welchem Emoji.
+
+Nur der Haushalt des Autors kennt die volle Zahl, deshalb schickt
+er die Summen ein paar Mal wieder hinaus, solange der Moment frisch
+ist, und nur, wenn sie sich geändert haben. Nie, wer reagiert hat.
+Bis die ersten Summen ankommen, siehst du nur deine eigene
+Reaktion, und deine neue Reaktion geht beim nächsten Update des
+Autors in die Zahl ein.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Reaktionen laufen über einen Unicast-Rückkanal zum Haushalt des
-Autors; die Aktualisierung landet als
-`moment.reaction_changed`-WebSocket-Frame in der Sitzung des
-Autors.
+- Eine entfernte Reaktion wird von deinem Haushalt signiert
+  (Ed25519), auf 1 KB aufgefüllt und für den Key-Wrap-Schlüssel des
+  Autorhaushalts versiegelt (X25519). Über das Mesh reist sie den
+  Weg des Moments zurück, mit zustandslosen Rückweg-Tokens
+  (AES-256-GCM, HKDF aus dem Routing-Geheimnis jedes Relays). Ein
+  Moment behält bis zu 3 Rückwege über verschiedene Nachbarn; jede
+  Reaktion geht über 2 davon.
+- Über einen GFS geht sie nur an den Haushalt des Autors, wenn du
+  dem Autor dort folgst.
+- Die Summen umfassen die 8 meistgenutzten Emoji plus die
+  Gesamtzahl, signiert vom Haushalt des Autors, 10 Minuten,
+  6 Stunden und 3 Tage nach dem Posten im Mesh und 10 Minuten,
+  3 Stunden und 24 Stunden über den GFS (dort versiegelt und auf
+  640 Byte aufgefüllt).
+- In der eigenen Sitzung des Autors landet die Aktualisierung als
+  `moment.reaction_changed`-WebSocket-Frame.
 
 </details>
 
@@ -239,7 +316,7 @@ Autors.
 
 - **Blockieren.** Dieselbe `Blockieren`-Aktion, die Highlights
   verbirgt, verbirgt auch jeden Moment dieses Autors. Blockierungen
-  verwaltest du unter **Einstellungen → Datenschutz → Blockierte
+  verwaltest du unter **Einstellungen → Privatsphäre → Blockierte
   Konten**.
 - **Melden.** ⋯ → **Melden** auf der Detailseite legt eine Meldung
   in der Prüfwarteschlange des Haushalts-Admins ab — derselben,
@@ -264,11 +341,12 @@ Meldungen sind Zeilen in der gemeinsamen
 | ------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `GET`                     | `/api/moments`                     | Für den Aufrufer sichtbare Momente auflisten (berücksichtigt Blockierungen und Follows).           |
 | `POST`                    | `/api/moments`                     | Einen Moment anlegen. Body: `{content, media_url?, media_type?, duration_ms?, parent_moment_id?}`. |
-| `GET`                     | `/api/moments/archive`             | Vollständige Liste im Aufbewahrungsfenster für das Kalender-Dashboard.                             |
+| `GET`                     | `/api/moments/archive`             | Deine eigenen Momente und die, die du dir gemerkt hast (Deine).                                    |
 | `GET`                     | `/api/moments/{id}`                | Detail mit Antworten + Reaktionen.                                                                 |
 | `DELETE`                  | `/api/moments/{id}`                | Löschen durch Autor oder Admin.                                                                    |
 | `PUT` / `DELETE`          | `/api/moments/{id}/reaction`       | Eigenes Emoji setzen / entfernen.                                                                  |
 | `POST`                    | `/api/moments/{id}/report`         | Eine `content_reports`-Zeile anlegen.                                                              |
+| `PUT` / `DELETE`          | `/api/moments/{id}/save`           | Den Moment von jemand anderem merken / nicht mehr merken.                                          |
 | `GET` / `POST` / `DELETE` | `/api/moments/follows[/{user_id}]` | Deine Follow-Liste verwalten.                                                                      |
 
 Der Haushalts-Schalter `feat_momentum` unter **Einstellungen →
