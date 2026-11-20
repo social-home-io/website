@@ -76,7 +76,16 @@ time in the space's settings.
 
 Every space has an owner, and the owner can hand out roles. From
 the most to the least power: **owner**, **admin**, **moderator**,
-**member**, **follower**. A follower reads but doesn't post.
+**member**, **follower**. A follower is a member with a read-only
+role: they read along, and can comment or react if the owner allows
+it.
+
+If you turn on **Let admins act for me**, admins from other
+households can moderate, invite and publish while your home is
+offline, also admins who reach the space only through a GFS. It's
+off by default. Before you make someone from another household an
+admin, the app shows their **Household ID**: check it with them
+first. They find it on their **Connections** page.
 
 Each feature in a space — posting, the calendar, the Bazaar
 — can be **open** to every member, **reviewed** (a member's
@@ -87,7 +96,7 @@ looks at expire after seven days.
 ## What the GFS does for a global space
 
 A GFS is a relay any household can connect to. For a global
-space it does two jobs:
+space it does three jobs:
 
 1. **It's a directory.** The owner picks which GFSs list the
    space, up to eight. Each one shows its name, who hosts it, how
@@ -97,9 +106,16 @@ space it does two jobs:
 2. **It carries posts to people you aren't paired with.** That
    means **followers**, households that read along without
    joining (only if the owner allows followers; it's off by
-   default), and **members who joined with a GFS link**. Members
+   default), **members who joined with a GFS link**, and
+   households that found the space in Discover and **asked to
+   join**. Each of those households has one **anonymous mailbox**
+   on the GFS: the GFS drops sealed posts into it without knowing
+   whose mailbox it is or which space they came from. Members
    you're paired with still get every post directly or over the
    mesh.
+3. **It keeps pictures for a little while.** Photos and files for
+   those households are kept, encrypted, for a few days, so a
+   household that was offline can still fetch them.
 
 **Every listed GFS gets every post.** A member sends each post to
 all the GFSs the owner picked, including ones their own household
@@ -113,8 +129,9 @@ The relay never sees the _contents_ of your posts. Every post is
 sealed on the way out of your home and only opened in each
 recipient's home. The envelope is padded to one of a few fixed
 sizes, so the relay can't even tell a short message from a long
-one. It stores no content: if a household is offline, it holds
-their sealed envelopes for a day and then lets them go.
+one. It never stores anything it can read: posts for a household
+that's offline wait, sealed, for a day; pictures and files are kept
+encrypted for a few days (three by default) and then deleted.
 
 > Think of the relay as the post office for an open community.
 > The post office sees that a sealed parcel went to the book
@@ -137,34 +154,39 @@ key and send every item anonymously to every listed GFS
 listed address, after the GFS proves it holds the listed key.
 Receivers dedupe by item id. Envelopes are AES-256-GCM, signed
 with Ed25519. Padding buckets: 1 / 4 / 16 / 64 / 128 KiB (member
-publish), plus 191 KiB for envelope relay. Offline recipients are
-queued for 24 h, at most 2000 envelopes or 64 MiB per recipient.
+publish), 4 / 16 / 64 / 128 / 191 KiB (envelope relay), and
+64 / 128 / 256 / 516 KiB for binary frames that carry large items.
+Each household the GFS reaches has one mailbox per GFS, opened with
+an anonymous Privacy Pass ticket and claimed on its own socket; the
+GFS stores the mailbox id and its key, never a household id or a
+space. Sealed envelopes wait 24 h, at most 2000 envelopes / 32 MiB
+per mailbox. Space pictures sit in an encrypted media cache
+(`PUT/GET /gfs/media/{blob_id}`), 3 days and 5 GiB by default.
 Full detail on the [security model](/docs/security/#what-a-relay-sees)
 page.
 
 </details>
 
-## Trusted or strict
+## Members post anonymously
 
-The owner also chooses how members post through the GFS.
-
-- **Trusted** (the default): members post anonymously, so the GFS
-  can't tell which household posted.
-- **Strict**: on top of that, the GFS can't even tell which
-  households are allowed to write. Members and followers look the
-  same to it.
+Everyone who posts in a global space posts through the GFS the same
+way: anonymously. The GFS can tell that someone allowed to post
+there posted, and when, but not which household. It can't even tell
+members from followers; they look the same to it. There's nothing
+to set up.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
-Both modes hand every writer the per-epoch writer group key, so
-every item goes out anonymously to every listed GFS. The host
-relay is identity-free (`{space_id, event_type, payload}` on a
-cookie-less session). In strict mode writers subscribe in the
-same shuffled batch as followers. In both modes the GFS still
-sees source IP, timing, the size bucket and the subscriber set,
-and a GFS loses per-household bans for anonymous writers (per-IP
-limits remain; the owner revokes a writer by rotating the key).
+Every writer holds the per-epoch writer group key and sends each
+item anonymously to every listed GFS (`member-publish-anon`). The
+writer certificate travels inside the ciphertext, where the
+receiving households check it. The host relay is identity-free
+(`{space_id, event_type, payload}` on a cookie-less session).
+Writers subscribe in the same shuffled batch as followers. The GFS
+still sees source IP, timing, the size bucket and the subscriber
+set, and it loses per-household bans for anonymous writers (per-IP
+limits remain; the owner removes a writer, which rotates the key).
 
 </details>
 
@@ -177,11 +199,13 @@ limits remain; the owner revokes a writer by rotating the key).
    yet, until the owner picks a GFS.
 2. Anyone using one of those GFSs can find it under **Discover ›
    Global** and ask to join, or follow it if the owner allows
-   followers.
+   followers. You don't need to be paired with its host.
 3. Whether a join is granted depends on the space's **join
    mode**: **Open** (anyone can join straight away), **Request**
    (an admin says yes) or **Invite only**. Invite links work
-   alongside any of them.
+   alongside any of them. A request that comes through the GFS
+   shows the name the person gave, marked **Via the GFS · not
+   verified**: if it matters, check with them.
 4. Once you're in, posts travel from your home to every other
    member's home: directly or over the mesh for households you're
    paired with, through the listed GFSs for everyone else.
@@ -212,13 +236,14 @@ What that means in practice:
 - A new member who joins later only receives messages posted
   after they join. Earlier history isn't retroactively shared —
   members handle their own backups locally.
-- Every time the membership changes, the space gets a new key.
-  Someone who left can't read anything posted after they left.
+- Whenever someone leaves, is removed or loses the right to post,
+  the space gets a new key. Someone who left can't read anything
+  posted after they left.
 
 ## What happens if a GFS is down?
 
-Members you're paired with don't notice: their posts never went
-through the GFS. If the space is listed on more than one GFS,
+Members you're paired with don't notice: their posts reach you
+directly or over the mesh. If the space is listed on more than one GFS,
 followers on the others don't notice either. Only households that
 rely on the GFS that's down have to wait. Nothing is silently
 dropped: your household keeps retrying (after a few seconds, then
@@ -234,7 +259,7 @@ for example the project's one and one you run yourself.
 <summary>Under the hood</summary>
 
 Retry backoff: 5 s, 30 s, 2 min, 10 min. GFS-side queue for
-offline recipients: 24 h, 2000 envelopes / 64 MiB per recipient.
+offline recipients: 24 h, 2000 envelopes / 32 MiB per mailbox.
 
 </details>
 
@@ -265,7 +290,7 @@ Compose + Cloudflare guide.
 | How posts travel    | directly or over the mesh                       | the same for paired members; through every listed GFS for the rest |
 | What a GFS sees     | nothing (unless a private space switches it on) | routing data and a sealed, padded envelope, never content          |
 | Encryption          | **always on**                                   | **always on**                                                      |
-| Where messages live | each member's home                              | each member's home (a GFS never stores content)                    |
+| Where messages live | each member's home                              | each member's home (a GFS keeps sealed copies only briefly)        |
 | If a GFS is offline | n/a                                             | the other listed GFSs carry on; posts retry                        |
 | Can be turned off   | yes, by admin vote                              | remove a GFS any time (owner), or leave global (admin vote)        |
 

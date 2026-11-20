@@ -44,7 +44,8 @@ Any space — not just ones with children in mind — can set a
 **minimum age** (13, 16 or 18 — or none) and a target audience.
 Admins set it once, and the minimum age is checked on every path
 that seats a member: joining locally, joining from a paired
-household, and joining through a GFS link. There is no path that
+household, joining through a GFS link, and asking to join through
+a GFS. There is no path that
 skips the check. See [Global spaces](/docs/global-spaces/) for
 how a relay carries an age policy into a public directory.
 
@@ -53,8 +54,8 @@ how a relay carries an age policy into a public directory.
 
 `min_age ∈ {0, 13, 16, 18}` is part of the space's signed
 settings and is evaluated by the same seating code for local
-joins, federated joins from paired households and GFS-link
-joins. Protected accounts (`protected_minor = true`) are refused
+joins, federated joins from paired households, GFS-link joins and
+requests to join through a GFS. Protected accounts (`protected_minor = true`) are refused
 at the service layer for the Bazaar, public-scope spaces, public
 Momentum, public highlight links and personal API tokens,
 regardless of declared age.

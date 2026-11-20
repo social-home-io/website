@@ -42,6 +42,7 @@ key and no claim of device-to-device secrecy.
 | finds a stray invite link         | into the space, if it was a GFS link — treat those like keys; a Local link does nothing for a stranger |
 | has root on your home's server    | everything — it is your server; protect it like the rest of your home network                          |
 | is an admin of a space you are in | everything in that space, same as any member — admins aren't a backdoor                                |
+| is an admin you let act for you   | the space's signing key: they can invite, remove and change settings while you're offline              |
 
 The last two rows are the honest ones: Social Home protects your
 household from the outside, not from itself.
@@ -75,7 +76,7 @@ anyway" mode.
 <summary>Under the hood</summary>
 
 - No plaintext fallback; no trusted-instance mode.
-- Timestamp window ±300 s; replay cache 24 h.
+- Timestamp window ±300 s; replay cache 25 h.
 - Any signature failure drops the envelope before it is parsed
   further.
 
@@ -88,8 +89,8 @@ starts. When you pair with another household, the two of you
 agree a shared secret over a QR code or a short spoken code, so
 nobody can slip in between.
 
-Every space has its own key, and that key changes every time the
-membership changes. When someone leaves the book club, the club
+Every space has its own key, and that key changes whenever
+someone leaves or is removed. When someone leaves the book club, the club
 gets a new key; they can't read anything posted after that. When
 an admin is removed, the key that signs admin decisions changes
 too.
@@ -106,8 +107,8 @@ somewhere safe.
   (needs liboqs).
 - Pairing: X25519 + HKDF-SHA256, authenticated by the spoken
   code.
-- Space content: per-epoch AES-256-GCM key, rotated on every
-  membership change. Authority key rotated on admin revocation.
+- Space content: per-epoch AES-256-GCM key, rotated whenever
+  a member leaves, is removed or loses the right to post. Authority key rotated on admin revocation.
 - At rest: keys wrapped under a KEK (key-encryption key). Recovery
   Kit `.shrk` = scrypt + AES-256-GCM, for Docker and Python installs;
   the Home Assistant backup covers the app.
@@ -120,23 +121,26 @@ somewhere safe.
 
 The GFS (Global Federation Server) — the relay that helps
 households find each other — carries the posts of a global space
-to households you aren't paired with: followers, and members who
-joined with a GFS link. Paired households get them directly or
-over the mesh. It carries sealed envelopes, padded to a few fixed
-sizes, and fans them out. It
-stores no content: if a household is offline it keeps the sealed
-envelopes for a day, then lets them go. See
+to households you aren't paired with: followers, members who
+joined with a GFS link, and households that asked to join through
+it. Paired households get them directly or over the mesh. It
+carries sealed envelopes, padded to a few fixed sizes, and drops
+them into each household's anonymous mailbox. It never stores
+anything it can read: posts for an offline household wait, sealed,
+for a day; pictures are kept encrypted for a few days. See
 [GFS](/docs/glossary/#gfs) in the glossary.
 
-| Mode                      | What the relay learns                                                               |
-| ------------------------- | ----------------------------------------------------------------------------------- |
-| **Trusted** (default)     | that _someone_ in the space posted, and when — never which household                |
-| **Strict** (opt-in)       | the same, and it can't tell which households are allowed to write                   |
-| **Private space, GFS on** | which households belong to the channel — never the space's name, id, key or content |
+| What                              | What the relay learns                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------------- |
+| **Posts in a global space**       | that _someone_ allowed to post there posted, and when — never which household       |
+| **Delivery to a household**       | an anonymous mailbox — not whose it is, not which space a post is from              |
+| **Pictures for those households** | encrypted files it keeps a few days and can't open                                  |
+| **Private space, GFS on**         | which households belong to the channel — never the space's name, id, key or content |
 
-Only the GFSs the owner picked for a space are involved. In every
-mode the relay still sees the sender's IP address, the timing,
-the size bucket and which households receive a space's posts. A plain membership sync tells the GFS nothing.
+Only the GFSs the owner picked for a space are involved. The relay
+still sees the sender's IP address, the timing, the size bucket,
+who follows a global space, and which mailboxes a post goes to. A
+plain membership sync tells the GFS nothing.
 
 <details class="tech">
 <summary>Under the hood</summary>
@@ -148,18 +152,33 @@ the size bucket and which households receive a space's posts. A plain membership
   cookie-less session, and only to a GFS that has proved
   `anonymous_publish` — otherwise nothing is sent.
 - When a member publishes for itself (so the host needn't be
-  online), it signs with a shared per-epoch writer key in both
-  modes, so the GFS can't tell which member posted. It sends to
+  online), it always signs with a shared per-epoch writer key, so
+  the GFS can't tell which member posted. It sends to
   every GFS on the owner-signed list (at most 8), over a
   cookie-less session pinned to the listed address, after that
-  GFS proves it holds the listed key. In strict mode writers also
-  subscribe in the same shuffled batch as followers.
+  GFS proves it holds the listed key. The writer certificate
+  travels inside the ciphertext. Writers subscribe in the same
+  shuffled batch as followers.
+- Mailboxes: one per household per GFS, keys from HKDF-SHA256 over
+  a 32-byte mailbox root (X25519 to seal, Ed25519 to claim),
+  registered anonymously with a Privacy Pass ticket (blind
+  RSA-2048, RFC 9474). The GFS stores the mailbox id, its key and
+  two day-rounded timestamps — no household id, no space.
+- One update to many mailboxes is sealed once and its key wrapped
+  per recipient (`/gfs/envelope/multi`, up to 500), so the GFS sees
+  that item's recipient-mailbox list.
+- Space media cache: AES-256-GCM blobs, 3 days and 5 GiB by
+  default (operator maximum 7 days).
+- Admins you let act for you get the space's Ed25519 signing seed,
+  sealed for their household. Removing one rotates the key on
+  every GFS the space was listed on.
 - Private spaces: `private_gfs` off by default; when on, an
   opaque 128-bit channel id on the GFSs the owner picks.
 - Padding buckets: 1 / 4 / 16 / 64 / 128 KiB for member
-  publishes, plus a 191 KiB bucket for envelope relay.
+  publishes, 4 / 16 / 64 / 128 / 191 KiB for envelope relay, and
+  64 / 128 / 256 / 516 KiB for binary frames.
 - Offline recipients: queued 24 h, at most 2000 envelopes or
-  64 MiB per recipient. Your household retries with backoff:
+  32 MiB per mailbox. Your household retries with backoff:
   5 s, 30 s, 2 min, 10 min.
 
 </details>
@@ -322,9 +341,17 @@ you trust us with the group chat:
   connected to, sees your IP address when you post there. Because
   anonymous writers can't be told apart, a GFS can't ban one
   household; the owner removes a writer by rotating the space key.
-- In every mode the relay sees your IP address, the timing and the
-  size bucket of each envelope, and which households receive a
-  space's posts.
+- The relay sees your IP address, the timing and the size bucket
+  of each envelope, who follows a global space, and which
+  mailboxes one post goes to. A household's mailbox carries all its
+  spaces on that GFS, so a GFS can count one household's traffic.
+- A GFS that logs IP addresses can match a mailbox to the
+  household that connects from the same address. The project's GFS
+  doesn't log IP addresses.
+- Encrypted pictures sit on the GFS for a few days; it sees their
+  padded size.
+- While the owner is offline, a GFS can notice that someone else
+  holds the space's signing key, but not who.
 - Key exchange is not yet post-quantum; only signatures have an
   opt-in post-quantum variant.
 - There is no automated dependency scanning yet.
