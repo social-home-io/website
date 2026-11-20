@@ -86,7 +86,9 @@ est une décision qui revient à tous ses admins — voir
 Chaque espace a un foyer hôte : celui qui l'a créé et qui compte les
 votes des admins. L'hôte n'est pas un intermédiaire — les membres
 publient directement les uns vers les autres — mais c'est là que
-vit la liste des membres.
+vit la liste des membres. Si le propriétaire active **Autoriser les
+administrateurs à agir pour moi**, les admins d'autres foyers
+peuvent faire vivre l'espace pendant que l'hôte est hors ligne.
 
 ## GFS
 
@@ -96,8 +98,11 @@ se connaissent pas encore. Vous n'en avez pas besoin pour les
 foyers avec qui vous êtes jumelé. Un GFS liste les espaces
 globaux dont le propriétaire l'a choisi, et transporte leurs
 publications scellées vers les foyers avec qui
-vous n'êtes pas jumelé : les abonnés, et les membres qui ont
-rejoint avec un Lien GFS. Le projet Social Home en
+vous n'êtes pas jumelé : les abonnés, les membres qui ont rejoint
+avec un Lien GFS, et les foyers qui ont demandé à rejoindre par son
+intermédiaire. Chacun de ces foyers reçoit une
+[boîte aux lettres](#boîte-aux-lettres) anonyme sur le GFS. Un GFS
+garde aussi des photos chiffrées pendant quelques jours. Le projet Social Home en
 fait tourner un ; chacun peut
 [faire tourner le sien](/fr/docs/running-a-gfs/). Un GFS voit des
 enveloppes scellées et des informations de routage, jamais le
@@ -113,6 +118,28 @@ pas besoin d'être jumelée avec vous, parce que le GFS fait les
 présentations. Un **Lien local** ne fonctionne que pour les foyers
 auxquels vous êtes déjà connecté, et ne touche jamais un GFS.
 
+## Boîte aux lettres
+
+Quand votre foyer participe à un espace via un GFS, il y reçoit une
+boîte aux lettres anonyme. L'hôte et les autres membres y déposent
+les publications scellées, et votre maison vient les chercher. Le
+GFS ne connaît la boîte aux lettres que par un numéro d'apparence
+aléatoire : ni à qui elle appartient, ni quels espaces elle
+dessert. Vous ne voyez jamais de boîte aux lettres dans l'app.
+
+<details class="tech">
+<summary>Sous le capot</summary>
+
+Une boîte aux lettres par foyer et par GFS. Ses clés X25519 et
+Ed25519 sont dérivées d'une racine de boîte aux lettres de
+32 octets avec HKDF-SHA256, et son identifiant est
+`base32(SHA-256("sh-mbx-v1" ‖ sign_pk))`. Un foyer en ouvre une en
+dépensant un ticket Privacy Pass anonyme (RSA-2048 aveugle,
+RFC 9474) et l'annonce sur une carte de membre signée avec sa clé
+d'identité.
+
+</details>
+
 ## Visionneuse
 
 La visionneuse Social Home est la page dans laquelle un lien public
@@ -127,16 +154,16 @@ provient. Voir
 
 ## Abonné
 
-Un abonné est quelqu'un qui lit un espace sans en être membre. Les
-abonnés voient ce que l'espace publie, mais ils ne publient pas, et
-ils n'ont pas de voix au chapitre. Les rôles s'échelonnent ainsi :
+Un abonné est un membre d'un espace avec un rôle en lecture seule.
+Les abonnés voient ce que l'espace publie. Ils ne publient pas et ne
+votent pas aux sondages ; si l'espace l'autorise, ils peuvent
+commenter et réagir. Les rôles s'échelonnent ainsi :
 propriétaire → admin → modérateur → membre → abonné.
 
 ## Rotation des clés (époque)
 
 Chaque espace a une clé qui scelle ses publications. Chaque fois
-que les membres changent — quelqu'un arrive, quelqu'un part,
-quelqu'un est retiré — l'espace reçoit une nouvelle clé et entame
+que quelqu'un part, est retiré ou perd le droit de publier, l'espace reçoit une nouvelle clé et entame
 une nouvelle _époque_. Quelqu'un qui est parti ne peut rien lire de
 ce qui a été publié après son départ.
 

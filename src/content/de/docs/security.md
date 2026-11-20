@@ -44,6 +44,7 @@ auf Geheimhaltung von Gerät zu Gerät.
 | einen verirrten Einladungslink findet           | Zutritt zum Space, wenn es ein GFS-Link war — behandle sie wie Schlüssel; ein Lokaler Link nützt einem Fremden nichts                              |
 | Root-Zugriff auf den Server deines Zuhauses hat | alles — es ist dein Server; schütze ihn wie den Rest deines Heimnetzwerks                                                                          |
 | Admin eines Space ist, in dem du bist           | alles in diesem Space, wie jedes Mitglied — Admins sind keine Hintertür                                                                            |
+| Admin ist, den du für dich handeln lässt        | den Signaturschlüssel des Space: Er kann einladen, entfernen und Einstellungen ändern, während du offline bist                                     |
 
 Die letzten beiden Zeilen sind die ehrlichen: Social Home schützt
 deinen Haushalt von außen, nicht vor sich selbst.
@@ -78,7 +79,7 @@ vertrauen“-Modus.
 <summary>Unter der Haube</summary>
 
 - Kein Klartext-Fallback; kein Modus für vertraute Instanzen.
-- Zeitstempelfenster ±300 s; Replay-Cache 24 h.
+- Zeitstempelfenster ±300 s; Replay-Cache 25 h.
 - Jeder Signaturfehler verwirft den Umschlag, bevor er weiter
   geparst wird.
 
@@ -93,7 +94,7 @@ einen QR-Code oder einen kurzen gesprochenen Code, damit sich
 niemand dazwischenschieben kann.
 
 Jeder Space hat seinen eigenen Schlüssel, und dieser Schlüssel
-ändert sich jedes Mal, wenn sich die Mitgliedschaft ändert. Wenn
+ändert sich, sobald jemand geht oder entfernt wird. Wenn
 jemand den Buchclub verlässt, bekommt der Club einen neuen
 Schlüssel; die Person kann nichts lesen, was danach gepostet
 wird. Wenn ein Admin entfernt wird, ändert sich auch der
@@ -111,8 +112,9 @@ herunter und bewahrst es an einem sicheren Ort auf.
   Signaturen (benötigt liboqs).
 - Kopplung: X25519 + HKDF-SHA256, authentifiziert durch den
   gesprochenen Code.
-- Space-Inhalte: AES-256-GCM-Schlüssel pro Epoche, bei jeder
-  Änderung der Mitgliedschaft rotiert. Autoritätsschlüssel wird
+- Space-Inhalte: AES-256-GCM-Schlüssel pro Epoche, rotiert, sobald
+  ein Mitglied geht, entfernt wird oder das Recht zum Posten
+  verliert. Autoritätsschlüssel wird
   beim Entfernen eines Admins rotiert.
 - Im Ruhezustand: Schlüssel verpackt unter einem KEK
   (Key-Encryption Key). Recovery Kit `.shrk` = scrypt +
@@ -129,24 +131,27 @@ herunter und bewahrst es an einem sicheren Ort auf.
 Der GFS (Global Federation Server) — der globale
 Föderationsserver, das Relay, das Haushalten hilft, einander zu
 finden — trägt die Beiträge eines globalen Space zu Haushalten,
-mit denen du nicht gekoppelt bist: Followern und Mitgliedern, die
-über einen GFS-Link beigetreten sind. Gekoppelte Haushalte
-bekommen sie direkt oder über das Mesh. Er trägt versiegelte
-Umschläge, auf wenige feste Größen gepolstert, und verteilt sie. Er speichert keine Inhalte: Ist ein Haushalt
-offline, behält er die versiegelten Umschläge einen Tag lang und
-lässt sie dann los. Siehe [GFS](/de/docs/glossary/#gfs) im
+mit denen du nicht gekoppelt bist: Followern, Mitgliedern, die
+über einen GFS-Link beigetreten sind, und Haushalten, die über ihn
+um Beitritt gebeten haben. Gekoppelte Haushalte bekommen sie direkt
+oder über das Mesh. Er trägt versiegelte Umschläge, auf wenige feste
+Größen gepolstert, und legt sie in das anonyme Postfach jedes
+Haushalts. Er speichert nie etwas, das er lesen kann: Beiträge für
+einen Haushalt, der offline ist, warten versiegelt einen Tag lang;
+Bilder bleiben ein paar Tage verschlüsselt liegen. Siehe [GFS](/de/docs/glossary/#gfs) im
 Glossar.
 
-| Modus                      | Was das Relay erfährt                                                                               |
-| -------------------------- | --------------------------------------------------------------------------------------------------- |
-| **Vertraut** (Standard)    | dass _jemand_ im Space gepostet hat, und wann — nie, welcher Haushalt                               |
-| **Streng** (Opt-in)        | dasselbe, und er kann nicht erkennen, welche Haushalte schreiben dürfen                             |
-| **Privater Space, GFS an** | welche Haushalte zum Kanal gehören — nie den Namen, die ID, den Schlüssel oder den Inhalt des Space |
+| Was                                  | Was das Relay erfährt                                                                               |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| **Beiträge in einem globalen Space** | dass _jemand_, der dort posten darf, gepostet hat, und wann — nie, welcher Haushalt                 |
+| **Zustellung an einen Haushalt**     | ein anonymes Postfach — nicht, wem es gehört, nicht, aus welchem Space ein Beitrag kommt            |
+| **Bilder für diese Haushalte**       | verschlüsselte Dateien, die er ein paar Tage aufhebt und nicht öffnen kann                          |
+| **Privater Space, GFS an**           | welche Haushalte zum Kanal gehören — nie den Namen, die ID, den Schlüssel oder den Inhalt des Space |
 
 Beteiligt sind nur die GFS, die der Besitzer für einen Space
-gewählt hat. In jedem Modus sieht das Relay weiterhin die
-IP-Adresse des Absenders, die Zeitpunkte, die Größenklasse und welche Haushalte
-die Beiträge eines Space empfangen. Eine reine
+gewählt hat. Das Relay sieht weiterhin die IP-Adresse des
+Absenders, die Zeitpunkte, die Größenklasse, wer einem globalen
+Space folgt und in welche Postfächer ein Beitrag geht. Eine reine
 Mitgliedschafts-Synchronisation verrät dem GFS nichts.
 
 <details class="tech">
@@ -160,21 +165,39 @@ payload}` auf einer Sitzung ohne Cookies, und nur an einen GFS,
   der `anonymous_publish` nachgewiesen hat — sonst wird nichts
   gesendet.
 - Wenn ein Mitglied für sich selbst veröffentlicht (damit der
-  Host nicht online sein muss), signiert es in beiden Modi mit
-  einem gemeinsamen Writer-Key pro Epoche, sodass der GFS nicht
+  Host nicht online sein muss), signiert es immer mit einem
+  gemeinsamen Writer-Key pro Epoche, sodass der GFS nicht
   erkennen kann, welches Mitglied gepostet hat. Es sendet an jeden
   GFS auf der vom Besitzer signierten Liste (höchstens 8), über
   eine Sitzung ohne Cookies, die an die gelistete Adresse gepinnt
   ist, nachdem dieser GFS bewiesen hat, dass er den gelisteten
-  Schlüssel besitzt. Im strengen Modus abonnieren Schreiber
-  außerdem im selben gemischten Stapel wie Follower.
+  Schlüssel besitzt. Das Schreiber-Zertifikat reist im Geheimtext
+  mit. Schreiber abonnieren im selben gemischten Stapel wie
+  Follower.
+- Postfächer: eins pro Haushalt und GFS, Schlüssel per HKDF-SHA256
+  aus einer 32-Byte-Postfach-Wurzel (X25519 zum Versiegeln, Ed25519
+  zum Beanspruchen), anonym registriert mit einem
+  Privacy-Pass-Ticket (Blind RSA-2048, RFC 9474). Der GFS speichert
+  die Postfach-ID, ihren Schlüssel und zwei auf den Tag gerundete
+  Zeitstempel — keine Haushalts-ID, keinen Space.
+- Ein Update an viele Postfächer wird einmal versiegelt und sein
+  Schlüssel pro Empfänger verpackt (`/gfs/envelope/multi`, bis zu
+  500), sodass der GFS die Liste der Empfänger-Postfächer dieses
+  Elements sieht.
+- Medien-Cache für Spaces: AES-256-GCM-Blobs, standardmäßig 3 Tage
+  und 5 GiB (vom Betreiber höchstens 7 Tage).
+- Admins, die du für dich handeln lässt, bekommen den
+  Ed25519-Signatur-Seed des Space, versiegelt für ihren Haushalt.
+  Entfernst du einen, wird der Schlüssel auf jedem GFS rotiert, auf
+  dem der Space gelistet war.
 - Private Spaces: `private_gfs` standardmäßig aus; wenn an, eine
   opake 128-Bit-Kanal-ID auf den GFS, die der Besitzer wählt.
 - Polsterungsklassen: 1 / 4 / 16 / 64 / 128 KiB für
-  Mitglieder-Veröffentlichungen, plus eine 191-KiB-Klasse für das
-  Weiterleiten von Umschlägen.
+  Mitglieder-Veröffentlichungen, 4 / 16 / 64 / 128 / 191 KiB für
+  das Weiterleiten von Umschlägen und 64 / 128 / 256 / 516 KiB für
+  Binär-Frames.
 - Offline-Empfänger: 24 h in der Warteschlange, höchstens 2000
-  Umschläge oder 64 MiB pro Empfänger. Dein Haushalt versucht es
+  Umschläge oder 32 MiB pro Postfach. Dein Haushalt versucht es
   mit Backoff erneut: 5 s, 30 s, 2 min, 10 min.
 
 </details>
@@ -354,9 +377,19 @@ du uns den Gruppenchat anvertraust:
   sind, kann ein GFS keinen einzelnen Haushalt sperren; der
   Besitzer entfernt einen Schreiber, indem er den Schlüssel des
   Space rotiert.
-- In jedem Modus sieht das Relay deine IP-Adresse, die Zeitpunkte
-  und die Größenklasse jedes Umschlags sowie welche Haushalte die
-  Beiträge eines Space empfangen.
+- Das Relay sieht deine IP-Adresse, die Zeitpunkte und die
+  Größenklasse jedes Umschlags, wer einem globalen Space folgt und
+  in welche Postfächer ein Beitrag geht. Das Postfach eines
+  Haushalts trägt alle seine Spaces auf diesem GFS, ein GFS kann
+  also den Verkehr eines Haushalts zählen.
+- Ein GFS, der IP-Adressen protokolliert, kann ein Postfach dem
+  Haushalt zuordnen, der sich von derselben Adresse verbindet. Der
+  GFS des Projekts protokolliert keine IP-Adressen.
+- Verschlüsselte Bilder liegen ein paar Tage auf dem GFS; er sieht
+  ihre gepolsterte Größe.
+- Während der Besitzer offline ist, kann ein GFS bemerken, dass
+  jemand anderes den Signaturschlüssel des Space hält, aber nicht,
+  wer.
 - Der Schlüsselaustausch ist noch nicht post-quantum; nur
   Signaturen haben eine optionale Post-Quantum-Variante.
 - Es gibt noch kein automatisches Dependency-Scanning.

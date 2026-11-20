@@ -42,10 +42,11 @@ enveloppen, naar huishoudens waarmee je niet gekoppeld bent. Wat hij over je te 
 space is ingesteld (zie [GFS](/nl/docs/glossary/#gfs) in de
 woordenlijst):
 
-- **Vertrouwd** (de standaard): alleen dat _iemand_ in de space
-  plaatste, en wanneer. Leden posten anoniem.
-- **Strikt** (opt-in per space): hetzelfde, en hij kan niet eens
-  zien welke huishoudens mogen schrijven.
+- **Wereldwijde spaces**: alleen dat _iemand_ die daar mag posten
+  iets plaatste, en wanneer. Leden posten altijd anoniem, en leden
+  en volgers zien er voor hem hetzelfde uit.
+- **Huishoudens bij wie hij bezorgt**: een anonieme brievenbus —
+  niet van wie hij is, en niet uit welke space een post komt.
 - **Een privé space met de GFS-schakelaar aan** (standaard uit):
   welke huishoudens bij het kanaal horen — nooit de naam, het id,
   de sleutel of de inhoud van de space.
@@ -65,12 +66,16 @@ Hij ziet **nooit**:
   huishouden.
 
 Hij ziet wel je IP-adres, de tijdstippen en de ruwe grootte van
-elke envelop, en welke huishoudens de posts van een space
-ontvangen.
+elke envelop, wie een wereldwijde space volgt, en naar welke
+anonieme brievenbussen een post gaat. Hij bewaart ook versleutelde
+foto's een paar dagen, zodat een huishouden dat offline was ze nog
+kan ophalen.
 
-Er komt helemaal geen relay aan te pas als je geen wereldwijde
-spaces hebt, geen openbare momenten, geen openbare
-highlight-links en geen privé space met de GFS-schakelaar aan. Je
+Er komt helemaal geen relay aan te pas als je in geen enkele
+wereldwijde space zit of er een volgt, nergens lid van bent
+geworden via een GFS-link, en geen openbare momenten, geen
+openbare highlight-links en geen privé space met de
+GFS-schakelaar aan hebt. Je
 huishouden praat dan alleen met huishoudens waarmee je gekoppeld
 bent, rechtstreeks.
 
@@ -78,16 +83,22 @@ bent, rechtstreeks.
 <summary>Onder de motorkap</summary>
 
 Alleen routeringsmetadata: `space_id`, `event_type`, grootteklasse
-(1 / 4 / 16 / 64 / 128 KiB, plus 191 KiB voor envelop-relay),
+(1 / 4 / 16 / 64 / 128 KiB voor publicaties door leden,
+4 / 16 / 64 / 128 / 191 KiB voor envelop-relay),
 tijdstippen, abonneeset, bron-IP. Een post die door het
 host-huishouden wordt doorgegeven is identiteitsvrij
 `{space_id, event_type, payload}` op een sessie zonder cookies;
-een lid dat voor zichzelf publiceert, ondertekent in beide modi
-met een gedeelde schrijfsleutel per epoche. Een privé space met
+een lid dat voor zichzelf publiceert, ondertekent altijd met een
+gedeelde schrijfsleutel per epoche. Bezorgingen gaan naar één
+anonieme brievenbus per huishouden per GFS, geopend met een
+Privacy Pass-ticket; de GFS slaat geen verband op tussen een
+brievenbus en een huishouden. Een privé space met
 `private_gfs` aan gebruikt een ondoorzichtig 128-bits kanaal-id
 op de GFS'en die de eigenaar kiest.
 Offline ontvangers staan 24 h in de wachtrij (2000 enveloppen /
-64 MiB per ontvanger); daarbuiten wordt geen inhoud opgeslagen.
+32 MiB per brievenbus). Foto's van spaces staan standaard 3 dagen
+(maximaal 7) in een versleutelde mediacache. Verder wordt er niets
+opgeslagen.
 
 </details>
 
@@ -136,8 +147,8 @@ een `.shrk`-bestand, verzegeld met scrypt + AES-256-GCM.
 ## Dingen waar jij over gaat
 
 - **Wie er in een space zit** (Instellingen → Spaces — nodig leden
-  uit of verwijder ze; elke wijziging in het ledenbestand geeft de
-  space een nieuwe sleutel, dus wie verwijderd is kan niets lezen
+  uit of verwijder ze; iemand verwijderen geeft de space een
+  nieuwe sleutel, dus wie verwijderd is kan niets lezen
   wat daarna is geplaatst).
 - **Aanwezigheid delen** (Instellingen → Privacy — opt-in, per lid
   van het huishouden, op elk moment uit te zetten).
@@ -145,7 +156,9 @@ een `.shrk`-bestand, verzegeld met scrypt + AES-256-GCM.
   huishouden en zijn kopie van je berichten wordt niet langer
   vertrouwd).
 - **Welke relay, als er al een is** (Instellingen → Verbindingen —
-  de GFS is optioneel en jij kiest welke).
+  de GFS is optioneel en jij kiest welke). In een wereldwijde
+  space gaan je posts ook naar de GFS'en die de eigenaar ervan
+  heeft gekozen.
 - **Back-ups** — jouw verantwoordelijkheid, zoals al het andere in
   je huis.
 

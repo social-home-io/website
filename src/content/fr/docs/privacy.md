@@ -42,10 +42,12 @@ avec qui vous n'êtes pas jumelé. Ce qu'il apprend sur vous
 dépend de la configuration de l'espace (voir
 [GFS](/fr/docs/glossary/#gfs) dans le glossaire) :
 
-- **Confiance** (par défaut) : seulement que _quelqu'un_ dans
-  l'espace a publié, et quand. Les membres publient anonymement.
-- **Strict** (activé par espace) : la même chose, et il ne peut
-  même pas savoir quels foyers ont le droit d'écrire.
+- **Espaces globaux** : seulement que _quelqu'un_ qui a le droit
+  d'y publier a publié, et quand. Les membres publient toujours
+  anonymement, et membres et abonnés se ressemblent à ses yeux.
+- **Foyers auxquels il livre** : une boîte aux lettres anonyme —
+  ni à qui elle appartient, ni de quel espace vient une
+  publication.
 - **Un espace privé avec l'interrupteur GFS activé** (désactivé par
   défaut) : quels foyers appartiennent au canal — jamais le nom,
   l'identifiant, la clé ou le contenu de l'espace.
@@ -65,11 +67,14 @@ Il ne voit **jamais** :
   de votre foyer.
 
 Il voit votre adresse IP, les horaires et la taille approximative
-de chaque enveloppe, et quels foyers reçoivent les publications
-d'un espace.
+de chaque enveloppe, qui suit un espace global, et à quelles
+boîtes aux lettres anonymes va une publication. Il garde aussi des
+photos chiffrées pendant quelques jours, pour qu'un foyer qui était
+hors ligne puisse encore les récupérer.
 
-Aucun relais n'intervient du tout si vous n'avez ni espace global,
-ni moment public, ni lien public de highlight, ni espace
+Aucun relais n'intervient du tout si vous n'êtes membre ou abonné
+d'aucun espace global, n'avez rien rejoint avec un Lien GFS, et
+n'avez ni moment public, ni lien public de highlight, ni espace
 privé avec l'interrupteur GFS activé. Votre foyer ne parle alors
 qu'aux foyers avec lesquels vous êtes jumelé, directement.
 
@@ -77,16 +82,22 @@ qu'aux foyers avec lesquels vous êtes jumelé, directement.
 <summary>Sous le capot</summary>
 
 Métadonnées de routage uniquement : `space_id`, `event_type`,
-classe de taille (1 / 4 / 16 / 64 / 128 KiB, plus 191 KiB pour le
-relais d'enveloppes), horaires, ensemble des abonnés, IP source.
+classe de taille (1 / 4 / 16 / 64 / 128 KiB pour les publications
+de membres, 4 / 16 / 64 / 128 / 191 KiB pour le relais
+d'enveloppes), horaires, ensemble des abonnés, IP source.
 Une publication relayée par le foyer hôte est sans identité,
 `{space_id, event_type, payload}` sur une session sans cookie ; un
-membre qui publie pour lui-même signe avec une clé d'écriture
-partagée par époque dans les deux modes. Un espace privé avec
+membre qui publie pour lui-même signe toujours avec une clé
+d'écriture partagée par époque. Les livraisons vont dans une boîte
+aux lettres anonyme par foyer et par GFS, ouverte avec un ticket
+Privacy Pass ; le GFS ne stocke aucun lien entre une boîte aux
+lettres et un foyer. Un espace privé avec
 `private_gfs` activé utilise un identifiant de canal opaque de
 128 bits sur les GFS choisis par le propriétaire. Les destinataires hors
-ligne sont mis en file 24 h (2000 enveloppes / 64 MiB par
-destinataire) ; aucun contenu n'est conservé au-delà.
+ligne sont mis en file 24 h (2000 enveloppes / 32 MiB par boîte
+aux lettres). Les photos des espaces sont placées dans un cache
+média chiffré pendant 3 jours par défaut (au plus 7). Rien d'autre
+n'est conservé.
 
 </details>
 
@@ -136,15 +147,17 @@ est un fichier `.shrk` scellé avec scrypt + AES-256-GCM.
 ## Ce que vous contrôlez
 
 - **Qui est dans un espace** (Paramètres → Espaces — invitez ou
-  retirez des membres ; chaque changement de membres donne une
-  nouvelle clé à l'espace, de sorte qu'une personne retirée ne peut
+  retirez des membres ; retirer quelqu'un donne une nouvelle clé à
+  l'espace, de sorte qu'une personne retirée ne peut
   rien lire de ce qui est publié ensuite).
 - **Le partage de présence** (Paramètres → Confidentialité — sur
   activation, par membre du foyer, désactivable à tout moment).
 - **Le jumelage** (Paramètres → Connexions — retirez un foyer et
   sa copie de vos messages cesse d'être de confiance).
 - **Quel relais, s'il y en a un** (Paramètres → Connexions — le
-  GFS est facultatif et vous choisissez lequel).
+  GFS est facultatif et vous choisissez lequel). Dans un espace
+  global, vos publications vont aussi aux GFS choisis par son
+  propriétaire.
 - **Les sauvegardes** — votre responsabilité, comme tout le reste
   chez vous.
 

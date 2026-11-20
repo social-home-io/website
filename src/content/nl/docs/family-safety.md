@@ -51,7 +51,8 @@ gemaakt — kan een **minimumleeftijd** instellen (13, 16 of 18 — of
 geen) en een doelgroep. Beheerders stellen het één keer in, en de
 minimumleeftijd wordt gecontroleerd op elk pad dat een lid een
 plek geeft: lokaal lid worden, lid worden vanuit een gekoppeld
-huishouden, en lid worden via een GFS-link. Er is geen pad dat de
+huishouden, lid worden via een GFS-link, en vragen om lid te worden
+via een GFS. Er is geen pad dat de
 controle overslaat. Zie [Wereldwijde spaces](/nl/docs/global-spaces/)
 voor hoe een relay een leeftijdsbeleid meeneemt naar een openbare
 directory.
@@ -62,7 +63,8 @@ directory.
 `min_age ∈ {0, 13, 16, 18}` maakt deel uit van de ondertekende
 instellingen van de space en wordt door dezelfde plaatsingscode
 geëvalueerd voor lokale joins, gefedereerde joins vanuit gekoppelde
-huishoudens en joins via een GFS-link. Beschermde accounts
+huishoudens, joins via een GFS-link en verzoeken om lid te worden
+via een GFS. Beschermde accounts
 (`protected_minor = true`) worden op de servicelaag geweigerd voor
 de Bazaar, spaces met openbaar bereik, openbare Momentum, openbare
 highlight-links en persoonlijke API-tokens, ongeacht de opgegeven

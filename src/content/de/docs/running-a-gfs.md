@@ -14,14 +14,16 @@ Der [GFS (Global Federation Server – der globale Föderationsserver)](/de/docs
 Aufgaben. Er ist ein Verzeichnis, damit Haushalte die globalen Spaces
 finden, deren Besitzer ihn gewählt haben. Er transportiert versiegelte Beiträge zu Haushalten, die
 nicht miteinander gekoppelt sind — Followern eines globalen Space,
-Mitgliedern, die über einen GFS-Link beigetreten sind, privaten
-Spaces, deren Besitzer den GFS eingeschaltet hat, und gekoppelten
-Haushalten, die den GFS-Ausweichweg eingeschaltet haben —, damit
-ein Space weiterläuft, während sein Host schläft. Und er vermittelt öffentliche
+Mitgliedern, die über einen GFS-Link beigetreten sind oder über ihn
+um Beitritt gebeten haben, privaten Spaces, deren Besitzer den GFS
+eingeschaltet hat, und gekoppelten Haushalten, die den
+GFS-Ausweichweg eingeschaltet haben —, jeweils über ein anonymes
+Postfach, damit ein Space weiterläuft, während sein Host schläft. Ihre
+Bilder hebt er ein paar Tage verschlüsselt auf. Und er vermittelt öffentliche
 Highlight-Links — siehe
 [Highlights → öffentlich teilen](/de/docs/highlights/#öffentlich-teilen-über-einen-global-server)
 für den Ablauf aus Sicht des Autors. Bei jeder dieser Aufgaben
-hantiert er nur mit Umschlägen: Er liest nie eine Nachricht,
+hantiert er nur mit versiegelten Daten: Er liest nie eine Nachricht,
 speichert nie einen Highlight-Frame und liefert nie die Seite aus,
 die ein öffentlicher Link öffnet. Ein eigenes Relay zu hosten
 heißt, dass deine Community entscheidet, wer beitreten darf, und
@@ -111,17 +113,19 @@ base_url = "https://gfs.example.com"
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Jede Option in `global_server.toml` lässt sich auch als
-Umgebungsvariable mit dem Präfix `GFS_` setzen — praktisch, wenn du
+Die wichtigsten Optionen in `global_server.toml` lassen sich auch
+als Umgebungsvariablen mit dem Präfix `GFS_` setzen — praktisch, wenn du
 die Compose-Datei lieber in sich geschlossen halten willst:
 
-| Variable          | Konfigurationsschlüssel | Standard          |
-| ----------------- | ----------------------- | ----------------- |
-| `GFS_HOST`        | `[server] host`         | `0.0.0.0`         |
-| `GFS_PORT`        | `[server] port`         | `8765`            |
-| `GFS_BASE_URL`    | `[server] base_url`     | —                 |
-| `GFS_DATA_DIR`    | Datenverzeichnis        | `/var/lib/sh-gfs` |
-| `GFS_OPEN_SIGNUP` | `open_signup`           | `false`           |
+| Variable                      | Konfigurationsschlüssel     | Standard                       |
+| ----------------------------- | --------------------------- | ------------------------------ |
+| `GFS_HOST`                    | `[server] host`             | `0.0.0.0`                      |
+| `GFS_PORT`                    | `[server] port`             | `8765`                         |
+| `GFS_BASE_URL`                | `[server] base_url`         | —                              |
+| `GFS_DATA_DIR`                | Datenverzeichnis            | `/var/lib/sh-gfs`              |
+| `GFS_OPEN_SIGNUP`             | `open_signup`               | `false`                        |
+| `GFS_SPACE_MEDIA_MAX_BYTES`   | `[space_media] max_bytes`   | 5 GiB                          |
+| `GFS_SPACE_MEDIA_TTL_SECONDS` | `[space_media] ttl_seconds` | `259200` (3 Tage, höchstens 7) |
 
 Bei gleichem Schlüssel gewinnt die Umgebungsvariable über die Datei.
 
@@ -137,7 +141,9 @@ veröffentlicht werden, warten dagegen im Admin-Portal auf deine
 Freigabe (`auto_accept_spaces = false`) — dein Verzeichnis listet
 nur, was du dir angesehen hast. Die offene Registrierung ist aus,
 sodass niemand ein Konto auf dem Relay selbst anlegen kann, solange
-du sie nicht einschaltest.
+du sie nicht einschaltest. Dein Relay hebt außerdem bis zu 5 GiB
+verschlüsselter Bilder aus Spaces auf, jedes höchstens drei Tage —
+lass dafür also Platz auf der Festplatte.
 
 ## 5. Firewall öffnen
 
@@ -178,11 +184,15 @@ gültig.
 ## Was dein Relay sehen wird
 
 Ein Relay zu betreiben gibt dir kein Fenster in irgendeinen Space.
-Beiträge kommen versiegelt und aufgepolstert an; du erfährst, zu
-welchem Space ein Umschlag gehört und wann er angekommen ist, aber
-nicht, welcher Haushalt ihn veröffentlicht hat. Im strengen Modus
-(Streng) erkennst du nicht einmal, welche Haushalte schreiben
-dürfen. Das vollständige Bild, einschließlich
+Beiträge kommen versiegelt und aufgepolstert an. Bei einem globalen
+Space erfährst du, dass jemand dort gepostet hat, und wann, nie,
+welcher Haushalt; Mitglieder und Follower sehen gleich aus.
+Zustellungen gehen an anonyme Postfächer: Du siehst eine
+Postfach-Nummer, den Zeitpunkt und eine aufgepolsterte Größe, nie
+den Haushalt oder den Space. Verschlüsselte Bilder liegen ein paar
+Tage in deinem Cache, und du kannst sie nicht öffnen. Bitte
+protokolliere keine IP-Adressen: Mit ihnen ließe sich ein Postfach
+einem Haushalt zuordnen. Das vollständige Bild, einschließlich
 dessen, was das Relay weiterhin beobachten kann (Timing, Größen,
 IP-Adressen), steht im [Sicherheitsmodell](/de/docs/security/).
 

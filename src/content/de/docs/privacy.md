@@ -44,10 +44,11 @@ bist. Was er über dich erfährt, hängt davon ab,
 wie der Space eingerichtet ist (siehe
 [GFS](/de/docs/glossary/#gfs) im Glossar):
 
-- **Vertraut** (der Standard): nur, dass _jemand_ im Space
-  gepostet hat, und wann. Mitglieder posten anonym.
-- **Streng** (Opt-in pro Space): dasselbe, und er kann nicht
-  einmal erkennen, welche Haushalte schreiben dürfen.
+- **Globale Spaces**: nur, dass _jemand_, der dort posten darf,
+  gepostet hat, und wann. Mitglieder posten immer anonym, und
+  Mitglieder und Follower sehen für ihn gleich aus.
+- **Haushalte, denen er zustellt**: ein anonymes Postfach — nicht,
+  wem es gehört, und nicht, aus welchem Space ein Beitrag kommt.
 - **Ein privater Space mit eingeschaltetem GFS** (standardmäßig
   aus): welche Haushalte zum Kanal gehören — nie den Namen, die
   ID, den Schlüssel oder den Inhalt des Space.
@@ -67,29 +68,34 @@ Er sieht **nie**:
   deines Haushalts.
 
 Er sieht deine IP-Adresse, die Zeitpunkte und die ungefähre Größe
-jedes Umschlags sowie welche Haushalte die Beiträge eines Space
-empfangen.
+jedes Umschlags, wer einem globalen Space folgt und in welche
+anonymen Postfächer ein Beitrag geht. Außerdem hebt er
+verschlüsselte Bilder ein paar Tage auf, damit ein Haushalt, der
+offline war, sie trotzdem noch abholen kann.
 
-Gar kein Relay ist beteiligt, wenn du keine globalen Spaces, keine
-öffentlichen Momente, keine öffentlichen
-Highlight-Links und keinen privaten Space mit eingeschaltetem GFS
-hast. Dein Haushalt redet dann nur mit Haushalten, mit denen du
+Gar kein Relay ist beteiligt, wenn du in keinem globalen Space bist
+und keinem folgst, nichts über einen GFS-Link beigetreten bist und
+keine öffentlichen Momente, keine öffentlichen Highlight-Links und
+keinen privaten Space mit eingeschaltetem GFS hast. Dein Haushalt redet dann nur mit Haushalten, mit denen du
 gekoppelt bist, direkt.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
 Nur Routing-Metadaten: `space_id`, `event_type`, Größenklasse
-(1 / 4 / 16 / 64 / 128 KiB, plus 191 KiB für das Weiterleiten von
-Umschlägen), Zeitpunkte, Abonnentenmenge, Quell-IP. Ein vom
+(1 / 4 / 16 / 64 / 128 KiB für Mitglieder-Veröffentlichungen,
+4 / 16 / 64 / 128 / 191 KiB für das Weiterleiten von Umschlägen), Zeitpunkte, Abonnentenmenge, Quell-IP. Ein vom
 Host-Haushalt weitergeleiteter Beitrag ist identitätsfrei
 `{space_id, event_type, payload}` auf einer Sitzung ohne Cookies;
-ein Mitglied, das für sich selbst veröffentlicht, signiert in
-beiden Modi mit einem gemeinsamen Writer-Key pro Epoche. Ein
-privater Space mit eingeschaltetem `private_gfs` verwendet eine
+ein Mitglied, das für sich selbst veröffentlicht, signiert immer
+mit einem gemeinsamen Writer-Key pro Epoche. Zustellungen gehen an
+ein anonymes Postfach pro Haushalt und GFS, geöffnet mit einem
+Privacy-Pass-Ticket; der GFS speichert keine Verbindung von einem
+Postfach zu einem Haushalt. Ein privater Space mit eingeschaltetem `private_gfs` verwendet eine
 opake 128-Bit-Kanal-ID auf den GFS, die der Besitzer auswählt. Offline-Empfänger werden 24 h in die
-Warteschlange gestellt (2000 Umschläge / 64 MiB pro Empfänger);
-darüber hinaus wird kein Inhalt gespeichert.
+Warteschlange gestellt (2000 Umschläge / 32 MiB pro Postfach).
+Bilder aus Spaces liegen standardmäßig 3 Tage (höchstens 7) in
+einem verschlüsselten Medien-Cache. Sonst wird nichts gespeichert.
 
 </details>
 
@@ -141,8 +147,8 @@ AES-256-GCM.
 ## Dinge, die du kontrollierst
 
 - **Wer in einem Space ist** (Einstellungen → Spaces — Mitglieder
-  einladen oder entfernen; jede Änderung der Mitgliedschaft gibt
-  dem Space einen neuen Schlüssel, sodass jemand Entferntes
+  einladen oder entfernen; wenn du jemanden entfernst, bekommt
+  der Space einen neuen Schlüssel, sodass jemand Entferntes
   nichts lesen kann, was danach gepostet wird).
 - **Anwesenheit teilen** (Einstellungen → Datenschutz — Opt-in,
   pro Haushaltsmitglied, jederzeit abschaltbar).
@@ -151,6 +157,8 @@ AES-256-GCM.
   vertraut).
 - **Welches Relay, falls überhaupt** (Einstellungen →
   Verbindungen — der GFS ist optional, und du wählst, welchen).
+  In einem globalen Space gehen deine Beiträge außerdem an die GFS,
+  die sein Besitzer gewählt hat.
 - **Backups** — deine Verantwortung, wie alles andere in deinem
   Zuhause.
 

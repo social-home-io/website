@@ -153,7 +153,8 @@ worden uitgenodigd. Elke space heeft een host-huishouden – het
 huishouden dat hem heeft gemaakt en de ledenlijst bijhoudt –
 maar leden plaatsen rechtstreeks bij elkaar, en de grote
 beslissingen (wie hem ziet, of hij nog bestaat) nemen alle
-beheerders samen.
+beheerders samen. Als de eigenaar het toestaat, kunnen beheerders
+uit andere huishoudens ook handelen terwijl de host offline is.
 
 ## Openbare en wereldwijde spaces
 
@@ -169,9 +170,11 @@ vinden (zie [GFS](/nl/docs/glossary/#gfs)).
 
 Gekoppelde huishoudens krijgen de posts van een space altijd
 rechtstreeks of via de mesh. De relay brengt posts alleen naar
-huishoudens waarmee je niet gekoppeld bent – volgers, en leden
-die via een GFS-link zijn toegetreden – als verzegelde, opgevulde
-enveloppen, en elke vermelde GFS krijgt elke post. Hij kan er
+huishoudens waarmee je niet gekoppeld bent – volgers, leden die
+via een GFS-link zijn toegetreden, en huishoudens die via hem
+vroegen om lid te worden – als verzegelde, opgevulde enveloppen,
+elk in de anonieme brievenbus van dat huishouden. Elke vermelde
+GFS krijgt elke post. Hij kan er
 geen woord van lezen, en leden posten anoniem. Meer in
 [Wereldwijde spaces](/nl/docs/global-spaces/).
 
@@ -185,9 +188,13 @@ gekoppelde huishoudens als een `SPACE_DIRECTORY_SYNC`-snapshot en
 komen nooit bij een GFS. Leden publiceren anoniem naar elke
 vermelde GFS. De GFS ziet alleen
 routeringsmetadata (`space_id`, `event_type`, groottebucket,
-timing, abonneeset, bron-IP); de strikte modus maakt publicaties
-identiteitsvrij. Voor offline leden wordt 24 uur in de wachtrij
-gezet; verder wordt niets opgeslagen.
+timing, abonneeset, bron-IP); publicaties zijn altijd
+identiteitsvrij, ondertekend met een gedeelde schrijfsleutel per
+epoche. Huishoudens die via een GFS worden bereikt, krijgen één
+anonieme brievenbus per GFS. Verzegelde enveloppen wachten
+maximaal 24 uur; versleutelde foto's worden maximaal 3 dagen
+gecachet (instelling van de beheerder, maximaal 7). Verder wordt
+niets opgeslagen.
 
 </details>
 
