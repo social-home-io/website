@@ -115,9 +115,7 @@ case that still needs the host online.
 
 When a member posts through the GFS, the GFS can't tell which household
 it came from, and can't even tell which households are allowed to
-write. That used to be a choice the owner made in the space settings.
-Now it is simply how every space works, so there is one setting less
-to think about.
+write. It's how every space works, with nothing to set up.
 
 <details class="tech">
 <summary>Under the hood</summary>
