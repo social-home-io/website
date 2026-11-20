@@ -44,6 +44,7 @@ geheimhouding van apparaat tot apparaat.
 | een rondslingerende uitnodigingslink vindt | toegang tot de space, als het een GFS-link was — behandel die als sleutels; een Lokale link doet niets voor een vreemde |
 | root heeft op de server van je huis        | alles — het is jouw server; bescherm hem zoals de rest van je thuisnetwerk                                              |
 | beheerder is van een space waar jij in zit | alles in die space, net als elk ander lid — beheerders zijn geen achterdeur                                             |
+| beheerder is die namens jou mag handelen   | de ondertekeningssleutel van de space: kan uitnodigen, verwijderen en instellingen wijzigen terwijl jij offline bent    |
 
 De laatste twee rijen zijn de eerlijke: Social Home beschermt je
 huishouden tegen de buitenwereld, niet tegen zichzelf.
@@ -78,7 +79,7 @@ maar”.
 <summary>Onder de motorkap</summary>
 
 - Geen terugval naar platte tekst; geen trusted-instance-modus.
-- Tijdstempelvenster ±300 s; replay-cache 24 h.
+- Tijdstempelvenster ±300 s; replay-cache 25 h.
 - Elke mislukte handtekeningcontrole gooit de envelop weg voordat
   die verder wordt geparset.
 
@@ -92,7 +93,7 @@ jullie samen een gedeeld geheim af via een QR-code of een korte
 uitgesproken code, zodat niemand ertussen kan glippen.
 
 Elke space heeft een eigen sleutel, en die sleutel verandert
-telkens als het ledenbestand verandert. Als iemand de leesclub
+zodra iemand vertrekt of wordt verwijderd. Als iemand de leesclub
 verlaat, krijgt de club een nieuwe sleutel; die persoon kan niets
 lezen wat daarna is geplaatst. Als een beheerder wordt verwijderd,
 verandert ook de sleutel die beheerdersbeslissingen ondertekent.
@@ -107,8 +108,9 @@ Assistant-back-up; met Docker of Python download je een Recovery Kit en bewaar j
   handtekeningen (vereist liboqs).
 - Koppelen: X25519 + HKDF-SHA256, geauthenticeerd door de
   uitgesproken code.
-- Space-inhoud: AES-256-GCM-sleutel per epoche, geroteerd bij elke
-  wijziging in het ledenbestand. Autoriteitssleutel geroteerd bij
+- Space-inhoud: AES-256-GCM-sleutel per epoche, geroteerd zodra
+  een lid vertrekt, wordt verwijderd of niet meer mag posten.
+  Autoriteitssleutel geroteerd bij
   intrekking van een beheerder.
 - In rust: sleutels ingepakt onder een KEK (key-encryption key).
   Recovery Kit `.shrk` = scrypt + AES-256-GCM, voor installaties met Docker en
@@ -124,25 +126,28 @@ Assistant-back-up; met Docker of Python download je een Recovery Kit en bewaar j
 De GFS (Global Federation Server) — de wereldwijde
 federatieserver, de relay die huishoudens helpt elkaar te vinden —
 brengt de posts van een wereldwijde space naar huishoudens waarmee
-je niet gekoppeld bent: volgers, en leden die via een GFS-link
-zijn toegetreden. Gekoppelde huishoudens krijgen ze rechtstreeks
-of via de mesh. Hij draagt verzegelde enveloppen, opgevuld tot
-een paar vaste groottes, en waaiert ze uit. Hij slaat
-geen inhoud op: is een huishouden offline, dan bewaart hij de
-verzegelde enveloppen een dag en laat ze daarna los. Zie
+je niet gekoppeld bent: volgers, leden die via een GFS-link zijn
+toegetreden, en huishoudens die via hem vroegen om lid te worden.
+Gekoppelde huishoudens krijgen ze rechtstreeks of via de mesh. Hij
+draagt verzegelde enveloppen, opgevuld tot een paar vaste
+groottes, en gooit ze in de anonieme brievenbus van elk
+huishouden. Hij slaat nooit iets op wat hij kan lezen: posts voor
+een huishouden dat offline is, wachten een dag, verzegeld; foto's
+worden een paar dagen versleuteld bewaard. Zie
 [GFS](/nl/docs/glossary/#gfs) in de woordenlijst.
 
-| Modus                     | Wat de relay te weten komt                                                                           |
-| ------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Vertrouwd** (standaard) | dat _iemand_ in de space plaatste, en wanneer — nooit welk huishouden                                |
-| **Strikt** (opt-in)       | hetzelfde, en hij kan niet zien welke huishoudens mogen schrijven                                    |
-| **Privé space, GFS aan**  | welke huishoudens bij het kanaal horen — nooit de naam, het id, de sleutel of de inhoud van de space |
+| Wat                                | Wat de relay te weten komt                                                                           |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Posts in een wereldwijde space** | dat _iemand_ die daar mag posten iets plaatste, en wanneer — nooit welk huishouden                   |
+| **Bezorging bij een huishouden**   | een anonieme brievenbus — niet van wie hij is, niet uit welke space een post komt                    |
+| **Foto's voor die huishoudens**    | versleutelde bestanden die hij een paar dagen bewaart en niet kan openen                             |
+| **Privé space, GFS aan**           | welke huishoudens bij het kanaal horen — nooit de naam, het id, de sleutel of de inhoud van de space |
 
 Alleen de GFS'en die de eigenaar voor een space heeft gekozen,
-doen mee. In elke modus ziet de relay nog steeds het IP-adres van
-de afzender, de tijdstippen, de grootteklasse en welke huishoudens de
-posts van een space ontvangen. Een gewone ledensynchronisatie
-vertelt de GFS niets.
+doen mee. De relay ziet nog steeds het IP-adres van de afzender,
+de tijdstippen, de grootteklasse, wie een wereldwijde space volgt,
+en naar welke brievenbussen een post gaat. Een gewone
+ledensynchronisatie vertelt de GFS niets.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -155,21 +160,39 @@ vertelt de GFS niets.
   `anonymous_publish` heeft bewezen — anders wordt er niets
   verstuurd.
 - Als een lid voor zichzelf publiceert (zodat de host niet online
-  hoeft te zijn), ondertekent het in beide modi met een gedeelde
+  hoeft te zijn), ondertekent het altijd met een gedeelde
   schrijfsleutel per epoche, zodat de GFS niet kan zien welk lid
   plaatste. Het stuurt naar elke GFS op de door de eigenaar
   ondertekende lijst (maximaal 8), via een sessie zonder cookies
   die vastgepind is op het vermelde adres, nadat die GFS heeft
-  bewezen dat hij de vermelde sleutel bezit. In de strikte modus
-  abonneren schrijvers zich bovendien in dezelfde geschudde batch
-  als volgers.
+  bewezen dat hij de vermelde sleutel bezit. Het
+  schrijverscertificaat reist mee in de ciphertext. Schrijvers
+  abonneren zich in dezelfde geschudde batch als volgers.
+- Brievenbussen: één per huishouden per GFS, sleutels via
+  HKDF-SHA256 uit een brievenbus-root van 32 bytes (X25519 om te
+  verzegelen, Ed25519 om te claimen), anoniem geregistreerd met een
+  Privacy Pass-ticket (blind RSA-2048, RFC 9474). De GFS slaat het
+  brievenbus-id, de sleutel ervan en twee op de dag afgeronde
+  tijdstempels op — geen huishoud-id, geen space.
+- Eén update voor veel brievenbussen wordt één keer verzegeld en de
+  sleutel wordt per ontvanger ingepakt (`/gfs/envelope/multi`, tot
+  500), dus de GFS ziet de lijst met ontvangende brievenbussen van
+  dat item.
+- Mediacache van spaces: AES-256-GCM-blobs, standaard 3 dagen en
+  5 GiB (maximaal 7 dagen, in te stellen door de beheerder van de
+  GFS).
+- Beheerders die namens jou mogen handelen, krijgen de
+  Ed25519-ondertekeningsseed van de space, verzegeld voor hun
+  huishouden. Eén van hen verwijderen roteert de sleutel op elke
+  GFS waarop de space vermeld stond.
 - Privé spaces: `private_gfs` standaard uit; indien aan, een
   ondoorzichtig 128-bits kanaal-id op de GFS'en die de eigenaar
   kiest.
 - Opvulklassen: 1 / 4 / 16 / 64 / 128 KiB voor publicaties door
-  leden, plus een klasse van 191 KiB voor envelop-relay.
+  leden, 4 / 16 / 64 / 128 / 191 KiB voor envelop-relay, en
+  64 / 128 / 256 / 516 KiB voor binaire frames.
 - Offline ontvangers: 24 h in de wachtrij, hoogstens 2000
-  enveloppen of 64 MiB per ontvanger. Je huishouden probeert
+  enveloppen of 32 MiB per brievenbus. Je huishouden probeert
   opnieuw met backoff: 5 s, 30 s, 2 min, 10 min.
 
 </details>
@@ -347,9 +370,18 @@ ons de groepschat toevertrouwt:
   onderscheiden zijn, kan een GFS niet één huishouden bannen; de
   eigenaar verwijdert een schrijver door de sleutel van de space
   te roteren.
-- In elke modus ziet de relay je IP-adres, de tijdstippen en de
-  grootteklasse van elke envelop, en welke huishoudens de posts van
-  een space ontvangen.
+- De relay ziet je IP-adres, de tijdstippen en de grootteklasse
+  van elke envelop, wie een wereldwijde space volgt, en naar welke
+  brievenbussen één post gaat. De brievenbus van een huishouden
+  draagt al zijn spaces op die GFS, dus een GFS kan het verkeer van
+  één huishouden tellen.
+- Een GFS die IP-adressen logt, kan een brievenbus in verband brengen met het
+  huishouden dat vanaf hetzelfde adres verbinding maakt. De GFS van
+  het project logt geen IP-adressen.
+- Versleutelde foto's staan een paar dagen op de GFS; hij ziet hun
+  opgevulde grootte.
+- Terwijl de eigenaar offline is, kan een GFS merken dat iemand
+  anders de ondertekeningssleutel van de space heeft, maar niet wie.
 - De sleuteluitwisseling is nog niet post-quantum; alleen
   handtekeningen hebben een opt-in post-quantumvariant.
 - Er is nog geen geautomatiseerd scannen van afhankelijkheden.

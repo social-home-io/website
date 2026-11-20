@@ -152,7 +152,8 @@ Haushalte eingeladen werden. Jeder Space hat einen Host-Haushalt —
 den, der ihn angelegt hat und die Mitgliederliste führt —, aber die
 Mitglieder posten direkt untereinander, und die großen
 Entscheidungen (wer ihn sieht, ob es ihn noch gibt) treffen alle
-seine Admins gemeinsam.
+seine Admins gemeinsam. Wenn der Besitzer es erlaubt, können Admins
+aus anderen Haushalten auch handeln, während der Host offline ist.
 
 ## Öffentliche und globale Spaces
 
@@ -168,9 +169,11 @@ kennen, ihn finden können (siehe [GFS](/de/docs/glossary/#gfs)).
 
 Gekoppelte Haushalte bekommen die Beiträge eines Space immer direkt
 oder über das Mesh. Das Relay trägt Beiträge nur zu Haushalten, mit
-denen du nicht gekoppelt bist — Followern und Mitgliedern, die über
-einen GFS-Link beigetreten sind —, als versiegelte, aufgepolsterte
-Umschläge, und jeder gelistete GFS bekommt jeden Beitrag. Lesen kann
+denen du nicht gekoppelt bist — Followern, Mitgliedern, die über
+einen GFS-Link beigetreten sind, und Haushalten, die über ihn um
+Beitritt gebeten haben —, als versiegelte, aufgepolsterte Umschläge,
+jeweils in das anonyme Postfach dieses Haushalts. Jeder gelistete
+GFS bekommt jeden Beitrag. Lesen kann
 es kein Wort, und Mitglieder posten anonym. Mehr dazu unter [Globale Spaces](/de/docs/global-spaces/).
 
 <details class="tech">
@@ -182,9 +185,13 @@ auf den GFS in seiner vom Besitzer signierten `gfs_servers`-Liste
 `SPACE_DIRECTORY_SYNC`-Snapshot und berühren nie einen GFS.
 Mitglieder veröffentlichen anonym auf jedem gelisteten GFS. Der GFS sieht nur
 Routing-Metadaten (`space_id`, `event_type`, Größenklasse, Timing,
-Abonnentenmenge, Quell-IP); der strenge Modus macht
-Veröffentlichungen identitätsfrei. Für Offline-Mitglieder wird 24 h
-lang gepuffert; sonst wird nichts gespeichert.
+Abonnentenmenge, Quell-IP); Veröffentlichungen sind immer
+identitätsfrei, signiert mit einem gemeinsamen Writer-Key pro
+Epoche. Haushalte, die über einen GFS erreicht werden, bekommen ein
+anonymes Postfach pro GFS. Versiegelte Umschläge warten bis zu 24 h;
+verschlüsselte Bilder werden bis zu 3 Tage zwischengespeichert
+(Einstellung des Betreibers, höchstens 7). Sonst wird nichts
+gespeichert.
 
 </details>
 

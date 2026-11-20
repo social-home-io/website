@@ -86,7 +86,16 @@ entfernen.
 Jeder Space hat einen Besitzer, und der Besitzer kann Rollen
 vergeben. Von der meisten zur wenigsten Macht: **Besitzer**,
 **Admin**, **Moderator**, **Mitglied**, **Follower**. Ein Follower
-liest, postet aber nicht.
+ist ein Mitglied mit einer Rolle nur zum Lesen: Er liest mit und
+kann kommentieren oder reagieren, wenn der Besitzer das erlaubt.
+
+Schaltest du **Admins dürfen für mich handeln** ein, können Admins
+aus anderen Haushalten moderieren, einladen und veröffentlichen,
+während dein Zuhause offline ist, auch Admins, die den Space nur über
+einen GFS erreichen. Standardmäßig ist das aus. Bevor du jemanden aus
+einem anderen Haushalt zum Admin machst, zeigt dir die App seine
+**Haushalts-ID**: Gleiche sie vorher mit ihm ab. Er findet sie auf
+seiner Seite **Verbindungen**.
 
 Jede Funktion in einem Space — Posten, der Kalender, der Basar
 — kann **offen** für jedes Mitglied sein, **geprüft** (der Beitrag
@@ -97,7 +106,7 @@ die sich niemand ansieht, verfallen nach sieben Tagen.
 ## Was der GFS für einen globalen Space tut
 
 Ein GFS ist ein Relay, mit dem sich jeder Haushalt verbinden kann.
-Für einen globalen Space hat er zwei Aufgaben:
+Für einen globalen Space hat er drei Aufgaben:
 
 1. **Er ist ein Verzeichnis.** Der Besitzer wählt, welche GFS den
    Space listen, bis zu acht. Jeder zeigt seinen Namen, wer ihn
@@ -107,9 +116,17 @@ Für einen globalen Space hat er zwei Aufgaben:
 2. **Er trägt Beiträge zu Leuten, mit denen du nicht gekoppelt
    bist.** Das sind **Follower**, Haushalte, die mitlesen, ohne
    beizutreten (nur wenn der Besitzer Follower erlaubt; standardmäßig
-   ist das aus), und **Mitglieder, die über einen GFS-Link
-   beigetreten sind**. Mitglieder, mit denen du gekoppelt bist,
-   bekommen jeden Beitrag weiterhin direkt oder über das Mesh.
+   ist das aus), **Mitglieder, die über einen GFS-Link
+   beigetreten sind**, und Haushalte, die den Space unter Entdecken
+   gefunden und **um Beitritt gebeten** haben. Jeder dieser Haushalte
+   hat ein **anonymes Postfach** auf dem GFS: Der GFS legt
+   versiegelte Beiträge hinein, ohne zu wissen, wem das Postfach
+   gehört oder aus welchem Space sie kommen. Mitglieder, mit denen du
+   gekoppelt bist, bekommen jeden Beitrag weiterhin direkt oder über
+   das Mesh.
+3. **Er hebt Bilder eine Weile auf.** Fotos und Dateien für diese
+   Haushalte bleiben ein paar Tage verschlüsselt liegen, sodass ein
+   Haushalt, der offline war, sie trotzdem noch abholen kann.
 
 **Jeder gelistete GFS bekommt jeden Beitrag.** Ein Mitglied schickt
 jeden Beitrag an alle GFS, die der Besitzer gewählt hat, auch an
@@ -125,8 +142,10 @@ auf dem Weg aus deinem Zuhause versiegelt und erst im Zuhause jedes
 Empfängers wieder geöffnet. Der Umschlag wird auf eine von wenigen
 festen Größen aufgepolstert, sodass das Relay nicht einmal eine
 kurze Nachricht von einer langen unterscheiden kann. Es speichert
-keine Inhalte: Ist ein Haushalt offline, hält es dessen versiegelte
-Umschläge einen Tag lang zurück und lässt sie dann fallen.
+nie etwas, das es lesen kann: Beiträge für einen Haushalt, der
+offline ist, warten versiegelt einen Tag lang; Bilder und Dateien
+bleiben ein paar Tage verschlüsselt liegen (standardmäßig drei) und
+werden dann gelöscht.
 
 > Stell dir das Relay als Poststelle einer offenen Community vor.
 > Die Poststelle sieht, dass ein versiegeltes Paket an den Buchclub
@@ -152,36 +171,41 @@ gelistete Adresse gepinnt ist, nachdem der GFS bewiesen hat, dass er
 den gelisteten Schlüssel besitzt. Empfänger deduplizieren nach
 Element-ID. Umschläge sind AES-256-GCM, signiert mit Ed25519.
 Padding-Klassen: 1 / 4 / 16 / 64 / 128 KiB
-(Mitglieder-Veröffentlichung), plus 191 KiB für Umschlag-Relay.
-Offline-Empfänger werden 24 h lang gepuffert, höchstens 2000
-Umschläge oder 64 MiB pro Empfänger. Alle Details auf der Seite zum
+(Mitglieder-Veröffentlichung), 4 / 16 / 64 / 128 / 191 KiB
+(Umschlag-Relay) und 64 / 128 / 256 / 516 KiB für Binär-Frames, die
+große Elemente tragen. Jeder Haushalt, den der GFS erreicht, hat ein
+Postfach pro GFS, geöffnet mit einem anonymen Privacy-Pass-Ticket
+und auf einem eigenen Socket beansprucht; der GFS speichert die
+Postfach-ID und ihren Schlüssel, nie eine Haushalts-ID oder einen
+Space. Versiegelte Umschläge warten 24 h, höchstens 2000 Umschläge /
+32 MiB pro Postfach. Bilder aus Spaces liegen in einem
+verschlüsselten Medien-Cache (`PUT/GET /gfs/media/{blob_id}`),
+standardmäßig 3 Tage und 5 GiB. Alle Details auf der Seite zum
 [Sicherheitsmodell](/de/docs/security/#was-ein-relay-sieht).
 
 </details>
 
-## Vertraut oder streng
+## Mitglieder posten anonym
 
-Der Besitzer wählt außerdem, wie Mitglieder über den GFS posten.
-
-- **Vertraut** (Standard): Mitglieder posten anonym, der GFS kann
-  also nicht erkennen, welcher Haushalt gepostet hat.
-- **Streng**: Zusätzlich kann der GFS nicht einmal erkennen, welche
-  Haushalte schreiben dürfen. Mitglieder und Follower sehen für ihn
-  gleich aus.
+Wer in einem globalen Space postet, postet auf dieselbe Weise über
+den GFS: anonym. Der GFS kann erkennen, dass jemand gepostet hat, der
+dort posten darf, und wann, aber nicht, welcher Haushalt. Er kann
+nicht einmal Mitglieder von Followern unterscheiden; für ihn sehen
+sie gleich aus. Einzurichten gibt es nichts.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
-Beide Modi geben jedem Schreiber den Schreib-Gruppenschlüssel pro
-Epoche, sodass jedes Element anonym an jeden gelisteten GFS geht.
-Das Host-Relay ist identitätsfrei
-(`{space_id, event_type, payload}` auf einer Sitzung ohne Cookies).
-Im strengen Modus abonnieren Schreiber im selben gemischten Stapel
-wie Follower. In beiden Modi sieht der GFS weiterhin Quell-IP,
-Timing, die Größenklasse und die Abonnentenmenge, und ein GFS
-verliert Sperren pro Haushalt für anonyme Schreiber (Limits pro IP
-bleiben; der Besitzer entzieht einem Schreiber die Rechte, indem er
-den Schlüssel rotiert).
+Jeder Schreiber hält den Schreib-Gruppenschlüssel pro Epoche und
+schickt jedes Element anonym an jeden gelisteten GFS
+(`member-publish-anon`). Das Schreiber-Zertifikat reist im
+Geheimtext mit, wo die empfangenden Haushalte es prüfen. Das
+Host-Relay ist identitätsfrei (`{space_id, event_type, payload}` auf
+einer Sitzung ohne Cookies). Schreiber abonnieren im selben
+gemischten Stapel wie Follower. Der GFS sieht weiterhin Quell-IP,
+Timing, die Größenklasse und die Abonnentenmenge, und er verliert
+Sperren pro Haushalt für anonyme Schreiber (Limits pro IP bleiben;
+der Besitzer entfernt einen Schreiber, was den Schlüssel rotiert).
 
 </details>
 
@@ -194,11 +218,15 @@ den Schlüssel rotiert).
    noch nirgends gelistet sein, bis der Besitzer einen GFS wählt.
 2. Jeder, der einen dieser GFS nutzt, kann ihn unter **Entdecken ›
    Global** finden und um Beitritt bitten oder ihm folgen, wenn
-   der Besitzer Follower erlaubt.
+   der Besitzer Follower erlaubt. Du musst nicht mit seinem Host
+   gekoppelt sein.
 3. Ob ein Beitritt gewährt wird, hängt vom **Beitrittsmodus** des
    Space ab: **Offen** (jeder kann sofort beitreten), **Anfrage**
    (ein Admin sagt Ja) oder **Nur auf Einladung**. Einladungslinks
-   funktionieren zusätzlich zu jedem davon.
+   funktionieren zusätzlich zu jedem davon. Eine Anfrage, die über
+   den GFS kommt, zeigt den Namen, den die Person angegeben hat,
+   markiert mit **Über den GFS · nicht überprüft**: Wenn es darauf
+   ankommt, frag bei ihr nach.
 4. Sobald du drin bist, reisen Beiträge von deinem Zuhause zum
    Zuhause jedes anderen Mitglieds: direkt oder über das Mesh für
    Haushalte, mit denen du gekoppelt bist, über die gelisteten GFS
@@ -232,14 +260,14 @@ Was das in der Praxis heißt:
   die nach seinem Beitritt gepostet wurden. Frühere Verläufe werden
   nicht nachträglich geteilt — Mitglieder kümmern sich lokal um
   ihre eigenen Backups.
-- Bei jeder Änderung der Mitgliedschaft bekommt der Space einen
-  neuen Schlüssel. Wer gegangen ist, kann nichts lesen, was danach
+- Sobald jemand geht, entfernt wird oder das Recht zum Posten
+  verliert, bekommt der Space einen neuen Schlüssel. Wer gegangen ist, kann nichts lesen, was danach
   gepostet wurde.
 
 ## Was passiert, wenn ein GFS ausfällt?
 
 Mitglieder, mit denen du gekoppelt bist, merken nichts: Ihre
-Beiträge liefen nie über den GFS. Ist der Space auf mehr als einem
+Beiträge erreichen dich direkt oder über das Mesh. Ist der Space auf mehr als einem
 GFS gelistet, merken auch Follower auf den anderen nichts. Nur
 Haushalte, die auf den ausgefallenen GFS angewiesen sind, müssen
 warten. Nichts geht stillschweigend verloren: Dein Haushalt versucht
@@ -258,7 +286,7 @@ selbst betreibst.
 <summary>Unter der Haube</summary>
 
 Retry-Backoff: 5 s, 30 s, 2 min, 10 min. Warteschlange auf GFS-Seite
-für Offline-Empfänger: 24 h, 2000 Umschläge / 64 MiB pro Empfänger.
+für Offline-Empfänger: 24 h, 2000 Umschläge / 32 MiB pro Postfach.
 
 </details>
 
@@ -290,7 +318,7 @@ Anleitung mit Docker Compose + Cloudflare.
 | Wie Beiträge reisen      | direkt oder über das Mesh                              | genauso für gekoppelte Mitglieder; über jeden gelisteten GFS für alle anderen |
 | Was ein GFS sieht        | nichts (außer ein privater Space schaltet ihn ein)     | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte   |
 | Verschlüsselung          | **immer an**                                           | **immer an**                                                                  |
-| Wo Nachrichten liegen    | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (ein GFS speichert nie Inhalte)                    |
+| Wo Nachrichten liegen    | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (ein GFS hält versiegelte Kopien nur kurz)         |
 | Wenn ein GFS offline ist | entfällt                                               | die anderen gelisteten GFS machen weiter; Beiträge werden wiederholt          |
 | Lässt sich abschalten    | ja, per Admin-Abstimmung                               | GFS jederzeit entfernen (Besitzer) oder nicht mehr global (Admin-Abstimmung)  |
 

@@ -285,14 +285,14 @@ export const nl: UiStrings = {
       {
         claim: "Space verlaten? Sleutel kwijt.",
         detail:
-          "Elke keer dat het ledenbestand verandert, krijgt de space een nieuwe sleutel. Oude leden kunnen nieuwe berichten niet lezen.",
-        chips: ["sleutel per epoche", "gewisseld bij elke wijziging"],
+          "Als iemand vertrekt of wordt verwijderd, krijgt de space een nieuwe sleutel. Oude leden kunnen nieuwe berichten niet lezen.",
+        chips: ["sleutel per epoche", "gewisseld bij elke verwijdering"],
       },
       {
         claim: "De relay draagt pakjes, geen brieven.",
         detail:
-          "Hij ziet bij welke space een verzegelde envelop hoort en wanneer — nooit wat erin zit. De strikte modus verbergt zelfs wie het verstuurde.",
-        chips: ["padded 1/4/16/64/128 KiB", "±300 s", "24 h replay cache"],
+          "Hij ziet bij welke wereldwijde space een verzegelde post hoort en wanneer — nooit wat erin zit, en nooit welk huishouden hem verstuurde.",
+        chips: ["padded 1/4/16/64/128 KiB", "anonieme brievenbussen", "25 h replay cache"],
       },
       {
         claim: "Getest voor elke release.",
@@ -487,11 +487,15 @@ export const nl: UiStrings = {
       "Relay voor openbare Highlights-links",
       "Openbare links openen in een viewer die deze server niet draait",
       "Leeftijdsgrensbeleid wordt afgedwongen",
-      "Verzegelde berichten in de wachtrij voor offline huishoudens, daarna weg",
+      "Verzegelde berichten een dag en foto's een paar dagen bewaard, versleuteld, daarna weg",
       "Leest nooit de inhoud van berichten, foto's of gesprekken",
     ],
     technicalTerms: "Technische termen",
-    chips: ["padded 1/4/16/64/128 KiB", "wachtrij 24 h", "geen inhoud opgeslagen"],
+    chips: [
+      "padded 1/4/16/64/128 KiB",
+      "wachtrij 24 h · fotocache 3 dagen",
+      "niets leesbaars opgeslagen",
+    ],
     connect: "Verbinden →",
     qrLabel: "QR-code om met de Social Home-GFS te koppelen",
     qrCaptionHtml:
@@ -514,15 +518,15 @@ export const nl: UiStrings = {
     seesRows: [
       {
         space: "Wereldwijde spaces",
-        mode: "vertrouwd · standaard",
-        sees: "Dat iemand iets plaatste, in welke space, wanneer — nooit welk huishouden.",
-        never: "De inhoud.",
+        mode: "altijd anoniem",
+        sees: "Dat iemand iets plaatste, in welke space, wanneer. Leden en volgers zien er hetzelfde uit.",
+        never: "De inhoud, of welk huishouden het plaatste.",
       },
       {
-        space: "Wereldwijde spaces",
-        mode: "strikt · keuze van de eigenaar",
-        sees: "Hetzelfde — en zelfs niet welke huishoudens mogen schrijven.",
-        never: "De inhoud, of de afzender.",
+        space: "Huishoudens bij wie hij bezorgt",
+        mode: "anonieme brievenbus",
+        sees: "Een brievenbusnummer, het tijdstip en een opgevulde grootte.",
+        never: "Van wie de brievenbus is, of uit welke space een post komt.",
       },
       {
         space: "Privé space met de GFS ingeschakeld",
@@ -535,10 +539,10 @@ export const nl: UiStrings = {
       "alleen routeringsmetadata",
       "identity-free host relay",
       "anonymous_publish proof",
-      "strikte modus · gedeelde schrijfsleutel",
+      "gedeelde schrijfsleutel",
     ],
     residualsHtml:
-      'Zoals elke server op het internet ziet hij ook je IP-adres, het tijdstip van elk verzoek en de grootteklasse van elke envelop. Die restrisico\'s staan opgeschreven in het <a href="/docs/security/">beveiligingsmodel</a>.',
+      "Zoals elke server op het internet ziet hij ook je IP-adres, het tijdstip van elk verzoek en de grootteklasse van elke envelop, en hij bewaart versleutelde foto's een paar dagen. Onze GFS logt geen IP-adressen. Die restrisico's staan opgeschreven in het <a href=\"/docs/security/\">beveiligingsmodel</a>.",
     runOwnHeading: "Draai je eigen",
     runOwnHtml:
       'Voor een besloten gemeenschap, een organisatie of een relay voor één huishouden kun je in ongeveer 15 minuten je eigen GFS opzetten op elke VPS. <a href="/docs/running-a-gfs/">Zet je eigen GFS op →</a>',

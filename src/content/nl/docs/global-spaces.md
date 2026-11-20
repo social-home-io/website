@@ -89,8 +89,17 @@ weghalen in de instellingen van de space.
 
 Elke space heeft een eigenaar, en de eigenaar kan rollen
 uitdelen. Van de meeste naar de minste macht: **eigenaar**,
-**beheerder**, **moderator**, **lid**, **volger**. Een volger
-leest wel, maar plaatst niets.
+**beheerder**, **moderator**, **lid**, **volger**. Een volger is
+een lid met een alleen-lezenrol: hij leest mee, en kan reageren of
+emoji-reacties geven als de eigenaar dat toestaat.
+
+Zet je **Beheerders mogen namens mij handelen** aan, dan kunnen
+beheerders uit andere huishoudens modereren, uitnodigen en
+publiceren terwijl jouw huis offline is, ook beheerders die de
+space alleen via een GFS bereiken. Het staat standaard uit. Voordat
+je iemand uit een ander huishouden beheerder maakt, toont de app
+diens **Huishoud-ID**: vergelijk het eerst met hem of haar. Het
+staat op diens pagina **Verbindingen**.
 
 Elke functie in een space – posten, de agenda, de Bazaar –
 kan **open** zijn voor elk lid, **beoordeeld** (de bijdrage van
@@ -101,7 +110,7 @@ niemand naar kijkt, vervallen na zeven dagen.
 ## Wat de GFS doet voor een wereldwijde space
 
 Een GFS is een relay waarmee elk huishouden verbinding kan maken.
-Voor een wereldwijde space heeft hij twee taken:
+Voor een wereldwijde space heeft hij drie taken:
 
 1. **Hij is een gids.** De eigenaar kiest op welke GFS'en de space
    vermeld staat, maximaal acht. Elk daarvan toont de naam, wie
@@ -111,9 +120,16 @@ Voor een wereldwijde space heeft hij twee taken:
 2. **Hij brengt posts naar wie je niet gekoppeld bent.** Dat zijn
    **volgers**, huishoudens die meelezen zonder lid te worden
    (alleen als de eigenaar volgers toestaat; standaard staat dat
-   uit), en **leden die via een GFS-link zijn toegetreden**. Leden
-   met wie je gekoppeld bent, krijgen elke post nog steeds
-   rechtstreeks of via de mesh.
+   uit), **leden die via een GFS-link zijn toegetreden**, en
+   huishoudens die de space in Ontdekken vonden en **vroegen om
+   lid te worden**. Elk van die huishoudens heeft één **anonieme
+   brievenbus** op de GFS: de GFS gooit er verzegelde posts in
+   zonder te weten van wie de brievenbus is of uit welke space ze
+   komen. Leden met wie je gekoppeld bent, krijgen elke post nog
+   steeds rechtstreeks of via de mesh.
+3. **Hij bewaart foto's even.** Foto's en bestanden voor die
+   huishoudens worden een paar dagen versleuteld bewaard, zodat
+   een huishouden dat offline was ze nog kan ophalen.
 
 **Elke vermelde GFS krijgt elke post.** Een lid stuurt elke post
 naar alle GFS'en die de eigenaar heeft gekozen, ook naar GFS'en
@@ -127,9 +143,10 @@ De relay ziet nooit de _inhoud_ van je posts. Elke post wordt
 verzegeld als hij je huis verlaat en pas weer geopend in het
 huis van elke ontvanger. De envelop wordt opgevuld tot een van
 een paar vaste groottes, zodat de relay niet eens een kort
-bericht van een lang kan onderscheiden. Hij slaat geen inhoud op:
-is een huishouden offline, dan houdt hij diens verzegelde
-enveloppen een dag vast en laat ze daarna los.
+bericht van een lang kan onderscheiden. Hij slaat nooit iets op
+wat hij kan lezen: posts voor een huishouden dat offline is,
+wachten een dag, verzegeld; foto's en bestanden worden een paar
+dagen (standaard drie) versleuteld bewaard en daarna verwijderd.
 
 > Zie de relay als het postkantoor van een open community. Het
 > postkantoor ziet dat er een verzegeld pakket naar de leesclub
@@ -154,35 +171,41 @@ cookies die vastgepind is op het vermelde adres, nadat de GFS
 heeft bewezen dat hij de vermelde sleutel bezit. Ontvangers
 ontdubbelen op item-id. Enveloppen zijn AES-256-GCM, ondertekend
 met Ed25519. Paddingbuckets: 1 / 4 / 16 / 64 / 128 KiB
-(publicatie door leden), plus 191 KiB voor envelop-relay.
-Offline ontvangers worden 24 uur in de wachtrij gehouden, met
-maximaal 2000 enveloppen of 64 MiB per ontvanger. Alle details op
+(publicatie door leden), 4 / 16 / 64 / 128 / 191 KiB (envelop-relay),
+en 64 / 128 / 256 / 516 KiB voor binaire frames met grote items.
+Elk huishouden dat de GFS bereikt, heeft één brievenbus per GFS,
+geopend met een anoniem Privacy Pass-ticket en geclaimd op een
+eigen socket; de GFS slaat het brievenbus-id en de sleutel ervan
+op, nooit een huishoud-id of een space. Verzegelde enveloppen
+wachten 24 uur, maximaal 2000 enveloppen / 32 MiB per brievenbus.
+Foto's van spaces staan in een versleutelde mediacache
+(`PUT/GET /gfs/media/{blob_id}`), standaard 3 dagen en 5 GiB.
+Alle details op
 de pagina [beveiligingsmodel](/nl/docs/security/#wat-een-relay-ziet).
 
 </details>
 
-## Vertrouwd of strikt
+## Leden posten anoniem
 
-De eigenaar kiest ook hoe leden via de GFS posten.
-
-- **Vertrouwd** (trusted, de standaard): leden posten anoniem, dus
-  de GFS kan niet zien welk huishouden heeft gepost.
-- **Strikt** (strict): bovendien kan de GFS niet eens zien welke
-  huishoudens mogen schrijven. Leden en volgers zien er voor hem
-  hetzelfde uit.
+Iedereen die in een wereldwijde space post, post op dezelfde manier
+via de GFS: anoniem. De GFS kan zien dat iemand die daar mag
+posten iets heeft gepost, en wanneer, maar niet welk huishouden.
+Hij kan zelfs leden niet van volgers onderscheiden; voor hem zien
+ze er hetzelfde uit. Er valt niets in te stellen.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-Beide modi geven elke schrijver de schrijfgroepsleutel per
-epoche, zodat elk item anoniem naar elke vermelde GFS gaat. De
-host-relay is identiteitsvrij (`{space_id, event_type, payload}`
-op een sessie zonder cookies). In de strikte modus abonneren
-schrijvers zich in dezelfde geschudde batch als volgers. In beide
-modi ziet de GFS nog steeds het bron-IP, de timing, de
-groottebucket en de abonneeset, en een GFS verliest bans per
+Elke schrijver heeft de schrijfgroepsleutel per epoche en stuurt
+elk item anoniem naar elke vermelde GFS (`member-publish-anon`).
+Het schrijverscertificaat reist mee in de ciphertext, waar de
+ontvangende huishoudens het controleren. De host-relay is
+identiteitsvrij (`{space_id, event_type, payload}` op een sessie
+zonder cookies). Schrijvers abonneren zich in dezelfde geschudde
+batch als volgers. De GFS ziet nog steeds het bron-IP, de timing,
+de groottebucket en de abonneeset, en hij verliest bans per
 huishouden voor anonieme schrijvers (limieten per IP blijven; de
-eigenaar trekt een schrijver in door de sleutel te roteren).
+eigenaar verwijdert een schrijver, waardoor de sleutel roteert).
 
 </details>
 
@@ -196,12 +219,15 @@ eigenaar trekt een schrijver in door de sleutel te roteren).
    nergens vermeld, tot de eigenaar een GFS kiest.
 2. Iedereen die een van die GFS'en gebruikt, kan hem vinden onder
    **Ontdekken › Wereldwijd** en vragen om lid te worden, of hem volgen
-   als de eigenaar volgers toestaat.
+   als de eigenaar volgers toestaat. Je hoeft niet met de host
+   gekoppeld te zijn.
 3. Of een toetreding wordt toegestaan, hangt af van de
    **toetredingsmodus** van de space: **Open** (iedereen kan
    meteen lid worden), **Aanvragen** (een beheerder zegt ja) of
    **Alleen op uitnodiging**. Uitnodigingslinks werken naast elk
-   daarvan.
+   daarvan. Een verzoek dat via de GFS binnenkomt, toont de naam
+   die de persoon opgaf, gemarkeerd met **Via de GFS · niet
+   gecontroleerd**: als het ertoe doet, vraag het dan even na.
 4. Zodra je binnen bent, reizen posts van jouw huis naar het huis
    van elk ander lid: rechtstreeks of via de mesh voor
    huishoudens waarmee je gekoppeld bent, via de vermelde GFS'en
@@ -236,14 +262,14 @@ Wat dat in de praktijk betekent:
   die na het toetreden zijn geplaatst. Eerdere geschiedenis
   wordt niet met terugwerkende kracht gedeeld – leden regelen
   hun eigen back-ups lokaal.
-- Elke keer dat het ledenbestand verandert, krijgt de space een
-  nieuwe sleutel. Wie is vertrokken, kan niets lezen wat na het
-  vertrek is geplaatst.
+- Zodra iemand vertrekt, wordt verwijderd of niet meer mag
+  posten, krijgt de space een nieuwe sleutel. Wie is vertrokken,
+  kan niets lezen wat na het vertrek is geplaatst.
 
 ## Wat gebeurt er als een GFS uitvalt?
 
-Leden met wie je gekoppeld bent, merken niets: hun posts gingen
-nooit via de GFS. Staat de space op meer dan één GFS, dan merken
+Leden met wie je gekoppeld bent, merken niets: hun posts bereiken
+je rechtstreeks of via de mesh. Staat de space op meer dan één GFS, dan merken
 volgers op de andere GFS'en ook niets. Alleen huishoudens die
 afhankelijk zijn van de GFS die uitvalt, moeten wachten. Er gaat
 niets stilletjes verloren: je huishouden blijft het proberen – na
@@ -261,8 +287,8 @@ je zelf draait.
 <summary>Onder de motorkap</summary>
 
 Retry-backoff: 5 s, 30 s, 2 min, 10 min. Wachtrij aan GFS-kant
-voor offline ontvangers: 24 uur, 2000 enveloppen / 64 MiB per
-ontvanger.
+voor offline ontvangers: 24 uur, 2000 enveloppen / 32 MiB per
+brievenbus.
 
 </details>
 
@@ -295,7 +321,7 @@ handleiding met Docker Compose + Cloudflare.
 | Hoe posts reizen       | rechtstreeks of via de mesh                                      | hetzelfde voor gekoppelde leden; via elke vermelde GFS voor de rest         |
 | Wat een GFS ziet       | niets (tenzij een privéspace hem aanzet)                         | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud          |
 | Versleuteling          | **altijd aan**                                                   | **altijd aan**                                                              |
-| Waar berichten leven   | in het huis van elk lid                                          | in het huis van elk lid (een GFS slaat nooit inhoud op)                     |
+| Waar berichten leven   | in het huis van elk lid                                          | in het huis van elk lid (een GFS bewaart verzegelde kopieën maar kort)      |
 | Als een GFS offline is | n.v.t.                                                           | de andere vermelde GFS'en gaan door; posts proberen opnieuw                 |
 | Kan worden uitgezet    | ja, per stemming van beheerders                                  | een GFS weghalen kan altijd (eigenaar), of niet-wereldwijd maken (stemming) |
 

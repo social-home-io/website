@@ -52,7 +52,8 @@ kann ein **Mindestalter** (13, 16 oder 18 — oder keines) und
 eine Zielgruppe festlegen. Admins stellen es einmal ein, und das
 Mindestalter wird auf jedem Pfad geprüft, der ein Mitglied
 aufnimmt: lokaler Beitritt, Beitritt aus einem gekoppelten
-Haushalt und Beitritt über einen GFS-Link. Es gibt keinen Pfad,
+Haushalt, Beitritt über einen GFS-Link und die Bitte um Beitritt
+über einen GFS. Es gibt keinen Pfad,
 der die Prüfung überspringt. Siehe
 [Globale Spaces](/de/docs/global-spaces/) dazu, wie ein Relay eine
 Altersrichtlinie in ein öffentliches Verzeichnis mitnimmt.
@@ -62,8 +63,9 @@ Altersrichtlinie in ein öffentliches Verzeichnis mitnimmt.
 
 `min_age ∈ {0, 13, 16, 18}` ist Teil der signierten
 Space-Einstellungen und wird von demselben Aufnahmecode für
-lokale Beitritte, föderierte Beitritte aus gekoppelten Haushalten
-und Beitritte per GFS-Link ausgewertet. Geschützte Konten
+lokale Beitritte, föderierte Beitritte aus gekoppelten Haushalten,
+Beitritte per GFS-Link und Beitrittsanfragen über einen GFS
+ausgewertet. Geschützte Konten
 (`protected_minor = true`) werden auf der Service-Ebene für den
 Basar, Spaces mit öffentlicher Reichweite, öffentliches Momentum,
 öffentliche Highlight-Links und persönliche API-Tokens

@@ -90,7 +90,17 @@ réglages de l'espace.
 Chaque espace a un propriétaire, et le propriétaire peut
 distribuer des rôles. Du plus au moins de pouvoir :
 **propriétaire**, **administrateur**, **modérateur**, **membre**,
-**abonné**. Un abonné lit mais ne publie pas.
+**abonné**. Un abonné est un membre avec un rôle en lecture
+seule : il suit la lecture, et peut commenter ou réagir si le
+propriétaire l'autorise.
+
+Si vous activez **Autoriser les administrateurs à agir pour moi**,
+les administrateurs d'autres foyers peuvent modérer, inviter et
+publier pendant que votre maison est hors ligne, y compris ceux qui
+n'atteignent l'espace que via un GFS. C'est désactivé par défaut.
+Avant de nommer administrateur quelqu'un d'un autre foyer, l'app
+affiche son **ID du foyer** : vérifiez-le d'abord avec cette
+personne. Elle le trouve sur sa page **Connexions**.
 
 Chaque fonction d'un espace — publier, le calendrier, le Bazar —
 peut être **ouverte** à tous les membres, **modérée**
@@ -102,7 +112,7 @@ regarde expirent au bout de sept jours.
 ## Ce que fait le GFS pour un espace global
 
 Un GFS est un relais auquel n'importe quel foyer peut se
-connecter. Pour un espace global, il a deux rôles :
+connecter. Pour un espace global, il a trois rôles :
 
 1. **C'est un annuaire.** Le propriétaire choisit les GFS qui
    référencent l'espace, jusqu'à huit. Chacun affiche son nom, qui
@@ -114,9 +124,18 @@ connecter. Pour un espace global, il a deux rôles :
    vous n'êtes pas jumelé.** C'est-à-dire les **abonnés**, des
    foyers qui suivent la lecture sans rejoindre l'espace
    (seulement si le propriétaire autorise les abonnés ; c'est
-   désactivé par défaut), et les **membres qui ont rejoint avec
-   un Lien GFS**. Les membres avec qui vous êtes jumelé reçoivent
-   toujours chaque publication directement ou par le maillage.
+   désactivé par défaut), les **membres qui ont rejoint avec un
+   Lien GFS**, et les foyers qui ont trouvé l'espace dans
+   Découvrir et ont **demandé à le rejoindre**. Chacun de ces
+   foyers a une **boîte aux lettres anonyme** sur le GFS : le GFS y
+   dépose les publications scellées sans savoir à qui elle
+   appartient ni de quel espace elles viennent. Les membres avec
+   qui vous êtes jumelé reçoivent toujours chaque publication
+   directement ou par le maillage.
+3. **Il garde les photos un petit moment.** Les photos et les
+   fichiers destinés à ces foyers sont conservés, chiffrés,
+   pendant quelques jours, pour qu'un foyer qui était hors ligne
+   puisse encore les récupérer.
 
 **Chaque GFS référencé reçoit chaque publication.** Un membre
 envoie chaque publication à tous les GFS choisis par le
@@ -132,9 +151,10 @@ publication est scellée en sortant de votre maison et n'est
 ouverte que dans la maison de chaque destinataire. L'enveloppe
 est complétée à l'une de quelques tailles fixes, si bien que le
 relais ne peut même pas distinguer un message court d'un message
-long. Il ne stocke aucun contenu : si un foyer est hors ligne, il
-garde ses enveloppes scellées pendant un jour, puis les laisse
-partir.
+long. Il ne stocke jamais rien qu'il puisse lire : les
+publications destinées à un foyer hors ligne attendent, scellées,
+pendant un jour ; les photos et les fichiers sont conservés
+chiffrés pendant quelques jours (trois par défaut), puis supprimés.
 
 > Voyez le relais comme le bureau de poste d'une communauté
 > ouverte. Le bureau de poste voit qu'un colis scellé est parti
@@ -159,39 +179,43 @@ une session sans cookie épinglée à l'adresse listée, après que le
 GFS a prouvé qu'il détient la clé listée. Les destinataires
 dédoublonnent par identifiant d'élément. Les enveloppes sont en
 AES-256-GCM, signées avec Ed25519. Tranches de padding : 1 / 4 /
-16 / 64 / 128 KiB (publication par un membre), plus 191 KiB pour
-le relais d'enveloppes. Les destinataires hors ligne sont mis en
-file d'attente 24 h, au plus 2000 enveloppes ou 64 MiB par
-destinataire. Tous les détails sur la page
+16 / 64 / 128 KiB (publication par un membre), 4 / 16 / 64 / 128 /
+191 KiB (relais d'enveloppes), et 64 / 128 / 256 / 516 KiB pour
+les trames binaires qui transportent les gros éléments. Chaque
+foyer que le GFS atteint a une boîte aux lettres par GFS, ouverte
+avec un ticket Privacy Pass anonyme et réclamée sur sa propre
+connexion ; le GFS stocke l'identifiant de la boîte aux lettres et
+sa clé, jamais un identifiant de foyer ni un espace. Les
+enveloppes scellées attendent 24 h, au plus 2000 enveloppes /
+32 MiB par boîte aux lettres. Les photos des espaces sont placées
+dans un cache média chiffré (`PUT/GET /gfs/media/{blob_id}`),
+3 jours et 5 GiB par défaut. Tous les détails sur la page
 [modèle de sécurité](/fr/docs/security/#ce-que-voit-un-relais).
 
 </details>
 
-## De confiance ou strict
+## Les membres publient anonymement
 
-Le propriétaire choisit aussi comment les membres publient via le
-GFS.
-
-- **De confiance** (par défaut) : les membres publient
-  anonymement, si bien que le GFS ne peut pas savoir quel foyer a
-  publié.
-- **Strict** : en plus, le GFS ne peut même pas savoir quels
-  foyers ont le droit d'écrire. Membres et abonnés se ressemblent
-  à ses yeux.
+Toute personne qui publie dans un espace global passe par le GFS
+de la même façon : anonymement. Le GFS peut savoir que quelqu'un
+qui a le droit d'y publier a publié, et quand, mais pas quel foyer.
+Il ne peut même pas distinguer les membres des abonnés ; ils se
+ressemblent à ses yeux. Il n'y a rien à configurer.
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Les deux modes remettent à chaque rédacteur la clé d'écriture de
-groupe propre à chaque époque, si bien que chaque élément part
-anonymement vers chaque GFS référencé. Le relais de l'hôte est
-anonyme (`{space_id, event_type, payload}` sur une session sans
-cookie). En mode strict, les rédacteurs s'abonnent dans le même
-lot mélangé que les abonnés. Dans les deux modes, le GFS voit
-toujours l'IP source, l'horodatage, la tranche de taille et
-l'ensemble des abonnés, et un GFS ne peut plus bannir par foyer un
-rédacteur anonyme (les limites par IP restent ; le propriétaire
-révoque un rédacteur en faisant tourner la clé).
+Chaque rédacteur détient la clé d'écriture de groupe propre à
+chaque époque et envoie chaque élément anonymement à chaque GFS
+référencé (`member-publish-anon`). Le certificat de rédacteur
+voyage à l'intérieur du texte chiffré, où les foyers destinataires
+le vérifient. Le relais de l'hôte est anonyme
+(`{space_id, event_type, payload}` sur une session sans cookie).
+Les rédacteurs s'abonnent dans le même lot mélangé que les abonnés.
+Le GFS voit toujours l'IP source, l'horodatage, la tranche de
+taille et l'ensemble des abonnés, et il ne peut plus bannir par
+foyer un rédacteur anonyme (les limites par IP restent ; le
+propriétaire retire un rédacteur, ce qui fait tourner la clé).
 
 </details>
 
@@ -206,12 +230,15 @@ révoque un rédacteur en faisant tourner la clé).
    de GFS.
 2. Toute personne qui utilise l'un de ces GFS peut le trouver
    sous **Découvrir › Global** et demander à le rejoindre, ou
-   s'y abonner si le propriétaire autorise les abonnés.
+   s'y abonner si le propriétaire autorise les abonnés. Vous
+   n'avez pas besoin d'être jumelé avec son hôte.
 3. Que l'adhésion soit accordée dépend du **mode d'adhésion** de
    l'espace : **Ouvert** (n'importe qui peut rejoindre tout de
    suite), **Sur demande** (un administrateur dit oui) ou **Sur
    invitation uniquement**. Les liens d'invitation fonctionnent
-   en parallèle dans tous les cas.
+   en parallèle dans tous les cas. Une demande qui arrive via le
+   GFS affiche le nom que la personne a donné, marqué **Via le
+   GFS · non vérifié** : si cela compte, vérifiez avec elle.
 4. Une fois membre, les publications vont de votre maison à la
    maison de chaque autre membre : directement ou par le maillage
    pour les foyers avec qui vous êtes jumelé, via les GFS
@@ -249,14 +276,14 @@ Concrètement, cela signifie :
   messages publiés après son arrivée. L'historique antérieur
   n'est pas partagé rétroactivement — chaque membre gère ses
   propres sauvegardes localement.
-- À chaque changement dans la liste des membres, l'espace reçoit
-  une nouvelle clé. Quelqu'un qui est parti ne peut rien lire de
+- Chaque fois que quelqu'un part, est retiré ou perd le droit de
+  publier, l'espace reçoit une nouvelle clé. Quelqu'un qui est parti ne peut rien lire de
   ce qui a été publié après son départ.
 
 ## Que se passe-t-il si un GFS est en panne ?
 
 Les membres avec qui vous êtes jumelé ne remarquent rien : leurs
-publications ne sont jamais passées par le GFS. Si l'espace est
+publications vous parviennent directement ou par le maillage. Si l'espace est
 référencé sur plus d'un GFS, les abonnés des autres ne remarquent
 rien non plus. Seuls les foyers qui dépendent du GFS en panne
 doivent patienter. Rien n'est perdu en silence : votre foyer
@@ -275,7 +302,7 @@ hébergez vous-même.
 
 Délais de nouvelle tentative : 5 s, 30 s, 2 min, 10 min. File
 d'attente côté GFS pour les destinataires hors ligne : 24 h,
-2000 enveloppes / 64 MiB par destinataire.
+2000 enveloppes / 32 MiB par boîte aux lettres.
 
 </details>
 
@@ -307,7 +334,7 @@ guide Docker Compose + Cloudflare.
 | Trajet des publications  | directement ou par le maillage                       | pareil pour les membres jumelés ; via chaque GFS référencé pour les autres                           |
 | Ce que voit un GFS       | rien (sauf si un espace privé l'active)              | des données de routage et une enveloppe scellée et complétée, jamais le contenu                      |
 | Chiffrement              | **toujours actif**                                   | **toujours actif**                                                                                   |
-| Où vivent les messages   | chez chaque membre                                   | chez chaque membre (un GFS ne stocke jamais de contenu)                                              |
+| Où vivent les messages   | chez chaque membre                                   | chez chaque membre (un GFS ne garde des copies scellées que brièvement)                              |
 | Si un GFS est hors ligne | s. o.                                                | les autres GFS référencés continuent ; les publications réessaient                                   |
 | Peut être désactivé      | oui, par vote des administrateurs                    | retirer un GFS à tout moment (propriétaire), ou quitter la portée globale (vote des administrateurs) |
 

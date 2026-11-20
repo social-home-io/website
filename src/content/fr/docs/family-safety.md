@@ -48,8 +48,8 @@ N'importe quel espace — pas seulement ceux pensés pour les enfants
 — peut fixer un **âge minimum** (13, 16 ou 18 ans — ou aucun) et un
 public cible. Les admins le règlent une fois, et l'âge minimum est
 vérifié sur chaque chemin qui fait entrer un membre : adhésion
-locale, adhésion depuis un foyer jumelé, et adhésion via un Lien
-GFS. Aucun chemin ne saute la vérification. Voir
+locale, adhésion depuis un foyer jumelé, adhésion via un Lien
+GFS, et demande d'adhésion via un GFS. Aucun chemin ne saute la vérification. Voir
 [Espaces globaux](/fr/docs/global-spaces/) pour savoir comment un
 relais transporte une politique d'âge dans un annuaire public.
 
@@ -59,7 +59,8 @@ relais transporte une politique d'âge dans un annuaire public.
 `min_age ∈ {0, 13, 16, 18}` fait partie des réglages signés de
 l'espace et est évalué par le même code d'entrée pour les
 adhésions locales, les adhésions fédérées depuis des foyers
-jumelés et les adhésions par Lien GFS. Les comptes protégés
+jumelés, les adhésions par Lien GFS et les demandes d'adhésion
+via un GFS. Les comptes protégés
 (`protected_minor = true`) sont refusés au niveau de la couche de
 service pour le Bazar, les espaces de portée publique, Momentum
 public, les liens publics de highlights et les jetons d'API

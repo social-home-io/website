@@ -15,14 +15,16 @@ De [GFS (Global Federation Server – de wereldwijde federatieserver)](/nl/docs/
 taken. Hij is een gids, zodat huishoudens de wereldwijde spaces
 kunnen vinden waarvan de eigenaar hem heeft gekozen. Hij draagt verzegelde posts naar huishoudens die
 niet met elkaar gekoppeld zijn – volgers van een wereldwijde
-space, leden die via een GFS-link zijn toegetreden, privéspaces
-waarvan de eigenaar de GFS heeft ingeschakeld, en gekoppelde
-huishoudens die de GFS-terugvaloptie hebben aangezet – zodat een
-space blijft stromen terwijl de host slaapt. En hij bemiddelt openbare
+space, leden die via een GFS-link zijn toegetreden of via hem
+vroegen om lid te worden, privéspaces waarvan de eigenaar de GFS
+heeft ingeschakeld, en gekoppelde huishoudens die de
+GFS-terugvaloptie hebben aangezet – elk via een anonieme
+brievenbus, zodat een space blijft stromen terwijl de host slaapt.
+Hij bewaart hun foto's een paar dagen, versleuteld. En hij bemiddelt openbare
 highlight-links – zie
 [Highlights → openbaar delen](/nl/docs/highlights/#openbaar-delen-via-een-global-server)
 voor de kant van de auteur. Bij elke taak verwerkt hij alleen
-enveloppen: hij leest nooit een bericht, slaat nooit een
+verzegelde gegevens: hij leest nooit een bericht, slaat nooit een
 highlight-frame op en biedt nooit de pagina aan die een openbare
 link opent. Je eigen relay hosten betekent dat je
 community bepaalt wie mag meedoen, en dat er geen enkele partij
@@ -112,17 +114,19 @@ base_url = "https://gfs.example.com"
 <details class="tech">
 <summary>Onder de motorkap</summary>
 
-Elke optie in `global_server.toml` kan ook als
-omgevingsvariabele met het voorvoegsel `GFS_` worden ingesteld –
+De belangrijkste opties in `global_server.toml` kunnen ook als
+omgevingsvariabelen met het voorvoegsel `GFS_` worden ingesteld –
 handig als je het compose-bestand liever op zichzelf laat staan:
 
-| Variabele         | Configuratiesleutel | Standaard         |
-| ----------------- | ------------------- | ----------------- |
-| `GFS_HOST`        | `[server] host`     | `0.0.0.0`         |
-| `GFS_PORT`        | `[server] port`     | `8765`            |
-| `GFS_BASE_URL`    | `[server] base_url` | —                 |
-| `GFS_DATA_DIR`    | datamap             | `/var/lib/sh-gfs` |
-| `GFS_OPEN_SIGNUP` | `open_signup`       | `false`           |
+| Variabele                     | Configuratiesleutel         | Standaard                      |
+| ----------------------------- | --------------------------- | ------------------------------ |
+| `GFS_HOST`                    | `[server] host`             | `0.0.0.0`                      |
+| `GFS_PORT`                    | `[server] port`             | `8765`                         |
+| `GFS_BASE_URL`                | `[server] base_url`         | —                              |
+| `GFS_DATA_DIR`                | datamap                     | `/var/lib/sh-gfs`              |
+| `GFS_OPEN_SIGNUP`             | `open_signup`               | `false`                        |
+| `GFS_SPACE_MEDIA_MAX_BYTES`   | `[space_media] max_bytes`   | 5 GiB                          |
+| `GFS_SPACE_MEDIA_TTL_SECONDS` | `[space_media] ttl_seconds` | `259200` (3 dagen, maximaal 7) |
 
 Bij dezelfde sleutel wint een omgevingsvariabele van het bestand.
 
@@ -138,7 +142,9 @@ worden gepubliceerd, wachten daarentegen op jouw goedkeuring in
 het beheerportaal (`auto_accept_spaces = false`) – je gids toont
 alleen wat je zelf hebt bekeken. Open registratie staat uit, dus
 niemand kan een account op de relay zelf aanmaken tenzij je dat
-inschakelt.
+inschakelt. Je relay bewaart ook tot 5 GiB aan versleutelde foto's
+van spaces, elk maximaal drie dagen, dus houd daar ruimte voor vrij
+op de schijf.
 
 ## 5. Open de firewall
 
@@ -179,10 +185,14 @@ minuten geldig.
 ## Wat je relay zal zien
 
 Een relay draaien geeft je geen inkijk in iemands space. Posts
-komen verzegeld en opgevuld binnen; je leert bij welke space een
-envelop hoort en wanneer hij is aangekomen, maar niet welk
-huishouden hem heeft gepubliceerd. In de strikte modus kun je
-zelfs niet zien welke huishoudens mogen schrijven. Voor
+komen verzegeld en opgevuld binnen. Voor een wereldwijde space
+leer je dat iemand erin postte en wanneer, nooit welk huishouden;
+leden en volgers zien er hetzelfde uit. Bezorgingen gaan naar
+anonieme brievenbussen: je ziet een brievenbusnummer, het tijdstip
+en een opgevulde grootte, nooit het huishouden of de space.
+Versleutelde foto's staan een paar dagen in je cache, en je kunt
+ze niet openen. Log alsjeblieft geen IP-adressen: daarmee zou een
+brievenbus aan een huishouden te verbinden zijn. Voor
 het volledige beeld, inclusief wat de relay nog wél kan
 waarnemen (timing, groottes, IP-adressen), lees je het
 [beveiligingsmodel](/nl/docs/security/).

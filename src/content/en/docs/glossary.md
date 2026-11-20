@@ -80,7 +80,9 @@ decision for all of its admins — see
 Every space has a host household: the one that created it and
 tallies the admin votes. The host is not a middleman — members
 post straight to each other — but it is the place where the
-member list lives.
+member list lives. If the owner turns on **Let admins act for
+me**, admins from other households can keep the space running
+while the host is offline.
 
 ## GFS
 
@@ -89,7 +91,10 @@ households find each other when they don't already know one
 another. You don't need one for households you've paired with.
 A GFS lists the global spaces whose owner picked it, and carries
 their sealed posts to households you aren't paired with:
-followers, and members who joined with a GFS link. The Social Home project runs one; anyone can
+followers, members who joined with a GFS link, and households that
+asked to join through it. Each of those households gets one
+anonymous [mailbox](#mailbox) on the GFS. A GFS also keeps
+encrypted pictures for a few days. The Social Home project runs one; anyone can
 [run their own](/docs/running-a-gfs/). A GFS sees sealed
 envelopes and routing information, never the contents of a post.
 What it can and can't see is spelled out on the
@@ -103,6 +108,26 @@ you, because the GFS makes the introduction. A **Local link** only
 works for households you are already connected to, and never
 touches a GFS at all.
 
+## Mailbox
+
+When your household is in a space through a GFS, it gets one
+anonymous mailbox there. The host and the other members drop
+sealed posts into it, and your home picks them up. The GFS knows
+the mailbox only by a random-looking number: not whose it is, and
+not which spaces it serves. You never see a mailbox in the app.
+
+<details class="tech">
+<summary>Under the hood</summary>
+
+One mailbox per household per GFS. Its X25519 and Ed25519 keys come
+from a 32-byte mailbox root with HKDF-SHA256, and its id is
+`base32(SHA-256("sh-mbx-v1" ‖ sign_pk))`. A household opens one by
+spending an anonymous Privacy Pass ticket (blind RSA-2048,
+RFC 9474) and announces it on a member card signed with its
+identity key.
+
+</details>
+
 ## Viewer
 
 The Social Home viewer is the page a public link opens in a
@@ -115,16 +140,16 @@ frozen and can be checked against the release it came from. See
 
 ## Follower
 
-A follower is someone who reads a space without being a member
-of it. Followers see what the space publishes, but they don't
-post, and they don't get a vote. Membership roles run
+A follower is a member of a space with a read-only role. Followers
+see what the space publishes. They don't post and don't vote in
+polls; if the space allows it, they can comment and react. Membership roles run
 owner → admin → moderator → member → follower.
 
 ## Key rotation (epoch)
 
-Every space has a key that seals its posts. Whenever the
-membership changes — someone joins, someone leaves, someone is
-removed — the space gets a fresh key and starts a new _epoch_.
+Every space has a key that seals its posts. Whenever someone
+leaves, is removed or loses the right to post, the space gets a
+fresh key and starts a new _epoch_.
 Someone who left can't read anything posted after they left.
 
 <details class="tech">

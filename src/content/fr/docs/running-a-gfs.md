@@ -17,14 +17,16 @@ foyers puissent trouver les espaces globaux dont le propriétaire
 l'a choisi. Il transporte les
 publications scellées vers des foyers qui ne sont pas jumelés
 entre eux — les abonnés d'un espace global, les membres qui ont
-rejoint avec un Lien GFS, les espaces privés dont le propriétaire
-a activé le GFS, et les foyers jumelés qui ont activé la solution
-de repli GFS — pour qu'un espace continue de vivre pendant que son
-hôte dort. Et il sert d'intermédiaire pour les liens publics vers un
+rejoint avec un Lien GFS ou demandé à rejoindre l'espace par son
+intermédiaire, les espaces privés dont le propriétaire a activé le
+GFS, et les foyers jumelés qui ont activé la solution de repli
+GFS — chacun via une boîte aux lettres anonyme, pour qu'un espace
+continue de vivre pendant que son hôte dort. Il garde leurs photos,
+chiffrées, pendant quelques jours. Et il sert d'intermédiaire pour les liens publics vers un
 Highlight — voir
 [Highlights → partager publiquement](/fr/docs/highlights/#partager-publiquement-via-un-serveur-global)
 pour le parcours côté auteur. Dans chacun de ces rôles, il ne
-manipule que des enveloppes : il ne lit jamais un message, ne
+manipule que des données scellées : il ne lit jamais un message, ne
 stocke jamais une image de Highlight et ne sert jamais la page
 qu'ouvre un lien public. Héberger votre propre
 relais, c'est laisser votre communauté décider qui peut la
@@ -115,17 +117,20 @@ base_url = "https://gfs.example.com"
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Chaque option de `global_server.toml` peut aussi être définie par
-une variable d'environnement préfixée `GFS_` — pratique si vous
+Les principales options de `global_server.toml` peuvent aussi être
+définies par des variables d'environnement préfixées `GFS_` —
+pratique si vous
 préférez garder le fichier compose autonome :
 
-| Variable          | Clé de configuration   | Par défaut        |
-| ----------------- | ---------------------- | ----------------- |
-| `GFS_HOST`        | `[server] host`        | `0.0.0.0`         |
-| `GFS_PORT`        | `[server] port`        | `8765`            |
-| `GFS_BASE_URL`    | `[server] base_url`    | —                 |
-| `GFS_DATA_DIR`    | répertoire des données | `/var/lib/sh-gfs` |
-| `GFS_OPEN_SIGNUP` | `open_signup`          | `false`           |
+| Variable                      | Clé de configuration        | Par défaut                    |
+| ----------------------------- | --------------------------- | ----------------------------- |
+| `GFS_HOST`                    | `[server] host`             | `0.0.0.0`                     |
+| `GFS_PORT`                    | `[server] port`             | `8765`                        |
+| `GFS_BASE_URL`                | `[server] base_url`         | —                             |
+| `GFS_DATA_DIR`                | répertoire des données      | `/var/lib/sh-gfs`             |
+| `GFS_OPEN_SIGNUP`             | `open_signup`               | `false`                       |
+| `GFS_SPACE_MEDIA_MAX_BYTES`   | `[space_media] max_bytes`   | 5 GiB                         |
+| `GFS_SPACE_MEDIA_TTL_SECONDS` | `[space_media] ttl_seconds` | `259200` (3 jours, au plus 7) |
 
 Pour une même clé, la variable d'environnement l'emporte sur le
 fichier.
@@ -143,7 +148,9 @@ approbation dans le portail d'administration
 (`auto_accept_spaces = false`) — votre annuaire ne liste que ce
 que vous avez examiné. L'inscription ouverte est désactivée, donc
 personne ne peut créer de compte sur le relais lui-même tant que
-vous ne l'activez pas.
+vous ne l'activez pas. Votre relais garde aussi jusqu'à 5 GiB de
+photos d'espaces chiffrées, chacune pendant trois jours au plus :
+prévoyez de la place sur le disque.
 
 ## 5. Ouvrez le pare-feu
 
@@ -185,10 +192,15 @@ usage unique et valable 10 minutes.
 
 Héberger un relais ne vous ouvre pas une fenêtre sur l'espace de
 qui que ce soit. Les publications arrivent scellées et complétées
-à taille fixe ; vous apprenez à quel espace appartient une
-enveloppe et quand elle est arrivée, mais pas quel foyer l'a
-publiée. En mode strict, vous ne pouvez même pas savoir quels
-foyers ont le droit d'écrire. Pour le tableau
+à taille fixe. Pour un espace global, vous apprenez que quelqu'un
+y a publié, et quand, jamais quel foyer ; membres et abonnés se
+ressemblent. Les livraisons vont dans des boîtes aux lettres
+anonymes : vous voyez un numéro de boîte aux lettres, l'heure et
+une taille complétée, jamais le foyer ni l'espace. Des photos
+chiffrées restent quelques jours dans votre cache, et vous ne
+pouvez pas les ouvrir. Merci de ne pas journaliser les adresses
+IP : avec elles, une boîte aux lettres pourrait être associée à un
+foyer. Pour le tableau
 complet, y compris ce que le relais peut encore observer
 (horodatage, tailles, adresses IP), lisez le
 [modèle de sécurité](/fr/docs/security/).

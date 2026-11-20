@@ -14,14 +14,16 @@ relay that helps households find each other — has three jobs. It
 is a directory, so households can find the global spaces whose
 owners picked it. It carries
 sealed posts to households that aren't paired with each other —
-followers of a global space, members who joined with a GFS link,
-private spaces whose owner switched the GFS on, and paired
-households that turned on the GFS fallback — so a space keeps
-flowing while its host is asleep. And it brokers public highlight
+followers of a global space, members who joined with a GFS link
+or asked to join through it, private spaces whose owner switched
+the GFS on, and paired households that turned on the GFS fallback
+— each through an anonymous mailbox, so a space keeps flowing
+while its host is asleep. It keeps their pictures, encrypted, for
+a few days. And it brokers public highlight
 links — see
 [Highlights → sharing publicly](/docs/highlights/#sharing-publicly-via-a-global-server)
 for the author-facing flow. In every job it only ever handles
-envelopes: it never reads a message, never stores a highlight
+sealed data: it never reads a message, never stores a highlight
 frame, and never serves the page a public link opens. Hosting your own relay means your community decides who
 can join, and there's no single party at the centre.
 
@@ -108,17 +110,19 @@ base_url = "https://gfs.example.com"
 <details class="tech">
 <summary>Under the hood</summary>
 
-Every option in `global_server.toml` can also be set as an
-environment variable prefixed `GFS_` — handy if you'd rather keep
+The main options in `global_server.toml` can also be set as
+environment variables prefixed `GFS_` — handy if you'd rather keep
 the compose file self-contained:
 
-| Variable          | Config key          | Default           |
-| ----------------- | ------------------- | ----------------- |
-| `GFS_HOST`        | `[server] host`     | `0.0.0.0`         |
-| `GFS_PORT`        | `[server] port`     | `8765`            |
-| `GFS_BASE_URL`    | `[server] base_url` | —                 |
-| `GFS_DATA_DIR`    | data directory      | `/var/lib/sh-gfs` |
-| `GFS_OPEN_SIGNUP` | `open_signup`       | `false`           |
+| Variable                      | Config key                  | Default                      |
+| ----------------------------- | --------------------------- | ---------------------------- |
+| `GFS_HOST`                    | `[server] host`             | `0.0.0.0`                    |
+| `GFS_PORT`                    | `[server] port`             | `8765`                       |
+| `GFS_BASE_URL`                | `[server] base_url`         | —                            |
+| `GFS_DATA_DIR`                | data directory              | `/var/lib/sh-gfs`            |
+| `GFS_OPEN_SIGNUP`             | `open_signup`               | `false`                      |
+| `GFS_SPACE_MEDIA_MAX_BYTES`   | `[space_media] max_bytes`   | 5 GiB                        |
+| `GFS_SPACE_MEDIA_TTL_SECONDS` | `[space_media] ttl_seconds` | `259200` (3 days, at most 7) |
 
 An environment variable wins over the file for the same key.
 
@@ -133,7 +137,9 @@ clicking anything. Spaces published to your relay, on the other
 hand, wait for your approval in the admin portal
 (`auto_accept_spaces = false`) — your directory only lists what
 you've looked at. Open sign-up is off, so nobody can create an
-account on the relay itself unless you turn it on.
+account on the relay itself unless you turn it on. Your relay also
+keeps up to 5 GiB of encrypted space pictures, each for at most
+three days, so leave room on the disk for it.
 
 ## 5. Open the firewall
 
@@ -174,10 +180,13 @@ minutes.
 ## What your relay will see
 
 Running a relay doesn't give you a window into anyone's space.
-Posts arrive sealed and padded; you learn which space an
-envelope belongs to and when it arrived, but not which household
-published it. In strict mode you can't even tell which households
-are allowed to write. For the full picture, including
+Posts arrive sealed and padded. For a global space you learn that
+someone posted to it and when, never which household; members and
+followers look the same. Deliveries go to anonymous mailboxes: you
+see a mailbox number, the time and a padded size, never the
+household or the space. Encrypted pictures sit in your cache for a
+few days, and you can't open them. Please don't log IP addresses:
+with them, a mailbox could be matched to a household. For the full picture, including
 what the relay can still observe (timing, sizes, IP addresses),
 read the [security model](/docs/security/).
 

@@ -294,14 +294,18 @@ export const fr: UiStrings = {
       {
         claim: "Quittez un espace, perdez la clé.",
         detail:
-          "À chaque changement de membres, l'espace reçoit une nouvelle clé. Les anciens membres ne peuvent pas lire les nouvelles publications.",
-        chips: ["clé par époque", "renouvelée à chaque changement"],
+          "Quand quelqu'un part ou est retiré, l'espace reçoit une nouvelle clé. Les anciens membres ne peuvent pas lire les nouvelles publications.",
+        chips: ["clé par époque", "renouvelée à chaque retrait"],
       },
       {
         claim: "Le relais transporte des colis, pas des lettres.",
         detail:
-          "Il voit à quel espace appartient une enveloppe scellée, et quand — jamais ce qu'il y a dedans. Le mode strict masque même qui l'a envoyée.",
-        chips: ["rembourrage 1/4/16/64/128 KiB", "±300 s", "cache anti-rejeu 24 h"],
+          "Il voit à quel espace global appartient une publication scellée, et quand — jamais ce qu'il y a dedans, ni quel foyer l'a envoyée.",
+        chips: [
+          "rembourrage 1/4/16/64/128 KiB",
+          "boîtes aux lettres anonymes",
+          "cache anti-rejeu 25 h",
+        ],
       },
       {
         claim: "Testé avant chaque version.",
@@ -502,11 +506,15 @@ export const fr: UiStrings = {
       "Relais des liens publics Highlights",
       "Les liens publics s'ouvrent dans une visionneuse que ce serveur ne gère pas",
       "Politique de limite d'âge appliquée",
-      "Publications scellées mises en file pour les foyers hors ligne, puis effacées",
+      "Publications scellées gardées un jour et photos quelques jours, chiffrées, puis effacées",
       "Ne lit jamais le contenu des messages, photos ou appels",
     ],
     technicalTerms: "Termes techniques",
-    chips: ["rembourrage 1/4/16/64/128 KiB", "file d'attente 24 h", "zéro contenu stocké"],
+    chips: [
+      "rembourrage 1/4/16/64/128 KiB",
+      "file d'attente 24 h · cache photos 3 jours",
+      "rien de lisible stocké",
+    ],
     connect: "Se connecter →",
     qrLabel: "QR code de jumelage du GFS Social Home",
     qrCaptionHtml:
@@ -529,15 +537,15 @@ export const fr: UiStrings = {
     seesRows: [
       {
         space: "Espaces globaux",
-        mode: "confiance · par défaut",
-        sees: "Que quelqu'un a publié, dans quel espace, et quand — jamais quel foyer.",
-        never: "Le contenu.",
+        mode: "toujours anonyme",
+        sees: "Que quelqu'un a publié, dans quel espace, et quand. Membres et abonnés se ressemblent.",
+        never: "Le contenu, ni quel foyer a publié.",
       },
       {
-        space: "Espaces globaux",
-        mode: "strict · au choix du propriétaire",
-        sees: "La même chose — et même pas quels foyers peuvent écrire.",
-        never: "Le contenu, ni l'expéditeur.",
+        space: "Foyers auxquels il livre",
+        mode: "boîte aux lettres anonyme",
+        sees: "Un numéro de boîte aux lettres, l'heure et une taille complétée.",
+        never: "À qui appartient la boîte aux lettres, ni de quel espace vient une publication.",
       },
       {
         space: "Espace privé avec le GFS activé",
@@ -550,10 +558,10 @@ export const fr: UiStrings = {
       "métadonnées de routage uniquement",
       "relais hôte sans identité",
       "preuve anonymous_publish",
-      "mode strict · clé d'écriture partagée",
+      "clé d'écriture partagée",
     ],
     residualsHtml:
-      "Comme n'importe quel serveur sur Internet, il voit aussi votre adresse IP, l'heure de chaque requête et la classe de taille de chaque enveloppe. Ces risques résiduels sont consignés dans le <a href=\"/docs/security/\">modèle de sécurité</a>.",
+      "Comme n'importe quel serveur sur Internet, il voit aussi votre adresse IP, l'heure de chaque requête et la classe de taille de chaque enveloppe, et il garde des photos chiffrées pendant quelques jours. Notre GFS ne journalise pas les adresses IP. Ces risques résiduels sont consignés dans le <a href=\"/docs/security/\">modèle de sécurité</a>.",
     runOwnHeading: "Faites tourner le vôtre",
     runOwnHtml:
       'Pour une communauté privée, une organisation ou un relais propre à votre foyer, vous pouvez monter votre propre GFS sur n\'importe quel VPS en 15 minutes environ. <a href="/docs/running-a-gfs/">Configurer votre propre GFS →</a>',

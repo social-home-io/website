@@ -83,7 +83,10 @@ beslissing van al zijn beheerders — zie
 Elke space heeft een host-huishouden: het huishouden dat hem
 aanmaakte en de stemmen van de beheerders telt. De host is geen
 tussenpersoon — leden plaatsen rechtstreeks naar elkaar — maar het
-is wel de plek waar de ledenlijst woont.
+is wel de plek waar de ledenlijst woont. Zet de eigenaar
+**Beheerders mogen namens mij handelen** aan, dan kunnen beheerders
+uit andere huishoudens de space draaiende houden terwijl de host
+offline is.
 
 ## GFS
 
@@ -93,8 +96,11 @@ als ze elkaar nog niet kennen. Voor huishoudens waarmee je
 gekoppeld bent, heb je er geen nodig. Een GFS toont de
 wereldwijde spaces waarvan de eigenaar hem heeft gekozen, en
 brengt hun verzegelde berichten naar huishoudens waarmee je niet
-gekoppeld bent: volgers, en leden die via een GFS-link zijn
-toegetreden. Het Social Home-project
+gekoppeld bent: volgers, leden die via een GFS-link zijn
+toegetreden, en huishoudens die via hem vroegen om lid te worden.
+Elk van die huishoudens krijgt één anonieme
+[brievenbus](#brievenbus) op de GFS. Een GFS bewaart ook
+versleutelde foto's een paar dagen. Het Social Home-project
 draait er een; iedereen kan
 [er zelf een draaien](/nl/docs/running-a-gfs/). Een GFS ziet
 verzegelde enveloppen en routeringsinformatie, nooit de inhoud van
@@ -109,6 +115,28 @@ want de GFS zorgt voor de kennismaking. Een **Lokale link** werkt
 alleen voor huishoudens waarmee je al verbonden bent, en raakt
 nooit een GFS aan.
 
+## Brievenbus
+
+Zit je huishouden via een GFS in een space, dan krijgt het daar één
+anonieme brievenbus. De host en de andere leden gooien er
+verzegelde posts in, en je huis haalt ze op. De GFS kent de
+brievenbus alleen aan een willekeurig ogend nummer: niet van wie
+hij is, en niet voor welke spaces hij dient. In de app zie je
+nooit een brievenbus.
+
+<details class="tech">
+<summary>Onder de motorkap</summary>
+
+Eén brievenbus per huishouden per GFS. De X25519- en
+Ed25519-sleutels ervan komen met HKDF-SHA256 uit een
+brievenbus-root van 32 bytes, en het id is
+`base32(SHA-256("sh-mbx-v1" ‖ sign_pk))`. Een huishouden opent er
+een door een anoniem Privacy Pass-ticket uit te geven (blind
+RSA-2048, RFC 9474) en kondigt hem aan op een ledenkaart die met
+zijn identiteitssleutel is ondertekend.
+
+</details>
+
 ## Viewer
 
 De Social Home-viewer is de pagina waarin een openbare link opent in
@@ -122,17 +150,17 @@ tegen de release waar hij uit komt. Zie
 
 ## Volger
 
-Een volger is iemand die een space leest zonder er lid van te
-zijn. Volgers zien wat de space publiceert, maar ze plaatsen niets
-en ze hebben geen stem. De lidmaatschapsrollen lopen van
+Een volger is een lid van een space met een alleen-lezenrol.
+Volgers zien wat de space publiceert. Ze plaatsen niets en stemmen
+niet in peilingen; als de space het toestaat, kunnen ze reageren en
+emoji-reacties geven. De lidmaatschapsrollen lopen van
 eigenaar → beheerder → moderator → lid → volger.
 
 ## Sleutelrotatie (epoche)
 
-Elke space heeft een sleutel die zijn berichten verzegelt. Telkens
-als het ledenbestand verandert — iemand komt erbij, iemand
-vertrekt, iemand wordt verwijderd — krijgt de space een nieuwe
-sleutel en begint een nieuwe _epoche_. Wie vertrokken is, kan
+Elke space heeft een sleutel die zijn berichten verzegelt. Zodra
+iemand vertrekt, wordt verwijderd of niet meer mag posten, krijgt
+de space een nieuwe sleutel en begint een nieuwe _epoche_. Wie vertrokken is, kan
 niets lezen wat na zijn vertrek is geplaatst.
 
 <details class="tech">

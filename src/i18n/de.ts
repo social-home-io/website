@@ -293,14 +293,14 @@ export const de: UiStrings = {
       {
         claim: "Space verlassen, Schlüssel verlieren.",
         detail:
-          "Jedes Mal, wenn sich die Mitgliedschaft ändert, bekommt der Space einen frischen Schlüssel. Ehemalige Mitglieder können neue Beiträge nicht lesen.",
-        chips: ["Schlüssel pro Epoche", "bei jeder Änderung rotiert"],
+          "Wenn jemand geht oder entfernt wird, bekommt der Space einen frischen Schlüssel. Ehemalige Mitglieder können neue Beiträge nicht lesen.",
+        chips: ["Schlüssel pro Epoche", "bei jedem Entfernen rotiert"],
       },
       {
         claim: "Das Relay trägt Pakete, keine Briefe.",
         detail:
-          "Es sieht, zu welchem Space ein versiegelter Umschlag gehört und wann — nie, was drin ist. Der strenge Modus verbirgt sogar, wer ihn gesendet hat.",
-        chips: ["gepolstert 1/4/16/64/128 KiB", "±300 s", "24 h Replay-Cache"],
+          "Es sieht, zu welchem globalen Space ein versiegelter Beitrag gehört und wann — nie, was drin ist, und nie, welcher Haushalt ihn gesendet hat.",
+        chips: ["gepolstert 1/4/16/64/128 KiB", "anonyme Postfächer", "25 h Replay-Cache"],
       },
       {
         claim: "Vor jedem Release getestet.",
@@ -495,11 +495,15 @@ export const de: UiStrings = {
       "Relay für öffentliche Highlights-Links",
       "Öffentliche Links öffnen sich in einem Viewer, den dieser Server nicht betreibt",
       "Altersfreigabe-Richtlinie wird durchgesetzt",
-      "Versiegelte Beiträge für Offline-Haushalte zwischengespeichert, dann weg",
+      "Versiegelte Beiträge einen Tag, Bilder ein paar Tage verschlüsselt aufbewahrt, dann weg",
       "Liest nie Nachrichten, Fotos oder Anrufinhalte",
     ],
     technicalTerms: "Fachbegriffe",
-    chips: ["gepolstert 1/4/16/64/128 KiB", "24 h Warteschlange", "keine Inhalte gespeichert"],
+    chips: [
+      "gepolstert 1/4/16/64/128 KiB",
+      "24 h Warteschlange · 3 Tage Bilder-Cache",
+      "nichts Lesbares gespeichert",
+    ],
     connect: "Verbinden →",
     qrLabel: "QR-Code zur Kopplung mit dem Social Home GFS",
     qrCaptionHtml:
@@ -522,15 +526,15 @@ export const de: UiStrings = {
     seesRows: [
       {
         space: "Globale Spaces",
-        mode: "vertraut · Standard",
-        sees: "Dass jemand gepostet hat, in welchen Space, wann — nie, welcher Haushalt.",
-        never: "Den Inhalt.",
+        mode: "immer anonym",
+        sees: "Dass jemand gepostet hat, in welchen Space, wann. Mitglieder und Follower sehen gleich aus.",
+        never: "Den Inhalt oder welcher Haushalt gepostet hat.",
       },
       {
-        space: "Globale Spaces",
-        mode: "streng · Wahl des Besitzers",
-        sees: "Dasselbe — und nicht einmal, welche Haushalte schreiben dürfen.",
-        never: "Den Inhalt oder den Absender.",
+        space: "Haushalte, denen es zustellt",
+        mode: "anonymes Postfach",
+        sees: "Eine Postfach-Nummer, den Zeitpunkt und eine gepolsterte Größe.",
+        never: "Wem das Postfach gehört oder aus welchem Space ein Beitrag kommt.",
       },
       {
         space: "Privater Space mit eingeschaltetem GFS",
@@ -543,10 +547,10 @@ export const de: UiStrings = {
       "nur Routing-Metadaten",
       "identitätsfreies Host-Relay",
       "anonymous_publish proof",
-      "strenger Modus · gemeinsamer Writer-Key",
+      "gemeinsamer Writer-Key",
     ],
     residualsHtml:
-      'Wie jeder Server im Internet sieht es außerdem deine IP-Adresse, den Zeitpunkt jeder Anfrage und die Größenklasse jedes Umschlags. Diese Restrisiken stehen im <a href="/docs/security/">Sicherheitsmodell</a>.',
+      'Wie jeder Server im Internet sieht es außerdem deine IP-Adresse, den Zeitpunkt jeder Anfrage und die Größenklasse jedes Umschlags, und es hebt verschlüsselte Bilder ein paar Tage auf. Unser GFS protokolliert keine IP-Adressen. Diese Restrisiken stehen im <a href="/docs/security/">Sicherheitsmodell</a>.',
     runOwnHeading: "Betreibe deinen eigenen",
     runOwnHtml:
       'Für eine private Community, eine Organisation oder ein haushaltsspezifisches Relay kannst du in etwa 15 Minuten einen eigenen GFS auf jedem VPS aufsetzen. <a href="/docs/running-a-gfs/">Eigenen GFS einrichten →</a>',

@@ -295,14 +295,14 @@ export const en: UiStrings = {
       {
         claim: "Leave a space, lose the key.",
         detail:
-          "Every time membership changes, the space gets a fresh key. Old members can't read new posts.",
-        chips: ["per-epoch key", "rotated on every change"],
+          "When someone leaves or is removed, the space gets a fresh key. Old members can't read new posts.",
+        chips: ["per-epoch key", "rotated on every removal"],
       },
       {
         claim: "The relay carries parcels, not letters.",
         detail:
-          "It sees which space a sealed envelope belongs to and when — never what's inside. Strict mode hides even who sent it.",
-        chips: ["padded 1/4/16/64/128 KiB", "±300 s", "24 h replay cache"],
+          "It sees which global space a sealed post belongs to and when — never what's inside, and never which household sent it.",
+        chips: ["padded 1/4/16/64/128 KiB", "anonymous mailboxes", "25 h replay cache"],
       },
       {
         claim: "Tested before every release.",
@@ -494,11 +494,15 @@ export const en: UiStrings = {
       "Highlights public-link relay",
       "Public links open in a viewer this server doesn't run",
       "Age-gate policy enforced",
-      "Sealed posts queued for offline households, then gone",
+      "Sealed posts held a day and pictures a few days, encrypted, then gone",
       "Never reads message, photo, or call content",
     ],
     technicalTerms: "Technical terms",
-    chips: ["padded 1/4/16/64/128 KiB", "24 h queue", "zero content stored"],
+    chips: [
+      "padded 1/4/16/64/128 KiB",
+      "24 h queue · 3-day picture cache",
+      "nothing readable stored",
+    ],
     connect: "Connect →",
     qrLabel: "Social Home GFS pairing QR code",
     qrCaptionHtml:
@@ -521,15 +525,15 @@ export const en: UiStrings = {
     seesRows: [
       {
         space: "Global spaces",
-        mode: "trusted · default",
-        sees: "That someone posted, into which space, when — never which household.",
-        never: "The content.",
+        mode: "always anonymous",
+        sees: "That someone posted, into which space, when. Members and followers look alike.",
+        never: "The content, or which household posted.",
       },
       {
-        space: "Global spaces",
-        mode: "strict · owner's choice",
-        sees: "The same — and not even which households may write.",
-        never: "The content, or the sender.",
+        space: "Households it delivers to",
+        mode: "anonymous mailbox",
+        sees: "A mailbox number, the time and a padded size.",
+        never: "Whose mailbox it is, or which space a post is from.",
       },
       {
         space: "Private space with the GFS switched on",
@@ -542,10 +546,10 @@ export const en: UiStrings = {
       "routing metadata only",
       "identity-free host relay",
       "anonymous_publish proof",
-      "strict mode · shared writer key",
+      "shared writer key",
     ],
     residualsHtml:
-      'Like any server on the internet it also sees your IP address, the time of each request and the size bucket of each envelope. Those residuals are written down in the <a href="/docs/security/">security model</a>.',
+      'Like any server on the internet it also sees your IP address, the time of each request and the size bucket of each envelope, and it keeps encrypted pictures for a few days. Our GFS does not log IP addresses. Those residuals are written down in the <a href="/docs/security/">security model</a>.',
     runOwnHeading: "Run your own",
     runOwnHtml:
       'For a private community, organisation, or household-specific relay, you can stand up your own GFS on any VPS in about 15 minutes. <a href="/docs/running-a-gfs/">Set up your own GFS →</a>',

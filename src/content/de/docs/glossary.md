@@ -89,7 +89,9 @@ siehe
 Jeder Space hat einen Host-Haushalt: den, der ihn angelegt hat
 und die Admin-Stimmen auszählt. Der Host ist kein Mittelsmann —
 Mitglieder posten direkt zueinander — aber er ist der Ort, an dem
-die Mitgliederliste lebt.
+die Mitgliederliste lebt. Schaltet der Besitzer **Admins dürfen für
+mich handeln** ein, können Admins aus anderen Haushalten den Space
+am Laufen halten, während der Host offline ist.
 
 ## GFS
 
@@ -98,8 +100,11 @@ Föderationsserver: das Relay, das Haushalten hilft, einander zu
 finden, wenn sie sich noch nicht kennen. Für Haushalte, mit denen
 du gekoppelt bist, brauchst du keinen. Ein GFS listet die globalen
 Spaces, deren Besitzer ihn gewählt hat, und trägt ihre versiegelten
-Beiträge zu Haushalten, mit denen du nicht gekoppelt bist: Followern
-und Mitgliedern, die über einen GFS-Link beigetreten sind. Das Social-Home-Projekt betreibt einen; jeder kann
+Beiträge zu Haushalten, mit denen du nicht gekoppelt bist: Followern,
+Mitgliedern, die über einen GFS-Link beigetreten sind, und
+Haushalten, die über ihn um Beitritt gebeten haben. Jeder dieser
+Haushalte bekommt ein anonymes [Postfach](#postfach) auf dem GFS.
+Außerdem hebt ein GFS verschlüsselte Bilder ein paar Tage auf. Das Social-Home-Projekt betreibt einen; jeder kann
 [einen eigenen betreiben](/de/docs/running-a-gfs/). Ein GFS sieht
 versiegelte Umschläge und Routing-Informationen, nie den Inhalt
 eines Beitrags. Was er sehen kann und was nicht, steht auf der
@@ -112,6 +117,27 @@ funktioniert für jeden — die Person, die ihn öffnet, muss nicht
 mit dir gekoppelt sein, weil der GFS die Vorstellung übernimmt.
 Ein **Lokaler Link** funktioniert nur für Haushalte, mit denen du
 bereits verbunden bist, und berührt nie einen GFS.
+
+## Postfach
+
+Ist dein Haushalt über einen GFS in einem Space, bekommt er dort ein
+anonymes Postfach. Der Host und die anderen Mitglieder legen
+versiegelte Beiträge hinein, und dein Zuhause holt sie ab. Der GFS
+kennt das Postfach nur unter einer zufällig aussehenden Nummer:
+nicht, wem es gehört, und nicht, für welche Spaces es ist. In der
+App siehst du nie ein Postfach.
+
+<details class="tech">
+<summary>Unter der Haube</summary>
+
+Ein Postfach pro Haushalt und GFS. Seine X25519- und Ed25519-Schlüssel
+werden per HKDF-SHA256 aus einer 32-Byte-Postfach-Wurzel abgeleitet,
+und seine ID ist `base32(SHA-256("sh-mbx-v1" ‖ sign_pk))`. Ein
+Haushalt eröffnet eines, indem er ein anonymes Privacy-Pass-Ticket
+einlöst (Blind RSA-2048, RFC 9474), und kündigt es auf einer
+Mitgliedskarte an, die mit seinem Identitätsschlüssel signiert ist.
+
+</details>
 
 ## Viewer
 
@@ -127,17 +153,17 @@ Release vergleichen, aus dem sie stammt. Siehe
 
 ## Follower
 
-Ein Follower ist jemand, der einen Space liest, ohne Mitglied zu
-sein. Follower sehen, was der Space veröffentlicht, aber sie
-posten nicht und haben keine Stimme. Die Mitgliedsrollen lauten
+Ein Follower ist ein Mitglied eines Space mit einer Rolle nur zum
+Lesen. Follower sehen, was der Space veröffentlicht. Sie posten
+nicht und stimmen bei Umfragen nicht ab; wenn der Space es erlaubt,
+können sie kommentieren und reagieren. Die Mitgliedsrollen lauten
 Besitzer → Admin → Moderator → Mitglied → Follower.
 
 ## Schlüsselrotation (Epoche)
 
 Jeder Space hat einen Schlüssel, der seine Beiträge versiegelt.
-Immer wenn sich die Mitgliedschaft ändert — jemand kommt dazu,
-jemand geht, jemand wird entfernt — bekommt der Space einen
-frischen Schlüssel und beginnt eine neue _Epoche_. Wer gegangen
+Immer wenn jemand geht, entfernt wird oder das Recht zum Posten
+verliert, bekommt der Space einen frischen Schlüssel und beginnt eine neue _Epoche_. Wer gegangen
 ist, kann nichts lesen, was nach dem Weggang gepostet wurde.
 
 <details class="tech">

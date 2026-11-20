@@ -43,6 +43,7 @@ par appareil et aucune prétention de secret d'appareil à appareil.
 | trouve un lien d'invitation égaré                | l'entrée dans l'espace, si c'était un Lien GFS — traitez-les comme des clés ; un Lien local ne sert à rien à un inconnu    |
 | a les droits root sur le serveur de votre maison | tout — c'est votre serveur ; protégez-le comme le reste de votre réseau domestique                                         |
 | est admin d'un espace où vous êtes               | tout ce qui est dans cet espace, comme n'importe quel membre — les admins ne sont pas une porte dérobée                    |
+| est un admin que vous laissez agir pour vous     | la clé de signature de l'espace : il peut inviter, retirer et changer les réglages pendant que vous êtes hors ligne        |
 
 Les deux dernières lignes sont les lignes honnêtes : Social Home
 protège votre foyer de l'extérieur, pas de lui-même.
@@ -77,7 +78,7 @@ celle-ci ».
 <summary>Sous le capot</summary>
 
 - Aucun repli en clair ; aucun mode d'instance de confiance.
-- Fenêtre d'horodatage ±300 s ; cache anti-rejeu 24 h.
+- Fenêtre d'horodatage ±300 s ; cache anti-rejeu 25 h.
 - Tout échec de signature rejette l'enveloppe avant toute analyse
   plus poussée.
 
@@ -90,8 +91,8 @@ démarre. Quand vous vous jumelez avec un autre foyer, vous convenez
 tous deux d'un secret partagé via un QR code ou un code court
 dicté, pour que personne ne puisse se glisser entre vous.
 
-Chaque espace a sa propre clé, et cette clé change à chaque fois
-que les membres changent. Quand quelqu'un quitte le club de
+Chaque espace a sa propre clé, et cette clé change chaque fois
+que quelqu'un part ou est retiré. Quand quelqu'un quitte le club de
 lecture, le club reçoit une nouvelle clé ; cette personne ne peut
 rien lire de ce qui est publié ensuite. Quand un admin est retiré,
 la clé qui signe les décisions des admins change aussi.
@@ -107,8 +108,8 @@ avec votre sauvegarde Home Assistant habituelle ; avec Docker ou Python, vous t�
 - Identité : Ed25519. Signatures hybrides Ed25519 + ML-DSA-65 en
   option (nécessite liboqs).
 - Jumelage : X25519 + HKDF-SHA256, authentifié par le code dicté.
-- Contenu des espaces : clé AES-256-GCM par époque, renouvelée à
-  chaque changement de membres. Clé d'autorité renouvelée à la
+- Contenu des espaces : clé AES-256-GCM par époque, renouvelée chaque
+  fois qu'un membre part, est retiré ou perd le droit de publier. Clé d'autorité renouvelée à la
   révocation d'un admin.
 - Au repos : clés enveloppées sous une KEK (clé de chiffrement de
   clés). Recovery Kit `.shrk` = scrypt + AES-256-GCM, pour les
@@ -124,25 +125,28 @@ avec votre sauvegarde Home Assistant habituelle ; avec Docker ou Python, vous t�
 
 Le GFS (Global Federation Server) — le relais qui aide les foyers à
 se trouver — transporte les publications d'un espace global vers
-les foyers avec qui vous n'êtes pas jumelé : les abonnés, et les
-membres qui ont rejoint avec un Lien GFS. Les foyers jumelés les
-reçoivent directement ou par le maillage. Il transporte des
-enveloppes scellées, rembourrées à quelques tailles fixes, et les
-distribue. Il ne
-stocke aucun contenu : si un foyer est hors ligne, il garde les
-enveloppes scellées pendant une journée, puis les abandonne. Voir
+les foyers avec qui vous n'êtes pas jumelé : les abonnés, les
+membres qui ont rejoint avec un Lien GFS, et les foyers qui ont
+demandé à rejoindre l'espace par son intermédiaire. Les foyers
+jumelés les reçoivent directement ou par le maillage. Il transporte
+des enveloppes scellées, rembourrées à quelques tailles fixes, et
+les dépose dans la boîte aux lettres anonyme de chaque foyer. Il ne
+stocke jamais rien qu'il puisse lire : les publications destinées à
+un foyer hors ligne attendent, scellées, pendant une journée ; les
+photos sont conservées chiffrées pendant quelques jours. Voir
 [GFS](/fr/docs/glossary/#gfs) dans le glossaire.
 
-| Mode                         | Ce que le relais apprend                                                                             |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
-| **Confiance** (par défaut)   | que _quelqu'un_ dans l'espace a publié, et quand — jamais quel foyer                                 |
-| **Strict** (sur activation)  | la même chose, et il ne peut pas savoir quels foyers ont le droit d'écrire                           |
-| **Espace privé, GFS activé** | quels foyers appartiennent au canal — jamais le nom, l'identifiant, la clé ou le contenu de l'espace |
+| Quoi                                   | Ce que le relais apprend                                                                             |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Publications dans un espace global** | que _quelqu'un_ qui a le droit d'y publier a publié, et quand — jamais quel foyer                    |
+| **Livraison à un foyer**               | une boîte aux lettres anonyme — ni à qui elle appartient, ni de quel espace vient une publication    |
+| **Photos pour ces foyers**             | des fichiers chiffrés qu'il garde quelques jours et ne peut pas ouvrir                               |
+| **Espace privé, GFS activé**           | quels foyers appartiennent au canal — jamais le nom, l'identifiant, la clé ou le contenu de l'espace |
 
 Seuls les GFS choisis par le propriétaire d'un espace sont
-concernés. Dans tous les modes, le relais voit encore l'adresse IP de
-l'expéditeur, les horaires, la classe de taille et quels foyers
-reçoivent les publications d'un espace. Une simple synchronisation
+concernés. Le relais voit encore l'adresse IP de l'expéditeur, les
+horaires, la classe de taille, qui suit un espace global, et à
+quelles boîtes aux lettres va une publication. Une simple synchronisation
 des membres ne dit rien au GFS.
 
 <details class="tech">
@@ -155,22 +159,41 @@ des membres ne dit rien au GFS.
   sans cookie, et seulement vers un GFS qui a prouvé
   `anonymous_publish` — sinon rien n'est envoyé.
 - Quand un membre publie pour lui-même (pour que l'hôte n'ait pas
-  besoin d'être en ligne), il signe avec une clé d'écriture
-  partagée par époque dans les deux modes, de sorte que le GFS ne
-  peut pas dire quel membre a publié. Il envoie à chaque GFS de la
+  besoin d'être en ligne), il signe toujours avec une clé
+  d'écriture partagée par époque, de sorte que le GFS ne peut pas
+  dire quel membre a publié. Il envoie à chaque GFS de la
   liste signée par le propriétaire (au plus 8), sur une session
   sans cookie épinglée à l'adresse listée, après que ce GFS a
-  prouvé qu'il détient la clé listée. En mode strict, les
-  rédacteurs s'abonnent en plus dans le même lot mélangé que les
-  abonnés.
+  prouvé qu'il détient la clé listée. Le certificat de rédacteur
+  voyage à l'intérieur du texte chiffré. Les rédacteurs s'abonnent
+  dans le même lot mélangé que les abonnés.
+- Boîtes aux lettres : une par foyer et par GFS, clés dérivées par
+  HKDF-SHA256 d'une racine de boîte aux lettres de 32 octets
+  (X25519 pour sceller, Ed25519 pour réclamer), enregistrées
+  anonymement avec un ticket Privacy Pass (RSA-2048 aveugle,
+  RFC 9474). Le GFS stocke l'identifiant de la boîte aux lettres,
+  sa clé et deux horodatages arrondis au jour — aucun identifiant
+  de foyer, aucun espace.
+- Une mise à jour destinée à de nombreuses boîtes aux lettres est
+  scellée une seule fois et sa clé enveloppée pour chaque
+  destinataire (`/gfs/envelope/multi`, jusqu'à 500), si bien que le
+  GFS voit la liste des boîtes aux lettres destinataires de cet
+  élément.
+- Cache média des espaces : blobs AES-256-GCM, 3 jours et 5 GiB par
+  défaut (au plus 7 jours, au choix de l'exploitant).
+- Les admins que vous laissez agir pour vous reçoivent la graine de
+  signature Ed25519 de l'espace, scellée pour leur foyer. En
+  retirer un fait tourner la clé sur chaque GFS où l'espace était
+  référencé.
 - Espaces privés : `private_gfs` désactivé par défaut ; une fois
   activé, un identifiant de canal opaque de 128 bits sur les GFS
   choisis par le propriétaire.
 - Classes de rembourrage : 1 / 4 / 16 / 64 / 128 KiB pour les
-  publications de membres, plus une classe de 191 KiB pour le
-  relais d'enveloppes.
+  publications de membres, 4 / 16 / 64 / 128 / 191 KiB pour le
+  relais d'enveloppes, et 64 / 128 / 256 / 516 KiB pour les trames
+  binaires.
 - Destinataires hors ligne : mis en file 24 h, au plus
-  2000 enveloppes ou 64 MiB par destinataire. Votre foyer réessaie
+  2000 enveloppes ou 32 MiB par boîte aux lettres. Votre foyer réessaie
   avec un délai croissant : 5 s, 30 s, 2 min, 10 min.
 
 </details>
@@ -352,9 +375,19 @@ nous confier la discussion de groupe :
   un GFS ne peut pas bannir un foyer en particulier ; le
   propriétaire retire un rédacteur en faisant tourner la clé de
   l'espace.
-- Dans tous les modes, le relais voit votre adresse IP, les
-  horaires et la classe de taille de chaque enveloppe, et quels
-  foyers reçoivent les publications d'un espace.
+- Le relais voit votre adresse IP, les horaires et la classe de
+  taille de chaque enveloppe, qui suit un espace global, et à
+  quelles boîtes aux lettres va une même publication. La boîte aux
+  lettres d'un foyer transporte tous ses espaces sur ce GFS : un
+  GFS peut donc compter le trafic d'un foyer.
+- Un GFS qui journalise les adresses IP peut faire correspondre une
+  boîte aux lettres au foyer qui se connecte depuis la même
+  adresse. Le GFS du projet ne journalise pas les adresses IP.
+- Les photos chiffrées restent quelques jours sur le GFS ; il voit
+  leur taille rembourrée.
+- Pendant que le propriétaire est hors ligne, un GFS peut remarquer
+  que quelqu'un d'autre détient la clé de signature de l'espace,
+  mais pas qui.
 - L'échange de clés n'est pas encore post-quantique ; seules les
   signatures ont une variante post-quantique en option.
 - Il n'y a pas encore d'analyse automatisée des dépendances.

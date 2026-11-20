@@ -141,7 +141,9 @@ You decide who sees a space. You decide which households are
 invited. Every space has a host household — the one that created
 it and keeps the member list — but members post straight to each
 other, and the big decisions (who can see it, whether it still
-exists) are taken by all its admins together.
+exists) are taken by all its admins together. If the owner allows
+it, admins from other households can also act while the host is
+offline.
 
 ## Public and global spaces
 
@@ -155,8 +157,10 @@ don't know each other can find it (see [GFS](/docs/glossary/#gfs)).
 
 Paired households always get a space's posts directly or over
 the mesh. The relay only carries posts to households you aren't
-paired with — followers, and members who joined with a GFS link —
-as sealed, padded envelopes, and every listed GFS gets every post.
+paired with — followers, members who joined with a GFS link, and
+households that asked to join through it — as sealed, padded
+envelopes, each into that household's anonymous mailbox. Every
+listed GFS gets every post.
 It can't read a word, and members post
 anonymously. More in
 [Global spaces](/docs/global-spaces/).
@@ -170,9 +174,11 @@ reach paired households as a `SPACE_DIRECTORY_SYNC` snapshot and
 never touch a GFS. Members publish anonymously to every
 listed GFS. The GFS sees routing
 metadata only (`space_id`, `event_type`, size bucket, timing,
-subscriber set, source IP); strict mode makes publishes
-identity-free. Offline members are queued 24 h; nothing else is
-stored.
+subscriber set, source IP); publishes are always identity-free,
+signed with a shared per-epoch writer key. Households reached
+through a GFS get one anonymous mailbox per GFS. Sealed envelopes
+wait up to 24 h; encrypted pictures are cached up to 3 days
+(operator setting, at most 7). Nothing else is stored.
 
 </details>
 

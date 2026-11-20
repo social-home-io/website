@@ -157,7 +157,9 @@ quels foyers sont invités. Chaque espace a un foyer hôte — celui
 qui l'a créé et qui tient la liste des membres — mais les membres
 publient directement les uns vers les autres, et les grandes
 décisions (qui peut le voir, s'il existe encore) sont prises par
-tous ses administrateurs ensemble.
+tous ses administrateurs ensemble. Si le propriétaire l'autorise,
+les administrateurs d'autres foyers peuvent aussi agir pendant que
+l'hôte est hors ligne.
 
 ## Espaces publics et globaux
 
@@ -175,9 +177,11 @@ foyers qui ne se connaissent pas puissent le trouver (voir
 Les foyers jumelés reçoivent toujours les publications d'un
 espace directement ou par le maillage. Le relais ne transporte
 les publications que vers les foyers avec qui vous n'êtes pas
-jumelé — les abonnés, et les membres qui ont rejoint avec un Lien
-GFS — sous forme d'enveloppes scellées et complétées à taille
-fixe, et chaque GFS référencé reçoit chaque publication. Il ne
+jumelé — les abonnés, les membres qui ont rejoint avec un Lien
+GFS, et les foyers qui ont demandé à rejoindre l'espace par son
+intermédiaire — sous forme d'enveloppes scellées et complétées à
+taille fixe, chacune dans la boîte aux lettres anonyme de ce foyer.
+Chaque GFS référencé reçoit chaque publication. Il ne
 peut pas en lire un mot, et les membres publient anonymement.
 Plus de détails dans
 [Espaces globaux](/fr/docs/global-spaces/).
@@ -192,9 +196,13 @@ forme d'instantané `SPACE_DIRECTORY_SYNC` et ne touchent jamais un
 GFS. Les membres publient anonymement sur chaque GFS référencé. Le GFS ne
 voit que des
 métadonnées de routage (`space_id`, `event_type`, tranche de
-taille, horodatage, ensemble des abonnés, IP source) ; le mode
-strict rend les publications anonymes. Les membres hors ligne
-sont mis en file d'attente 24 h ; rien d'autre n'est stocké.
+taille, horodatage, ensemble des abonnés, IP source) ; les
+publications sont toujours anonymes, signées avec une clé
+d'écriture partagée par époque. Les foyers atteints via un GFS ont
+une boîte aux lettres anonyme par GFS. Les enveloppes scellées
+attendent jusqu'à 24 h ; les photos chiffrées sont mises en cache
+jusqu'à 3 jours (réglage de l'exploitant, au plus 7). Rien d'autre
+n'est stocké.
 
 </details>
 

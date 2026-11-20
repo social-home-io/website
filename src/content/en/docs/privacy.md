@@ -41,10 +41,11 @@ with. What it learns about you
 depends on how the space is set up (see
 [GFS](/docs/glossary/#gfs) in the glossary):
 
-- **Trusted** (the default): only that _someone_ in the space
-  posted, and when. Members post anonymously.
-- **Strict** (opt-in per space): the same, and it can't even tell
-  which households are allowed to write.
+- **Global spaces**: only that _someone_ allowed to post there
+  posted, and when. Members always post anonymously, and members
+  and followers look the same to it.
+- **Households it delivers to**: an anonymous mailbox — not whose
+  it is, and not which space a post is from.
 - **A private space with the GFS switch on** (off by default):
   which households belong to the channel — never the space's
   name, id, key or content.
@@ -63,26 +64,33 @@ It **never** sees:
 - Your household's shopping list, calendar, presence or logs.
 
 It does see your IP address, the timing and the rough size of
-each envelope, and which households receive a space's posts.
+each envelope, who follows a global space, and which anonymous
+mailboxes a post goes to. It also keeps encrypted pictures for a
+few days, so a household that was offline can still fetch them.
 
-No relay is involved at all if you have no global spaces, no
-public Moments, no public highlight links and no
-private space with the GFS switch on. Your household then talks
+No relay is involved at all if you aren't in or following any
+global space, haven't joined anything with a GFS link, and have no
+public Moments, no public highlight links and no private space
+with the GFS switch on. Your household then talks
 only to households you've paired with, directly.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
 Routing metadata only: `space_id`, `event_type`, size bucket
-(1 / 4 / 16 / 64 / 128 KiB, plus 191 KiB for envelope relay),
+(1 / 4 / 16 / 64 / 128 KiB for member publishes,
+4 / 16 / 64 / 128 / 191 KiB for envelope relay),
 timing, subscriber set, source IP. A post relayed by the host
 household is identity-free `{space_id, event_type, payload}` on
-a cookie-less session; a member publishing for itself signs
-with a shared per-epoch writer key in both modes. A private space
+a cookie-less session; a member publishing for itself always signs
+with a shared per-epoch writer key. Deliveries go to one anonymous
+mailbox per household per GFS, opened with a Privacy Pass ticket;
+the GFS stores no link from a mailbox to a household. A private space
 with `private_gfs` on uses an opaque 128-bit channel id on the
 GFSs the owner picks. Offline recipients are queued for 24 h
-(2000 envelopes / 64 MiB per recipient); no content is stored
-beyond that.
+(2000 envelopes / 32 MiB per mailbox). Space pictures sit in an
+encrypted media cache for 3 days by default (at most 7). Nothing
+else is stored.
 
 </details>
 
@@ -130,14 +138,15 @@ Keys at rest are wrapped under a KEK. The Recovery Kit is a
 ## Things you control
 
 - **Who's in a space** (Settings → Spaces — invite or remove
-  members; every membership change gives the space a new key, so
+  members; removing someone gives the space a new key, so
   someone removed can't read anything posted afterwards).
 - **Presence sharing** (Settings → Privacy — opt-in, per
   household member, can be turned off any time).
 - **Pairing** (Settings → Connections — remove a household and
   its copy of your messages stops being trusted).
 - **Which relay, if any** (Settings → Connections — the GFS is
-  optional and you choose which one).
+  optional and you choose which one). In a global space, your
+  posts also go to the GFSs its owner picked.
 - **Backups** — your responsibility, like everything else in your home.
 
 ## Reporting issues
