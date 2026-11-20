@@ -5,10 +5,13 @@
     "ghcr.io/devcontainers/features/node:1": {
       "version": "lts"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "corepack enable && npm ci",
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"
+  },
+  "postCreateCommand": "curl -fsSL https://claude.ai/install.sh | bash && corepack enable && npm ci",
   "forwardPorts": [4321],
   "portsAttributes": {
     "4321": {
