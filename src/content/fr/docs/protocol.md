@@ -206,6 +206,106 @@ n'est stocké.
 
 </details>
 
+## Conçu pour tenir bon
+
+Social Home n'a pas de centre. Chaque foyer est son propre serveur,
+à la maison, et garde une copie complète des espaces auxquels il
+participe. Les foyers avec qui vous êtes jumelé se parlent
+directement. Les GFS transportent les publications scellées vers les
+foyers avec qui vous n'êtes pas jumelé, et un espace peut en utiliser
+jusqu'à huit. Il n'y a donc aucune machine dont la panne ferait tomber
+le réseau, et aucun endroit unique où tout pourrait être lu.
+
+<figure class="map">
+  <img src="/docs/how-it-works/network-map-fr.webp" alt="Une carte du monde avec des foyers répartis en Europe, dans les Amériques, en Afrique, en Asie et en Australie. Des lignes vertes continues relient directement les foyers jumelés. Des lignes en pointillés mènent d'autres foyers à trois GFS, un dans le nord de l'Europe, un en Amérique du Nord et un en Asie du Sud-Est. Le GFS asiatique est grisé et barré d'une croix, et des flèches rouges en tirets montrent ses foyers qui passent au GFS européen. Un foyer en Grèce est estompé, avec une lune : l'hôte est hors ligne, et les autres foyers continuent." width="1600" height="890" loading="lazy">
+  <figcaption>Les foyers jumelés se parlent directement. Les GFS transportent les publications scellées vers les autres. Quand un GFS ou un hôte est absent, les autres continuent.</figcaption>
+</figure>
+
+Ce qui se passe quand quelque chose tombe en panne :
+
+- **Votre connexion internet est coupée.** Votre foyer continue de
+  fonctionner sur le réseau de votre maison : calendrier, listes,
+  discussion à la maison. Ce que vous publiez pour d'autres foyers
+  attend chez vous et part dès votre retour en ligne.
+- **Un autre foyer est hors ligne.** Personne d'autre ne le remarque.
+  À son retour, il rattrape ce qui manque auprès de n'importe quel
+  membre de chaque espace, pas seulement de l'hôte.
+- **L'hôte d'un espace est hors ligne.** Les membres continuent de
+  publier les uns pour les autres. N'importe quel membre peut
+  compléter ce qu'un autre a manqué, et si le propriétaire
+  l'autorise, les admins d'autres foyers peuvent continuer à gérer
+  l'espace.
+- **Un GFS tombe en panne.** Les foyers jumelés ne remarquent rien.
+  Les espaces référencés sur plusieurs GFS continuent par les autres,
+  et après une dizaine de minutes, les foyers passent à un autre GFS
+  auquel ils sont connectés. Les publications scellées attendent
+  jusqu'à un jour les foyers qui étaient absents.
+- **L'exploitant d'un GFS n'est pas digne de confiance.** Il ne peut
+  ni lire une publication, ni savoir qui l'a écrite, ni en falsifier
+  ou en modifier une : chaque publication est signée par le foyer qui
+  l'a écrite et vérifiée à l'arrivée. Votre identité et vos
+  publications vivent chez vous ; vous vous connectez donc à un autre
+  GFS et vous continuez.
+- **Le projet Social Home disparaît.** Votre maison continue de
+  fonctionner. Le GFS est open source, tout le monde peut en faire
+  tourner un, et les foyers peuvent se connecter à n'importe quel GFS
+  qui les accepte.
+
+<details class="tech">
+<summary>Sous le capot</summary>
+
+Chaque foyer stocke ses espaces dans sa propre base de données et
+signe ce qu'il envoie avec sa clé d'identité Ed25519 ; les actions
+d'administration d'un espace sont signées avec la clé d'autorité de
+l'espace. Les publications sont scellées en AES-256-GCM avec une clé
+propre à l'espace, renouvelée dès que quelqu'un part. La livraison
+réessaie avec un délai croissant (5 s, 30 s, 2 min, 10 min) et le GFS
+garde les enveloppes scellées en file d'attente pendant 24 h. Les
+membres rattrapent leur retard en se comparant à une **page de
+synchronisation** signée (256 empreintes de compartiments sur les
+lignes de l'espace) et n'acceptent les lignes d'un membre que si la
+page les garantit. La boîte aux lettres d'un foyer passe à un autre
+GFS référencé quand la sienne reste en panne 10 minutes. Risques
+résiduels : un GFS voit les adresses internet, les horaires et les
+tailles ; un membre qu'aucun GFS de l'espace n'atteint est atteint
+par l'hôte ; les liens publics vers un highlight s'ouvrent dans une
+visionneuse hébergée sur GitHub Pages. La liste complète se trouve
+sur la page [Modèle de sécurité](/fr/docs/security/).
+
+</details>
+
+## En quoi c'est différent des autres réseaux décentralisés
+
+Dans beaucoup de réseaux décentralisés, la décentralisation s'arrête
+au serveur. Quelqu'un fait tourner un serveur, des gens y créent un
+compte, et les serveurs se parlent entre eux. Le réseau est ainsi
+réparti sur de nombreux serveurs, mais chaque personne dépend
+toujours de l'un d'eux : s'il tombe en panne, ses utilisateurs sont
+hors ligne ; si son exploitant le ferme, leurs comptes et leur
+historique disparaissent avec lui ; et l'exploitant peut lire ce qui
+y est stocké, sauf si l'app le scelle pour ses destinataires.
+
+Social Home pousse la décentralisation un cran plus loin, jusqu'à
+chaque foyer. Le serveur, c'est votre maison. Votre compte, vos clés
+et votre copie de chaque espace y vivent, et nulle part ailleurs. Les
+relais entre les foyers, les GFS, sont des aides, pas des maisons :
+ils ne détiennent rien qu'ils puissent lire, ne peuvent pas parler en
+votre nom, et peuvent être remplacés.
+
+|                                 | Fédération par serveurs                                   | Social Home                                                           |
+| ------------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------- |
+| Où vit votre compte             | sur le serveur de quelqu'un d'autre                       | dans votre maison                                                     |
+| Qui peut lire ce qui est stocké | l'exploitant du serveur, sauf si c'est scellé             | votre foyer, et les membres d'un espace pour cet espace               |
+| Si un serveur tombe en panne    | tous ceux qui y ont un compte sont hors ligne             | seul ce foyer-là l'est ; les autres continuent                        |
+| Si un exploitant arrête         | les comptes et l'historique disparaissent avec lui        | un GFS ne détenait rien qu'il puisse lire ; connectez-vous à un autre |
+| Changer de serveur              | déplacer votre compte, si les deux serveurs le permettent | se connecter à un autre GFS ; votre maison reste où elle est          |
+
+Le compromis est assumé : votre maison doit être allumée pour que les
+autres puissent la joindre directement, et un foyer éteint pendant un
+moment rattrape ce qui manque à son retour. C'est à cela que sert la
+Home Assistant App : elle fait tourner Social Home sur une machine qui
+reste allumée de toute façon.
+
 ## Liens publics vers un Highlight
 
 Le même genre de relais a aussi un second rôle : transmettre un
