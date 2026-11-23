@@ -195,6 +195,101 @@ gespeichert.
 
 </details>
 
+## Gebaut, um weiterzulaufen
+
+Social Home hat keine Mitte. Jeder Haushalt ist sein eigener Server,
+bei dir zu Hause, und hält eine vollständige Kopie der Spaces, in denen
+er ist. Gekoppelte Haushalte sprechen direkt miteinander. GFS tragen
+versiegelte Beiträge zu Haushalten, mit denen du nicht gekoppelt bist,
+und ein Space kann bis zu acht davon nutzen. Es gibt also keine
+einzelne Maschine, deren Ausfall das Netzwerk lahmlegt, und keine
+einzelne Stelle, an der alles mitgelesen werden könnte.
+
+<figure class="map">
+  <img src="/docs/how-it-works/network-map-de.webp" alt="Eine Weltkarte mit Haushalten in Europa, Nord- und Südamerika, Afrika, Asien und Australien. Durchgezogene grüne Linien verbinden gekoppelte Haushalte direkt. Gepunktete Linien führen von anderen Haushalten zu drei GFS, einem in Nordeuropa, einem in Nordamerika und einem in Südostasien. Der asiatische GFS ist ausgegraut und durchgekreuzt, und rote gestrichelte Pfeile zeigen, wie seine Haushalte zum europäischen GFS umziehen. Ein Haushalt in Griechenland ist verblasst, mit einem Mond daneben: Der Gastgeber ist offline, und die anderen Haushalte machen weiter." width="1600" height="890" loading="lazy">
+  <figcaption>Gekoppelte Haushalte sprechen direkt miteinander. GFS tragen versiegelte Beiträge zu allen anderen. Ist ein GFS oder ein Gastgeber weg, machen die anderen weiter.</figcaption>
+</figure>
+
+Was passiert, wenn etwas ausfällt:
+
+- **Dein Internet ist weg.** Dein Haushalt läuft in deinem Heimnetz
+  weiter: Kalender, Listen, Chat im Haus. Was du an andere Haushalte
+  postest, wartet bei dir zu Hause und geht raus, sobald du wieder
+  online bist.
+- **Ein anderer Haushalt ist offline.** Sonst merkt das niemand. Ist
+  er zurück, holt er bei jedem Mitglied eines Space nach, nicht nur
+  beim Gastgeber.
+- **Der Gastgeber eines Space ist offline.** Die Mitglieder posten
+  weiter untereinander. Jedes Mitglied kann nachliefern, was jemand
+  verpasst hat, und wenn der Eigentümer es erlaubt, können Admins aus
+  anderen Haushalten den Space weiterführen.
+- **Ein GFS fällt aus.** Gekoppelte Haushalte merken nichts. Spaces,
+  die auf mehreren GFS gelistet sind, laufen über die anderen weiter,
+  und nach etwa zehn Minuten ziehen Haushalte auf einen anderen GFS
+  um, mit dem sie verbunden sind. Versiegelte Beiträge warten bis zu
+  einen Tag auf Haushalte, die weg waren.
+- **Einem GFS-Betreiber ist nicht zu trauen.** Er kann keinen Beitrag
+  lesen, nicht erkennen, wer ihn geschrieben hat, und keinen fälschen
+  oder verändern: Jeder Beitrag ist vom Haushalt signiert, der ihn
+  geschrieben hat, und wird am anderen Ende geprüft. Deine Identität
+  und deine Beiträge liegen bei dir zu Hause, also verbindest du dich
+  mit einem anderen GFS und machst weiter.
+- **Das Social-Home-Projekt verschwindet.** Dein Zuhause läuft weiter.
+  Der GFS ist Open Source, jeder kann einen betreiben, und Haushalte
+  können sich mit jedem GFS verbinden, der sie hereinlässt.
+
+<details class="tech">
+<summary>Unter der Haube</summary>
+
+Jeder Haushalt speichert seine Spaces in seiner eigenen Datenbank und
+signiert, was er sendet, mit seinem Ed25519-Identitätsschlüssel;
+Admin-Aktionen in einem Space werden mit dem Autoritätsschlüssel des
+Space signiert. Beiträge werden mit AES-256-GCM unter einem Schlüssel
+pro Space versiegelt, der rotiert, sobald jemand geht. Die Zustellung
+versucht es mit Backoff erneut (5 s, 30 s, 2 min, 10 min), und der GFS
+hält versiegelte Umschläge 24 h in der Warteschlange. Mitglieder holen
+anhand einer signierten **Sync-Seite** nach (256 Bucket-Hashes über die
+Zeilen des Space) und übernehmen Zeilen von jedem Mitglied nur, wenn
+die Seite für sie bürgt. Das Postfach eines Haushalts zieht auf einen
+anderen gelisteten GFS um, wenn sein eigener 10 Minuten lang ausfällt.
+Was bleibt: Ein GFS sieht Internetadressen, Timing und Größen; ein
+Mitglied, das kein GFS des Space erreicht, wird über den Gastgeber
+erreicht; öffentliche Highlight-Links öffnen sich in einem Viewer, der
+auf GitHub Pages liegt. Die vollständige Liste steht im
+[Sicherheitsmodell](/de/docs/security/).
+
+</details>
+
+## Was anders ist als bei anderen dezentralen Netzwerken
+
+In vielen dezentralen Netzwerken hört die Dezentralisierung beim
+Server auf. Jemand betreibt einen Server, Leute legen dort Konten an,
+und die Server sprechen miteinander. Das verteilt das Netzwerk auf
+viele Server, aber jede Person hängt trotzdem an einem davon: Fällt er
+aus, sind seine Leute offline; schließt sein Betreiber ihn, sind ihre
+Konten und ihr Verlauf mit ihm weg; und der Betreiber kann lesen, was
+dort gespeichert ist, außer die App versiegelt es für die Empfänger.
+
+Social Home geht mit der Dezentralisierung einen Schritt weiter, bis
+zu jedem einzelnen Haushalt. Der Server ist dein Zuhause. Dein Konto,
+deine Schlüssel und deine Kopie jedes Space liegen dort und nirgends
+sonst. Die Relays dazwischen, die GFS, sind Helfer, kein Zuhause: Sie
+halten nichts, was sie lesen könnten, sie können nicht für dich
+sprechen, und man kann sie austauschen.
+
+|                                     | Föderation über Server                             | Social Home                                                                |
+| ----------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------- |
+| Wo dein Konto liegt                 | auf dem Server von jemand anderem                  | bei dir zu Hause                                                           |
+| Wer lesen kann, was gespeichert ist | der Betreiber des Servers, außer es ist versiegelt | dein Haushalt, und für einen Space dessen Mitglieder                       |
+| Wenn ein Server ausfällt            | alle darauf sind offline                           | nur dieser eine Haushalt; die anderen machen weiter                        |
+| Wenn ein Betreiber aufhört          | Konten und Verlauf sind mit ihm weg                | ein GFS hielt nichts, was er lesen konnte; verbinde dich mit einem anderen |
+| Server wechseln                     | dein Konto umziehen, wenn beide Server es zulassen | mit einem anderen GFS verbinden; dein Zuhause bleibt, wo es ist            |
+
+Der Preis, ganz offen: Dein Zuhause muss an sein, damit andere es
+direkt erreichen, und ein Haushalt, der eine Weile aus war, holt nach,
+wenn er zurück ist. Dafür ist die Home Assistant App da: Sie lässt
+Social Home auf einem Gerät laufen, das ohnehin an ist.
+
 ## Öffentliche Highlight-Links
 
 Dieselbe Art Relay hat noch eine zweite Aufgabe: ein einzelnes

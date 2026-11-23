@@ -22,7 +22,7 @@ import { join, relative, dirname, resolve } from "node:path";
 const DIST = resolve(process.argv[2] ?? "dist");
 const LOCALES = ["de", "nl", "fr"];
 const SHARED =
-  /^\/(fonts\/|blog\/.*\.[a-z0-9]+$|favicon\.svg|og-image\.|robots\.txt|sitemap|_astro\/|CNAME)/i;
+  /^\/(fonts\/|(blog|docs)\/.*\.(webp|png|jpe?g|svg|gif)$|blog\/.*\.[a-z0-9]+$|favicon\.svg|og-image\.|robots\.txt|sitemap|_astro\/|CNAME)/i;
 
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {

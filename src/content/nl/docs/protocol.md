@@ -198,6 +198,103 @@ niets opgeslagen.
 
 </details>
 
+## Gebouwd om door te gaan
+
+Social Home heeft geen middelpunt. Elk huishouden is zijn eigen
+server, thuis, en bewaart een volledige kopie van de spaces waarin
+het zit. Huishoudens waarmee je gekoppeld bent, praten rechtstreeks
+met elkaar. GFS'en brengen verzegelde posts naar huishoudens waarmee
+je niet gekoppeld bent, en een space kan er maximaal acht gebruiken.
+Er is dus geen enkele machine waarvan de uitval het netwerk platlegt,
+en geen enkele plek waar alles gelezen kan worden.
+
+<figure class="map">
+  <img src="/docs/how-it-works/network-map-nl.webp" alt="Een wereldkaart met huishoudens verspreid over Europa, Noord- en Zuid-Amerika, Afrika, Azië en Australië. Doorgetrokken groene lijnen verbinden gekoppelde huishoudens rechtstreeks. Stippellijnen lopen van andere huishoudens naar drie GFS'en: een in Noord-Europa, een in Noord-Amerika en een in Zuidoost-Azië. De Aziatische GFS is grijs met een kruis, en rode gestreepte pijlen laten zien hoe zijn huishoudens naar de Europese GFS verhuizen. Eén huishouden in Griekenland is vervaagd met een maantje: de gastheer is offline, en de andere huishoudens gaan door." width="1600" height="890" loading="lazy">
+  <figcaption>Gekoppelde huishoudens praten rechtstreeks. GFS'en brengen verzegelde posts naar de rest. Is een GFS of een gastheer weg, dan gaan de anderen door.</figcaption>
+</figure>
+
+Wat er gebeurt als er iets uitvalt:
+
+- **Je internet ligt eruit.** Het huishouden blijft werken op je
+  thuisnetwerk: agenda, lijstjes, chat in huis. Wat je naar andere
+  huishoudens plaatst, wacht thuis en gaat de deur uit zodra je weer
+  online bent.
+- **Een ander huishouden is offline.** Niemand anders merkt het. Is
+  het terug, dan werkt het bij via elk lid van elke space, niet alleen
+  via de gastheer.
+- **De gastheer van een space is offline.** Leden plaatsen nog steeds
+  bij elkaar. Elk lid kan aanvullen wat iemand miste, en als de
+  eigenaar het toestaat, kunnen beheerders uit andere huishoudens de
+  space blijven draaien.
+- **Een GFS valt uit.** Gekoppelde huishoudens merken het niet.
+  Spaces die op meer GFS'en staan, gaan door via de andere, en na
+  zo'n tien minuten verhuizen huishoudens naar een andere GFS waarmee
+  ze verbonden zijn. Verzegelde posts wachten tot een dag op
+  huishoudens die weg waren.
+- **Een beheerder van een GFS is niet te vertrouwen.** Hij kan geen
+  post lezen, niet zien wie hem schreef, en er geen vervalsen of
+  veranderen: elke post is ondertekend door het huishouden dat hem
+  schreef en wordt aan de andere kant gecontroleerd. Je identiteit en
+  je posts wonen thuis, dus je verbindt met een andere GFS en gaat
+  door.
+- **Het Social Home-project houdt op.** Je thuis blijft draaien. De
+  GFS is open source, iedereen kan er een draaien, en huishoudens
+  kunnen verbinden met elke GFS die ze binnenlaat.
+
+<details class="tech">
+<summary>Onder de motorkap</summary>
+
+Elk huishouden bewaart zijn spaces in zijn eigen database en
+ondertekent wat het verstuurt met zijn Ed25519-identiteitssleutel;
+beheeracties in een space worden ondertekend met de
+autoriteitssleutel van de space. Posts worden verzegeld met
+AES-256-GCM onder een sleutel per space die wordt vernieuwd zodra
+iemand vertrekt. Bezorging probeert opnieuw met backoff (5 s, 30 s,
+2 min, 10 min) en de GFS bewaart verzegelde enveloppen 24 uur in een
+wachtrij. Leden werken bij tegen een ondertekende **sync-pagina**
+(256 bucket-hashes over de rijen van de space) en accepteren rijen
+van elk lid alleen als de pagina ervoor instaat. De brievenbus van
+een huishouden verhuist naar een andere vermelde GFS als zijn eigen
+GFS 10 minuten onbereikbaar blijft. Wat overblijft: een GFS ziet
+internetadressen, timing en groottes; een lid dat geen enkele GFS
+van de space bereikt, wordt via de gastheer bereikt; openbare
+highlight-links openen in een viewer die op GitHub Pages staat. De
+volledige lijst staat op de pagina
+[Beveiligingsmodel](/nl/docs/security/).
+
+</details>
+
+## Hoe dit verschilt van andere gedecentraliseerde netwerken
+
+In veel gedecentraliseerde netwerken stopt de decentralisatie bij de
+server. Iemand draait een server, mensen maken er een account op aan,
+en de servers praten met elkaar. Zo is het netwerk verspreid over
+veel servers, maar ieder mens hangt nog steeds af van één ervan: valt
+hij uit, dan zijn zijn mensen offline; sluit de beheerder hem, dan
+verdwijnen hun accounts en geschiedenis mee; en de beheerder kan
+lezen wat er staat, tenzij de app het verzegelt voor de ontvangers.
+
+Social Home gaat met decentralisatie een stap verder, tot aan elk
+huishouden. De server is je thuis. Je account, je sleutels en je
+kopie van elke space staan daar, en nergens anders. De relays
+ertussen, de GFS'en, zijn helpers, geen thuis: ze bewaren niets wat
+ze kunnen lezen, ze kunnen niet namens jou spreken, en ze zijn
+vervangbaar.
+
+|                            | Federatie via servers                                | Social Home                                                      |
+| -------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------- |
+| Waar je account staat      | op de server van iemand anders                       | bij je thuis                                                     |
+| Wie kan lezen wat er staat | de beheerder van de server, tenzij het verzegeld is  | je huishouden, en de leden van een space voor die space          |
+| Als een server uitvalt     | iedereen erop is offline                             | alleen dat ene huishouden; de anderen gaan door                  |
+| Als een beheerder stopt    | accounts en geschiedenis verdwijnen mee              | een GFS bewaarde niets wat hij kon lezen; verbind met een andere |
+| Van server wisselen        | je account verhuizen, als beide servers het toestaan | verbind met een andere GFS; je thuis blijft waar het is          |
+
+De afweging is eerlijk: je thuis moet aanstaan om rechtstreeks
+bereikbaar te zijn voor anderen, en een huishouden dat een tijdje uit
+stond, werkt bij zodra het terug is. Daar is de Social Home-app voor
+Home Assistant voor: die draait Social Home op een machine die toch
+al aanstaat.
+
 ## Openbare highlight-links
 
 Hetzelfde soort relay heeft nog een tweede taak: één highlight
