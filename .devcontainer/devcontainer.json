@@ -11,7 +11,7 @@
   "remoteEnv": {
     "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"
   },
-  "postCreateCommand": "curl -fsSL https://claude.ai/install.sh | bash && corepack enable && npm ci",
+  "postCreateCommand": ".devcontainer/post-create.sh && corepack enable && npm ci",
   "forwardPorts": [4321],
   "portsAttributes": {
     "4321": {
@@ -21,7 +21,7 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["astro-build.astro-vscode", "esbenp.prettier-vscode"]
+      "extensions": ["astro-build.astro-vscode", "esbenp.prettier-vscode", "anthropic.claude-code"]
     }
   }
 }
