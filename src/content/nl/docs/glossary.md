@@ -1,6 +1,6 @@
 ---
 title: Woorden die we gebruiken
-description: Het dozijn woorden dat overal in Social Home terugkomt — huishouden, space, bereik, host, GFS, koppelen en de rest — elk uitgelegd in één alinea.
+description: Het dozijn woorden dat overal in Social Home terugkomt — huishouden, space, bereik, gastheer, GFS, koppelen en de rest — elk uitgelegd in één alinea.
 order: 5
 ---
 
@@ -78,12 +78,12 @@ ongeacht het bereik. Het bereik van een space veranderen is een
 beslissing van al zijn beheerders — zie
 [Wereldwijde spaces](/nl/docs/global-spaces/#grote-veranderingen-vragen-een-stemming).
 
-## Host
+## Gastheer
 
-Elke space heeft een host-huishouden: het huishouden dat hem
-aanmaakte en de stemmen van de beheerders telt. De host is geen
+Elke space heeft een gastheer-huishouden: het huishouden dat hem
+aanmaakte en de stemmen van de beheerders telt. De gastheer is geen
 tussenpersoon — leden plaatsen rechtstreeks naar elkaar — maar het
-is wel de plek waar de ledenlijst woont. Terwijl de host offline is,
+is wel de plek waar de ledenlijst woont. Terwijl de gastheer offline is,
 posten leden nog steeds naar elkaar en kan elk lid je aanvullen met
 wat je gemist hebt. Zet de eigenaar **Beheerders mogen namens mij
 handelen** aan, dan kunnen beheerders uit andere huishoudens de
@@ -119,7 +119,7 @@ nooit een GFS aan.
 ## Brievenbus
 
 Zit je huishouden via een GFS in een space, dan krijgt het daar één
-anonieme brievenbus. De host en de andere leden gooien er
+anonieme brievenbus. De gastheer en de andere leden gooien er
 verzegelde posts in, en je huis haalt ze op. De GFS kent de
 brievenbus alleen aan een willekeurig ogend nummer: niet van wie
 hij is, en niet voor welke spaces hij dient. In de app zie je

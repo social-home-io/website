@@ -28,7 +28,7 @@ vérifier — pas de compte central, pas d'authentification tierce.
 
 ## Ce qui circule
 
-| Champ                                         | Partagé avec les foyers jumelés ?                                |
+| Champ                                         | Partagé avec les foyers jumelés ?                                |
 | --------------------------------------------- | ---------------------------------------------------------------- |
 | Nom d'affichage                               | oui                                                              |
 | Avatar                                        | oui                                                              |
@@ -61,7 +61,7 @@ publique stockée lors du jumelage avant de remplacer l'URL.
 
 Si vous voulez vous déconnecter d'un autre foyer, ouvrez
 **Paramètres → Connexions** et cliquez sur **Retirer**. Les deux
-côtés perdent leur copie de l'identité de l'autre ; les messages
+côtés perdent leur copie de l'identité de l'autre ; les messages
 déjà livrés restent là où ils sont (la base de données SQLite
 locale) — la fédération ne va que vers l'avant.
 
@@ -85,7 +85,7 @@ l'un des éléments suivants :
 Si vous utilisez la Home Assistant App, l'intégration
 Home Assistant pousse automatiquement vers Social Home l'URL que
 Home Assistant signale comme externe. Si Nabu Casa est actif,
-l'URL Nabu Casa l'emporte ; sinon, l'`external_url` défini par
+l'URL Nabu Casa l'emporte ; sinon, l'`external_url` défini par
 l'administrateur est utilisé.
 
 </details>
@@ -94,10 +94,10 @@ l'administrateur est utilisé.
 
 La page **Connexions** dessine aussi une carte : une épingle par
 foyer jumelé, avec la distance et la direction de chacun. Elle
-est là pour rendre la fédération tangible — pour voir que « la
-maison de ma sœur » est un lieu réel, 40 km au nord-est, qui
+est là pour rendre la fédération tangible — pour voir que « la
+maison de ma sœur » est un lieu réel, 40 km au nord-est, qui
 parle directement à la vôtre. Un petit glyphe indique si vous
-êtes connectés directement (WebRTC) ou via le repli HTTPS ; c'est
+êtes connectés directement (WebRTC) ou via le repli HTTPS ; c'est
 purement diagnostique — tout fonctionne pareil dans les deux cas.
 La carte ne montre la position approximative d'un foyer que s'il
 a choisi de la partager lors du jumelage, et toute coordonnée est

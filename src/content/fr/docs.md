@@ -6,15 +6,15 @@ order: 0
 
 Social Home est un réseau social de foyer, privé et fédéré, qui
 vit chez vous — la plupart des foyers l'installent comme Home Assistant App, et
-Docker et Python fonctionnent aussi. C'est deux choses à la fois : un
+Docker et Python fonctionnent aussi. C'est deux choses à la fois : un
 **OS du foyer** — calendrier, liste de courses, présence, photos —
 et un **tissu social fédéré** — fils, messages privés et espaces
 partagés qui relient les personnes que vous connaissez vraiment.
 
 Cette documentation est écrite pour les gens qui gèrent leur foyer,
 pas pour des ingénieurs protocole. Chaque page s'ouvre en langage
-simple ; le détail technique se trouve dans des blocs repliables
-« Sous le capot » que vous pouvez ignorer ou ouvrir. La matière plus
+simple ; le détail technique se trouve dans des blocs repliables
+« Sous le capot » que vous pouvez ignorer ou ouvrir. La matière plus
 approfondie se trouve dans la [spécification sur
 GitHub](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
 
@@ -26,7 +26,7 @@ GitHub](https://github.com/social-home-io/socialhome/blob/main/spec_work.md).
   **[avec Docker](/fr/docs/install-docker/)** ou
   **[avec Python](/fr/docs/install-python/)** — pas à pas.
 - **[Les mots que nous utilisons](/fr/docs/glossary/)** — foyer,
-  espace, portée, GFS, jumelage : la douzaine de mots qui
+  espace, portée, GFS, jumelage : la douzaine de mots qui
   reviennent partout.
 - **[Comment ça marche](/fr/docs/protocol/)** — ce que Social Home
   fait pour vous, avec des exemples concrets.

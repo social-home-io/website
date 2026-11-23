@@ -149,12 +149,12 @@ mensen, over een willekeurig aantal huishoudens heen. Denk aan:
   op een platform dat je vertrouwen waard is.
 
 Jij bepaalt wie een space ziet. Jij bepaalt welke huishoudens
-worden uitgenodigd. Elke space heeft een host-huishouden – het
+worden uitgenodigd. Elke space heeft een gastheer-huishouden – het
 huishouden dat hem heeft gemaakt en de ledenlijst bijhoudt –
 maar leden plaatsen rechtstreeks bij elkaar, en de grote
 beslissingen (wie hem ziet, of hij nog bestaat) nemen alle
 beheerders samen. Als de eigenaar het toestaat, kunnen beheerders
-uit andere huishoudens ook handelen terwijl de host offline is.
+uit andere huishoudens ook handelen terwijl de gastheer offline is.
 
 ## Openbare en wereldwijde spaces
 

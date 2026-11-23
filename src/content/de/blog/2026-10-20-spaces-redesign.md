@@ -145,7 +145,7 @@ umschaltest.
 
 Wem ein Space gehört, kann ihn jetzt **an jemand anderen im Haushalt
 übergeben**, und ein Haushalts-Admin kann einem Space einen neuen
-Besitzer geben, wenn der bisherige gegangen ist.
+Eigentümer geben, wenn der bisherige gegangen ist.
 
 <div class="shots">
 <figure class="desk"><a href="/blog/2026-10-spaces/settings-desk.webp"><img src="/blog/2026-10-spaces/settings-desk.webp" alt="Die Einstellungsseite von Berger family auf dem Desktop mit einer Abschnittsliste links, Basics ausgewählt, und rechts der Karte Basics mit Coverbild, Icon, Emoji, Name und Kurzbeschreibung" width="1280" height="800" loading="lazy"></a><figcaption><b>Einstellungen auf einer Seite</b>Jeder Abschnitt einen Klick entfernt.</figcaption></figure>
@@ -289,8 +289,8 @@ Regeln stehen im Core-Repo unter `docs/protocol/local-communities.md`.
 
 ## Globale Spaces, die nächsten zuerst
 
-Ein globaler Space ist für alle, auf den GFSs, die sein Besitzer
-wählt. Der Besitzer kann ihn jetzt an einen Ort heften, etwa einen
+Ein globaler Space ist für alle, auf den GFSs, die sein Eigentümer
+wählt. Der Eigentümer kann ihn jetzt an einen Ort heften, etwa einen
 Schachklub in Zürich, und optional einen Hinweis wie „für Leute im
 Umkreis von 10 km“ dazuschreiben. Unter **Entdecken › Global** sind
 markierte Spaces nach Entfernung von deinem Zuhause sortiert, und **In
@@ -304,7 +304,7 @@ Die Entfernungen rechnet dein eigener Browser aus, und dein Zuhause
 wird dafür nirgendwohin gesendet.
 
 <div class="shots">
-<figure class="desk"><a href="/blog/2026-10-spaces/discover-global-desk.webp"><img src="/blog/2026-10-spaces/discover-global-desk.webp" alt="Entdecken mit Global gewählt und einem Filter Near me: Schachklub Zürich etwa 2 km entfernt, Zürich Urban Gardening im Gebiet, Winterthur Repair Café etwa 20 km entfernt und außerhalb der empfohlenen 10 km, Bern Sourdough Circle etwa 95 km entfernt und Alpine photography ohne Ort" width="1280" height="800" loading="lazy"></a><figcaption><b>Global, die nächsten zuerst</b>Entfernungen und der empfohlene Umkreis des Besitzers, als Hinweis.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-spaces/discover-global-desk.webp"><img src="/blog/2026-10-spaces/discover-global-desk.webp" alt="Entdecken mit Global gewählt und einem Filter Near me: Schachklub Zürich etwa 2 km entfernt, Zürich Urban Gardening im Gebiet, Winterthur Repair Café etwa 20 km entfernt und außerhalb der empfohlenen 10 km, Bern Sourdough Circle etwa 95 km entfernt und Alpine photography ohne Ort" width="1280" height="800" loading="lazy"></a><figcaption><b>Global, die nächsten zuerst</b>Entfernungen und der empfohlene Umkreis des Eigentümers, als Hinweis.</figcaption></figure>
 </div>
 
 <details class="tech">
@@ -314,7 +314,7 @@ Die Markierung (`place: {lat, lon, radius_km?}`, 4 Nachkommastellen)
 ist Teil des globalen Eintrags und damit für alle sichtbar, die den
 Space finden können, auch für den GFS, der ihn listet. Die App sagt
 das dort, wo du sie setzt, und sie wird nie aus deinem Zuhause
-vorausgefüllt. Sie ist von der Ed25519-Signatur des Besitzers über den
+vorausgefüllt. Sie ist von der Ed25519-Signatur des Eigentümers über den
 Eintrag gedeckt, ein GFS kann sie also weder hinzufügen noch
 verschieben noch entfernen. Entfernungsangaben sind gerundet: unter
 1 km, auf den nächsten Kilometer bis 10, darüber auf die nächsten 5 km.

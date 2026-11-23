@@ -12,14 +12,14 @@ abonnement payant.
 
 ## Si vous écrivez du code
 
-Les dépôts sont petits et bien documentés :
+Les dépôts sont petits et bien documentés :
 
 - **Serveur principal** —
   [`social-home-io/socialhome`](https://github.com/social-home-io/socialhome).
   Python 3.14, aiohttp, SQLite, frontend Preact.
 - **Intégration HA** —
   [`social-home-io/ha-integration`](https://github.com/social-home-io/ha-integration).
-  Intégration personnalisée ; tests via
+  Intégration personnalisée ; tests via
   `pytest-homeassistant-custom-component`.
 - **Bibliothèque cliente** —
   [`social-home-io/socialhome-client`](https://github.com/social-home-io/socialhome-client).
@@ -40,7 +40,7 @@ de code cohérente.
 Les textes non anglais de ce site et des apps sont censés être
 générés automatiquement par Azure Translator à chaque exécution de
 la CI — le script de traduction est prévu, mais pas encore dans le
-dépôt. Dans tous les cas, le résultat ne sera pas parfait : si vous
+dépôt. Dans tous les cas, le résultat ne sera pas parfait : si vous
 lisez une langue nativement et qu'une formulation sonne faux,
 ouvrez une PR sur la source **anglaise**. Nous n'acceptons pas les
 modifications manuelles des fichiers traduits, car la prochaine
@@ -73,7 +73,7 @@ plus qu'une réécriture de la spécification.
   pas par une entreprise qui doit se nourrir. Si les coûts
   d'hébergement devenaient un jour un vrai problème, nous le
   dirions haut et fort d'abord.
-- **D'issues « Pouvez-vous ajouter X ? »** sans description du
+- **D'issues « Pouvez-vous ajouter X ? »** sans description du
   problème que vous résolvez. Un cas d'usage vaut mieux qu'une
   demande de fonctionnalité.
 - **De promesses de contribution.** Une pull request qui

@@ -1,10 +1,10 @@
 ---
 title: "Een space die doorgaat: meer GFS'en, en elk lid kan je aanvullen"
-description: Spaces leunen nu op elk huishouden en elke GFS die ze gebruiken. Posts bereiken leden op elk van de GFS'en van een space, je huishouden verhuist naar een andere GFS als er een uitvalt, en je ziet of je alles van een space hebt en kunt bijwerken via elk lid terwijl de host offline is. In Social Home 2026.11.23.
+description: Spaces leunen nu op elk huishouden en elke GFS die ze gebruiken. Posts bereiken leden op elk van de GFS'en van een space, je huishouden verhuist naar een andere GFS als er een uitvalt, en je ziet of je alles van een space hebt en kunt bijwerken via elk lid terwijl de gastheer offline is. In Social Home 2026.11.23.
 date: 2026-11-23
 author: Het Social Home-team
 image: /blog/2026-11-sync/cover.webp
-imageAlt: Een illustratie van vijf huishoudens die met elkaar en met twee GFS'en verbonden zijn. Eén GFS is grijs met een kruis, en een stippelpijl loopt van daar naar de andere GFS. Het host-huishouden in het midden is vervaagd met een maantje ernaast, terwijl verzegelde enveloppen blijven reizen tussen de andere huishoudens, waarvan er drie een groen vinkje hebben
+imageAlt: Een illustratie van vijf huishoudens die met elkaar en met twee GFS'en verbonden zijn. Eén GFS is grijs met een kruis, en een stippelpijl loopt van daar naar de andere GFS. Het gastheer-huishouden in het midden is vervaagd met een maantje ernaast, terwijl verzegelde enveloppen blijven reizen tussen de andere huishoudens, waarvan er drie een groen vinkje hebben
 order: 50
 ---
 
@@ -16,7 +16,7 @@ bent, en een space kan er meerdere gebruiken.
 
 De laatste twee releases bouwen daarop voort. Een space gebruikt nu
 **elke** GFS die de eigenaar heeft gekozen, niet alleen één, en de
-leden vullen elkaar aan. Valt een GFS uit, is het huis van de host
+leden vullen elkaar aan. Valt een GFS uit, is het huis van de gastheer
 aan het updaten, of stond je eigen huis het weekend uit, dan gaat de
 space gewoon door en zie je dat je alles hebt.
 
@@ -30,7 +30,7 @@ waarmee je huishouden nooit verbonden was. Het is één upload per
 GFS, hoeveel leden er ook wachten.
 
 Een lid dat alleen de tweede GFS gebruikt, krijgt je post dus net zo
-snel als iedereen, en de host hoeft hem niet door te geven.
+snel als iedereen, en de gastheer hoeft hem niet door te geven.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -45,7 +45,7 @@ nadat de GFS heeft bewezen dat hij de sleutel heeft die de eigenaar
 ondertekende. Een GFS die niet op de ondertekende lijst staat, krijgt
 helemaal geen verzoek.
 
-De host brengt een post nog steeds rond als geen enkele vermelde GFS
+De gastheer brengt een post nog steeds rond als geen enkele vermelde GFS
 dat kan: de GFS staat niet op de lijst, biedt geen brievenbussen aan,
 faalde drie keer achter elkaar, of het item is te groot voor de
 route. Voor 200 leden op drie GFS'en is een post 3 uploads.
@@ -74,7 +74,7 @@ brievenbus, dus er is geen extra timer: de verhuizing gebeurt 10 tot
 op dat moment antwoordt. De GFS die uitviel, wordt gemarkeerd als
 _demoted_ en komt vanaf dan als laatste in de rangorde. Je ledenkaart
 voor elke betrokken space krijgt een nieuwere revisie en gaat naar de
-host, die hem doorgeeft met zijn volgende update van de ledenlijst;
+gastheer, die hem doorgeeft met zijn volgende update van de ledenlijst;
 ongeveer 0,7 KB per space. De keuze blijft bewaard na een herstart.
 
 </details>
@@ -110,7 +110,7 @@ er?** heet. Het vertelt je in één zin:
 
 Ontbreken er misschien posts, dan krijgt de space een ⚠ in je lijst
 met spaces. Je eigen posts die nog wachten om te vertrekken, tonen
-**Nog niet verzonden**. Een space die je huishouden host, toont nooit
+**Nog niet verzonden**. Een space waarvan je huishouden de gastheer is, toont nooit
 een waarschuwing: die heeft per definitie alles.
 
 <details class="tech">
@@ -127,19 +127,19 @@ overeenkwam, hoeveel delen verschillen en wie hem ondertekende.
 
 ## Bijwerken via elk lid
 
-Het huis van de host, of een beheerder die namens de eigenaar
+Het huis van de gastheer, of een beheerder die namens de eigenaar
 handelt, ondertekent af en toe een korte samenvatting van alles wat
 er in de space staat, en stuurt die naar alle leden. Je huis
 vergelijkt zijn eigen kopie met die samenvatting. Ontbreekt er iets,
 dan kan het dat ophalen bij **elk** ander lid-huishouden, niet alleen
-bij de host.
+bij de gastheer.
 
 Je huis houdt alleen wat de ondertekende samenvatting bevestigt. Een
 lid dat iets anders stuurt, of iets wat veranderd is, komt met niets
 langs je huis. Een lid kan je dus helpen bijwerken, maar kan er niets
 tussen smokkelen.
 
-Na een weekend weg werk je dus bij, ook als de host offline is
+Na een weekend weg werk je dus bij, ook als de gastheer offline is
 wanneer je terugkomt. Elk lid dat er was, kan je aanvullen.
 
 <details class="tech">
@@ -191,13 +191,13 @@ verbind je huishouden met allebei. Social Home doet de rest.
   tijdstip, de grootte en naar welke brievenbussen de post gaat. Hij
   ziet nooit welk huishouden je bent, of wat je schreef.
 - **Een lid dat met geen enkele GFS van de space verbonden is,**
-  wordt nog steeds via de host bereikt, dus dat lid wacht op de host.
+  wordt nog steeds via de gastheer bereikt, dus dat lid wacht op de gastheer.
 - **Een lid kan je opnieuw laten kijken.** Een lid dat verkeerde
   gegevens stuurt, kan je space "Er ontbreken misschien berichten"
   laten zeggen. Het kan nooit een ontbrekende post laten lijken alsof
   hij er is.
-- **Wordt een post verwijderd terwijl de host weg is,** dan zegt je
-  space misschien pas "Alles is er" als de host terug is.
+- **Wordt een post verwijderd terwijl de gastheer weg is,** dan zegt je
+  space misschien pas "Alles is er" als de gastheer terug is.
 
 ## Probeer het
 

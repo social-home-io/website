@@ -148,12 +148,12 @@ Zum Beispiel:
   eben auf keiner Plattform, der man trauen könnte.
 
 Du entscheidest, wer einen Space sieht. Du entscheidest, welche
-Haushalte eingeladen werden. Jeder Space hat einen Host-Haushalt —
+Haushalte eingeladen werden. Jeder Space hat einen Gastgeber-Haushalt —
 den, der ihn angelegt hat und die Mitgliederliste führt —, aber die
 Mitglieder posten direkt untereinander, und die großen
 Entscheidungen (wer ihn sieht, ob es ihn noch gibt) treffen alle
-seine Admins gemeinsam. Wenn der Besitzer es erlaubt, können Admins
-aus anderen Haushalten auch handeln, während der Host offline ist.
+seine Admins gemeinsam. Wenn der Eigentümer es erlaubt, können Admins
+aus anderen Haushalten auch handeln, während der Gastgeber offline ist.
 
 ## Öffentliche und globale Spaces
 
@@ -162,7 +162,7 @@ _öffentlicher_ Space ist einer, den deine gekoppelten Haushalte
 finden und um Beitritt bitten können; er bleibt in deinem eigenen
 Kreis. Ein _globaler_ Space — ein öffentlicher Marktplatz, eine
 Hobby-Community, das Schwarze Brett deiner Nachbarschaft — ist auch
-für Fremde: Der Besitzer wählt ein oder mehrere leichtgewichtige
+für Fremde: Der Eigentümer wählt ein oder mehrere leichtgewichtige
 Relays, GFS (Global Federation Server – der globale
 Föderationsserver), die ihn listen, damit Haushalte, die sich nicht
 kennen, ihn finden können (siehe [GFS](/de/docs/glossary/#gfs)).
@@ -180,7 +180,7 @@ es kein Wort, und Mitglieder posten anonym. Mehr dazu unter [Globale Spaces](/de
 <summary>Unter der Haube</summary>
 
 Nur ein globaler Space wird überhaupt auf einem GFS gelistet, und nur
-auf den GFS in seiner vom Besitzer signierten `gfs_servers`-Liste
+auf den GFS in seiner vom Eigentümer signierten `gfs_servers`-Liste
 (höchstens 8). Öffentliche Spaces erreichen gekoppelte Haushalte als
 `SPACE_DIRECTORY_SYNC`-Snapshot und berühren nie einen GFS.
 Mitglieder veröffentlichen anonym auf jedem gelisteten GFS. Der GFS sieht nur

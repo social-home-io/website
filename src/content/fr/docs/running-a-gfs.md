@@ -51,7 +51,7 @@ Dans le DNS Cloudflare, ajoutez un **enregistrement A** :
 | ---- | ----- | ---------------- | --------------- |
 | A    | `gfs` | `YOUR.SERVER.IP` | 🟠 Proxied      |
 
-> Le statut « Proxied » (nuage orange) signifie que Cloudflare
+> Le statut « Proxied » (nuage orange) signifie que Cloudflare
 > gère le HTTPS pour vous — aucun certificat à installer, aucun
 > renouvellement à gérer. Votre serveur n'a besoin de parler que
 > du HTTP en interne.
@@ -103,7 +103,7 @@ docker run --rm -it -v "$PWD/data:/var/lib/sh-gfs" \
   socialhome-global-server --set-password --config /var/lib/sh-gfs/global_server.toml
 ```
 
-`--init` écrit une configuration neuve ; `--set-password` définit
+`--init` écrit une configuration neuve ; `--set-password` définit
 le mot de passe du portail d'administration, que vous trouverez
 sur `https://gfs.example.com/admin` une fois le relais lancé.
 
@@ -193,7 +193,7 @@ usage unique et valable 10 minutes.
 Héberger un relais ne vous ouvre pas une fenêtre sur l'espace de
 qui que ce soit. Les publications arrivent scellées et complétées
 à taille fixe. Pour un espace global, vous apprenez que quelqu'un
-y a publié, et quand, jamais quel foyer ; membres et abonnés se
+y a publié, et quand, jamais quel foyer ; membres et abonnés se
 ressemblent. Les livraisons vont dans des boîtes aux lettres
 anonymes : vous voyez un numéro de boîte aux lettres, l'heure et
 une taille complétée, jamais le foyer ni l'espace. Des photos
@@ -208,7 +208,7 @@ complet, y compris ce que le relais peut encore observer
 ## Vos pages publiques
 
 Les personnes qui ne sont pas sur Social Home atteignent votre relais
-par des liens : la page d'un espace global (`/spaces/…`), un lien
+par des liens : la page d'un espace global (`/spaces/…`), un lien
 d'invitation GFS (`/join/…`) et un profil Momentum (`/moments/…`).
 Votre relais ne dessine pas ces pages lui-même. Il les confie à la
 [visionneuse Social Home](/fr/docs/glossary/#visionneuse) sur
@@ -222,27 +222,27 @@ et pour vous. Vous ne pouvez pas lire un highlight partagé via votre
 relais, et vous ne pourriez pas modifier la page qui l'ouvre, même
 si quelqu'un vous le demandait. Les applications de messagerie
 reçoivent toujours un aperçu avec le nom et la photo de l'espace ou
-de la personne : votre relais leur répond avec une petite page sans
+de la personne : votre relais leur répond avec une petite page sans
 scripts.
 
 Il n'y a rien à configurer. Si vous préférez ne pas dépendre de la
 visionneuse du projet, hébergez vous-même les fichiers publiés de la
 visionneuse et faites pointer le réglage ci-dessous vers eux. Ou
 videz-le, et votre relais dessine de nouveau ses pages lui-même.
-C'est moins sûr : pour les liens de highlight, votre relais redevient
+C'est moins sûr : pour les liens de highlight, votre relais redevient
 responsable de la page qui lit la clé.
 
 <details class="tech">
 <summary>Sous le capot</summary>
 
-- Réglage : `[server] public_viewer_base_url` /
+- Réglage : `[server] public_viewer_base_url` /
   `GFS_PUBLIC_VIEWER_BASE_URL`, par défaut
-  `https://viewer.social-home.io`. Les foyers ont le leur :
+  `https://viewer.social-home.io`. Les foyers ont le leur :
   `[highlights] public_viewer_base_url` /
   `SH_HIGHLIGHTS_PUBLIC_VIEWER_BASE_URL`. Seul `https://` est
-  utilisé ; tout le reste revient en arrière avec un avertissement
+  utilisé ; tout le reste revient en arrière avec un avertissement
   dans le journal.
-- Le passage n'est pas une redirection ouverte : la cible est le
+- Le passage n'est pas une redirection ouverte : la cible est le
   réglage, la version de visionneuse versionnée et votre propre
   `base_url` ; seul un identifiant dans l'alphabet de la visionneuse
   est transmis, dans le fragment.

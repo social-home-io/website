@@ -154,12 +154,12 @@ ledensynchronisatie vertelt de GFS niets.
 
 - Alleen routeringsmetadata: `space_id`, `event_type`,
   grootteklasse, tijdstippen, abonneeset, bron-IP.
-- Als het host-huishouden een post doorgeeft, noemt het verzoek
+- Als het gastheer-huishouden een post doorgeeft, noemt het verzoek
   helemaal geen huishouden: `{space_id, event_type, payload}` op
   een sessie zonder cookies, en alleen naar een GFS die
   `anonymous_publish` heeft bewezen — anders wordt er niets
   verstuurd.
-- Als een lid voor zichzelf publiceert (zodat de host niet online
+- Als een lid voor zichzelf publiceert (zodat de gastheer niet online
   hoeft te zijn), ondertekent het altijd met een gedeelde
   schrijfsleutel per epoche, zodat de GFS niet kan zien welk lid
   plaatste. Het stuurt naar elke GFS op de door de eigenaar

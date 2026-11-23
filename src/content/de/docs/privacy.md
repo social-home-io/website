@@ -53,9 +53,9 @@ wie der Space eingerichtet ist (siehe
   aus): welche Haushalte zum Kanal gehören — nie den Namen, die
   ID, den Schlüssel oder den Inhalt des Space.
 
-Beteiligt sind nur die GFS, die der Besitzer des Space gewählt
+Beteiligt sind nur die GFS, die der Eigentümer des Space gewählt
 hat. Ein GFS, mit dem dein Haushalt nie verbunden war, den der
-Besitzer aber gewählt hat, sieht deine Internetadresse, wenn du
+Eigentümer aber gewählt hat, sieht deine Internetadresse, wenn du
 dort postest — nie, welcher Haushalt du bist.
 
 Er sieht **nie**:
@@ -85,14 +85,14 @@ gekoppelt bist, direkt.
 Nur Routing-Metadaten: `space_id`, `event_type`, Größenklasse
 (1 / 4 / 16 / 64 / 128 KiB für Mitglieder-Veröffentlichungen,
 4 / 16 / 64 / 128 / 191 KiB für das Weiterleiten von Umschlägen), Zeitpunkte, Abonnentenmenge, Quell-IP. Ein vom
-Host-Haushalt weitergeleiteter Beitrag ist identitätsfrei
+Gastgeber-Haushalt weitergeleiteter Beitrag ist identitätsfrei
 `{space_id, event_type, payload}` auf einer Sitzung ohne Cookies;
 ein Mitglied, das für sich selbst veröffentlicht, signiert immer
 mit einem gemeinsamen Writer-Key pro Epoche. Zustellungen gehen an
 ein anonymes Postfach pro Haushalt und GFS, geöffnet mit einem
 Privacy-Pass-Ticket; der GFS speichert keine Verbindung von einem
 Postfach zu einem Haushalt. Ein privater Space mit eingeschaltetem `private_gfs` verwendet eine
-opake 128-Bit-Kanal-ID auf den GFS, die der Besitzer auswählt. Offline-Empfänger werden 24 h in die
+opake 128-Bit-Kanal-ID auf den GFS, die der Eigentümer auswählt. Offline-Empfänger werden 24 h in die
 Warteschlange gestellt (2000 Umschläge / 32 MiB pro Postfach).
 Bilder aus Spaces liegen standardmäßig 3 Tage (höchstens 7) in
 einem verschlüsselten Medien-Cache. Sonst wird nichts gespeichert.
@@ -158,7 +158,7 @@ AES-256-GCM.
 - **Welches Relay, falls überhaupt** (Einstellungen →
   Verbindungen — der GFS ist optional, und du wählst, welchen).
   In einem globalen Space gehen deine Beiträge außerdem an die GFS,
-  die sein Besitzer gewählt hat.
+  die sein Eigentümer gewählt hat.
 - **Backups** — deine Verantwortung, wie alles andere in deinem
   Zuhause.
 

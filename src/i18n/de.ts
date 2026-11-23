@@ -225,7 +225,7 @@ export const de: UiStrings = {
       p1Html:
         "Kopple zwei Zuhause einmal per QR-Code. Danach kannst du <em>Spaces</em> anlegen — gemeinsame Räume mit eigenem Feed, Chat und Kalender — über beide hinweg. Führe einen Buchclub, organisiere ein Straßenfest oder richte einen ruhigen Raum für die Großeltern ein.",
       p2Html:
-        'Ein kleines, quelloffenes <a href="/docs/global-spaces/">Relay</a> — der GFS — hilft Haushalten, die sich noch nicht gekoppelt haben, sich in globalen Spaces zu finden, und trägt ihre versiegelten Beiträge weiter. Lesen kann es sie nicht: Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt. Ein Space kann mehrere GFS nutzen, und jedes Mitglied hat eine Kopie zu Hause, deshalb läuft er weiter, wenn ein GFS oder der Host weg ist. Wir betreiben einen unter <a href="/servers/">gfs.social-home.io</a> — verbinde dich mit einem Tipp.',
+        'Ein kleines, quelloffenes <a href="/docs/global-spaces/">Relay</a> — der GFS — hilft Haushalten, die sich noch nicht gekoppelt haben, sich in globalen Spaces zu finden, und trägt ihre versiegelten Beiträge weiter. Lesen kann es sie nicht: Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt. Ein Space kann mehrere GFS nutzen, und jedes Mitglied hat eine Kopie zu Hause, deshalb läuft er weiter, wenn ein GFS oder der Gastgeber weg ist. Wir betreiben einen unter <a href="/servers/">gfs.social-home.io</a> — verbinde dich mit einem Tipp.',
     },
   },
 
@@ -473,7 +473,8 @@ export const de: UiStrings = {
       private: "Privat — nur die Leute, die du einlädst.",
       household: "Haushalt — automatisch alle in deinem Zuhause.",
       public: "Öffentlich — deine gekoppelten Haushalte können ihn finden und um Beitritt bitten.",
-      global: "Global — auf den GFS gelistet, die der Besitzer wählt, damit jeder ihn finden kann.",
+      global:
+        "Global — auf den GFS gelistet, die der Eigentümer wählt, damit jeder ihn finden kann.",
     },
   },
 
@@ -488,7 +489,7 @@ export const de: UiStrings = {
     hostedBy: "Gehostet von Social Home",
     serverName: "Global Federation Server",
     live: "Live",
-    body: "Ein QR-Scan und du bist verbunden. Globale Spaces, deren Besitzer diesen Server wählt, erscheinen unter Entdecken › Global; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch und öffnen sich im Social Home Viewer, einer Seite, die dieser Server nicht ausliefert. Inhaltsblind per Design.",
+    body: "Ein QR-Scan und du bist verbunden. Globale Spaces, deren Eigentümer diesen Server wählt, erscheinen unter Entdecken › Global; öffentliche Momente verbreiten sich zu Followern in jedem gekoppelten Haushalt; öffentliche Highlights-Links laufen ebenfalls hier durch und öffnen sich im Social Home Viewer, einer Seite, die dieser Server nicht ausliefert. Inhaltsblind per Design.",
     bullets: [
       "Verzeichnis globaler Spaces",
       "Öffentliches Momentum-Verzeichnis + Follow-Graph",
@@ -545,7 +546,7 @@ export const de: UiStrings = {
     ],
     seesChips: [
       "nur Routing-Metadaten",
-      "identitätsfreies Host-Relay",
+      "identitätsfreies Gastgeber-Relay",
       "anonymous_publish proof",
       "gemeinsamer Writer-Key",
     ],

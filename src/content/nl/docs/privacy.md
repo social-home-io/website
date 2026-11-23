@@ -86,7 +86,7 @@ Alleen routeringsmetadata: `space_id`, `event_type`, grootteklasse
 (1 / 4 / 16 / 64 / 128 KiB voor publicaties door leden,
 4 / 16 / 64 / 128 / 191 KiB voor envelop-relay),
 tijdstippen, abonneeset, bron-IP. Een post die door het
-host-huishouden wordt doorgegeven is identiteitsvrij
+gastheer-huishouden wordt doorgegeven is identiteitsvrij
 `{space_id, event_type, payload}` op een sessie zonder cookies;
 een lid dat voor zichzelf publiceert, ondertekent altijd met een
 gedeelde schrijfsleutel per epoche. Bezorgingen gaan naar één

@@ -148,7 +148,7 @@ Glossar.
 | **Bilder für diese Haushalte**       | verschlüsselte Dateien, die er ein paar Tage aufhebt und nicht öffnen kann                          |
 | **Privater Space, GFS an**           | welche Haushalte zum Kanal gehören — nie den Namen, die ID, den Schlüssel oder den Inhalt des Space |
 
-Beteiligt sind nur die GFS, die der Besitzer für einen Space
+Beteiligt sind nur die GFS, die der Eigentümer für einen Space
 gewählt hat. Das Relay sieht weiterhin die IP-Adresse des
 Absenders, die Zeitpunkte, die Größenklasse, wer einem globalen
 Space folgt und in welche Postfächer ein Beitrag geht. Eine reine
@@ -159,16 +159,16 @@ Mitgliedschafts-Synchronisation verrät dem GFS nichts.
 
 - Nur Routing-Metadaten: `space_id`, `event_type`, Größenklasse,
   Zeitpunkte, Abonnentenmenge, Quell-IP.
-- Wenn der Host-Haushalt einen Beitrag weiterleitet, nennt die
+- Wenn der Gastgeber-Haushalt einen Beitrag weiterleitet, nennt die
   Anfrage überhaupt keinen Haushalt: `{space_id, event_type,
 payload}` auf einer Sitzung ohne Cookies, und nur an einen GFS,
   der `anonymous_publish` nachgewiesen hat — sonst wird nichts
   gesendet.
 - Wenn ein Mitglied für sich selbst veröffentlicht (damit der
-  Host nicht online sein muss), signiert es immer mit einem
+  Gastgeber nicht online sein muss), signiert es immer mit einem
   gemeinsamen Writer-Key pro Epoche, sodass der GFS nicht
   erkennen kann, welches Mitglied gepostet hat. Es sendet an jeden
-  GFS auf der vom Besitzer signierten Liste (höchstens 8), über
+  GFS auf der vom Eigentümer signierten Liste (höchstens 8), über
   eine Sitzung ohne Cookies, die an die gelistete Adresse gepinnt
   ist, nachdem dieser GFS bewiesen hat, dass er den gelisteten
   Schlüssel besitzt. Das Schreiber-Zertifikat reist im Geheimtext
@@ -191,7 +191,7 @@ payload}` auf einer Sitzung ohne Cookies, und nur an einen GFS,
   Entfernst du einen, wird der Schlüssel auf jedem GFS rotiert, auf
   dem der Space gelistet war.
 - Private Spaces: `private_gfs` standardmäßig aus; wenn an, eine
-  opake 128-Bit-Kanal-ID auf den GFS, die der Besitzer wählt.
+  opake 128-Bit-Kanal-ID auf den GFS, die der Eigentümer wählt.
 - Polsterungsklassen: 1 / 4 / 16 / 64 / 128 KiB für
   Mitglieder-Veröffentlichungen, 4 / 16 / 64 / 128 / 191 KiB für
   das Weiterleiten von Umschlägen und 64 / 128 / 256 / 516 KiB für
@@ -371,12 +371,12 @@ der Pipeline.
 Die Dinge, die heute wahr sind und die du wissen solltest, bevor
 du uns den Gruppenchat anvertraust:
 
-- Ein GFS, den der Besitzer des Space gewählt hat, mit dem dein
+- Ein GFS, den der Eigentümer des Space gewählt hat, mit dem dein
   Haushalt aber nie verbunden war, sieht deine IP-Adresse, wenn du
   dort postest oder an Postfächer von Mitgliedern dort zustellst, und
   welche Postfächer das sind. Weil anonyme Schreiber nicht auseinanderzuhalten
   sind, kann ein GFS keinen einzelnen Haushalt sperren; der
-  Besitzer entfernt einen Schreiber, indem er den Schlüssel des
+  Eigentümer entfernt einen Schreiber, indem er den Schlüssel des
   Space rotiert.
 - Das Relay sieht deine IP-Adresse, die Zeitpunkte und die
   Größenklasse jedes Umschlags, wer einem globalen Space folgt und
@@ -388,7 +388,7 @@ du uns den Gruppenchat anvertraust:
   GFS des Projekts protokolliert keine IP-Adressen.
 - Verschlüsselte Bilder liegen ein paar Tage auf dem GFS; er sieht
   ihre gepolsterte Größe.
-- Während der Besitzer offline ist, kann ein GFS bemerken, dass
+- Während der Eigentümer offline ist, kann ein GFS bemerken, dass
   jemand anderes den Signaturschlüssel des Space hält, aber nicht,
   wer.
 - Der Schlüsselaustausch ist noch nicht post-quantum; nur
