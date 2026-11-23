@@ -3,6 +3,8 @@ title: "Een nieuwe GFS: elk lid gelijk, en de GFS weet minder"
 description: Echte huishoudens lieten ons zien waar de GFS beter kon, dus hebben we de werking ervan opnieuw ontworpen. Elk huishouden krijgt een eigen anonieme brievenbus, elk lid bereikt elk ander lid, posten is altijd anoniem, beheerders kunnen een space draaiende houden zonder de eigenaar, en je kunt vragen om lid te worden van een wereldwijde space zonder te koppelen. In Social Home 2026.11.19.
 date: 2026-11-20
 author: Het Social Home-team
+image: /blog/2026-11-gfs/cover.webp
+imageAlt: Een illustratie van een GFS als groene kast met kleine brievenbussen zonder namen, alleen met door elkaar gehusselde tekens. Vijf huishoudens eronder sturen verzegelde enveloppen langs stippellijnen naar een paar van de brievenbussen, en één huishouden houdt twee tickets vast
 order: 50
 ---
 

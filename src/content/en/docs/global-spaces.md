@@ -121,8 +121,10 @@ space it does three jobs:
 all the GFSs the owner picked, including ones their own household
 never connected to. So a follower who only uses GFS B still sees
 what a member posted while connected to GFS A, even while the
-host is offline. A GFS a member never connected to only sees that
-member's internet address and when they posted, never which
+host is offline. Members on any of those GFSs get them the same
+way: your household drops each post straight into their mailbox,
+one upload per GFS. A GFS a member never connected to only sees
+that member's internet address and when they posted, never which
 household they are.
 
 The relay never sees the _contents_ of your posts. Every post is
@@ -244,22 +246,41 @@ What that means in practice:
 
 Members you're paired with don't notice: their posts reach you
 directly or over the mesh. If the space is listed on more than one GFS,
-followers on the others don't notice either. Only households that
-rely on the GFS that's down have to wait. Nothing is silently
-dropped: your household keeps retrying (after a few seconds, then
-half a minute, then a couple of minutes, then every ten) and the
-GFS, once it's back, still holds up to a day's worth of sealed
-envelopes for households that were offline. Your local copy is
-saved at home the moment you press send.
+followers on the others don't notice either, and members move: when
+the GFS your household gets a space's posts on stays down for about
+ten minutes, and your household is connected to another GFS of the
+space, it moves there and the other members send to it.
+
+Nothing is silently dropped: your household keeps retrying (after a
+few seconds, then half a minute, then a couple of minutes, then
+every ten) and the GFS, once it's back, still holds up to a day's
+worth of sealed envelopes for households that were offline. Your
+local copy is saved at home the moment you press send. Anything you
+still missed, any other member can fill in, also while the host is
+offline. **Is everything here?** in the space's settings shows
+whether your household has it all, and **Check now** asks right
+away.
 
 That's the best reason to list a busy global space on two GFSs,
-for example the project's one and one you run yourself.
+for example the project's one and one you run yourself, and to
+connect your household to every GFS your spaces use. A space says in
+its feed when it's on a GFS your household isn't connected to.
 
 <details class="tech">
 <summary>Under the hood</summary>
 
 Retry backoff: 5 s, 30 s, 2 min, 10 min. GFS-side queue for
 offline recipients: 24 h, 2000 envelopes / 32 MiB per mailbox.
+
+Failover: a mailbox whose GFS stays unreachable for 10 min while
+another GFS of the space answers is moved there (10–18 min into the
+outage); the failed GFS is ranked last from then on, so nothing
+flaps. Catch-up: the owner, or an admin holding the space's signing
+key, signs a **sync page** (256 bucket hashes over the space's rows,
+`sha256-b256-c1`) and pushes it to members at most hourly. A member
+fetches the buckets that differ from any member household and keeps
+only rows the signed page vouches for. Details in the core repo's
+`docs/protocol/sync-pages.md`.
 
 </details>
 
@@ -291,7 +312,7 @@ Compose + Cloudflare guide.
 | What a GFS sees     | nothing (unless a private space switches it on) | routing data and a sealed, padded envelope, never content          |
 | Encryption          | **always on**                                   | **always on**                                                      |
 | Where messages live | each member's home                              | each member's home (a GFS keeps sealed copies only briefly)        |
-| If a GFS is offline | n/a                                             | the other listed GFSs carry on; posts retry                        |
+| If a GFS is offline | n/a                                             | the other listed GFSs carry on; households move; posts retry       |
 | Can be turned off   | yes, by admin vote                              | remove a GFS any time (owner), or leave global (admin vote)        |
 
 ## Privacy in global spaces

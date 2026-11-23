@@ -142,7 +142,10 @@ envoie chaque publication à tous les GFS choisis par le
 propriétaire, y compris ceux auxquels son propre foyer ne s'est
 jamais connecté. Ainsi, un abonné qui n'utilise que le GFS B voit
 quand même ce qu'un membre a publié en étant connecté au GFS A,
-même quand l'hôte est hors ligne. Un GFS auquel un membre ne
+même quand l'hôte est hors ligne. Les membres présents sur
+n'importe lequel de ces GFS les reçoivent de la même façon : votre
+foyer dépose chaque publication directement dans leur boîte aux
+lettres, un envoi par GFS. Un GFS auquel un membre ne
 s'est jamais connecté ne voit que l'adresse internet de ce membre
 et le moment où il a publié, jamais de quel foyer il s'agit.
 
@@ -285,17 +288,27 @@ Concrètement, cela signifie :
 Les membres avec qui vous êtes jumelé ne remarquent rien : leurs
 publications vous parviennent directement ou par le maillage. Si l'espace est
 référencé sur plus d'un GFS, les abonnés des autres ne remarquent
-rien non plus. Seuls les foyers qui dépendent du GFS en panne
-doivent patienter. Rien n'est perdu en silence : votre foyer
-réessaie (après quelques secondes, puis une demi-minute, puis
-quelques minutes, puis toutes les dix) et le GFS, une fois revenu,
-garde encore jusqu'à une journée d'enveloppes scellées pour les
-foyers qui étaient hors ligne. Votre copie locale est enregistrée
-chez vous dès que vous appuyez sur Envoyer.
+rien non plus, et les membres se déplacent : quand le GFS sur lequel
+votre foyer reçoit les publications d'un espace reste en panne
+environ dix minutes, et que votre foyer est connecté à un autre GFS
+de l'espace, il s'y déplace et les autres membres lui envoient leurs
+publications là-bas.
+
+Rien n'est perdu en silence : votre foyer réessaie (après quelques
+secondes, puis une demi-minute, puis quelques minutes, puis toutes
+les dix) et le GFS, une fois revenu, garde encore jusqu'à une
+journée d'enveloppes scellées pour les foyers qui étaient hors
+ligne. Votre copie locale est enregistrée chez vous dès que vous
+appuyez sur Envoyer. Ce qui vous manque encore, n'importe quel autre
+membre peut vous le transmettre, même quand l'hôte est hors ligne.
+**Tout est là ?** dans les réglages de l'espace indique si votre
+foyer a tout, et **Vérifier maintenant** le demande tout de suite.
 
 C'est la meilleure raison de référencer un espace global très
 actif sur deux GFS, par exemple celui du projet et un que vous
-hébergez vous-même.
+hébergez vous-même, et de connecter votre foyer à chaque GFS
+qu'utilisent vos espaces. Un espace signale dans son fil quand il
+est sur un GFS auquel votre foyer n'est pas connecté.
 
 <details class="tech">
 <summary>Sous le capot</summary>
@@ -303,6 +316,19 @@ hébergez vous-même.
 Délais de nouvelle tentative : 5 s, 30 s, 2 min, 10 min. File
 d'attente côté GFS pour les destinataires hors ligne : 24 h,
 2000 enveloppes / 32 MiB par boîte aux lettres.
+
+Basculement : une boîte aux lettres dont le GFS reste injoignable
+pendant 10 min alors qu'un autre GFS de l'espace répond est déplacée
+vers celui-ci (10 à 18 min après le début de la panne) ; le GFS en
+échec est ensuite classé en dernier, pour éviter tout va-et-vient.
+Rattrapage : le propriétaire, ou un admin qui détient la clé de
+signature de l'espace, signe une **page de synchronisation** (256
+empreintes de compartiments sur les lignes de l'espace,
+`sha256-b256-c1`) et l'envoie aux membres au plus une fois par
+heure. Un membre récupère les compartiments qui diffèrent auprès de
+n'importe quel foyer membre et ne garde que les lignes garanties par
+la page signée. Détails dans `docs/protocol/sync-pages.md` du dépôt
+principal.
 
 </details>
 
@@ -335,7 +361,7 @@ guide Docker Compose + Cloudflare.
 | Ce que voit un GFS       | rien (sauf si un espace privé l'active)              | des données de routage et une enveloppe scellée et complétée, jamais le contenu                      |
 | Chiffrement              | **toujours actif**                                   | **toujours actif**                                                                                   |
 | Où vivent les messages   | chez chaque membre                                   | chez chaque membre (un GFS ne garde des copies scellées que brièvement)                              |
-| Si un GFS est hors ligne | s. o.                                                | les autres GFS référencés continuent ; les publications réessaient                                   |
+| Si un GFS est hors ligne | s. o.                                                | les autres GFS référencés continuent ; les foyers se déplacent ; les publications réessaient         |
 | Peut être désactivé      | oui, par vote des administrateurs                    | retirer un GFS à tout moment (propriétaire), ou quitter la portée globale (vote des administrateurs) |
 
 ## Confidentialité dans les espaces globaux

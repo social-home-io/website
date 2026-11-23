@@ -227,7 +227,7 @@ export const en: UiStrings = {
       p1Html:
         "Pair two homes once with a QR code. After that, you can create <em>spaces</em> — shared rooms with their own feed, chat, and calendar — across both. Run a book club, organise a street party, or keep one quiet room for grandparents.",
       p2Html:
-        'A small, open-source <a href="/docs/global-spaces/">relay</a> — the GFS — helps households that haven\'t paired find each other in global spaces and carries their sealed posts. It can\'t read them: every post is sealed before it leaves your home. We run one live at <a href="/servers/">gfs.social-home.io</a> — connect in a tap.',
+        'A small, open-source <a href="/docs/global-spaces/">relay</a> — the GFS — helps households that haven\'t paired find each other in global spaces and carries their sealed posts. It can\'t read them: every post is sealed before it leaves your home. A space can use several GFSs, and every member keeps a copy at home, so it keeps going when one GFS or the host is away. We run one live at <a href="/servers/">gfs.social-home.io</a> — connect in a tap.',
     },
   },
 
@@ -515,7 +515,7 @@ export const en: UiStrings = {
       "Scan the QR code above — or paste the URL.",
     ],
     howToNote:
-      "Most households only need one. You can pair with additional relays for resilience or private-community policy.",
+      "Most households only need one. If a space you're in is also on another GFS, connect to that one too: when one GFS is down, your household moves to the other.",
     seesHeading: "What this relay can and can't see",
     seesIntro:
       'The relay only ever handles sealed envelopes. What it learns depends on the kind of space the envelope belongs to — and in every case the answer to "the content?" is never.',

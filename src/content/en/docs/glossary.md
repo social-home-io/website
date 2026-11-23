@@ -80,9 +80,10 @@ decision for all of its admins — see
 Every space has a host household: the one that created it and
 tallies the admin votes. The host is not a middleman — members
 post straight to each other — but it is the place where the
-member list lives. If the owner turns on **Let admins act for
-me**, admins from other households can keep the space running
-while the host is offline.
+member list lives. While the host is offline, members still post
+to each other and any member can fill you in on what you missed. If
+the owner turns on **Let admins act for me**, admins from other
+households can keep the space running too.
 
 ## GFS
 

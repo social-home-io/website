@@ -132,10 +132,11 @@ Für einen globalen Space hat er drei Aufgaben:
 jeden Beitrag an alle GFS, die der Besitzer gewählt hat, auch an
 solche, mit denen sein eigener Haushalt nie verbunden war. So sieht
 ein Follower, der nur GFS B nutzt, trotzdem, was ein Mitglied über
-GFS A gepostet hat, selbst während der Host offline ist. Ein GFS,
-mit dem ein Mitglied nie verbunden war, sieht nur dessen
-Internetadresse und wann es gepostet hat, nie, welcher Haushalt es
-ist.
+GFS A gepostet hat, selbst während der Host offline ist. Mitglieder
+auf jedem dieser GFS bekommen sie genauso: Dein Haushalt legt jeden
+Beitrag direkt in ihr Postfach, ein Upload pro GFS. Ein GFS, mit dem
+ein Mitglied nie verbunden war, sieht nur dessen Internetadresse und
+wann es gepostet hat, nie, welcher Haushalt es ist.
 
 Das Relay sieht nie den _Inhalt_ deiner Beiträge. Jeder Beitrag wird
 auf dem Weg aus deinem Zuhause versiegelt und erst im Zuhause jedes
@@ -268,25 +269,46 @@ Was das in der Praxis heißt:
 
 Mitglieder, mit denen du gekoppelt bist, merken nichts: Ihre
 Beiträge erreichen dich direkt oder über das Mesh. Ist der Space auf mehr als einem
-GFS gelistet, merken auch Follower auf den anderen nichts. Nur
-Haushalte, die auf den ausgefallenen GFS angewiesen sind, müssen
-warten. Nichts geht stillschweigend verloren: Dein Haushalt versucht
-es weiter (nach ein paar Sekunden, dann nach einer halben Minute,
-dann nach ein paar Minuten, dann alle zehn), und der GFS hält,
-sobald er zurück ist, weiterhin bis zu einen Tag versiegelter
-Umschläge für Haushalte bereit, die offline waren. Deine lokale
-Kopie ist in dem Moment zu Hause gespeichert, in dem du auf Senden
-drückst.
+GFS gelistet, merken auch Follower auf den anderen nichts, und
+Mitglieder ziehen um: Bleibt der GFS, auf dem dein Haushalt die
+Beiträge eines Space bekommt, etwa zehn Minuten lang weg, und ist dein
+Haushalt mit einem anderen GFS des Space verbunden, zieht er dorthin
+um, und die anderen Mitglieder schicken dorthin.
+
+Nichts geht stillschweigend verloren: Dein Haushalt versucht es
+weiter (nach ein paar Sekunden, dann nach einer halben Minute, dann
+nach ein paar Minuten, dann alle zehn), und der GFS hält, sobald er
+zurück ist, weiterhin bis zu einen Tag versiegelter Umschläge für
+Haushalte bereit, die offline waren. Deine lokale Kopie ist in dem
+Moment zu Hause gespeichert, in dem du auf Senden drückst. Was dir
+dann noch fehlt, kann jedes andere Mitglied ergänzen, auch während
+der Host offline ist. **Ist alles da?** in den Space-Einstellungen
+zeigt, ob dein Haushalt alles hat, und **Jetzt prüfen** fragt sofort
+nach.
 
 Das ist der beste Grund, einen belebten globalen Space auf zwei GFS
 zu listen, zum Beispiel auf dem des Projekts und auf einem, den du
-selbst betreibst.
+selbst betreibst, und deinen Haushalt mit jedem GFS zu verbinden, den
+deine Spaces nutzen. Ein Space sagt in seinem Feed, wenn er auf einem
+GFS ist, mit dem dein Haushalt nicht verbunden ist.
 
 <details class="tech">
 <summary>Unter der Haube</summary>
 
 Retry-Backoff: 5 s, 30 s, 2 min, 10 min. Warteschlange auf GFS-Seite
 für Offline-Empfänger: 24 h, 2000 Umschläge / 32 MiB pro Postfach.
+
+Failover: Ein Postfach, dessen GFS 10 min lang nicht erreichbar ist,
+während ein anderer GFS des Space antwortet, wird dorthin verlegt
+(10–18 min nach Beginn des Ausfalls); der ausgefallene GFS steht ab
+dann an letzter Stelle, sodass nichts hin- und herspringt. Nachholen:
+Der Besitzer oder ein Admin mit dem Signaturschlüssel des Space
+signiert eine **Sync-Seite** (256 Bucket-Hashes über die Zeilen des
+Space, `sha256-b256-c1`) und schickt sie höchstens stündlich an die
+Mitglieder. Ein Mitglied holt die abweichenden Buckets von einem
+beliebigen Mitglieds-Haushalt und behält nur Zeilen, für die die
+signierte Seite bürgt. Details in `docs/protocol/sync-pages.md` im
+Core-Repo.
 
 </details>
 
@@ -311,16 +333,16 @@ Anleitung mit Docker Compose + Cloudflare.
 
 ## Nebeneinander
 
-| Verhalten                | Privat / Haushalt / öffentlich                         | Global                                                                        |
-| ------------------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| Wer kann ihn finden      | Eingeladene / dein Zuhause / gekoppelte Haushalte      | jeder, der einen der GFS nutzt, die der Besitzer gewählt hat                  |
-| Beitritt                 | Einladung, Haushaltsmitgliedschaft oder Beitrittsmodus | offen / Anfrage / nur auf Einladung, plus Einladungslinks                     |
-| Wie Beiträge reisen      | direkt oder über das Mesh                              | genauso für gekoppelte Mitglieder; über jeden gelisteten GFS für alle anderen |
-| Was ein GFS sieht        | nichts (außer ein privater Space schaltet ihn ein)     | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte   |
-| Verschlüsselung          | **immer an**                                           | **immer an**                                                                  |
-| Wo Nachrichten liegen    | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (ein GFS hält versiegelte Kopien nur kurz)         |
-| Wenn ein GFS offline ist | entfällt                                               | die anderen gelisteten GFS machen weiter; Beiträge werden wiederholt          |
-| Lässt sich abschalten    | ja, per Admin-Abstimmung                               | GFS jederzeit entfernen (Besitzer) oder nicht mehr global (Admin-Abstimmung)  |
+| Verhalten                | Privat / Haushalt / öffentlich                         | Global                                                                                    |
+| ------------------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Wer kann ihn finden      | Eingeladene / dein Zuhause / gekoppelte Haushalte      | jeder, der einen der GFS nutzt, die der Besitzer gewählt hat                              |
+| Beitritt                 | Einladung, Haushaltsmitgliedschaft oder Beitrittsmodus | offen / Anfrage / nur auf Einladung, plus Einladungslinks                                 |
+| Wie Beiträge reisen      | direkt oder über das Mesh                              | genauso für gekoppelte Mitglieder; über jeden gelisteten GFS für alle anderen             |
+| Was ein GFS sieht        | nichts (außer ein privater Space schaltet ihn ein)     | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte               |
+| Verschlüsselung          | **immer an**                                           | **immer an**                                                                              |
+| Wo Nachrichten liegen    | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (ein GFS hält versiegelte Kopien nur kurz)                     |
+| Wenn ein GFS offline ist | entfällt                                               | die anderen gelisteten GFS machen weiter; Haushalte ziehen um; Beiträge werden wiederholt |
+| Lässt sich abschalten    | ja, per Admin-Abstimmung                               | GFS jederzeit entfernen (Besitzer) oder nicht mehr global (Admin-Abstimmung)              |
 
 ## Privatsphäre in globalen Spaces
 

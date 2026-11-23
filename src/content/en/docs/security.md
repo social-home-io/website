@@ -338,7 +338,8 @@ The things that are true today and that you should know before
 you trust us with the group chat:
 
 - A GFS the space's owner picked, but your household never
-  connected to, sees your IP address when you post there. Because
+  connected to, sees your IP address when you post there or deliver
+  to members' mailboxes there, and which mailboxes those are. Because
   anonymous writers can't be told apart, a GFS can't ban one
   household; the owner removes a writer by rotating the space key.
 - The relay sees your IP address, the timing and the size bucket

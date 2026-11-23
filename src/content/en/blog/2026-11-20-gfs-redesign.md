@@ -3,6 +3,8 @@ title: "A new GFS: every member equal, and the GFS learns less"
 description: Real households showed us where the GFS could do better, so we redesigned how it works. Every household gets its own anonymous mailbox, every member reaches every other member, posting is always anonymous, admins can keep a space running without the owner, and you can ask to join a global space without pairing. In Social Home 2026.11.19.
 date: 2026-11-20
 author: The Social Home team
+image: /blog/2026-11-gfs/cover.webp
+imageAlt: An illustration of a GFS as a green cabinet of small mailboxes with no names on them, only scrambled marks. Five households below send sealed envelopes along dotted paths into a few of the mailboxes, and one household holds two tickets
 order: 50
 ---
 

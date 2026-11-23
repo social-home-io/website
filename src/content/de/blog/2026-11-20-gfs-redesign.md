@@ -3,6 +3,8 @@ title: "Ein neuer GFS: alle Mitglieder gleich, und der GFS erfährt weniger"
 description: Echte Haushalte haben uns gezeigt, wo der GFS besser werden kann, also haben wir neu gestaltet, wie er arbeitet. Jeder Haushalt bekommt sein eigenes anonymes Postfach, jedes Mitglied erreicht jedes andere, Posten ist immer anonym, Admins können einen Space ohne den Eigentümer am Laufen halten, und du kannst um Beitritt zu einem globalen Space bitten, ohne zu koppeln. In Social Home 2026.11.19.
 date: 2026-11-20
 author: Das Social Home Team
+image: /blog/2026-11-gfs/cover.webp
+imageAlt: Eine Illustration eines GFS als grüner Schrank aus kleinen Postfächern ohne Namen, nur mit verwürfelten Zeichen. Fünf Haushalte darunter schicken versiegelte Umschläge auf gepunkteten Wegen in einige der Postfächer, und ein Haushalt hält zwei Tickets
 order: 50
 ---
 

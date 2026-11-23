@@ -366,7 +366,8 @@ ons de groepschat toevertrouwt:
 
 - Een GFS die de eigenaar van de space heeft gekozen, maar
   waarmee je huishouden nooit verbonden was, ziet je IP-adres als
-  je daar post. Omdat anonieme schrijvers niet van elkaar te
+  je daar post of daar bij de brievenbussen van leden bezorgt, en
+  welke brievenbussen dat zijn. Omdat anonieme schrijvers niet van elkaar te
   onderscheiden zijn, kan een GFS niet één huishouden bannen; de
   eigenaar verwijdert een schrijver door de sleutel van de space
   te roteren.

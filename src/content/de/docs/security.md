@@ -373,7 +373,8 @@ du uns den Gruppenchat anvertraust:
 
 - Ein GFS, den der Besitzer des Space gewählt hat, mit dem dein
   Haushalt aber nie verbunden war, sieht deine IP-Adresse, wenn du
-  dort postest. Weil anonyme Schreiber nicht auseinanderzuhalten
+  dort postest oder an Postfächer von Mitgliedern dort zustellst, und
+  welche Postfächer das sind. Weil anonyme Schreiber nicht auseinanderzuhalten
   sind, kann ein GFS keinen einzelnen Haushalt sperren; der
   Besitzer entfernt einen Schreiber, indem er den Schlüssel des
   Space rotiert.
