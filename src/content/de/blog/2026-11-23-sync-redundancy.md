@@ -1,10 +1,10 @@
 ---
 title: "Ein Space, der weiterläuft: mehr GFS, und jedes Mitglied kann dir nachliefern"
-description: Spaces stützen sich jetzt auf jeden Haushalt und jeden GFS, den sie nutzen. Beiträge erreichen Mitglieder auf jedem GFS eines Space, dein Haushalt zieht zu einem anderen GFS um, wenn einer ausfällt, und du siehst, ob du alles aus einem Space hast, und holst Fehlendes bei jedem Mitglied nach, während der Host offline ist. In Social Home 2026.11.23.
+description: Spaces stützen sich jetzt auf jeden Haushalt und jeden GFS, den sie nutzen. Beiträge erreichen Mitglieder auf jedem GFS eines Space, dein Haushalt zieht zu einem anderen GFS um, wenn einer ausfällt, und du siehst, ob du alles aus einem Space hast, und holst Fehlendes bei jedem Mitglied nach, während der Gastgeber offline ist. In Social Home 2026.11.23.
 date: 2026-11-23
 author: Das Social Home Team
 image: /blog/2026-11-sync/cover.webp
-imageAlt: Eine Illustration von fünf Haushalten, die miteinander und mit zwei GFS verbunden sind. Ein GFS ist ausgegraut und durchgekreuzt, und ein gepunkteter Pfeil führt von ihm zum anderen GFS. Der Host-Haushalt in der Mitte ist verblasst, mit einem Mond daneben, während versiegelte Umschläge weiter zwischen den anderen Haushalten reisen, drei davon mit einem grünen Haken
+imageAlt: Eine Illustration von fünf Haushalten, die miteinander und mit zwei GFS verbunden sind. Ein GFS ist ausgegraut und durchgekreuzt, und ein gepunkteter Pfeil führt von ihm zum anderen GFS. Der Gastgeber-Haushalt in der Mitte ist verblasst, mit einem Mond daneben, während versiegelte Umschläge weiter zwischen den anderen Haushalten reisen, drei davon mit einem grünen Haken
 order: 50
 ---
 
@@ -17,7 +17,7 @@ und ein Space kann mehrere davon nutzen.
 Die letzten beiden Releases bauen darauf auf. Ein Space nutzt jetzt
 **jeden** GFS, den sein Eigentümer gewählt hat, und seine Mitglieder
 liefern einander nach, was fehlt. Wenn ein GFS ausfällt, wenn das
-Zuhause des Hosts gerade aktualisiert wird oder wenn dein eigenes
+Zuhause des Gastgebers gerade aktualisiert wird oder wenn dein eigenes
 Zuhause übers Wochenende aus war, läuft der Space weiter, und du
 siehst, dass du alles hast.
 
@@ -31,7 +31,7 @@ mit denen dein Haushalt nie verbunden war. Das ist ein Upload pro GFS,
 egal wie viele Mitglieder dort warten.
 
 So bekommt ein Mitglied, das nur den zweiten GFS nutzt, deinen Beitrag
-genauso schnell wie alle anderen, und der Host muss ihn nicht
+genauso schnell wie alle anderen, und der Gastgeber muss ihn nicht
 weitergeben.
 
 <details class="tech">
@@ -47,7 +47,7 @@ an die gelistete Adresse gepinnt ist, nachdem der GFS bewiesen hat,
 dass er den Schlüssel hält, den der Eigentümer signiert hat. Ein GFS,
 der nicht auf der signierten Liste steht, bekommt gar keine Anfrage.
 
-Der Host trägt einen Beitrag weiterhin, wenn kein gelisteter GFS es
+Der Gastgeber trägt einen Beitrag weiterhin, wenn kein gelisteter GFS es
 kann: Der GFS steht nicht auf der Liste, er bietet keine Postfächer an,
 er ist dreimal hintereinander gescheitert, oder das Element ist zu groß
 für den Weg. Für 200 Mitglieder auf drei GFS ist ein Beitrag 3 Uploads.
@@ -75,7 +75,7 @@ gibt also keinen zusätzlichen Timer: Der Umzug passiert 10 bis 18
 Minuten nach Beginn eines Ausfalls, und nur zu einem GFS, der gerade
 antwortet. Der ausgefallene GFS wird als _demoted_ markiert und steht ab
 dann an letzter Stelle. Deine Mitgliedskarte für jeden betroffenen Space
-bekommt eine neuere Revision und geht an den Host, der sie mit seinem
+bekommt eine neuere Revision und geht an den Gastgeber, der sie mit seinem
 nächsten Update der Mitgliederliste weitergibt; etwa 0,7 KB pro Space.
 Die Wahl übersteht einen Neustart.
 
@@ -112,7 +112,7 @@ alles da?** Er sagt dir in einem Satz:
 
 Wenn Beiträge fehlen könnten, bekommt der Space ein ⚠ in deiner Liste
 der Spaces. Deine eigenen Beiträge, die noch darauf warten, rauszugehen,
-zeigen **Noch nicht gesendet**. Ein Space, den dein Haushalt hostet,
+zeigen **Noch nicht gesendet**. Ein Space, bei dem dein Haushalt Gastgeber ist,
 zeigt nie eine Warnung: Er hat per Definition alles.
 
 <details class="tech">
@@ -129,18 +129,18 @@ und wer sie signiert hat.
 
 ## Bei jedem Mitglied nachholen
 
-Das Zuhause des Hosts, oder ein Admin, der für den Eigentümer handelt,
+Das Zuhause des Gastgebers, oder ein Admin, der für den Eigentümer handelt,
 signiert ab und zu eine kurze Zusammenfassung von allem, was gerade im
 Space ist, und schickt sie an alle Mitglieder. Dein Zuhause vergleicht
 seine eigene Kopie mit dieser Zusammenfassung. Fehlt etwas, kann es das
-bei **jedem** anderen Mitglieds-Haushalt holen, nicht nur beim Host.
+bei **jedem** anderen Mitglieds-Haushalt holen, nicht nur beim Gastgeber.
 
 Dein Zuhause behält nur, wofür die signierte Zusammenfassung bürgt. Ein
 Mitglied, das etwas anderes oder etwas Verändertes schickt, kommt damit
 nicht an deinem Zuhause vorbei. Ein Mitglied kann dir also beim
 Nachholen helfen, aber nichts einschmuggeln.
 
-So holst du nach einem Wochenende weg alles nach, auch wenn der Host
+So holst du nach einem Wochenende weg alles nach, auch wenn der Gastgeber
 offline ist, wenn du zurückkommst. Jedes Mitglied, das da war, kann dir
 nachliefern.
 
@@ -193,14 +193,14 @@ Haushalt mit beiden. Social Home erledigt den Rest.
   Beitrag geht. Er sieht nie, welcher Haushalt du bist oder was du
   geschrieben hast.
 - **Ein Mitglied, das mit keinem GFS des Space verbunden ist,** wird
-  weiterhin über den Host erreicht, also wartet dieses Mitglied auf den
-  Host.
+  weiterhin über den Gastgeber erreicht, also wartet dieses Mitglied auf den
+  Gastgeber.
 - **Ein Mitglied kann dich noch einmal nachsehen lassen.** Ein
   Mitglied, das falsche Daten schickt, kann deinen Space „Vielleicht
   fehlen Beiträge“ sagen lassen. Es kann nie einen fehlenden Beitrag
   als vorhanden erscheinen lassen.
-- **Wird ein Beitrag gelöscht, während der Host weg ist,** sagt dein
-  Space vielleicht erst „Alles ist da“, wenn der Host zurück ist.
+- **Wird ein Beitrag gelöscht, während der Gastgeber weg ist,** sagt dein
+  Space vielleicht erst „Alles ist da“, wenn der Gastgeber zurück ist.
 
 ## Ausprobieren
 

@@ -1,6 +1,6 @@
 ---
 title: Globale Spaces
-description: Wann du einen GFS brauchst und wann nicht — die vier Arten von Space, wie der Besitzer wählt, welche GFS einen globalen Space listen, und was ein GFS sehen kann und was nicht.
+description: Wann du einen GFS brauchst und wann nicht — die vier Arten von Space, wie der Eigentümer wählt, welche GFS einen globalen Space listen, und was ein GFS sehen kann und was nicht.
 order: 40
 ---
 
@@ -32,7 +32,7 @@ du **nicht** gekoppelt bist:
 - **Ein GFS-Link**, eine Einladung, die ohne vorheriges Koppeln
   funktioniert.
 - **Ein privater Space**, dessen Mitglieder sich nicht alle direkt
-  erreichen. Der Besitzer kann den GFS dafür einschalten.
+  erreichen. Der Eigentümer kann den GFS dafür einschalten.
 - **Ein Sicherheitsnetz** für einen gekoppelten Haushalt, das nur
   genutzt wird, wenn der direkte Weg ausfällt. Es ist aus, solange
   du es nicht einschaltest.
@@ -41,17 +41,17 @@ du **nicht** gekoppelt bist:
 
 Jede Art reicht ein Stück weiter als die vorherige:
 
-| Art            | Wer kann ihn finden                                          | Sieht ein GFS ihn?                                               |
-| -------------- | ------------------------------------------------------------ | ---------------------------------------------------------------- |
-| **Privat**     | Nur Leute, die du einlädst                                   | Nein, außer der Besitzer schaltet den GFS ein und wählt, welchen |
-| **Haushalt**   | Alle in deinem Zuhause, automatisch                          | Nie                                                              |
-| **Öffentlich** | Haushalte, mit denen du gekoppelt bist, unter **Entdecken**  | Nie                                                              |
-| **Global**     | Jeder, der einen der GFS nutzt, die der Besitzer gewählt hat | Nur die GFS, die der Besitzer gewählt hat                        |
+| Art            | Wer kann ihn finden                                            | Sieht ein GFS ihn?                                                 |
+| -------------- | -------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Privat**     | Nur Leute, die du einlädst                                     | Nein, außer der Eigentümer schaltet den GFS ein und wählt, welchen |
+| **Haushalt**   | Alle in deinem Zuhause, automatisch                            | Nie                                                                |
+| **Öffentlich** | Haushalte, mit denen du gekoppelt bist, unter **Entdecken**    | Nie                                                                |
+| **Global**     | Jeder, der einen der GFS nutzt, die der Eigentümer gewählt hat | Nur die GFS, die der Eigentümer gewählt hat                        |
 
 Ein **öffentlicher** Space bleibt in deinem eigenen Kreis: Deine
 gekoppelten Haushalte können ihn finden und um Beitritt bitten, und
 er berührt nie einen GFS. Um einen Space auf einem GFS zu listen,
-machst du ihn **global**, und der Besitzer wählt, welche GFS ihn
+machst du ihn **global**, und der Eigentümer wählt, welche GFS ihn
 listen. Der Rest dieser Seite handelt von globalen Spaces.
 
 ## Große Änderungen brauchen eine Abstimmung
@@ -65,29 +65,29 @@ zu passieren.
 - Jeder Admin kann den Vorschlag eröffnen; die anderen stimmen mit
   Ja oder Nein.
 - Er wird ausgeführt, sobald **mehr als die Hälfte** der Admins
-  zustimmt — der Besitzer zählt als Admin wie alle anderen.
+  zustimmt — der Eigentümer zählt als Admin wie alle anderen.
 - Ein einziges _Nein_ bricht ihn ab. Abwarten auch: Ein Vorschlag
   verfällt nach sieben Tagen, wenn er nie eine Mehrheit erreicht.
 
 Ein Space mit nur einem Admin handelt weiterhin sofort — eine
 Mehrheit von einem. Aber sobald ein zweiter Admin dazukommt, kann
 niemand mehr allein den Space auflösen oder ändern, wer ihn sieht.
-Admins in gekoppelten Haushalten stimmen ebenfalls ab; der Host
+Admins in gekoppelten Haushalten stimmen ebenfalls ab; der Gastgeber
 zählt alle Stimmen zusammen, und nur das genehmigte Ergebnis geht
 nach außen.
 
-Ist ein Space einmal global, **entscheidet allein der Besitzer,
-welche GFS ihn listen**, ohne Abstimmung. Der Besitzer kann in den
+Ist ein Space einmal global, **entscheidet allein der Eigentümer,
+welche GFS ihn listen**, ohne Abstimmung. Der Eigentümer kann in den
 Einstellungen des Space jederzeit einen GFS hinzufügen oder
 entfernen.
 
 ## Wer macht was in einem Space
 
-Jeder Space hat einen Besitzer, und der Besitzer kann Rollen
-vergeben. Von der meisten zur wenigsten Macht: **Besitzer**,
+Jeder Space hat einen Eigentümer, und der Eigentümer kann Rollen
+vergeben. Von der meisten zur wenigsten Macht: **Eigentümer**,
 **Admin**, **Moderator**, **Mitglied**, **Follower**. Ein Follower
 ist ein Mitglied mit einer Rolle nur zum Lesen: Er liest mit und
-kann kommentieren oder reagieren, wenn der Besitzer das erlaubt.
+kann kommentieren oder reagieren, wenn der Eigentümer das erlaubt.
 
 Schaltest du **Admins dürfen für mich handeln** ein, können Admins
 aus anderen Haushalten moderieren, einladen und veröffentlichen,
@@ -108,14 +108,14 @@ die sich niemand ansieht, verfallen nach sieben Tagen.
 Ein GFS ist ein Relay, mit dem sich jeder Haushalt verbinden kann.
 Für einen globalen Space hat er drei Aufgaben:
 
-1. **Er ist ein Verzeichnis.** Der Besitzer wählt, welche GFS den
-   Space listen, bis zu acht. Jeder zeigt seinen Namen, wer ihn
-   hostet, wie man beitritt und, falls der Space einen hat, einen
+1. **Er ist ein Verzeichnis.** Der Eigentümer wählt, welche GFS den
+   Space listen, bis zu acht. Jeder zeigt seinen Namen, wer sein
+   Gastgeber ist, wie man beitritt und, falls der Space einen hat, einen
    auf etwa 11 m gerundeten Karten-Pin. Jeder, der einen dieser GFS
    nutzt, findet ihn unter **Entdecken › Global**.
 2. **Er trägt Beiträge zu Leuten, mit denen du nicht gekoppelt
    bist.** Das sind **Follower**, Haushalte, die mitlesen, ohne
-   beizutreten (nur wenn der Besitzer Follower erlaubt; standardmäßig
+   beizutreten (nur wenn der Eigentümer Follower erlaubt; standardmäßig
    ist das aus), **Mitglieder, die über einen GFS-Link
    beigetreten sind**, und Haushalte, die den Space unter Entdecken
    gefunden und **um Beitritt gebeten** haben. Jeder dieser Haushalte
@@ -129,10 +129,10 @@ Für einen globalen Space hat er drei Aufgaben:
    Haushalt, der offline war, sie trotzdem noch abholen kann.
 
 **Jeder gelistete GFS bekommt jeden Beitrag.** Ein Mitglied schickt
-jeden Beitrag an alle GFS, die der Besitzer gewählt hat, auch an
+jeden Beitrag an alle GFS, die der Eigentümer gewählt hat, auch an
 solche, mit denen sein eigener Haushalt nie verbunden war. So sieht
 ein Follower, der nur GFS B nutzt, trotzdem, was ein Mitglied über
-GFS A gepostet hat, selbst während der Host offline ist. Mitglieder
+GFS A gepostet hat, selbst während der Gastgeber offline ist. Mitglieder
 auf jedem dieser GFS bekommen sie genauso: Dein Haushalt legt jeden
 Beitrag direkt in ihr Postfach, ein Upload pro GFS. Ein GFS, mit dem
 ein Mitglied nie verbunden war, sieht nur dessen Internetadresse und
@@ -158,8 +158,8 @@ werden dann gelöscht.
 
 Nur ein globaler Space kann auf einem GFS gelistet werden; das
 Veröffentlichen eines öffentlichen Space antwortet mit
-`409 TIER_CHANGE_REQUIRED`. Die Wahl des Besitzers (höchstens 8)
-reist als vom Besitzer signierte Liste (`spaces.gfs_servers`) im
+`409 TIER_CHANGE_REQUIRED`. Die Wahl des Eigentümers (höchstens 8)
+reist als vom Eigentümer signierte Liste (`spaces.gfs_servers`) im
 verschlüsselten `space_meta` zu den Mitgliedern; ein Co-Admin kann
 sie weitergeben, aber nicht ändern. Verlässt ein Space die Stufe
 global oder wird er aufgelöst, wird er nur von den GFS
@@ -201,25 +201,25 @@ Jeder Schreiber hält den Schreib-Gruppenschlüssel pro Epoche und
 schickt jedes Element anonym an jeden gelisteten GFS
 (`member-publish-anon`). Das Schreiber-Zertifikat reist im
 Geheimtext mit, wo die empfangenden Haushalte es prüfen. Das
-Host-Relay ist identitätsfrei (`{space_id, event_type, payload}` auf
+Gastgeber-Relay ist identitätsfrei (`{space_id, event_type, payload}` auf
 einer Sitzung ohne Cookies). Schreiber abonnieren im selben
 gemischten Stapel wie Follower. Der GFS sieht weiterhin Quell-IP,
 Timing, die Größenklasse und die Abonnentenmenge, und er verliert
 Sperren pro Haushalt für anonyme Schreiber (Limits pro IP bleiben;
-der Besitzer entfernt einen Schreiber, was den Schlüssel rotiert).
+der Eigentümer entfernt einen Schreiber, was den Schlüssel rotiert).
 
 </details>
 
 ## Wie Finden und Beitreten funktionieren
 
-1. Der Besitzer macht einen Space **global** und wählt, welche GFS
+1. Der Eigentümer macht einen Space **global** und wählt, welche GFS
    ihn listen. Jeder bekommt Name, Beschreibung, Titelbild,
    Altersrichtlinie und Akzentfarbe: genug, um ihn zu listen, aber
    **keine Nachrichteninhalte**. Ein Space kann auch global, aber
-   noch nirgends gelistet sein, bis der Besitzer einen GFS wählt.
+   noch nirgends gelistet sein, bis der Eigentümer einen GFS wählt.
 2. Jeder, der einen dieser GFS nutzt, kann ihn unter **Entdecken ›
    Global** finden und um Beitritt bitten oder ihm folgen, wenn
-   der Besitzer Follower erlaubt. Du musst nicht mit seinem Host
+   der Eigentümer Follower erlaubt. Du musst nicht mit seinem Gastgeber
    gekoppelt sein.
 3. Ob ein Beitritt gewährt wird, hängt vom **Beitrittsmodus** des
    Space ab: **Offen** (jeder kann sofort beitreten), **Anfrage**
@@ -282,7 +282,7 @@ zurück ist, weiterhin bis zu einen Tag versiegelter Umschläge für
 Haushalte bereit, die offline waren. Deine lokale Kopie ist in dem
 Moment zu Hause gespeichert, in dem du auf Senden drückst. Was dir
 dann noch fehlt, kann jedes andere Mitglied ergänzen, auch während
-der Host offline ist. **Ist alles da?** in den Space-Einstellungen
+der Gastgeber offline ist. **Ist alles da?** in den Space-Einstellungen
 zeigt, ob dein Haushalt alles hat, und **Jetzt prüfen** fragt sofort
 nach.
 
@@ -302,7 +302,7 @@ Failover: Ein Postfach, dessen GFS 10 min lang nicht erreichbar ist,
 während ein anderer GFS des Space antwortet, wird dorthin verlegt
 (10–18 min nach Beginn des Ausfalls); der ausgefallene GFS steht ab
 dann an letzter Stelle, sodass nichts hin- und herspringt. Nachholen:
-Der Besitzer oder ein Admin mit dem Signaturschlüssel des Space
+Der Eigentümer oder ein Admin mit dem Signaturschlüssel des Space
 signiert eine **Sync-Seite** (256 Bucket-Hashes über die Zeilen des
 Space, `sha256-b256-c1`) und schickt sie höchstens stündlich an die
 Mitglieder. Ein Mitglied holt die abweichenden Buckets von einem
@@ -335,14 +335,14 @@ Anleitung mit Docker Compose + Cloudflare.
 
 | Verhalten                | Privat / Haushalt / öffentlich                         | Global                                                                                    |
 | ------------------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Wer kann ihn finden      | Eingeladene / dein Zuhause / gekoppelte Haushalte      | jeder, der einen der GFS nutzt, die der Besitzer gewählt hat                              |
+| Wer kann ihn finden      | Eingeladene / dein Zuhause / gekoppelte Haushalte      | jeder, der einen der GFS nutzt, die der Eigentümer gewählt hat                            |
 | Beitritt                 | Einladung, Haushaltsmitgliedschaft oder Beitrittsmodus | offen / Anfrage / nur auf Einladung, plus Einladungslinks                                 |
 | Wie Beiträge reisen      | direkt oder über das Mesh                              | genauso für gekoppelte Mitglieder; über jeden gelisteten GFS für alle anderen             |
 | Was ein GFS sieht        | nichts (außer ein privater Space schaltet ihn ein)     | Routing-Daten und einen versiegelten, aufgepolsterten Umschlag, nie Inhalte               |
 | Verschlüsselung          | **immer an**                                           | **immer an**                                                                              |
 | Wo Nachrichten liegen    | im Zuhause jedes Mitglieds                             | im Zuhause jedes Mitglieds (ein GFS hält versiegelte Kopien nur kurz)                     |
 | Wenn ein GFS offline ist | entfällt                                               | die anderen gelisteten GFS machen weiter; Haushalte ziehen um; Beiträge werden wiederholt |
-| Lässt sich abschalten    | ja, per Admin-Abstimmung                               | GFS jederzeit entfernen (Besitzer) oder nicht mehr global (Admin-Abstimmung)              |
+| Lässt sich abschalten    | ja, per Admin-Abstimmung                               | GFS jederzeit entfernen (Eigentümer) oder nicht mehr global (Admin-Abstimmung)            |
 
 ## Privatsphäre in globalen Spaces
 

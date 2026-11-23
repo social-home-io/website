@@ -1,5 +1,5 @@
 ---
-title: "Un espace qui tient bon : plus de GFS, et chaque membre peut vous mettre à jour"
+title: "Un espace qui tient bon : plus de GFS, et chaque membre peut vous mettre à jour"
 description: "Les espaces s'appuient désormais sur chaque foyer et chaque GFS qu'ils utilisent. Les publications atteignent les membres sur n'importe quel GFS de l'espace, votre foyer passe à un autre GFS quand l'un est en panne, et vous pouvez voir si vous avez tout d'un espace et rattraper ce qui manque auprès de n'importe quel membre pendant que l'hôte est hors ligne. Dans Social Home 2026.11.23."
 date: 2026-11-23
 author: L'équipe Social Home
@@ -49,14 +49,14 @@ signée par le propriétaire. Un GFS absent de la liste signée ne reçoit
 aucune requête.
 
 L'hôte transporte quand même une publication quand aucun GFS référencé
-ne le peut : le GFS n'est pas dans la liste, il ne propose pas de
+ne le peut : le GFS n'est pas dans la liste, il ne propose pas de
 boîtes aux lettres, il a échoué trois fois de suite, ou l'élément est
 trop volumineux pour cette route. Pour 200 membres sur trois GFS, une
 publication représente 3 envois.
 
 </details>
 
-## Quand un GFS est en panne, votre foyer se déplace
+## Quand un GFS est en panne, votre foyer passe à un autre
 
 Votre foyer reçoit les publications d'un espace dans une boîte aux
 lettres anonyme sur un GFS. Si ce GFS reste en panne environ dix
@@ -66,7 +66,7 @@ membres. Leurs publications vont alors dans la nouvelle boîte aux
 lettres.
 
 Votre foyer ne fait pas d'allers-retours. Quand le premier GFS revient,
-votre foyer reste où il est, et ne se déplace que si le deuxième GFS
+votre foyer reste où il est, et ne passe à un autre GFS que si le deuxième
 tombe en panne à son tour. Si c'est votre propre connexion internet qui
 est coupée, rien ne bouge.
 
@@ -74,12 +74,12 @@ est coupée, rien ne bouge.
 <summary>Sous le capot</summary>
 
 La vérification suit le délai de reconnexion de la boîte aux lettres
-elle-même, sans minuterie supplémentaire : le déplacement a lieu 10 à
+elle-même, sans minuterie supplémentaire : le passage a lieu 10 à
 18 minutes après le début d'une panne, et uniquement vers un GFS qui
 répond à ce moment-là. Le GFS en échec est marqué _demoted_ et classé
 en dernier dès lors. Votre fiche de membre pour chaque espace concerné
 reçoit une révision plus récente et part chez l'hôte, qui la transmet
-avec sa prochaine mise à jour de la liste des membres ; environ 0,7 Ko
+avec sa prochaine mise à jour de la liste des membres ; environ 0,7 Ko
 par espace. Le choix survit à un redémarrage.
 
 </details>
@@ -88,8 +88,8 @@ par espace. Le choix survit à un redémarrage.
 
 Pour passer à un autre GFS, votre foyer doit y être connecté. Un espace
 indique donc, dans son fil, quand il est sur un GFS auquel votre foyer
-n'est pas connecté : « Cet espace est aussi sur _nom du GFS_.
-Connectez-vous pour une connexion plus stable. » Un admin du foyer
+n'est pas connecté : « Cet espace est aussi sur _nom du GFS_.
+Connectez-vous pour une connexion plus stable. » Un admin du foyer
 voit un bouton **Se connecter** qui ouvre le bon GFS, et les autres
 sont invités à en demander un.
 
@@ -99,10 +99,10 @@ compte. Les admins de leur foyer reçoivent aussi une notification dans
 **Attend votre décision** jusqu'à ce que leur foyer soit connecté à
 tous.
 
-## Tout est là ?
+## Tout est là ?
 
-Les réglages d'un espace ont désormais une section **Tout est là ?**
-Elle vous le dit en une phrase :
+Les réglages d'un espace ont désormais une section **Tout est là ?**
+Elle vous le dit en une phrase :
 
 - **Tout est là**, avec le moment de la dernière vérification.
 - **Récupération des nouveautés…** pendant l'arrivée de nouvelles
@@ -118,7 +118,7 @@ Elle vous le dit en une phrase :
 Quand des publications manquent peut-être, l'espace reçoit un ⚠ dans
 votre liste d'espaces. Vos propres publications qui attendent encore
 de partir affichent **Pas encore envoyé**. Un espace hébergé par votre
-foyer n'affiche jamais d'avertissement : par définition, il a tout.
+foyer n'affiche jamais d'avertissement : par définition, il a tout.
 
 <details class="tech">
 <summary>Sous le capot</summary>
@@ -127,7 +127,7 @@ Chaque résultat de synchronisation est enregistré par espace et
 transformé en état sur `GET /api/spaces/{id}` et dans la trame
 `space.sync_state`. **Vérifier maintenant** est ouvert à chaque membre
 (pas aux abonnés), trois fois par heure et par espace. Les admins ont
-une vue **Détails** avec la comparaison des pages : à quelle page vous
+une vue **Détails** avec la comparaison des pages : à quelle page vous
 correspondez, combien de parties diffèrent et qui l'a signée.
 
 </details>
@@ -152,7 +152,7 @@ vous mettre à jour.
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Le résumé est une **page de synchronisation** : 256 empreintes de
+Le résumé est une **page de synchronisation** : 256 empreintes de
 compartiments sur chaque ligne de l'espace, et un en-tête (`space_id`,
 époque, signataire, numéro de séquence, nombre de lignes, empreinte
 racine) signé avec la clé d'autorité de l'espace
@@ -160,7 +160,7 @@ racine) signé avec la clé d'autorité de l'espace
 détiennent la clé de signature de l'espace en scellent une au plus
 toutes les 15 minutes après un changement, et l'envoient au plus une
 fois par heure et par espace, scellée avec la clé de contenu de
-l'espace : directement aux membres jumelés, et aux membres derrière un
+l'espace : directement aux membres jumelés, et aux membres derrière un
 GFS avec un envoi par GFS. Un espace calme n'envoie rien.
 
 Un membre compare ses propres empreintes de compartiments avec la page
@@ -176,7 +176,7 @@ environ 7 % aux envois du signataire.
 
 ## Au total
 
-Mis bout à bout, un espace repose sur de nombreux appuis :
+Mis bout à bout, un espace repose sur de nombreux appuis :
 
 - **La maison de chaque membre** contient tout l'espace et peut mettre
   les autres à jour.
@@ -199,19 +199,19 @@ votre foyer aux deux. Social Home fait le reste.
   la publication. Il ne voit jamais quel foyer vous êtes, ni ce que
   vous avez écrit.
 - **Un membre connecté à aucun des GFS de l'espace** est quand même
-  atteint par l'hôte : ce membre attend donc l'hôte.
+  atteint par l'hôte : ce membre attend donc l'hôte.
 - **Un membre peut vous faire vérifier une seconde fois.** Un membre
   qui envoie des données erronées peut faire afficher à votre espace
-  « Des publications manquent peut-être ». Il ne peut jamais faire
+  « Des publications manquent peut-être ». Il ne peut jamais faire
   passer une publication manquante pour présente.
 - **Si une publication est supprimée pendant l'absence de l'hôte,**
-  votre espace risque de ne pas afficher « Tout est là » avant le
+  votre espace risque de ne pas afficher « Tout est là » avant le
   retour de l'hôte.
 
 ## Essayez-le
 
 La publication vers chaque GFS d'un espace et le passage à un autre
-GFS sont arrivés dans **Social Home 2026.11.21**. **Tout est là ?** et
+GFS sont arrivés dans **Social Home 2026.11.21**. **Tout est là ?** et
 le rattrapage auprès de n'importe quel membre sont dans **Social Home
 2026.11.23**. Mettez à jour votre maison, et vérifiez que votre foyer
 est connecté à chaque GFS qu'utilisent vos espaces. Plus de détails

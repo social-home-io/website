@@ -64,7 +64,7 @@ restreinte. Quand un espace a plus d'un administrateur, chacune
 de ces actions devient une _proposition_ au lieu de s'appliquer
 immédiatement.
 
-- N'importe quel administrateur peut ouvrir la proposition ; les
+- N'importe quel administrateur peut ouvrir la proposition ; les
   autres votent oui ou non.
 - Elle s'exécute dès que **plus de la moitié** des
   administrateurs l'approuvent — le propriétaire compte comme un
@@ -77,7 +77,7 @@ Un espace avec un seul administrateur agit toujours
 immédiatement — une majorité à un. Mais dès qu'un second
 administrateur arrive, plus personne ne peut dissoudre l'espace
 ou changer qui le voit tout seul. Les administrateurs des foyers
-jumelés votent aussi ; l'hôte compte les voix de tout le monde et
+jumelés votent aussi ; l'hôte compte les voix de tout le monde et
 seul le résultat approuvé est diffusé.
 
 Une fois qu'un espace est global, **le choix des GFS qui le
@@ -156,7 +156,7 @@ est complétée à l'une de quelques tailles fixes, si bien que le
 relais ne peut même pas distinguer un message court d'un message
 long. Il ne stocke jamais rien qu'il puisse lire : les
 publications destinées à un foyer hors ligne attendent, scellées,
-pendant un jour ; les photos et les fichiers sont conservés
+pendant un jour ; les photos et les fichiers sont conservés
 chiffrés pendant quelques jours (trois par défaut), puis supprimés.
 
 > Voyez le relais comme le bureau de poste d'une communauté
@@ -187,7 +187,7 @@ AES-256-GCM, signées avec Ed25519. Tranches de padding : 1 / 4 /
 les trames binaires qui transportent les gros éléments. Chaque
 foyer que le GFS atteint a une boîte aux lettres par GFS, ouverte
 avec un ticket Privacy Pass anonyme et réclamée sur sa propre
-connexion ; le GFS stocke l'identifiant de la boîte aux lettres et
+connexion ; le GFS stocke l'identifiant de la boîte aux lettres et
 sa clé, jamais un identifiant de foyer ni un espace. Les
 enveloppes scellées attendent 24 h, au plus 2000 enveloppes /
 32 MiB par boîte aux lettres. Les photos des espaces sont placées
@@ -202,7 +202,7 @@ dans un cache média chiffré (`PUT/GET /gfs/media/{blob_id}`),
 Toute personne qui publie dans un espace global passe par le GFS
 de la même façon : anonymement. Le GFS peut savoir que quelqu'un
 qui a le droit d'y publier a publié, et quand, mais pas quel foyer.
-Il ne peut même pas distinguer les membres des abonnés ; ils se
+Il ne peut même pas distinguer les membres des abonnés ; ils se
 ressemblent à ses yeux. Il n'y a rien à configurer.
 
 <details class="tech">
@@ -217,7 +217,7 @@ le vérifient. Le relais de l'hôte est anonyme
 Les rédacteurs s'abonnent dans le même lot mélangé que les abonnés.
 Le GFS voit toujours l'IP source, l'horodatage, la tranche de
 taille et l'ensemble des abonnés, et il ne peut plus bannir par
-foyer un rédacteur anonyme (les limites par IP restent ; le
+foyer un rédacteur anonyme (les limites par IP restent ; le
 propriétaire retire un rédacteur, ce qui fait tourner la clé).
 
 </details>
@@ -266,7 +266,7 @@ propriétaire retire un rédacteur, ce qui fait tourner la clé).
 
 Chaque publication dans chaque espace — public, global ou privé —
 est **toujours** scellée en transit. Il n'y a pas d'interrupteur
-« chiffré / non chiffré » dans Social Home, et aucun repli vers
+« chiffré / non chiffré » dans Social Home, et aucun repli vers
 un envoi en clair : si un espace ne peut pas sceller, il n'envoie
 pas.
 
@@ -288,10 +288,10 @@ Concrètement, cela signifie :
 Les membres avec qui vous êtes jumelé ne remarquent rien : leurs
 publications vous parviennent directement ou par le maillage. Si l'espace est
 référencé sur plus d'un GFS, les abonnés des autres ne remarquent
-rien non plus, et les membres se déplacent : quand le GFS sur lequel
+rien non plus, et les membres passent à un autre GFS : quand le GFS sur lequel
 votre foyer reçoit les publications d'un espace reste en panne
 environ dix minutes, et que votre foyer est connecté à un autre GFS
-de l'espace, il s'y déplace et les autres membres lui envoient leurs
+de l'espace, il y passe et les autres membres lui envoient leurs
 publications là-bas.
 
 Rien n'est perdu en silence : votre foyer réessaie (après quelques
@@ -353,16 +353,16 @@ guide Docker Compose + Cloudflare.
 
 ## Côte à côte
 
-| Comportement             | Privé / foyer / public                               | Global                                                                                               |
-| ------------------------ | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Qui peut le trouver      | personnes invitées / votre foyer / foyers jumelés    | toute personne qui utilise l'un des GFS choisis par le propriétaire                                  |
-| Adhésion                 | invitation, appartenance au foyer ou mode d'adhésion | ouvert / sur demande / sur invitation uniquement, plus les liens d'invitation                        |
-| Trajet des publications  | directement ou par le maillage                       | pareil pour les membres jumelés ; via chaque GFS référencé pour les autres                           |
-| Ce que voit un GFS       | rien (sauf si un espace privé l'active)              | des données de routage et une enveloppe scellée et complétée, jamais le contenu                      |
-| Chiffrement              | **toujours actif**                                   | **toujours actif**                                                                                   |
-| Où vivent les messages   | chez chaque membre                                   | chez chaque membre (un GFS ne garde des copies scellées que brièvement)                              |
-| Si un GFS est hors ligne | s. o.                                                | les autres GFS référencés continuent ; les foyers se déplacent ; les publications réessaient         |
-| Peut être désactivé      | oui, par vote des administrateurs                    | retirer un GFS à tout moment (propriétaire), ou quitter la portée globale (vote des administrateurs) |
+| Comportement             | Privé / foyer / public                               | Global                                                                                                 |
+| ------------------------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Qui peut le trouver      | personnes invitées / votre foyer / foyers jumelés    | toute personne qui utilise l'un des GFS choisis par le propriétaire                                    |
+| Adhésion                 | invitation, appartenance au foyer ou mode d'adhésion | ouvert / sur demande / sur invitation uniquement, plus les liens d'invitation                          |
+| Trajet des publications  | directement ou par le maillage                       | pareil pour les membres jumelés ; via chaque GFS référencé pour les autres                             |
+| Ce que voit un GFS       | rien (sauf si un espace privé l'active)              | des données de routage et une enveloppe scellée et complétée, jamais le contenu                        |
+| Chiffrement              | **toujours actif**                                   | **toujours actif**                                                                                     |
+| Où vivent les messages   | chez chaque membre                                   | chez chaque membre (un GFS ne garde des copies scellées que brièvement)                                |
+| Si un GFS est hors ligne | s. o.                                                | les autres GFS référencés continuent ; les foyers passent à un autre GFS ; les publications réessaient |
+| Peut être désactivé      | oui, par vote des administrateurs                    | retirer un GFS à tout moment (propriétaire), ou quitter la portée globale (vote des administrateurs)   |
 
 ## Confidentialité dans les espaces globaux
 

@@ -4,22 +4,22 @@ description: Ce que Social Home conserve, ce qui voyage, et ce que personne — 
 order: 50
 ---
 
-Social Home repose sur une règle simple : **le foyer garde tout**.
+Social Home repose sur une règle simple : **le foyer garde tout**.
 Il n'y a pas de compte cloud, pas de mesure d'audience, pas de
 journalisation distante, pas d'équipe growth. Le site que vous
 lisez en ce moment est du HTML statique servi par GitHub Pages —
-sans mesure d'audience, sans cookies, sans requêtes vers des tiers ;
+sans mesure d'audience, sans cookies, sans requêtes vers des tiers ;
 même les polices sont servies depuis le même endroit.
 
 Cette page liste chaque donnée que Social Home touche et exactement
 où elle va. La page du [modèle de sécurité](/fr/docs/security/)
 explique comment fonctionne le scellement et ce qu'il ne peut pas
-faire ; les mots employés ici sont dans [Les mots que nous
+faire ; les mots employés ici sont dans [Les mots que nous
 utilisons](/fr/docs/glossary/).
 
 ## Ce qui est stocké où
 
-| Donnée                                             | Stockée à la maison ?     | Quitte votre serveur ?                                                                        |
+| Donnée                                             | Stockée à la maison ?     | Quitte votre serveur ?                                                                        |
 | -------------------------------------------------- | ------------------------- | --------------------------------------------------------------------------------------------- |
 | Messages, publications, photos                     | oui                       | seulement vers les foyers de l'espace, scellés                                                |
 | Messages privés                                    | oui                       | scellés vers le serveur de l'autre foyer                                                      |
@@ -30,7 +30,7 @@ utilisons](/fr/docs/glossary/).
 | Clé publique (identité)                            | oui                       | oui — c'est littéralement le but du jumelage                                                  |
 | URL externe                                        | oui                       | oui — vers les foyers jumelés quand elle change                                               |
 | Votre compte Home Assistant (e-mail, mot de passe) | **jamais lu**             | jamais                                                                                        |
-| GPS / historique de position                       | **jamais** par défaut     | seulement la zone actuelle, seulement si vous l'activez ; épingles de carte arrondies à ~11 m |
+| GPS / historique de position                       | **jamais** par défaut     | seulement la zone actuelle, seulement si vous l'activez ; épingles de carte arrondies à ~11 m |
 | Journaux                                           | restent sur votre serveur | jamais                                                                                        |
 
 ## Ce que voit le relais global
@@ -40,7 +40,7 @@ se trouver — liste les espaces globaux et transporte leurs
 publications, sous forme d'enveloppes scellées, vers les foyers
 avec qui vous n'êtes pas jumelé. Ce qu'il apprend sur vous
 dépend de la configuration de l'espace (voir
-[GFS](/fr/docs/glossary/#gfs) dans le glossaire) :
+[GFS](/fr/docs/glossary/#gfs) dans le glossaire) :
 
 - **Espaces globaux** : seulement que _quelqu'un_ qui a le droit
   d'y publier a publié, et quand. Les membres publient toujours
@@ -49,7 +49,7 @@ dépend de la configuration de l'espace (voir
   ni à qui elle appartient, ni de quel espace vient une
   publication.
 - **Un espace privé avec l'interrupteur GFS activé** (désactivé par
-  défaut) : quels foyers appartiennent au canal — jamais le nom,
+  défaut) : quels foyers appartiennent au canal — jamais le nom,
   l'identifiant, la clé ou le contenu de l'espace.
 
 Seuls les GFS choisis par le propriétaire de l'espace sont
@@ -57,7 +57,7 @@ concernés. Un GFS auquel votre foyer ne s'est jamais connecté,
 mais que le propriétaire a choisi, voit votre adresse internet
 quand vous y publiez — jamais de quel foyer il s'agit.
 
-Il ne voit **jamais** :
+Il ne voit **jamais** :
 
 - Le contenu d'un message, d'une publication, d'un événement de
   calendrier, d'une photo ou d'une note vocale.
@@ -81,16 +81,16 @@ qu'aux foyers avec lesquels vous êtes jumelé, directement.
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Métadonnées de routage uniquement : `space_id`, `event_type`,
+Métadonnées de routage uniquement : `space_id`, `event_type`,
 classe de taille (1 / 4 / 16 / 64 / 128 KiB pour les publications
 de membres, 4 / 16 / 64 / 128 / 191 KiB pour le relais
 d'enveloppes), horaires, ensemble des abonnés, IP source.
 Une publication relayée par le foyer hôte est sans identité,
-`{space_id, event_type, payload}` sur une session sans cookie ; un
+`{space_id, event_type, payload}` sur une session sans cookie ; un
 membre qui publie pour lui-même signe toujours avec une clé
 d'écriture partagée par époque. Les livraisons vont dans une boîte
 aux lettres anonyme par foyer et par GFS, ouverte avec un ticket
-Privacy Pass ; le GFS ne stocke aucun lien entre une boîte aux
+Privacy Pass ; le GFS ne stocke aucun lien entre une boîte aux
 lettres et un foyer. Un espace privé avec
 `private_gfs` activé utilise un identifiant de canal opaque de
 128 bits sur les GFS choisis par le propriétaire. Les destinataires hors
@@ -108,11 +108,11 @@ sans interrupteur à oublier. Chaque publication est scellée dans
 une enveloppe et signée, pour que seuls les foyers de l'espace
 puissent l'ouvrir et que même un relais malveillant ne puisse pas
 en lire un mot. Les messages privés sont scellés de votre maison à
-la leur. Il n'y a pas d'interrupteur « chiffré / non chiffré » et
-aucun repli en clair : si un espace ne peut pas sceller, il
+la leur. Il n'y a pas d'interrupteur « chiffré / non chiffré » et
+aucun repli en clair : si un espace ne peut pas sceller, il
 n'envoie pas.
 
-La règle est simple : rien ne quitte la maison sans être scellé, et
+La règle est simple : rien ne quitte la maison sans être scellé, et
 rien de ce qu'un relais touche n'est jamais lisible.
 
 <details class="tech">
@@ -129,7 +129,7 @@ du [modèle de sécurité](/fr/docs/security/).
 
 - Un compte sur un cloud Social Home (il n'y en a pas).
 - Une copie de vos données ailleurs. Si vous utilisez la Home Assistant App, Social Home fait partie de votre
-  sauvegarde Home Assistant habituelle ; avec Docker ou Python, téléchargez un kit de récupération (Recovery Kit) et
+  sauvegarde Home Assistant habituelle ; avec Docker ou Python, téléchargez un kit de récupération (Recovery Kit) et
   gardez-le en lieu sûr.
 - De la télémétrie, de la mesure d'audience, des rapports de
   plantage ou des tests A/B.
@@ -147,7 +147,7 @@ est un fichier `.shrk` scellé avec scrypt + AES-256-GCM.
 ## Ce que vous contrôlez
 
 - **Qui est dans un espace** (Paramètres → Espaces — invitez ou
-  retirez des membres ; retirer quelqu'un donne une nouvelle clé à
+  retirez des membres ; retirer quelqu'un donne une nouvelle clé à
   l'espace, de sorte qu'une personne retirée ne peut
   rien lire de ce qui est publié ensuite).
 - **Le partage de présence** (Paramètres → Confidentialité — sur

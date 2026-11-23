@@ -9,7 +9,7 @@ order: 50
 ---
 
 Deux versions en deux jours, et trois changements que vous remarquerez
-au quotidien : votre foyer a un chat directement dans le fil, les
+au quotidien : votre foyer a un chat directement dans le fil, les
 foyers jumelés se joignent même quand la ligne directe fait défaut, et
 garder les espaces partagés à jour coûte beaucoup moins.
 
@@ -17,18 +17,18 @@ _Toutes les captures ci-dessous montrent des données d'exemple._
 
 ## Un chat pour tout le foyer
 
-« Le dîner est prêt. » « Quelqu'un peut vérifier le chauffage ? »
-« Pizza vendredi ? » Tous les messages ne méritent pas une
+« Le dîner est prêt. » « Quelqu'un peut vérifier le chauffage ? »
+« Pizza vendredi ? » Tous les messages ne méritent pas une
 publication. Le fil a maintenant un sélecteur **Feed | Chat** en haut,
 et derrière se trouve un chat que tout votre foyer peut lire. Il
-fonctionne comme n'importe quel chat de groupe : @mentions, réactions,
+fonctionne comme n'importe quel chat de groupe : @mentions, réactions,
 modifications, pièces jointes et une ligne **Nouveaux messages** là où
 vous vous étiez arrêté. Vous pouvez le mettre en sourdine ou n'être
 notifié que lorsqu'on vous mentionne.
 
 Le chat du foyer ne quitte jamais votre maison. Il n'est pas envoyé
 aux foyers jumelés et n'encombre pas votre boîte Chats. Un
-administrateur peut le désactiver dans les réglages du foyer ; le fil
+administrateur peut le désactiver dans les réglages du foyer ; le fil
 redevient alors exactement comme avant.
 
 <div class="shots">
@@ -37,7 +37,7 @@ redevient alors exactement comme avant.
 </div>
 
 **Les espaces ont le même sélecteur.** Chaque espace a désormais un
-chat partagé par ses membres, d'un foyer à l'autre : le club de
+chat partagé par ses membres, d'un foyer à l'autre : le club de
 lecture peut fixer la prochaine date sans publier pour autant. Les
 abonnés d'un espace ne voient pas le chat et ne le reçoivent pas. Par
 défaut, il ne vous notifie que lorsqu'on vous mentionne, les
@@ -49,7 +49,7 @@ dans les réglages de l'espace.
 <details class="tech">
 <summary>Sous le capot</summary>
 
-Le chat du foyer est un DM de groupe ordinaire avec une portée foyer :
+Le chat du foyer est un DM de groupe ordinaire avec une portée foyer :
 il réutilise les messages, mentions, réactions, la sourdine et l'état
 de lecture, mais la diffusion sortante l'ignore et chaque gestionnaire
 entrant `DM_*` refuse son identifiant. Le chat d'espace voyage sous
@@ -76,7 +76,7 @@ défaut** et se règle connexion par connexion, sous **Connexions →
 Gérer**. Les deux foyers doivent l'activer, et leurs maisons trouvent
 un GFS qu'elles utilisent toutes deux sans se dire à quels serveurs
 elles sont connectées. Au jumelage, la nouvelle question **Comment
-peuvent-ils vous joindre ?** permet à un foyer sans adresse extérieure
+peuvent-ils vous joindre ?** permet à un foyer sans adresse extérieure
 de se jumeler via le GFS. S'il obtient une adresse plus tard, la paire
 passe d'elle-même en direct.
 
@@ -90,9 +90,9 @@ comme le choix le plus privé.
 <figure class="desk"><a href="/blog/2026-10-chat-sync/gfs-fallback.png"><img src="/blog/2026-10-chat-sync/gfs-fallback.png" alt="Panneau Gérer d'un foyer jumelé avec Use the GFS as a fallback coché, indiquant qu'il est joignable via 1 GFS commun aux deux foyers, et ce que le GFS peut voir" width="1280" height="720" loading="lazy"></a><figcaption><b>Un interrupteur par connexion</b>La ligne d'état dit si cela fonctionne, la note dit ce que voit le GFS.</figcaption></figure>
 </div>
 
-Un autre changement côté GFS : la case **Se connecter au GFS** de la
+Un autre changement côté GFS : la case **Se connecter au GFS** de la
 visite d'accueil est désormais cochée d'avance. Décochez-la pour rester
-à l'écart du GFS ; vous pouvez vous connecter ou vous déconnecter à
+à l'écart du GFS ; vous pouvez vous connecter ou vous déconnecter à
 tout moment dans Connexions.
 
 <details class="tech">
@@ -103,7 +103,7 @@ puis la boîte HTTPS, et seulement en cas d'erreur réseau ou de 5xx (ou
 sans URL du tout) il passe à tour de rôle par les routes GFS de la
 paire. Un 4xx ne bascule jamais. Le GFS ne voit que
 `{to_instance, sealed}`. Les GFS communs sont trouvés en envoyant une
-sonde à nonce par chacune de nos propres connexions GFS ; une route
+sonde à nonce par chacune de nos propres connexions GFS ; une route
 n'est enregistrée que si l'accusé revient par le même GFS, si bien
 qu'un GFS qui rejoue une sonde ailleurs ne crée rien. Les routes sont
 re-sondées toutes les 24 h et expirent après 72 h. Protocole v53
@@ -120,7 +120,7 @@ commentaire et entrée photo récents. Désormais, chaque foyer n'envoie
 que ce qui a changé depuis la dernière synchronisation confirmée par
 l'autre côté. Un espace calme ne coûte presque rien.
 
-Deux choses sont devenues plus fiables au passage :
+Deux choses sont devenues plus fiables au passage :
 
 - **Les suppressions atteignent tout le monde.** Une publication, un
   commentaire, un Post-it, un événement, une photo ou une zone
@@ -143,7 +143,7 @@ compteur propre au foyer (`sync_seq`), si bien qu'aucun chemin
 d'écriture ne peut l'oublier. L'émetteur garde un repère par foyer et
 ne l'avance qu'après un flux que le destinataire déclare `clean` ; un
 morceau en échec revient donc la fois suivante. Un foyer restauré
-renvoie le dernier instantané qu'il a appliqué (`have_seq`) ;
+renvoie le dernier instantané qu'il a appliqué (`have_seq`) ;
 l'émetteur diffuse à partir du plus petit des deux et ne fait jamais
 confiance à une valeur supérieure à la sienne. Un flux complet a
 toujours lieu au jumelage, à l'arrivée d'un membre, sur
@@ -156,7 +156,7 @@ suppression en direct. Pas de changement de protocole.
 
 ## Essayez
 
-La solution de repli GFS est dans **Social Home 2026.10.8** ; les chats
+La solution de repli GFS est dans **Social Home 2026.10.8** ; les chats
 et la synchronisation allégée dans **Social Home 2026.10.9**. Pour la
 solution de repli et le chat d'espace, les deux foyers ont besoin de la
 nouvelle version. Pour en savoir plus sur la façon dont les foyers se

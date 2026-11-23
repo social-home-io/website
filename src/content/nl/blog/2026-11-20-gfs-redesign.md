@@ -21,7 +21,7 @@ vandaan. Daar hebben we drie dingen van geleerd:
 
 - **Elk lid hoort gelijk te zijn**, hoe zijn huishouden de space ook
   bereikt. Lid worden via een GFS-link moet je dezelfde space geven
-  als gekoppeld zijn met de host.
+  als gekoppeld zijn met de gastheer.
 - **Een space hoort niet op zijn eigenaar te wachten.** Als het huis
   van de eigenaar aan het updaten is of offline is, moeten de leden
   elkaar nog steeds bereiken, en moeten beheerders de space nog
@@ -38,7 +38,7 @@ hunne, en de GFS kan er nog steeds geen enkele van lezen.
 ## Elk huishouden krijgt een anonieme brievenbus
 
 Zit je huishouden via een GFS in een space, dan krijgt het één
-**anonieme brievenbus** op die GFS. De host en elk ander lid gooien
+**anonieme brievenbus** op die GFS. De gastheer en elk ander lid gooien
 er verzegelde berichten in, en je huis haalt ze op. De GFS kent een
 brievenbus alleen aan een willekeurig ogend nummer. Hij weet niet
 welk huishouden de brievenbus heeft, bij welke spaces hij hoort of
@@ -64,7 +64,7 @@ Ed25519-sleutel om mee te claimen. Het brievenbus-id is
 in de afleiding, en twee GFS'en zien brievenbussen die niets met
 elkaar te maken hebben. Je huishouden kondigt zijn brievenbus aan op
 een **ledenkaart** die met zijn identiteitssleutel is ondertekend,
-dus een host kan een kaart laten vallen maar er nooit een vervalsen.
+dus een gastheer kan een kaart laten vallen maar er nooit een vervalsen.
 Een huishouden accepteert alleen brievenbusberichten van leden van
 wie het de kaart heeft.
 
@@ -83,9 +83,9 @@ dezelfde sleutel tickets ophaalden.
 ## Elk lid bereikt elk lid
 
 Met een brievenbus voor elk huishouden hoeven leden niet meer via de
-host om elkaar te bereiken:
+gastheer om elkaar te bereiken:
 
-- **Posts komen aan terwijl de host offline is.** Elk lid bezorgt
+- **Posts komen aan terwijl de gastheer offline is.** Elk lid bezorgt
   rechtstreeks bij de anderen, ook in privéspaces.
 - **Foto's en lange pagina's komen in één stuk aan.** Huishoudens
   achter een GFS krijgen dezelfde foto's en dezelfde lange pagina's
@@ -93,7 +93,7 @@ host om elkaar te bereiken:
 - **Eén upload, hoeveel leden er ook zijn.** Een agenda-afspraak voor
   200 huishoudens achter dezelfde GFS gaat één keer omhoog, niet 200
   keer.
-- **Gaten vullen zichzelf.** Antwoordt de host niet, dan vraagt je
+- **Gaten vullen zichzelf.** Antwoordt de gastheer niet, dan vraagt je
   huis het aan het huishouden van een beheerder of moderator. Een
   oudere foto die je nooit kreeg, wordt opgehaald als je hem opent.
   Een nieuw lid krijgt meteen de laatste 30 dagen.
@@ -111,14 +111,14 @@ plaats van 1,13 MB. Items boven de envelop van ~191 KiB reizen als
 binaire frames, opgevuld tot 64/128/256/516 KiB, en foto's gaan in
 volle stukken van 512 KiB.
 
-Herstel: blijft de host tijdens een synchronisatie 120 s stil, dan
+Herstel: blijft de gastheer tijdens een synchronisatie 120 s stil, dan
 vraagt het lid één helper (een huishouden van een beheerder of
-moderator). Een ontbrekende foto wordt eerst aan de host gevraagd en
+moderator). Een ontbrekende foto wordt eerst aan de gastheer gevraagd en
 na 60 s aan een helper; elk bestand wordt tegen zijn hash
 gecontroleerd. De ledenlijst wordt hersteld via een digest
 (`rd1-sha256`) in plaats van op een timer opnieuw te worden
 verstuurd. Een lid van wie het huis niet met de GFS verbonden is,
-wordt via de host bereikt, het enige geval waarin de host nog online
+wordt via de gastheer bereikt, het enige geval waarin de gastheer nog online
 moet zijn.
 
 </details>
@@ -175,7 +175,7 @@ een andere opnieuw afspelen.
 ## Vraag om lid te worden van een wereldwijde space zonder te koppelen
 
 Zie je op je GFS een wereldwijde space die je leuk vindt? Je kunt nu
-meteen vragen om lid te worden, zonder eerst met de host te koppelen.
+meteen vragen om lid te worden, zonder eerst met de gastheer te koppelen.
 De eigenaar ziet je verzoek gemarkeerd met **Via de GFS · niet
 gecontroleerd**, omdat de naam die je stuurt is wat jij hebt
 getypt, niet iets wat iemand heeft gecontroleerd. Stapelen de

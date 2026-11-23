@@ -217,7 +217,7 @@ export const nl: UiStrings = {
       p1Html:
         "Koppel twee huizen één keer met een QR-code. Daarna kun je <em>spaces</em> maken — gedeelde ruimtes met een eigen feed, chat en agenda — over beide heen. Run een leesclub, organiseer een straatfeest of houd één rustige ruimte voor de grootouders.",
       p2Html:
-        'Een kleine, open-source <a href="/docs/global-spaces/">relay</a> — de GFS — helpt huishoudens die niet gekoppeld zijn elkaar te vinden in wereldwijde spaces en draagt hun verzegelde berichten. Lezen kan hij ze niet: elk bericht wordt verzegeld voordat het je huis verlaat. Een space kan meerdere GFS\'en gebruiken, en elk lid bewaart thuis een kopie, dus hij blijft doorgaan als een GFS of de host even weg is. Wij draaien er een live op <a href="/servers/">gfs.social-home.io</a> — verbind met één tik.',
+        'Een kleine, open-source <a href="/docs/global-spaces/">relay</a> — de GFS — helpt huishoudens die niet gekoppeld zijn elkaar te vinden in wereldwijde spaces en draagt hun verzegelde berichten. Lezen kan hij ze niet: elk bericht wordt verzegeld voordat het je huis verlaat. Een space kan meerdere GFS\'en gebruiken, en elk lid bewaart thuis een kopie, dus hij blijft doorgaan als een GFS of de gastheer even weg is. Wij draaien er een live op <a href="/servers/">gfs.social-home.io</a> — verbind met één tik.',
     },
   },
 

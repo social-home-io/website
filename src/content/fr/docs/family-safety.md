@@ -14,7 +14,7 @@ intégrés — sans transformer la maison en système de surveillance.
 Un admin du foyer peut marquer un membre comme **mineur protégé**,
 définir son **âge déclaré** et lui assigner un ou plusieurs
 **tuteurs**. Cet âge déclaré façonne ensuite discrètement ce que
-le compte peut atteindre :
+le compte peut atteindre :
 
 - **Espaces à limite d'âge** — un mineur protégé ne peut pas
   rejoindre un espace dont l'âge minimum est supérieur à son âge
@@ -47,7 +47,7 @@ messages.
 N'importe quel espace — pas seulement ceux pensés pour les enfants
 — peut fixer un **âge minimum** (13, 16 ou 18 ans — ou aucun) et un
 public cible. Les admins le règlent une fois, et l'âge minimum est
-vérifié sur chaque chemin qui fait entrer un membre : adhésion
+vérifié sur chaque chemin qui fait entrer un membre : adhésion
 locale, adhésion depuis un foyer jumelé, adhésion via un Lien
 GFS, et demande d'adhésion via un GFS. Aucun chemin ne saute la vérification. Voir
 [Espaces globaux](/fr/docs/global-spaces/) pour savoir comment un

@@ -19,7 +19,7 @@ space, leden die via een GFS-link zijn toegetreden of via hem
 vroegen om lid te worden, privéspaces waarvan de eigenaar de GFS
 heeft ingeschakeld, en gekoppelde huishoudens die de
 GFS-terugvaloptie hebben aangezet – elk via een anonieme
-brievenbus, zodat een space blijft stromen terwijl de host slaapt.
+brievenbus, zodat een space blijft stromen terwijl de gastheer slaapt.
 Hij bewaart hun foto's een paar dagen, versleuteld. En hij bemiddelt openbare
 highlight-links – zie
 [Highlights → openbaar delen](/nl/docs/highlights/#openbaar-delen-via-een-global-server)

@@ -1,6 +1,6 @@
 ---
 title: Wörter, die wir verwenden
-description: Das Dutzend Wörter, das überall in Social Home vorkommt — Haushalt, Space, Reichweite, Host, GFS, Kopplung und der Rest — jedes in einem Absatz erklärt.
+description: Das Dutzend Wörter, das überall in Social Home vorkommt — Haushalt, Space, Reichweite, Gastgeber, GFS, Kopplung und der Rest — jedes in einem Absatz erklärt.
 order: 5
 ---
 
@@ -71,12 +71,12 @@ als die vorige:
 - **Öffentlich** — deine [gekoppelten](#kopplung) Haushalte
   können ihn unter Entdecken finden. Er bleibt in deinem
   eigenen Kreis.
-- **Global** — gelistet auf den [GFS](#gfs), die der Besitzer
+- **Global** — gelistet auf den [GFS](#gfs), die der Eigentümer
   wählt, damit jeder, der einen davon nutzt, ihn finden kann.
 
 Nur globale Spaces werden auf einem GFS gelistet. Öffentliche,
 Haushalts- und private Spaces nie; ein privater Space kann einen
-GFS nutzen, den der Besitzer wählt, wenn der Besitzer das
+GFS nutzen, den der Eigentümer wählt, wenn der Eigentümer das
 einschaltet (standardmäßig aus). Haushalte, mit
 denen du gekoppelt bist, bekommen die Beiträge eines Space direkt
 oder über das Mesh, egal welche Reichweite er hat. Die Reichweite
@@ -84,14 +84,14 @@ eines Space zu ändern ist eine Entscheidung aller seiner Admins —
 siehe
 [Globale Spaces](/de/docs/global-spaces/#große-änderungen-brauchen-eine-abstimmung).
 
-## Host
+## Gastgeber
 
-Jeder Space hat einen Host-Haushalt: den, der ihn angelegt hat
-und die Admin-Stimmen auszählt. Der Host ist kein Mittelsmann —
+Jeder Space hat einen Gastgeber-Haushalt: den, der ihn angelegt hat
+und die Admin-Stimmen auszählt. Der Gastgeber ist kein Mittelsmann —
 Mitglieder posten direkt zueinander — aber er ist der Ort, an dem
-die Mitgliederliste lebt. Während der Host offline ist, posten
+die Mitgliederliste lebt. Während der Gastgeber offline ist, posten
 Mitglieder weiter direkt zueinander, und jedes Mitglied kann dir
-nachliefern, was dir fehlt. Schaltet der Besitzer **Admins dürfen für
+nachliefern, was dir fehlt. Schaltet der Eigentümer **Admins dürfen für
 mich handeln** ein, können Admins aus anderen Haushalten den Space
 außerdem am Laufen halten.
 
@@ -101,7 +101,7 @@ Ein GFS ist ein **Global Federation Server** — der globale
 Föderationsserver: das Relay, das Haushalten hilft, einander zu
 finden, wenn sie sich noch nicht kennen. Für Haushalte, mit denen
 du gekoppelt bist, brauchst du keinen. Ein GFS listet die globalen
-Spaces, deren Besitzer ihn gewählt hat, und trägt ihre versiegelten
+Spaces, deren Eigentümer ihn gewählt hat, und trägt ihre versiegelten
 Beiträge zu Haushalten, mit denen du nicht gekoppelt bist: Followern,
 Mitgliedern, die über einen GFS-Link beigetreten sind, und
 Haushalten, die über ihn um Beitritt gebeten haben. Jeder dieser
@@ -123,7 +123,7 @@ bereits verbunden bist, und berührt nie einen GFS.
 ## Postfach
 
 Ist dein Haushalt über einen GFS in einem Space, bekommt er dort ein
-anonymes Postfach. Der Host und die anderen Mitglieder legen
+anonymes Postfach. Der Gastgeber und die anderen Mitglieder legen
 versiegelte Beiträge hinein, und dein Zuhause holt sie ab. Der GFS
 kennt das Postfach nur unter einer zufällig aussehenden Nummer:
 nicht, wem es gehört, und nicht, für welche Spaces es ist. In der
@@ -159,7 +159,7 @@ Ein Follower ist ein Mitglied eines Space mit einer Rolle nur zum
 Lesen. Follower sehen, was der Space veröffentlicht. Sie posten
 nicht und stimmen bei Umfragen nicht ab; wenn der Space es erlaubt,
 können sie kommentieren und reagieren. Die Mitgliedsrollen lauten
-Besitzer → Admin → Moderator → Mitglied → Follower.
+Eigentümer → Admin → Moderator → Mitglied → Follower.
 
 ## Schlüsselrotation (Epoche)
 

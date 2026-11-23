@@ -6,10 +6,10 @@ order: 99
 
 Chaque dépôt du projet Social Home — serveur, client, intégration
 HA, Home Assistant App et ce site web — est publié sous la
-**Mozilla Public License Version 2.0** (SPDX :
+**Mozilla Public License Version 2.0** (SPDX :
 `MPL-2.0`).
 
-Ce que cela veut dire en langage simple :
+Ce que cela veut dire en langage simple :
 
 - Vous pouvez utiliser, modifier et distribuer le code, y compris
   dans des produits commerciaux.
@@ -18,7 +18,7 @@ Ce que cela veut dire en langage simple :
   MPL 2.0.
 - Vous n'avez pas à rendre open source l'ensemble de votre projet
   — seulement les fichiers que vous avez modifiés.
-- Il n'y a aucune garantie ; nous sommes un petit projet.
+- Il n'y a aucune garantie ; nous sommes un petit projet.
 
 ## Texte intégral
 

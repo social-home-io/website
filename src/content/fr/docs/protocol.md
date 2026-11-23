@@ -14,12 +14,12 @@ autre réseau, sauf que les données de personne ne passent par une
 entreprise au milieu.
 
 Cette page passe en revue ce que vous pouvez concrètement en
-faire. Pas d'acronymes dans le texte principal ; le détail
-technique se trouve dans les blocs « Sous le capot », et les mots
+faire. Pas d'acronymes dans le texte principal ; le détail
+technique se trouve dans les blocs « Sous le capot », et les mots
 sont expliqués dans
 [Les mots que nous utilisons](/fr/docs/glossary/).
 
-## Que puis-je en faire ?
+## Que puis-je en faire ?
 
 Restez en contact avec les personnes qui comptent — sans confier
 vos données à qui que ce soit d'autre. Voici ce que Social Home
@@ -31,10 +31,10 @@ vous permet de faire, vous et votre foyer :
   par le moindre service cloud.
 - **🗓 Voyez le calendrier de tout le monde au même endroit.**
   Votre calendrier personnel, l'emploi du temps de votre
-  colocataire et le calendrier partagé « Maison » se superposent
+  colocataire et le calendrier partagé « Maison » se superposent
   dans une seule vue codée par couleur. Les événements restent
   sur votre serveur.
-- **🛒 Lancez « Je suis au supermarché — il faut quelque chose ? »**
+- **🛒 Lancez « Je suis au supermarché — il faut quelque chose ? »**
   La liste de courses de votre foyer est en direct. Quelqu'un
   ajoute du lait, vous le voyez avant d'arriver à la caisse.
   Demandez à votre assistant vocal de l'ajouter à la voix.
@@ -42,9 +42,9 @@ vous permet de faire, vous et votre foyer :
   indicateur de présence montre qui est là en ce moment — pas de
   suivi de position, pas d'historique, juste l'instant présent.
 - **✅ Répartissez les corvées au lieu de harceler.** Des listes
-  de tâches avec responsables, échéances et un badge « en
-  retard ». Percer l'étagère ce week-end ; recycler le vieux
-  frigo aujourd'hui ; tout le monde voit qui s'occupe de quoi.
+  de tâches avec responsables, échéances et un badge « en
+  retard ». Percer l'étagère ce week-end ; recycler le vieux
+  frigo aujourd'hui ; tout le monde voit qui s'occupe de quoi.
 - **📒 Gardez le manuel de la maison au même endroit.** Les
   Pages sont des entrées de wiki en Markdown qui vivent dans un
   espace — comment purger les radiateurs, où noter les relevés de
@@ -53,15 +53,15 @@ vous permet de faire, vous et votre foyer :
 - **📝 Des Stickies pour ce qui ne mérite pas une
   page.** Des notes colorées, modifiables d'un tap, épinglées sur
   le canevas d'un espace — l'aimant de frigo moderne. Les
-  carottes dans le bac du bas ; des idées de cadeau
-  d'anniversaire ; la liste de courses pour réparer la sonnette.
+  carottes dans le bac du bas ; des idées de cadeau
+  d'anniversaire ; la liste de courses pour réparer la sonnette.
 - **💬 Écrivez à votre famille à l'autre bout du monde** — scellé
   de votre maison à la leur, sans cloud entre les deux. Pas de
   numéro de téléphone. Pas de compte chez un service tiers.
 - **📞 Appelez sans inconnu au milieu** — appels audio et vidéo,
   en tête-à-tête ou en groupe, directement depuis vos messages
   privés et vos discussions de groupe. L'audio et la vidéo
-  circulent directement entre les participants ; si une connexion
+  circulent directement entre les participants ; si une connexion
   directe est impossible, un relais fait transiter le flux, mais
   ne voit jamais que des médias chiffrés.
 - **🏘 Construisez votre propre communauté, à votre façon** —
@@ -81,7 +81,7 @@ vous permet de faire, vous et votre foyer :
 <summary>Sous le capot</summary>
 
 Les appels utilisent WebRTC avec DTLS-SRTP entre les
-participants ; un repli TURN ne relaie que du texte chiffré. Les
+participants ; un repli TURN ne relaie que du texte chiffré. Les
 messages privés sont chiffrés de serveur à serveur (enveloppes
 AES-256-GCM, signatures Ed25519).
 
@@ -95,7 +95,7 @@ entrées du calendrier — tout tient dans une petite base de
 données sur votre machine. Pas de compte cloud, pas d'analytique,
 pas de réseau publicitaire, pas de journal distant qui écoute ce
 que dit votre foyer. Si votre connexion internet tombe, les
-fonctions du foyer continuent de marcher sur votre réseau local ;
+fonctions du foyer continuent de marcher sur votre réseau local ;
 la seule chose qui s'interrompt, c'est la messagerie _en dehors_
 de la maison.
 
@@ -103,7 +103,7 @@ de la maison.
 <summary>Sous le capot</summary>
 
 Si vous utilisez la Home Assistant App, il fait partie de
-votre sauvegarde Home Assistant habituelle ; les installations Docker et Python reçoivent un kit de récupération (`.shrk`, scrypt +
+votre sauvegarde Home Assistant habituelle ; les installations Docker et Python reçoivent un kit de récupération (`.shrk`, scrypt +
 AES-256-GCM) pour les clés.
 
 </details>
@@ -133,8 +133,8 @@ Chaque foyer génère une clé d'identité Ed25519 au premier
 démarrage. Le jumelage repose sur X25519 + HKDF-SHA256,
 authentifié par le code QR ou un court code lu à voix haute. La
 signature de chaque enveloppe entrante est vérifiée par rapport
-au jumelage ; une mauvaise signature est rejetée, et il n'existe
-aucun mode « instance de confiance » pour contourner cela.
+au jumelage ; une mauvaise signature est rejetée, et il n'existe
+aucun mode « instance de confiance » pour contourner cela.
 
 </details>
 
@@ -147,7 +147,7 @@ foyers que vous voulez. Par exemple :
 - **Famille** — les personnes de votre maison, plus les parents
   et les frères et sœurs dans leur propre maison.
 - **Eichenstrasse 3–17** — votre immeuble. Chacun fait tourner
-  son propre serveur ; l'espace est le panneau d'affichage commun.
+  son propre serveur ; l'espace est le panneau d'affichage commun.
 - **Club de lecture**, **groupe d'escalade**, **atelier de
   makers** — les groupes récurrents qui existent déjà dans votre
   vie, mais sur aucune plateforme digne de confiance.
@@ -196,11 +196,11 @@ forme d'instantané `SPACE_DIRECTORY_SYNC` et ne touchent jamais un
 GFS. Les membres publient anonymement sur chaque GFS référencé. Le GFS ne
 voit que des
 métadonnées de routage (`space_id`, `event_type`, tranche de
-taille, horodatage, ensemble des abonnés, IP source) ; les
+taille, horodatage, ensemble des abonnés, IP source) ; les
 publications sont toujours anonymes, signées avec une clé
 d'écriture partagée par époque. Les foyers atteints via un GFS ont
 une boîte aux lettres anonyme par GFS. Les enveloppes scellées
-attendent jusqu'à 24 h ; les photos chiffrées sont mises en cache
+attendent jusqu'à 24 h ; les photos chiffrées sont mises en cache
 jusqu'à 3 jours (réglage de l'exploitant, au plus 7). Rien d'autre
 n'est stocké.
 
@@ -208,7 +208,7 @@ n'est stocké.
 
 ## Liens publics vers un Highlight
 
-Le même genre de relais a aussi un second rôle : transmettre un
+Le même genre de relais a aussi un second rôle : transmettre un
 seul highlight à des personnes hors de Social Home. Quand vous
 publiez un lien de highlight, votre foyer crée un lien vers la
 [visionneuse Social Home](/fr/docs/glossary/#visionneuse) — une page
@@ -224,7 +224,7 @@ pour le parcours côté auteur.
 <details class="tech">
 <summary>Sous le capot</summary>
 
-WebRTC en direct de la maison de l'auteur vers le navigateur ; relais
+WebRTC en direct de la maison de l'auteur vers le navigateur ; relais
 HTTP en repli seulement tant que l'auteur est en ligne. Chaque image
 est scellée pour la clé éphémère de la visionneuse et le secret du
 lien dans le fragment de l'URL. Aucun octet de highlight n'est stocké

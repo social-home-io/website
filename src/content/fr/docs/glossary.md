@@ -8,8 +8,8 @@ Social Home s'efforce d'utiliser les mêmes mots dans l'app, dans
 cette documentation et dans le code. Cette page en est la courte
 liste. Si une page de la documentation emploie un terme que vous ne
 reconnaissez pas, il est presque certainement ici — et le détail
-technique de chaque page se trouve dans un bloc repliable « Sous le
-capot » que vous pouvez ignorer ou ouvrir à votre guise.
+technique de chaque page se trouve dans un bloc repliable « Sous le
+capot » que vous pouvez ignorer ou ouvrir à votre guise.
 
 ## Foyer
 
@@ -17,8 +17,8 @@ Un foyer, c'est une maison qui fait tourner Social Home — un
 serveur, généralement installé comme Home Assistant App — et les personnes qui vivent derrière — vous, votre
 partenaire, les enfants, le colocataire. Tout ce qu'un foyer fait
 (la liste de courses, le calendrier, les photos, la discussion) est
-stocké sur ce seul serveur. Quand cette documentation dit « votre
-foyer », elle désigne votre serveur et toutes les personnes qui y
+stocké sur ce seul serveur. Quand cette documentation dit « votre
+foyer », elle désigne votre serveur et toutes les personnes qui y
 ont un compte.
 
 <details class="tech">
@@ -33,7 +33,7 @@ de foyer.
 
 ## Jumelage
 
-Le jumelage est la façon dont deux foyers font connaissance : vous
+Le jumelage est la façon dont deux foyers font connaissance : vous
 scannez un QR code (ou vous dictez un code court au téléphone), et
 à partir de là votre maison et la leur peuvent échanger des messages
 privés et partager des espaces. Le jumelage se fait une fois par
@@ -44,7 +44,7 @@ paire de foyers, et chaque côté peut le retirer plus tard sous
 <summary>Sous le capot</summary>
 
 Le jumelage est un accord de clé X25519 avec dérivation de clé
-HKDF-SHA256 ; le code dicté protège l'échange contre un
+HKDF-SHA256 ; le code dicté protège l'échange contre un
 détournement. L'identité à long terme de chaque foyer est une clé
 de signature Ed25519.
 
@@ -53,7 +53,7 @@ de signature Ed25519.
 ## Espace
 
 Un espace est un salon partagé pour n'importe quel groupe de
-personnes, réparties sur autant de foyers que l'on veut : la
+personnes, réparties sur autant de foyers que l'on veut : la
 famille, l'immeuble, le club de lecture. Un espace a un fil, une
 discussion et un calendrier, et ses membres décident ensemble de
 qui d'autre peut entrer.
@@ -62,7 +62,7 @@ qui d'autre peut entrer.
 
 La portée d'un espace définit qui peut le trouver et qui peut y
 publier. Il y en a quatre, chacune touchant un public plus large
-que la précédente :
+que la précédente :
 
 - **Privé** — seulement les personnes que vous invitez.
 - **Foyer** — tout votre propre foyer.
@@ -73,7 +73,7 @@ que la précédente :
   le trouver.
 
 Seuls les espaces globaux sont référencés sur un GFS. Les espaces
-publics, foyer et privés ne le sont jamais ; un espace privé peut
+publics, foyer et privés ne le sont jamais ; un espace privé peut
 utiliser un GFS choisi par le propriétaire si celui-ci l'active
 (désactivé par défaut). Les foyers avec qui vous êtes jumelé
 reçoivent les publications d'un espace directement ou par le
@@ -83,7 +83,7 @@ est une décision qui revient à tous ses admins — voir
 
 ## Hôte
 
-Chaque espace a un foyer hôte : celui qui l'a créé et qui compte les
+Chaque espace a un foyer hôte : celui qui l'a créé et qui compte les
 votes des admins. L'hôte n'est pas un intermédiaire — les membres
 publient directement les uns vers les autres — mais c'est là que
 vit la liste des membres. Pendant que l'hôte est hors ligne, les
@@ -105,7 +105,7 @@ avec un Lien GFS, et les foyers qui ont demandé à rejoindre par son
 intermédiaire. Chacun de ces foyers reçoit une
 [boîte aux lettres](#boîte-aux-lettres) anonyme sur le GFS. Un GFS
 garde aussi des photos chiffrées pendant quelques jours. Le projet Social Home en
-fait tourner un ; chacun peut
+fait tourner un ; chacun peut
 [faire tourner le sien](/fr/docs/running-a-gfs/). Un GFS voit des
 enveloppes scellées et des informations de routage, jamais le
 contenu d'une publication. Ce qu'il peut et ne peut pas voir est
@@ -146,9 +146,9 @@ d'identité.
 
 La visionneuse Social Home est la page dans laquelle un lien public
 s'ouvre dans un navigateur, pour les personnes qui ne sont pas sur
-Social Home : un highlight public, un moment partagé, la page d'un
+Social Home : un highlight public, un moment partagé, la page d'un
 espace global, un lien d'invitation GFS ou un profil Momentum. Elle
-se trouve sur `viewer.social-home.io`, pas sur un GFS : les personnes
+se trouve sur `viewer.social-home.io`, pas sur un GFS : les personnes
 qui gèrent un GFS ne peuvent donc pas la modifier. Chaque version est
 figée et peut être comparée à la version de Social Home dont elle
 provient. Voir
@@ -158,8 +158,8 @@ provient. Voir
 
 Un abonné est un membre d'un espace avec un rôle en lecture seule.
 Les abonnés voient ce que l'espace publie. Ils ne publient pas et ne
-votent pas aux sondages ; si l'espace l'autorise, ils peuvent
-commenter et réagir. Les rôles s'échelonnent ainsi :
+votent pas aux sondages ; si l'espace l'autorise, ils peuvent
+commenter et réagir. Les rôles s'échelonnent ainsi :
 propriétaire → admin → modérateur → membre → abonné.
 
 ## Rotation des clés (époque)
@@ -173,7 +173,7 @@ ce qui a été publié après son départ.
 <summary>Sous le capot</summary>
 
 Le contenu d'un espace est scellé avec une clé AES-256-GCM par
-époque ; le numéro d'époque est l'un des rares champs lisibles
+époque ; le numéro d'époque est l'un des rares champs lisibles
 d'une enveloppe, pour qu'un membre sache quelle clé utiliser. La
 clé d'autorité de l'espace tourne séparément chaque fois qu'un
 admin est révoqué.
@@ -185,7 +185,7 @@ admin est révoqué.
 Une enveloppe scellée, c'est ce qui voyage réellement entre les
 foyers. La publication, la photo ou l'événement de calendrier
 qu'elle contient est chiffré avant de quitter votre maison et n'est
-déchiffré que dans la maison destinataire ; l'extérieur de
+déchiffré que dans la maison destinataire ; l'extérieur de
 l'enveloppe porte juste de quoi la livrer. Rien ne quitte jamais un
 foyer sans être scellé — si un espace ne peut pas sceller, il
 n'envoie pas.
@@ -218,7 +218,7 @@ clé X25519 éphémère du destinataire.
 ## Relais et TURN
 
 Un relais est n'importe quel serveur qui fait passer des enveloppes
-scellées entre foyers sans pouvoir les lire ; dans Social Home,
+scellées entre foyers sans pouvoir les lire ; dans Social Home,
 c'est le GFS. Un serveur **TURN** est un autre type de relais,
 utilisé uniquement pour les appels audio et vidéo, et seulement
 quand une connexion directe entre les deux téléphones est

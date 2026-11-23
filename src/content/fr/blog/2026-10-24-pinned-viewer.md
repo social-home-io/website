@@ -6,7 +6,7 @@ author: L'équipe Social Home
 order: 50
 ---
 
-La plupart de ce que vous faites dans Social Home reste entre foyers :
+La plupart de ce que vous faites dans Social Home reste entre foyers :
 scellé chez vous, ouvert chez eux. Mais parfois, vous voulez joindre
 quelqu'un qui n'est pas du tout sur Social Home. Peut-être grand-père,
 qui ne lit que ses e-mails, ou l'amie rencontrée en vacances, ou les
@@ -26,7 +26,7 @@ ni modifier la page que voient vos proches.
 Un lien public de highlight est scellé de votre maison jusqu'au
 navigateur de vos proches. La clé qui l'ouvre se trouve dans la partie
 du lien après le `#`. Les navigateurs n'envoient jamais cette partie à
-un serveur : le GFS qui aide à établir le lien ne la voit donc jamais.
+un serveur : le GFS qui aide à établir le lien ne la voit donc jamais.
 
 Mais une clé ne protège que si vous faites confiance aux mains qui la
 tiennent. La page qui ouvre le highlight est le code qui lit la clé.
@@ -51,11 +51,11 @@ Il n'exécute jamais le code qui tient la clé.
 ## Chaque version figée
 
 La visionneuse est un petit ensemble de fichiers statiques. Son rôle
-est d'être ennuyeuse et facile à vérifier :
+est d'être ennuyeuse et facile à vérifier :
 
 - **Chaque version a sa propre adresse.** Un lien désigne la version
   exacte de la visionneuse pour laquelle il a été créé. Les fichiers
-  derrière cette adresse ne changent jamais : un lien créé aujourd'hui
+  derrière cette adresse ne changent jamais : un lien créé aujourd'hui
   ouvrira la même page l'an prochain.
 - **Le script est verrouillé par son empreinte.** La page indique au
   navigateur exactement quel script exécuter. Si un seul octet diffère,
@@ -67,7 +67,7 @@ est d'être ennuyeuse et facile à vérifier :
   la reconstruit à partir de la même version et ne la publie que si les
   deux constructions sont identiques.
 - **Les versions ne sont qu'ajoutées.** Les anciennes versions ne sont
-  jamais réécrites ni supprimées : chaque lien créé par une version
+  jamais réécrites ni supprimées : chaque lien créé par une version
   précédente continue de s'ouvrir.
 - **Tout le monde peut vérifier.** Récupérez les fichiers, comparez leur
   empreinte à celle de la version, reconstruisez depuis le tag. Vous
@@ -76,7 +76,7 @@ est d'être ennuyeuse et facile à vérifier :
 ## Une seule visionneuse pour tout l'extérieur
 
 Les highlights n'étaient que le début. Tout ce qu'un inconnu ouvre
-depuis un GFS s'ouvre désormais dans la même visionneuse :
+depuis un GFS s'ouvre désormais dans la même visionneuse :
 
 - **Liens publics de highlights.** Dans la visionneuse de highlight,
   touchez **Créer un lien public**, choisissez un GFS et partagez le
@@ -93,7 +93,7 @@ depuis un GFS s'ouvre désormais dans la même visionneuse :
 - **La page d'un espace global, les liens d'invitation et les
   profils.** La page d'un espace sur un GFS, un lien d'invitation GFS
   et le profil Momentum d'une personne passent la main à la
-  visionneuse, qui affiche le texte « À propos » de l'espace, le code
+  visionneuse, qui affiche le texte « À propos » de l'espace, le code
   d'invitation et le QR code, ou le profil avec un bouton Suivre.
 
 La visionneuse parle anglais, allemand, néerlandais, français et
@@ -105,7 +105,7 @@ page d'aperçu sans scripts.
 
 ## Ce que cela ne résout pas
 
-Nous préférons que vous entendiez les limites de notre bouche :
+Nous préférons que vous entendiez les limites de notre bouche :
 
 - **Vous faites confiance à l'hébergeur de la visionneuse.** La
   visionneuse est publiée sur GitHub Pages sous l'organisation
@@ -115,7 +115,7 @@ Nous préférons que vous entendiez les limites de notre bouche :
   l'ouvrir. Il reste aussi dans l'historique du navigateur de vos
   proches, comme n'importe quel lien qu'ils ouvrent.
 - **Un lien de moment ne peut pas être repris**, sauf en supprimant le
-  moment. Un lien de highlight, si : supprimez-le, ou laissez le
+  moment. Un lien de highlight, si : supprimez-le, ou laissez le
   highlight expirer.
 - **Le GFS voit toujours le trafic.** Il sait quand un lien est ouvert
   et depuis quelle adresse. Il ne sait pas ce qu'il contient.
@@ -137,12 +137,12 @@ qui lit la clé. Voir
 <details class="tech">
 <summary>Sous le capot</summary>
 
-- Lien de highlight :
+- Lien de highlight :
   `https://viewer.social-home.io/v/<hash>/#g=<GFS>&i=<home>&h=<highlight>&t=<token>&k=<secret>`.
   Tout ce qui suit `#` reste dans le navigateur. `k` est dérivé avec
-  HKDF-SHA256 de la graine d'identité de l'auteur et du jeton ; le GFS
+  HKDF-SHA256 de la graine d'identité de l'auteur et du jeton ; le GFS
   ne le voit jamais.
-- Le flux est scellé pour chaque affichage : la visionneuse envoie une
+- Le flux est scellé pour chaque affichage : la visionneuse envoie une
   clé P-256 éphémère, et la maison de l'auteur dérive du résultat ECDH,
   salé avec `k`, une clé AES-256-GCM. Le GFS voit le jeton et la clé de
   la visionneuse, sur le chemin direct comme sur le repli par relais,
@@ -152,18 +152,18 @@ qui lit la clé. Voir
   CSP stricte dans une balise `<meta>`, `no-referrer`, chaque requête
   avec `credentials: 'omit'` et `redirect: 'error'`.
 - Le manifeste `socialhome/pinned_viewer.json` est versionné dans le
-  dépôt principal ; la CI construit la visionneuse deux fois et échoue
+  dépôt principal ; la CI construit la visionneuse deux fois et échoue
   au moindre octet différent. Le dépôt de la visionneuse la
   reconstruit, vérifie l'`integrity` et ajoute `v/<hash>/` à
   `gh-pages`, qu'une règle (ruleset) maintient en ajout seul.
 - La visionneuse a son propre domaine, `viewer.social-home.io`, plutôt
   qu'une origine `github.io` partagée, pour qu'aucun autre site de
   l'organisation ne puisse y enregistrer un service worker.
-- Pages publiques du GFS : `/spaces/{id}`, `/join/{token}` et
+- Pages publiques du GFS : `/spaces/{id}`, `/join/{token}` et
   `/moments/{user}` répondent par une page de passage inerte (balises
   d'aperçu, une redirection vers la visionneuse, `default-src 'none'`).
   La visionneuse lit `/gfs/pages/*` en cross-origin sans identifiants
-  et affiche le texte « À propos » à partir d'un petit sous-ensemble de
+  et affiche le texte « À propos » à partir d'un petit sous-ensemble de
   Markdown, jamais comme du HTML.
 - Les identifiants TURN de la visionneuse sont créés à chaque réponse
   (API REST TURN, 10 minutes par défaut), jamais fixes.

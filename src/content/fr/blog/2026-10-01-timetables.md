@@ -61,7 +61,7 @@ dialogue. Un nouvel emploi du temps part d'un modèle **journée
 d'école**. Le **constructeur de journée** pose ensuite trois
 questions (à quelle heure commence le premier cours, combien dure
 un cours, combien durent les intervalles) et en déduit tous les
-horaires. Insérez un cours plus tôt avec « + Ajouter avant » et le
+horaires. Insérez un cours plus tôt avec « + Ajouter avant » et le
 reste de la journée se décale en conséquence.
 
 Activez ensuite le **mode pinceau** : choisissez une matière, puis
@@ -72,7 +72,7 @@ pause de 09:35 une fois, pas cinq.
 <div class="shots">
 <figure class="phone"><a href="/blog/2026-10-timetables/new-timetable.png"><img src="/blog/2026-10-timetables/new-timetable.png" alt="Fiche Nouvel emploi du temps avec nom, enfant, modèle Journée d'école ou Vide, préréglages de jours et début de semaine" width="390" height="844" loading="lazy"></a><figcaption><b>Nouvel emploi du temps</b>Le nom, pour qui, le modèle, un préréglage lun.–ven. et le début de semaine.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-timetables/lesson-editor.png"><img src="/blog/2026-10-timetables/lesson-editor.png" alt="Fiche Modifier le cours avec une grille de choix d'icônes, des champs d'heure et des puces de durée" width="390" height="844" loading="lazy"></a><figcaption><b>Éditeur de cours</b>Icônes prédéfinies, heure de début et de fin, et puces de 30/45/60/90 minutes.</figcaption></figure>
-<figure class="desk"><a href="/blog/2026-10-timetables/day-builder.png"><img src="/blog/2026-10-timetables/day-builder.png" alt="Boîte de dialogue du constructeur de journée avec heure de début, durée de cours, intervalle, et une liste de lignes de cours et de pauses aux horaires calculés" width="1280" height="800" loading="lazy"></a><figcaption><b>Constructeur de journée</b>Réglez le premier début, la durée des cours et l'intervalle. Tous les horaires suivants se recalculent quand vous changez une ligne. Utilisez « + Ajouter avant » pour un cours plus tôt.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-timetables/day-builder.png"><img src="/blog/2026-10-timetables/day-builder.png" alt="Boîte de dialogue du constructeur de journée avec heure de début, durée de cours, intervalle, et une liste de lignes de cours et de pauses aux horaires calculés" width="1280" height="800" loading="lazy"></a><figcaption><b>Constructeur de journée</b>Réglez le premier début, la durée des cours et l'intervalle. Tous les horaires suivants se recalculent quand vous changez une ligne. Utilisez « + Ajouter avant » pour un cours plus tôt.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-timetables/day-builder-phone.png"><img src="/blog/2026-10-timetables/day-builder-phone.png" alt="Constructeur de journée affiché comme panneau inférieur sur un téléphone" width="390" height="844" loading="lazy"></a><figcaption><b>Constructeur de journée, téléphone</b>Le même parcours dans un panneau inférieur.</figcaption></figure>
 <figure class="desk"><a href="/blog/2026-10-timetables/brush-mode.png"><img src="/blog/2026-10-timetables/brush-mode.png" alt="Mode pinceau avec des puces de matières en haut et les créneaux vides surlignés pendant le glissement" width="1280" height="800" loading="lazy"></a><figcaption><b>Mode pinceau</b>Choisissez une matière, puis cliquez ou faites glisser sur les cours vides pour les remplir.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-timetables/brush-mode-phone.png"><img src="/blog/2026-10-timetables/brush-mode-phone.png" alt="Mode pinceau sur un téléphone avec la barre des matières ancrée en bas" width="390" height="844" loading="lazy"></a><figcaption><b>Mode pinceau, téléphone</b>La barre des matières se place en bas, à portée de pouce.</figcaption></figure>
@@ -88,13 +88,13 @@ chaque semaine sous forme de puce. Marquez les semaines de
 vacances une fois et le planning se met en veille pendant
 celles-ci. Les semaines de vacances sont hachurées et portent un
 🏖, pour qu'on les distingue sans dépendre de la couleur. Si
-l'école a lieu quand même, un clic sur « Activer cette semaine »
+l'école a lieu quand même, un clic sur « Activer cette semaine »
 ramène le planning.
 
 <div class="shots">
-<figure class="desk"><a href="/blog/2026-10-timetables/school-weeks.png"><img src="/blog/2026-10-timetables/school-weeks.png" alt="Boîte de dialogue des semaines d'école listant septembre 2026 à juillet 2027 sous forme de puces de semaine, avec quatre semaines de vacances hachurées" width="1280" height="800" loading="lazy"></a><figcaption><b>Sélecteur d'année scolaire</b>« 43 semaines d'école · 4 semaines de vacances », avec Tout, Inverser et Une semaine sur deux.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-timetables/school-weeks.png"><img src="/blog/2026-10-timetables/school-weeks.png" alt="Boîte de dialogue des semaines d'école listant septembre 2026 à juillet 2027 sous forme de puces de semaine, avec quatre semaines de vacances hachurées" width="1280" height="800" loading="lazy"></a><figcaption><b>Sélecteur d'année scolaire</b>« 43 semaines d'école · 4 semaines de vacances », avec Tout, Inverser et Une semaine sur deux.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-timetables/school-weeks-phone.png"><img src="/blog/2026-10-timetables/school-weeks-phone.png" alt="Sélecteur de semaines d'école sur un téléphone avec des champs de date et une navigation par fenêtre" width="390" height="844" loading="lazy"></a><figcaption><b>Sélecteur, téléphone</b>Dates de début et de fin, et une fenêtre de 12 mois que vous pouvez faire défiler.</figcaption></figure>
-<figure class="desk"><a href="/blog/2026-10-timetables/holiday-week.png"><img src="/blog/2026-10-timetables/holiday-week.png" alt="Bandeau de semaine de vacances affichant Inactif cette semaine, avec un bouton Activer cette semaine" width="1280" height="800" loading="lazy"></a><figcaption><b>Semaine de vacances</b>La grille se met en pause, avec un « Activer cette semaine » en un clic.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-timetables/holiday-week.png"><img src="/blog/2026-10-timetables/holiday-week.png" alt="Bandeau de semaine de vacances affichant Inactif cette semaine, avec un bouton Activer cette semaine" width="1280" height="800" loading="lazy"></a><figcaption><b>Semaine de vacances</b>La grille se met en pause, avec un « Activer cette semaine » en un clic.</figcaption></figure>
 </div>
 
 ## Quand cette semaine est différente
@@ -105,11 +105,11 @@ modifiez un seul cours, pour cette semaine seulement : annulez-le,
 changez la matière, la salle ou l'heure, ou ajoutez un cours
 supplémentaire. Tout ce que vous ne touchez pas suit le planning
 habituel. Lundi prochain, les changements disparaissent
-d'eux-mêmes, et « Tout effacer » remet la semaine à zéro plus tôt
+d'eux-mêmes, et « Tout effacer » remet la semaine à zéro plus tôt
 si besoin.
 
 <div class="shots">
-<figure class="desk"><a href="/blog/2026-10-timetables/this-week.png"><img src="/blog/2026-10-timetables/this-week.png" alt="Vue Cette semaine avec un cours annulé barré, un changement de matière, un changement d'heure de 09:55 à 10:00 et un cours de chorale supplémentaire, sous un bandeau indiquant 4 changements cette semaine" width="1280" height="1083" loading="lazy"></a><figcaption><b>Une semaine avec des changements</b>Annulé, modifié (une autre matière, un cours cinq minutes plus tard) et Supplémentaire, avec « 4 changements cette semaine · Tout effacer ».</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-timetables/this-week.png"><img src="/blog/2026-10-timetables/this-week.png" alt="Vue Cette semaine avec un cours annulé barré, un changement de matière, un changement d'heure de 09:55 à 10:00 et un cours de chorale supplémentaire, sous un bandeau indiquant 4 changements cette semaine" width="1280" height="1083" loading="lazy"></a><figcaption><b>Une semaine avec des changements</b>Annulé, modifié (une autre matière, un cours cinq minutes plus tard) et Supplémentaire, avec « 4 changements cette semaine · Tout effacer ».</figcaption></figure>
 <figure class="desk"><a href="/blog/2026-10-timetables/this-week-dialog.png"><img src="/blog/2026-10-timetables/this-week-dialog.png" alt="Boîte de dialogue de cours en mode semaine avec Annuler ce cours, Modifier pour cette semaine et Rétablir l'habituel" width="1280" height="800" loading="lazy"></a><figcaption><b>Modifier pour cette semaine</b>Les champs affichent les valeurs habituelles en indication, donc vous ne tapez que ce qui diffère.</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-timetables/this-week-phone.png"><img src="/blog/2026-10-timetables/this-week-phone.png" alt="Vue Cette semaine avec des changements sur un téléphone" width="390" height="844" loading="lazy"></a><figcaption><b>Cette semaine, téléphone</b></figcaption></figure>
 </div>
@@ -133,19 +133,19 @@ d'exploitation du foyer. La carte **Aujourd'hui** de votre page
 d'accueil fusionne les cours du jour de chaque enfant avec les
 événements du jour du [calendrier](/fr/docs/calendar/). Elle
 affiche **Maintenant** et **Ensuite** en haut, une ligne rouge
-« maintenant » à travers la liste, et un ⚠ partout où un événement
+« maintenant » à travers la liste, et un ⚠ partout où un événement
 chevauche un cours, comme le rendez-vous chez le dentiste pendant
-l'anglais. Avec plusieurs enfants, un filtre « Afficher : »
+l'anglais. Avec plusieurs enfants, un filtre « Afficher : »
 restreint la carte à l'un d'eux. Les lignes déjà passées se
 replient, et une fois le dernier cours terminé, la carte dit
-simplement « L'école est finie ».
+simplement « L'école est finie ».
 
 <div class="shots">
-<figure class="desk"><a href="/blog/2026-10-timetables/today-three-children.png"><img src="/blog/2026-10-timetables/today-three-children.png" alt="Carte Aujourd'hui sur la page d'accueil avec des puces de filtre Afficher pour Tous, Emma, Leo et Mia, une ligne journée entière et la liste fusionnée" width="1280" height="1218" loading="lazy"></a><figcaption><b>Trois enfants, une carte</b>Un filtre « Afficher : », une ligne journée entière, et les lignes passées repliées.</figcaption></figure>
+<figure class="desk"><a href="/blog/2026-10-timetables/today-three-children.png"><img src="/blog/2026-10-timetables/today-three-children.png" alt="Carte Aujourd'hui sur la page d'accueil avec des puces de filtre Afficher pour Tous, Emma, Leo et Mia, une ligne journée entière et la liste fusionnée" width="1280" height="1218" loading="lazy"></a><figcaption><b>Trois enfants, une carte</b>Un filtre « Afficher : », une ligne journée entière, et les lignes passées repliées.</figcaption></figure>
 <figure class="desk"><a href="/blog/2026-10-timetables/today-filtered-dark.png"><img src="/blog/2026-10-timetables/today-filtered-dark.png" alt="Carte Aujourd'hui filtrée sur Emma en mode sombre, avec un rendez-vous chez le dentiste signalé en conflit avec deux cours" width="1280" height="1037" loading="lazy"></a><figcaption><b>Filtrée sur Emma</b>Le dentiste est signalé en conflit avec deux cours, et un cours annulé est barré.</figcaption></figure>
-<figure class="phone"><a href="/blog/2026-10-timetables/today-morning-phone.png"><img src="/blog/2026-10-timetables/today-morning-phone.png" alt="Carte Aujourd'hui sur un téléphone avec une ligne « maintenant » à 07:53 et le prochain cours dans sept minutes" width="390" height="1256" loading="lazy"></a><figcaption><b>Rush du matin</b>Une ligne « maintenant » à 07:53, et « Ensuite : Leo · 08:00 · dans 7 min ».</figcaption></figure>
+<figure class="phone"><a href="/blog/2026-10-timetables/today-morning-phone.png"><img src="/blog/2026-10-timetables/today-morning-phone.png" alt="Carte Aujourd'hui sur un téléphone avec une ligne « maintenant » à 07:53 et le prochain cours dans sept minutes" width="390" height="1256" loading="lazy"></a><figcaption><b>Rush du matin</b>Une ligne « maintenant » à 07:53, et « Ensuite : Leo · 08:00 · dans 7 min ».</figcaption></figure>
 <figure class="phone"><a href="/blog/2026-10-timetables/today-earlier-phone.png"><img src="/blog/2026-10-timetables/today-earlier-phone.png" alt="Carte Aujourd'hui sur un téléphone avec les lignes passées dépliées" width="390" height="1398" loading="lazy"></a><figcaption><b>Lignes passées affichées</b></figcaption></figure>
-<figure class="phone"><a href="/blog/2026-10-timetables/today-after-school-phone.png"><img src="/blog/2026-10-timetables/today-after-school-phone.png" alt="Carte Aujourd'hui après l'école affichant L'école est finie" width="390" height="844" loading="lazy"></a><figcaption><b>Après l'école</b>« L'école est finie · 6 cours aujourd'hui ».</figcaption></figure>
+<figure class="phone"><a href="/blog/2026-10-timetables/today-after-school-phone.png"><img src="/blog/2026-10-timetables/today-after-school-phone.png" alt="Carte Aujourd'hui après l'école affichant L'école est finie" width="390" height="844" loading="lazy"></a><figcaption><b>Après l'école</b>« L'école est finie · 6 cours aujourd'hui ».</figcaption></figure>
 </div>
 
 ## Partagé avec la classe
@@ -164,7 +164,7 @@ parent délégué déplace le sport au vendredi, chaque foyer qui l'a
 épinglé voit le changement. Personne n'a à envoyer de message de
 groupe à ce sujet, et aucun service central ne détient de copie de
 l'emploi du temps de la classe. La fonction Emploi du temps est
-désactivée par défaut pour chaque espace ; un administrateur de
+désactivée par défaut pour chaque espace ; un administrateur de
 l'espace l'active dans les paramètres de l'espace.
 
 <div class="shots">
@@ -204,6 +204,6 @@ quand ce sera prêt à essayer.
 ## Essayez-le
 
 Les Emplois du temps sont sortis dans **Social Home 2026.10.1**.
-Vous découvrez Social Home ? [Premiers pas](/fr/docs/getting-started/)
+Vous découvrez Social Home ? [Premiers pas](/fr/docs/getting-started/)
 vous mène de Home Assistant à votre premier foyer en quelques
 minutes.

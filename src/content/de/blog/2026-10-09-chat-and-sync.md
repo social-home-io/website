@@ -43,7 +43,7 @@ zu schreiben. Follower eines Space sehen den Chat nicht und bekommen
 ihn nicht. Standardmäßig benachrichtigt er dich nur, wenn dich jemand
 erwähnt, die Moderatoren des Space können jede Nachricht entfernen,
 und ein archivierter Space hält seinen Chat lesbar, aber geschlossen.
-Vorerst ist der Space-Chat nur Text. Der Besitzer kann ihn in den
+Vorerst ist der Space-Chat nur Text. Der Eigentümer kann ihn in den
 Einstellungen des Space ausschalten.
 
 <details class="tech">

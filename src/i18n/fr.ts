@@ -92,7 +92,7 @@ export const fr: UiStrings = {
     eyebrow: "Blog",
     h1Html: "Quoi de neuf <em>à la maison</em>.",
     ledeHtml:
-      "Les nouveautés, racontées du point de vue de votre foyer : ce qui change dans votre journée, captures d'écran à l'appui. Chaque version est listée sur <a href=\"https://github.com/social-home-io/socialhome/releases\">GitHub Releases</a>.",
+      "Les nouveautés, racontées du point de vue de votre foyer : ce qui change dans votre journée, captures d'écran à l'appui. Chaque version est listée sur <a href=\"https://github.com/social-home-io/socialhome/releases\">GitHub Releases</a>.",
     readPost: "Lire l'article →",
     allPosts: "← Tous les articles",
     editOnGithub: "Modifier cet article sur GitHub →",
@@ -103,7 +103,7 @@ export const fr: UiStrings = {
       eyebrow: "Ouvert · fédéré · MPL 2.0",
       sub: "Calendrier, liste de courses, photos, discussions, highlights, moments, apps — le tout tourne chez vous. Un OS du foyer qui est aussi un réseau social qui vous appartient vraiment.",
       primaryCta: "Ajouter à Home Assistant",
-      secondaryCta: "Que sait-il faire ?",
+      secondaryCta: "Que sait-il faire ?",
       installHref,
       secondaryHref: "/docs/protocol/",
     },
@@ -143,12 +143,12 @@ export const fr: UiStrings = {
         {
           tag: "Liste de courses en direct",
           title: "Des listes vivantes, sur tous les téléphones.",
-          body: "« Ajoute du lait » depuis le téléphone de n'importe qui, ou à la voix. Cochez les articles en temps réel au supermarché.",
+          body: "« Ajoute du lait » depuis le téléphone de n'importe qui, ou à la voix. Cochez les articles en temps réel au supermarché.",
         },
         {
           tag: "Tâches",
           title: "Les corvées réparties, sans harcèlement.",
-          body: "Responsables par liste, échéances, badges de retard. Percer l'étagère ce week-end ; recycler le vieux frigo aujourd'hui ; tout le monde voit qui s'occupe de quoi.",
+          body: "Responsables par liste, échéances, badges de retard. Percer l'étagère ce week-end ; recycler le vieux frigo aujourd'hui ; tout le monde voit qui s'occupe de quoi.",
         },
         {
           tag: "Pages",
@@ -158,7 +158,7 @@ export const fr: UiStrings = {
         {
           tag: "Stickies",
           title: "Des notes aimantées au frigo qui vous suivent.",
-          body: "Des notes de couleur, modifiables d'un tapotement, épinglées sur le canevas d'un espace. Les carottes dans le bac du bas ; des idées de cadeaux d'anniversaire ; tout ce dont le foyer doit se souvenir ensemble.",
+          body: "Des notes de couleur, modifiables d'un tapotement, épinglées sur le canevas d'un espace. Les carottes dans le bac du bas ; des idées de cadeaux d'anniversaire ; tout ce dont le foyer doit se souvenir ensemble.",
         },
         {
           tag: "Présence discrète",
@@ -168,7 +168,7 @@ export const fr: UiStrings = {
         {
           tag: "Tableau de bord du foyer",
           title: "Un tableau pour le mur de la cuisine.",
-          body: "Fixez une tablette près de la porte : le programme du jour, les changements d'emploi du temps, les tâches et qui est où, d'un coup d'œil. Les enfants qui ne lisent pas encore ont une vue en images, et un toucher verrouille tout quand vous avez des invités.",
+          body: "Fixez une tablette près de la porte : le programme du jour, les changements d'emploi du temps, les tâches et qui est où, d'un coup d'œil. Les enfants qui ne lisent pas encore ont une vue en images, et un toucher verrouille tout quand vous avez des invités.",
         },
         {
           tag: "Sécurité familiale",
@@ -194,7 +194,7 @@ export const fr: UiStrings = {
         {
           tag: "Appels audio et vidéo",
           title: "Appelez sans qu'un tiers écoute.",
-          body: "Appels 1:1 ou de groupe directement depuis vos messages privés et discussions de groupe. WebRTC entre les participants, chiffré en DTLS-SRTP ; le serveur aide seulement à démarrer l'appel, et si un relais est nécessaire il ne voit jamais que des médias chiffrés.",
+          body: "Appels 1:1 ou de groupe directement depuis vos messages privés et discussions de groupe. WebRTC entre les participants, chiffré en DTLS-SRTP ; le serveur aide seulement à démarrer l'appel, et si un relais est nécessaire il ne voit jamais que des médias chiffrés.",
         },
         {
           tag: "Des espaces pour chaque groupe",
@@ -226,7 +226,7 @@ export const fr: UiStrings = {
       p1Html:
         "Jumelez deux maisons une fois avec un QR code. Ensuite, vous pouvez créer des <em>espaces</em> — des salons partagés avec leur propre fil, leur discussion et leur calendrier — entre les deux. Animez un club de lecture, organisez une fête de quartier, ou gardez un salon tranquille pour les grands-parents.",
       p2Html:
-        'Un petit <a href="/docs/global-spaces/">relais</a> open source — le GFS — aide les foyers qui ne se sont pas jumelés à se trouver dans les espaces globaux, et transporte leurs publications scellées. Il ne peut pas les lire : chaque publication est scellée avant de quitter votre maison. Un espace peut utiliser plusieurs GFS, et chaque membre en garde une copie chez lui : il continue donc de fonctionner quand un GFS ou l\'hôte est absent. Nous en faisons tourner un sur <a href="/servers/">gfs.social-home.io</a> — connectez-vous d\'un geste.',
+        'Un petit <a href="/docs/global-spaces/">relais</a> open source — le GFS — aide les foyers qui ne se sont pas jumelés à se trouver dans les espaces globaux, et transporte leurs publications scellées. Il ne peut pas les lire : chaque publication est scellée avant de quitter votre maison. Un espace peut utiliser plusieurs GFS, et chaque membre en garde une copie chez lui : il continue donc de fonctionner quand un GFS ou l\'hôte est absent. Nous en faisons tourner un sur <a href="/servers/">gfs.social-home.io</a> — connectez-vous d\'un geste.',
     },
   },
 
@@ -234,7 +234,7 @@ export const fr: UiStrings = {
     eyebrow: "Nouveau · Apps Social Home",
     heading: "Des apps qui jouent entre foyers.",
     ledeHtml:
-      "Installez une petite app une fois — un échiquier, un tableau blanc partagé, un quiz — et elle dialogue avec la <em>même app</em> qui tourne dans un foyer jumelé. Jouez un coup ici ; il arrive là-bas. Chaque octet est scellé entre vos deux maisons, directement de l'une à l'autre.",
+      "Installez une petite app une fois — un échiquier, un tableau blanc partagé, un quiz — et elle dialogue avec la <em>même app</em> qui tourne dans un foyer jumelé. Jouez un coup ici ; il arrive là-bas. Chaque octet est scellé entre vos deux maisons, directement de l'une à l'autre.",
     points: [
       {
         k: "Fédération d'app à app",
@@ -283,7 +283,7 @@ export const fr: UiStrings = {
   trust: {
     eyebrow: "Privé par construction",
     heading: "Scellé de votre maison à la leur. Fail-closed. Testé avant chaque version.",
-    lede: "La liste de courses et la discussion du club de lecture sont scellées de la même façon : avant que quoi que ce soit ne quitte votre maison, c'est verrouillé pour que seuls les foyers destinataires puissent l'ouvrir. L'OS du foyer et le réseau social partagent une seule règle, et cette règle n'a pas d'interrupteur.",
+    lede: "La liste de courses et la discussion du club de lecture sont scellées de la même façon : avant que quoi que ce soit ne quitte votre maison, c'est verrouillé pour que seuls les foyers destinataires puissent l'ouvrir. L'OS du foyer et le réseau social partagent une seule règle, et cette règle n'a pas d'interrupteur.",
     guarantees: [
       {
         claim: "Il n'envoie jamais rien en clair.",
@@ -310,7 +310,7 @@ export const fr: UiStrings = {
       {
         claim: "Testé avant chaque version.",
         detail:
-          "68 fichiers de tests du protocole vérifient ces règles ; un seul échec bloque la version.",
+          "68 fichiers de tests du protocole vérifient ces règles ; un seul échec bloque la version.",
         chips: ["tests/protocol", "bloquant pour la version"],
       },
       {
@@ -333,7 +333,7 @@ export const fr: UiStrings = {
 
   installBanner: {
     headline: "Installez en deux clics.",
-    body: "Ajoutez l'app Social Home à votre Home Assistant. Elle fait de vous l'admin et se connecte elle-même à Home Assistant — il n'y a rien à saisir. Pas de Home Assistant OS ? Docker et Python fonctionnent aussi.",
+    body: "Ajoutez l'app Social Home à votre Home Assistant. Elle fait de vous l'admin et se connecte elle-même à Home Assistant — il n'y a rien à saisir. Pas de Home Assistant OS ? Docker et Python fonctionnent aussi.",
     primaryCta: "Ajouter à Home Assistant",
     readGuide: "Lire le guide d'installation",
     shellLabel: "Ce que vous verrez dans Home Assistant",
@@ -391,17 +391,17 @@ export const fr: UiStrings = {
     },
     sticky: {
       lineHtml:
-        "🥕 Carottes dans le bac du bas<br /><span>Rôti du dimanche — n’en rachetez pas !</span>",
+        "🥕 Carottes dans le bac du bas<br /><span>Rôti du dimanche — n’en rachetez pas !</span>",
       meta: "Maria · post-it",
     },
     photo: {
-      caption: "« Première tomate de l’année — taxe de la maison : la moitié pour Maman. »",
+      caption: "« Première tomate de l’année — taxe de la maison : la moitié pour Maman. »",
     },
     voice: {
       kicker: "Note vocale · 0:17",
-      title: "Pascal — des pâtes, ça tente quelqu’un ?",
+      title: "Pascal — des pâtes, ça tente quelqu’un ?",
       transcriptHtml:
-        "« …des <em>pâtes</em> ce soir, ça tente quelqu’un ? Je suis près du traiteur. »",
+        "« …des <em>pâtes</em> ce soir, ça tente quelqu’un ? Je suis près du traiteur. »",
     },
     call: {
       kicker: "Appel de groupe · 14:32",
@@ -433,7 +433,7 @@ export const fr: UiStrings = {
         name: "Famille",
         meta: "4 personnes · 3 foyers · privé",
         poster: "Maman",
-        quote: "« Dîner chez nous dimanche — amenez le chien. »",
+        quote: "« Dîner chez nous dimanche — amenez le chien. »",
       },
       {
         glyph: "🌳",
@@ -441,7 +441,7 @@ export const fr: UiStrings = {
         name: "Eichenstrasse 3–17",
         meta: "24 personnes · 14 foyers · public",
         poster: "Lina",
-        quote: "« Barbecue de rue samedi prochain — apportez des chaises. »",
+        quote: "« Barbecue de rue samedi prochain — apportez des chaises. »",
         chips: ["📅 sam. 19:00", "📍 jardin du n° 11"],
       },
       {
@@ -450,7 +450,7 @@ export const fr: UiStrings = {
         name: "Maker Space",
         meta: "12 personnes · 7 foyers · public",
         poster: "Rita",
-        quote: "« Chaise en chêne terminée — photos dans le fil. »",
+        quote: "« Chaise en chêne terminée — photos dans le fil. »",
       },
       {
         glyph: "📖",
@@ -458,7 +458,7 @@ export const fr: UiStrings = {
         name: "Club de lecture",
         meta: "8 personnes · 5 foyers · privé",
         poster: "Rebecca",
-        quote: "« Lisez le chapitre 7 pour vendredi — c’est dans le calendrier. »",
+        quote: "« Lisez le chapitre 7 pour vendredi — c’est dans le calendrier. »",
       },
       {
         glyph: "⛰️",
@@ -466,7 +466,7 @@ export const fr: UiStrings = {
         name: "Équipe de bloc",
         meta: "16 personnes · 11 foyers · public",
         poster: "Pascal",
-        quote: "« Entraînement déplacé à 19:00 — même salle. »",
+        quote: "« Entraînement déplacé à 19:00 — même salle. »",
       },
       {
         glyph: "🛒",
@@ -474,7 +474,7 @@ export const fr: UiStrings = {
         name: "Bazar · quartier",
         meta: "~50 personnes · global · via votre GFS",
         poster: "Maria",
-        quote: "« Étagère en chêne à donner — à venir chercher, avant dim. »",
+        quote: "« Étagère en chêne à donner — à venir chercher, avant dim. »",
         chips: ["🪑 À donner", "🔁 1 échange en attente"],
       },
     ],
@@ -491,7 +491,7 @@ export const fr: UiStrings = {
   servers: {
     title: "Notre serveur",
     description:
-      "Le projet Social Home fait tourner un Global Federation Server public, en ligne sur gfs.social-home.io. Aveugle au contenu par conception : il transporte des publications scellées et ne les lit jamais. Connectez-vous d'un geste, ou faites tourner le vôtre.",
+      "Le projet Social Home fait tourner un Global Federation Server public, en ligne sur gfs.social-home.io. Aveugle au contenu par conception : il transporte des publications scellées et ne les lit jamais. Connectez-vous d'un geste, ou faites tourner le vôtre.",
     eyebrow: "Global Federation Server",
     h1Html: "Connectez-vous au relais que nous faisons tourner <em>pour vous</em>.",
     ledeHtml:
@@ -499,7 +499,7 @@ export const fr: UiStrings = {
     hostedBy: "Hébergé par Social Home",
     serverName: "Global Federation Server",
     live: "En ligne",
-    body: "Un scan de QR code et vous êtes connecté. Les espaces globaux dont le propriétaire choisit ce serveur apparaissent dans Découvrir › Global ; les moments publics se propagent aux abonnés de chaque foyer jumelé ; les liens publics des Highlights passent aussi par ici, et s'ouvrent dans la visionneuse Social Home, une page que ce serveur ne sert pas. Aveugle au contenu par conception.",
+    body: "Un scan de QR code et vous êtes connecté. Les espaces globaux dont le propriétaire choisit ce serveur apparaissent dans Découvrir › Global ; les moments publics se propagent aux abonnés de chaque foyer jumelé ; les liens publics des Highlights passent aussi par ici, et s'ouvrent dans la visionneuse Social Home, une page que ce serveur ne sert pas. Aveugle au contenu par conception.",
     bullets: [
       "Annuaire des espaces globaux",
       "Annuaire public Momentum + graphe d'abonnements",
@@ -527,10 +527,10 @@ export const fr: UiStrings = {
       "Scannez le QR code ci-dessus — ou collez l'URL.",
     ],
     howToNote:
-      "La plupart des foyers n'en ont besoin que d'un. Si un espace dont vous faites partie est aussi sur un autre GFS, connectez-vous aussi à celui-là : quand un GFS est en panne, votre foyer passe à l'autre.",
+      "La plupart des foyers n'en ont besoin que d'un. Si un espace dont vous faites partie est aussi sur un autre GFS, connectez-vous aussi à celui-là : quand un GFS est en panne, votre foyer passe à l'autre.",
     seesHeading: "Ce que ce relais peut et ne peut pas voir",
     seesIntro:
-      "Le relais ne manipule jamais que des enveloppes scellées. Ce qu'il apprend dépend du type d'espace auquel l'enveloppe appartient — et dans tous les cas, la réponse à « le contenu ? » est : jamais.",
+      "Le relais ne manipule jamais que des enveloppes scellées. Ce qu'il apprend dépend du type d'espace auquel l'enveloppe appartient — et dans tous les cas, la réponse à « le contenu ? » est : jamais.",
     seesColSpace: "Espace",
     seesColSees: "Le relais voit",
     seesColNever: "Jamais",

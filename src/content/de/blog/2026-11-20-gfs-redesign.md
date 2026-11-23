@@ -21,7 +21,7 @@ haben wir drei Dinge gelernt:
 
 - **Jedes Mitglied soll gleich sein**, egal wie sein Haushalt den
   Space erreicht. Wer über einen GFS-Link beitritt, soll denselben
-  Space bekommen wie jemand, der mit dem Host gekoppelt ist.
+  Space bekommen wie jemand, der mit dem Gastgeber gekoppelt ist.
 - **Ein Space soll nicht auf seinen Eigentümer warten.** Wenn das
   Zuhause des Eigentümers gerade aktualisiert wird oder offline ist,
   sollen die Mitglieder einander trotzdem erreichen, und Admins
@@ -38,7 +38,7 @@ und der GFS kann noch immer keinen einzigen davon lesen.
 ## Jeder Haushalt bekommt ein anonymes Postfach
 
 Ist dein Haushalt über einen GFS in einem Space, bekommt er auf diesem
-GFS ein **anonymes Postfach**. Der Host und alle anderen Mitglieder
+GFS ein **anonymes Postfach**. Der Gastgeber und alle anderen Mitglieder
 legen versiegelte Nachrichten hinein, und dein Zuhause holt sie ab. Der
 GFS kennt ein Postfach nur unter einer zufällig aussehenden Nummer. Er
 weiß nicht, welchem Haushalt das Postfach gehört, zu welchen Spaces es
@@ -64,7 +64,7 @@ ist `base32(SHA-256("sh-mbx-v1" ‖ sign_pk))`. Die Space-ID geht nicht
 in die Ableitung ein, und zwei GFS sehen Postfächer, die nichts
 miteinander zu tun haben. Dein Haushalt kündigt sein Postfach auf einer
 **Mitgliedskarte** an, die mit seinem Identitätsschlüssel signiert ist,
-sodass ein Host eine Karte verwerfen, aber nie fälschen kann. Ein
+sodass ein Gastgeber eine Karte verwerfen, aber nie fälschen kann. Ein
 Haushalt nimmt Postfach-Nachrichten nur von Mitgliedern an, deren Karte
 er hat.
 
@@ -84,16 +84,16 @@ haben.
 ## Jedes Mitglied erreicht jedes Mitglied
 
 Mit einem Postfach für jeden Haushalt gehen Mitglieder nicht mehr über
-den Host, um einander zu erreichen:
+den Gastgeber, um einander zu erreichen:
 
-- **Beiträge kommen an, während der Host offline ist.** Jedes Mitglied
+- **Beiträge kommen an, während der Gastgeber offline ist.** Jedes Mitglied
   stellt direkt an die anderen zu, auch in privaten Spaces.
 - **Bilder und lange Seiten kommen in einem Stück an.** Haushalte
   hinter einem GFS bekommen dieselben Bilder und dieselben langen
   Seiten wie gekoppelte Haushalte.
 - **Ein Upload, egal wie viele Mitglieder.** Ein Kalendereintrag für
   200 Haushalte hinter demselben GFS geht einmal hoch, nicht 200-mal.
-- **Lücken füllen sich von selbst.** Antwortet der Host nicht, fragt
+- **Lücken füllen sich von selbst.** Antwortet der Gastgeber nicht, fragt
   dein Zuhause stattdessen beim Haushalt eines Admins oder Moderators
   nach. Ein älteres Bild, das du nie bekommen hast, wird geholt, wenn
   du es öffnest. Ein neues Mitglied bekommt sofort die letzten 30 Tage.
@@ -111,14 +111,14 @@ zu 500 Empfänger). Für 200 Haushalte ist das ein Upload von 51 KB statt
 Binär-Frames, aufgepolstert auf 64/128/256/516 KiB, und Bilder gehen in
 vollen Stücken von 512 KiB.
 
-Selbstheilung: Bleibt der Host während einer Synchronisation 120 s
+Selbstheilung: Bleibt der Gastgeber während einer Synchronisation 120 s
 still, fragt das Mitglied einen Helfer (den Haushalt eines Admins oder
-Moderators). Ein fehlendes Bild wird zuerst beim Host angefragt und
+Moderators). Ein fehlendes Bild wird zuerst beim Gastgeber angefragt und
 nach 60 s bei einem Helfer; jede Datei wird gegen ihren Hash geprüft.
 Die Mitgliederliste wird per Digest (`rd1-sha256`) repariert, statt
 nach Zeitplan neu gesendet zu werden. Ein Mitglied, dessen Zuhause
-nicht mit dem GFS verbunden ist, wird über den Host erreicht, der
-einzige Fall, in dem der Host noch online sein muss.
+nicht mit dem GFS verbunden ist, wird über den Gastgeber erreicht, der
+einzige Fall, in dem der Gastgeber noch online sein muss.
 
 </details>
 
@@ -173,7 +173,7 @@ nicht bei einem anderen wieder einspielen kann.
 ## Um Beitritt zu einem globalen Space bitten, ohne zu koppeln
 
 Du siehst auf deinem GFS einen globalen Space, der dir gefällt? Jetzt
-kannst du direkt um Beitritt bitten, ohne dich vorher mit seinem Host
+kannst du direkt um Beitritt bitten, ohne dich vorher mit seinem Gastgeber
 zu koppeln. Der Eigentümer sieht deine Anfrage mit der Markierung
 **Über den GFS · nicht überprüft**, weil der Name, den du schickst, das
 ist, was du eingetippt hast, und niemand ihn geprüft hat. Stapeln sich

@@ -77,7 +77,7 @@ Een space met maar één beheerder handelt nog steeds meteen – een
 meerderheid van één. Maar zodra een tweede beheerder erbij komt,
 kan niemand in zijn eentje de space opheffen of veranderen wie
 hem ziet. Beheerders in gekoppelde huishoudens stemmen ook mee;
-de host telt iedereen op en alleen het goedgekeurde resultaat
+de gastheer telt iedereen op en alleen het goedgekeurde resultaat
 gaat naar buiten.
 
 Is een space eenmaal wereldwijd, dan is **op welke GFS'en hij
@@ -114,7 +114,7 @@ Voor een wereldwijde space heeft hij drie taken:
 
 1. **Hij is een gids.** De eigenaar kiest op welke GFS'en de space
    vermeld staat, maximaal acht. Elk daarvan toont de naam, wie
-   hem host, hoe je lid wordt en, als de space er een heeft, een
+   zijn gastheer is, hoe je lid wordt en, als de space er een heeft, een
    speld op de kaart, afgerond op ongeveer 11 m. Iedereen die een
    van die GFS'en gebruikt, vindt hem onder **Ontdekken › Wereldwijd**.
 2. **Hij brengt posts naar wie je niet gekoppeld bent.** Dat zijn
@@ -135,7 +135,7 @@ Voor een wereldwijde space heeft hij drie taken:
 naar alle GFS'en die de eigenaar heeft gekozen, ook naar GFS'en
 waarmee het eigen huishouden nooit verbonden was. Een volger die
 alleen GFS B gebruikt, ziet dus ook wat een lid via GFS A heeft
-gepost, zelfs als de host offline is. Leden op elk van die GFS'en
+gepost, zelfs als de gastheer offline is. Leden op elk van die GFS'en
 krijgen ze op dezelfde manier: je huishouden gooit elke post
 rechtstreeks in hun brievenbus, één upload per GFS. Een GFS waarmee
 een lid nooit verbonden was, ziet alleen het internetadres van dat lid en
@@ -201,7 +201,7 @@ ze er hetzelfde uit. Er valt niets in te stellen.
 Elke schrijver heeft de schrijfgroepsleutel per epoche en stuurt
 elk item anoniem naar elke vermelde GFS (`member-publish-anon`).
 Het schrijverscertificaat reist mee in de ciphertext, waar de
-ontvangende huishoudens het controleren. De host-relay is
+ontvangende huishoudens het controleren. Het doorgeven door de gastheer is
 identiteitsvrij (`{space_id, event_type, payload}` op een sessie
 zonder cookies). Schrijvers abonneren zich in dezelfde geschudde
 batch als volgers. De GFS ziet nog steeds het bron-IP, de timing,
@@ -221,7 +221,7 @@ eigenaar verwijdert een schrijver, waardoor de sleutel roteert).
    nergens vermeld, tot de eigenaar een GFS kiest.
 2. Iedereen die een van die GFS'en gebruikt, kan hem vinden onder
    **Ontdekken › Wereldwijd** en vragen om lid te worden, of hem volgen
-   als de eigenaar volgers toestaat. Je hoeft niet met de host
+   als de eigenaar volgers toestaat. Je hoeft niet met de gastheer
    gekoppeld te zijn.
 3. Of een toetreding wordt toegestaan, hangt af van de
    **toetredingsmodus** van de space: **Open** (iedereen kan
@@ -284,7 +284,7 @@ minuten, dan elke tien – en de GFS houdt, zodra hij terug is, nog
 steeds tot een dag aan verzegelde enveloppen vast voor huishoudens
 die offline waren. Je lokale kopie wordt thuis opgeslagen op het
 moment dat je op verzenden drukt. Wat je dan nog gemist hebt, kan
-elk ander lid aanvullen, ook als de host offline is. **Is alles
+elk ander lid aanvullen, ook als de gastheer offline is. **Is alles
 er?** in de instellingen van de space laat zien of je huishouden
 alles heeft, en **Nu controleren** vraagt het meteen na.
 

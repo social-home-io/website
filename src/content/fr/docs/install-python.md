@@ -4,7 +4,7 @@ description: Installez Social Home depuis PyPI et lancez-le avec Python — pour
 order: 13
 ---
 
-Social Home est un programme Python : vous pouvez donc l'installer
+Social Home est un programme Python : vous pouvez donc l'installer
 comme tel. C'est pratique pour l'essayer sur votre ordinateur portable,
 ou pour le faire tourner sur un serveur que vous gérez déjà. Pour une
 maison où tout doit simplement marcher, la
@@ -20,7 +20,7 @@ maison où tout doit simplement marcher, la
 ## 1. Installer
 
 Donnez à Social Home un dossier à lui et installez-le dedans, pour
-qu'il ne gêne rien d'autre sur la machine :
+qu'il ne gêne rien d'autre sur la machine :
 
 ```sh
 python3.14 -m venv ~/socialhome
@@ -34,23 +34,23 @@ python3.14 -m venv ~/socialhome
 ```
 
 Social Home répond maintenant sur le port 8099. Laissez le terminal
-ouvert, ou faites-le tourner comme service (voir « Sous le capot »).
+ouvert, ou faites-le tourner comme service (voir « Sous le capot »).
 
 ## 3. Créer votre compte admin
 
 Ouvrez `http://localhost:8099` (ou `http://<votre-serveur>:8099`) dans
-un navigateur. La première visite ouvre **Configurer Social Home** :
+un navigateur. La première visite ouvre **Configurer Social Home** :
 choisissez un nom d'utilisateur et un mot de passe. Vous êtes admin, et
 c'est de là que vous faites venir le reste de votre foyer.
 
-Vous utilisez Home Assistant Container ou Core à côté ? Définissez
+Vous utilisez Home Assistant Container ou Core à côté ? Définissez
 avant le premier lancement les trois réglages Home Assistant de
 [Home Assistant sans apps](/fr/docs/install-home-assistant/#home-assistant-sans-apps),
 puis continuez là-bas.
 
 ## 4. Être joignable par les autres foyers et garder une sauvegarde
 
-Les deux fonctionnent comme avec Docker : une **Adresse externe** dans
+Les deux fonctionnent comme avec Docker : une **Adresse externe** dans
 **Paramètres → Connexions** si des foyers doivent vous joindre
 directement (ou vous vous jumelez via un GFS), et une sauvegarde plus
 un **Kit de récupération** dans **Admin → Sauvegarde**. Voir
@@ -63,7 +63,7 @@ les quelques éléments que Social Home lit au démarrage — un serveur
 TURN pour les appels, une limite de stockage, votre propre GFS, la
 connexion à Home Assistant — il existe un fichier de réglages. Copiez
 le fichier d'exemple, où chaque réglage est commenté et expliqué, là
-où Social Home le cherche :
+où Social Home le cherche :
 
 ```sh
 mkdir -p ~/.config/socialhome
@@ -88,18 +88,18 @@ Puis redémarrez Social Home.
 <details class="tech">
 <summary>Sous le capot</summary>
 
-- Paquet [`socialhome`](https://pypi.org/project/socialhome/) sur PyPI ;
+- Paquet [`socialhome`](https://pypi.org/project/socialhome/) sur PyPI ;
   versions en CalVer, une par version publiée. Ses dépendances directes
-  sont figées exactement ; pour l'ensemble entièrement verrouillé,
+  sont figées exactement ; pour l'ensemble entièrement verrouillé,
   installez depuis le dépôt avec `uv sync --locked`.
 - Les données vont dans `~/.local/share/socialhome` (`SH_DATA_DIR`), le
   fichier de configuration est `~/.config/socialhome/socialhome.toml`
   (`SH_CONFIG`). Chaque réglage a une variable d'environnement `SH_*`,
-  prioritaire sur le fichier ; voir
+  prioritaire sur le fichier ; voir
   [`socialhome.toml.example`](https://github.com/social-home-io/socialhome/blob/main/socialhome.toml.example).
 - Le mode par défaut est `standalone` (comptes locaux). Écoute sur
   `0.0.0.0:8099` (`SH_LISTEN_HOST`, `SH_LISTEN_PORT`).
-- Pour qu'il continue de tourner, une unité systemd minimale :
+- Pour qu'il continue de tourner, une unité systemd minimale :
 
   ```ini
   [Unit]
