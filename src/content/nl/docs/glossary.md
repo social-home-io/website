@@ -83,10 +83,11 @@ beslissing van al zijn beheerders — zie
 Elke space heeft een host-huishouden: het huishouden dat hem
 aanmaakte en de stemmen van de beheerders telt. De host is geen
 tussenpersoon — leden plaatsen rechtstreeks naar elkaar — maar het
-is wel de plek waar de ledenlijst woont. Zet de eigenaar
-**Beheerders mogen namens mij handelen** aan, dan kunnen beheerders
-uit andere huishoudens de space draaiende houden terwijl de host
-offline is.
+is wel de plek waar de ledenlijst woont. Terwijl de host offline is,
+posten leden nog steeds naar elkaar en kan elk lid je aanvullen met
+wat je gemist hebt. Zet de eigenaar **Beheerders mogen namens mij
+handelen** aan, dan kunnen beheerders uit andere huishoudens de
+space ook draaiende houden.
 
 ## GFS
 

@@ -371,7 +371,8 @@ nous confier la discussion de groupe :
 
 - Un GFS choisi par le propriétaire de l'espace, mais auquel votre
   foyer ne s'est jamais connecté, voit votre adresse IP quand vous
-  y publiez. Comme les rédacteurs anonymes ne se distinguent pas,
+  y publiez ou y livrez des publications dans les boîtes aux lettres
+  de membres, et de quelles boîtes aux lettres il s'agit. Comme les rédacteurs anonymes ne se distinguent pas,
   un GFS ne peut pas bannir un foyer en particulier ; le
   propriétaire retire un rédacteur en faisant tourner la clé de
   l'espace.

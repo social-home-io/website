@@ -86,9 +86,11 @@ est une décision qui revient à tous ses admins — voir
 Chaque espace a un foyer hôte : celui qui l'a créé et qui compte les
 votes des admins. L'hôte n'est pas un intermédiaire — les membres
 publient directement les uns vers les autres — mais c'est là que
-vit la liste des membres. Si le propriétaire active **Autoriser les
-administrateurs à agir pour moi**, les admins d'autres foyers
-peuvent faire vivre l'espace pendant que l'hôte est hors ligne.
+vit la liste des membres. Pendant que l'hôte est hors ligne, les
+membres continuent de publier les uns vers les autres, et n'importe
+quel membre peut vous transmettre ce que vous avez manqué. Si le
+propriétaire active **Autoriser les administrateurs à agir pour
+moi**, les admins d'autres foyers peuvent aussi faire vivre l'espace.
 
 ## GFS
 

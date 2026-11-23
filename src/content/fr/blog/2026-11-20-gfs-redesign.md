@@ -3,6 +3,8 @@ title: "Un nouveau GFS : tous les membres égaux, et le GFS en apprend moins"
 description: "De vrais foyers nous ont montré où le GFS pouvait mieux faire, alors nous avons repensé son fonctionnement. Chaque foyer reçoit sa propre boîte aux lettres anonyme, chaque membre atteint tous les autres, publier est toujours anonyme, les admins peuvent faire vivre un espace sans le propriétaire, et vous pouvez demander à rejoindre un espace global sans jumelage. Dans Social Home 2026.11.19."
 date: 2026-11-20
 author: L'équipe Social Home
+image: /blog/2026-11-gfs/cover.webp
+imageAlt: "Une illustration d'un GFS sous la forme d'une armoire verte de petites boîtes aux lettres sans nom, seulement des marques brouillées. En dessous, cinq foyers envoient des enveloppes scellées le long de chemins en pointillés vers quelques-unes des boîtes aux lettres, et un foyer tient deux tickets"
 order: 50
 ---
 

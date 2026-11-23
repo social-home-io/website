@@ -217,7 +217,7 @@ export const nl: UiStrings = {
       p1Html:
         "Koppel twee huizen één keer met een QR-code. Daarna kun je <em>spaces</em> maken — gedeelde ruimtes met een eigen feed, chat en agenda — over beide heen. Run een leesclub, organiseer een straatfeest of houd één rustige ruimte voor de grootouders.",
       p2Html:
-        'Een kleine, open-source <a href="/docs/global-spaces/">relay</a> — de GFS — helpt huishoudens die niet gekoppeld zijn elkaar te vinden in wereldwijde spaces en draagt hun verzegelde berichten. Lezen kan hij ze niet: elk bericht wordt verzegeld voordat het je huis verlaat. Wij draaien er een live op <a href="/servers/">gfs.social-home.io</a> — verbind met één tik.',
+        'Een kleine, open-source <a href="/docs/global-spaces/">relay</a> — de GFS — helpt huishoudens die niet gekoppeld zijn elkaar te vinden in wereldwijde spaces en draagt hun verzegelde berichten. Lezen kan hij ze niet: elk bericht wordt verzegeld voordat het je huis verlaat. Een space kan meerdere GFS\'en gebruiken, en elk lid bewaart thuis een kopie, dus hij blijft doorgaan als een GFS of de host even weg is. Wij draaien er een live op <a href="/servers/">gfs.social-home.io</a> — verbind met één tik.',
     },
   },
 
@@ -508,7 +508,7 @@ export const nl: UiStrings = {
       "Scan de QR-code hierboven — of plak de URL.",
     ],
     howToNote:
-      "De meeste huishoudens hebben er maar één nodig. Je kunt extra relays koppelen voor veerkracht of voor het beleid van een besloten gemeenschap.",
+      "De meeste huishoudens hebben er maar één nodig. Staat een space waarin je zit ook op een andere GFS, verbind daar dan ook mee: valt de ene GFS uit, dan verhuist je huishouden naar de andere.",
     seesHeading: "Wat deze relay wel en niet kan zien",
     seesIntro:
       "De relay krijgt alleen ooit verzegelde enveloppen in handen. Wat hij te weten komt, hangt af van het soort space waar de envelop bij hoort — en in elk geval is het antwoord op „de inhoud?” nooit.",

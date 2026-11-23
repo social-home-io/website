@@ -225,7 +225,7 @@ export const de: UiStrings = {
       p1Html:
         "Kopple zwei Zuhause einmal per QR-Code. Danach kannst du <em>Spaces</em> anlegen — gemeinsame Räume mit eigenem Feed, Chat und Kalender — über beide hinweg. Führe einen Buchclub, organisiere ein Straßenfest oder richte einen ruhigen Raum für die Großeltern ein.",
       p2Html:
-        'Ein kleines, quelloffenes <a href="/docs/global-spaces/">Relay</a> — der GFS — hilft Haushalten, die sich noch nicht gekoppelt haben, sich in globalen Spaces zu finden, und trägt ihre versiegelten Beiträge weiter. Lesen kann es sie nicht: Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt. Wir betreiben einen unter <a href="/servers/">gfs.social-home.io</a> — verbinde dich mit einem Tipp.',
+        'Ein kleines, quelloffenes <a href="/docs/global-spaces/">Relay</a> — der GFS — hilft Haushalten, die sich noch nicht gekoppelt haben, sich in globalen Spaces zu finden, und trägt ihre versiegelten Beiträge weiter. Lesen kann es sie nicht: Jeder Beitrag wird versiegelt, bevor er dein Zuhause verlässt. Ein Space kann mehrere GFS nutzen, und jedes Mitglied hat eine Kopie zu Hause, deshalb läuft er weiter, wenn ein GFS oder der Host weg ist. Wir betreiben einen unter <a href="/servers/">gfs.social-home.io</a> — verbinde dich mit einem Tipp.',
     },
   },
 
@@ -516,7 +516,7 @@ export const de: UiStrings = {
       "Scanne den QR-Code oben — oder füge die URL ein.",
     ],
     howToNote:
-      "Die meisten Haushalte brauchen nur einen. Du kannst dich mit weiteren Relays koppeln, für Ausfallsicherheit oder die Richtlinie einer privaten Community.",
+      "Die meisten Haushalte brauchen nur einen. Ist ein Space, in dem du bist, auch auf einem anderen GFS, verbinde dich auch mit diesem: Fällt ein GFS aus, zieht dein Haushalt zum anderen um.",
     seesHeading: "Was dieses Relay sehen kann und was nicht",
     seesIntro:
       "Das Relay bekommt immer nur versiegelte Umschläge zu sehen. Was es erfährt, hängt von der Art des Space ab, zu dem der Umschlag gehört — und in jedem Fall lautet die Antwort auf „den Inhalt?“: nie.",

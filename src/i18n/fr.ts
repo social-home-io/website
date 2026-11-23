@@ -226,7 +226,7 @@ export const fr: UiStrings = {
       p1Html:
         "Jumelez deux maisons une fois avec un QR code. Ensuite, vous pouvez créer des <em>espaces</em> — des salons partagés avec leur propre fil, leur discussion et leur calendrier — entre les deux. Animez un club de lecture, organisez une fête de quartier, ou gardez un salon tranquille pour les grands-parents.",
       p2Html:
-        'Un petit <a href="/docs/global-spaces/">relais</a> open source — le GFS — aide les foyers qui ne se sont pas jumelés à se trouver dans les espaces globaux, et transporte leurs publications scellées. Il ne peut pas les lire : chaque publication est scellée avant de quitter votre maison. Nous en faisons tourner un sur <a href="/servers/">gfs.social-home.io</a> — connectez-vous d\'un geste.',
+        'Un petit <a href="/docs/global-spaces/">relais</a> open source — le GFS — aide les foyers qui ne se sont pas jumelés à se trouver dans les espaces globaux, et transporte leurs publications scellées. Il ne peut pas les lire : chaque publication est scellée avant de quitter votre maison. Un espace peut utiliser plusieurs GFS, et chaque membre en garde une copie chez lui : il continue donc de fonctionner quand un GFS ou l\'hôte est absent. Nous en faisons tourner un sur <a href="/servers/">gfs.social-home.io</a> — connectez-vous d\'un geste.',
     },
   },
 
@@ -527,7 +527,7 @@ export const fr: UiStrings = {
       "Scannez le QR code ci-dessus — ou collez l'URL.",
     ],
     howToNote:
-      "La plupart des foyers n'en ont besoin que d'un. Vous pouvez vous jumeler avec d'autres relais pour la résilience, ou pour la politique d'une communauté privée.",
+      "La plupart des foyers n'en ont besoin que d'un. Si un espace dont vous faites partie est aussi sur un autre GFS, connectez-vous aussi à celui-là : quand un GFS est en panne, votre foyer passe à l'autre.",
     seesHeading: "Ce que ce relais peut et ne peut pas voir",
     seesIntro:
       "Le relais ne manipule jamais que des enveloppes scellées. Ce qu'il apprend dépend du type d'espace auquel l'enveloppe appartient — et dans tous les cas, la réponse à « le contenu ? » est : jamais.",

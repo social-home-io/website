@@ -89,9 +89,11 @@ siehe
 Jeder Space hat einen Host-Haushalt: den, der ihn angelegt hat
 und die Admin-Stimmen auszählt. Der Host ist kein Mittelsmann —
 Mitglieder posten direkt zueinander — aber er ist der Ort, an dem
-die Mitgliederliste lebt. Schaltet der Besitzer **Admins dürfen für
+die Mitgliederliste lebt. Während der Host offline ist, posten
+Mitglieder weiter direkt zueinander, und jedes Mitglied kann dir
+nachliefern, was dir fehlt. Schaltet der Besitzer **Admins dürfen für
 mich handeln** ein, können Admins aus anderen Haushalten den Space
-am Laufen halten, während der Host offline ist.
+außerdem am Laufen halten.
 
 ## GFS
 

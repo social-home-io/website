@@ -135,8 +135,10 @@ Voor een wereldwijde space heeft hij drie taken:
 naar alle GFS'en die de eigenaar heeft gekozen, ook naar GFS'en
 waarmee het eigen huishouden nooit verbonden was. Een volger die
 alleen GFS B gebruikt, ziet dus ook wat een lid via GFS A heeft
-gepost, zelfs als de host offline is. Een GFS waarmee een lid
-nooit verbonden was, ziet alleen het internetadres van dat lid en
+gepost, zelfs als de host offline is. Leden op elk van die GFS'en
+krijgen ze op dezelfde manier: je huishouden gooit elke post
+rechtstreeks in hun brievenbus, één upload per GFS. Een GFS waarmee
+een lid nooit verbonden was, ziet alleen het internetadres van dat lid en
 wanneer het postte, nooit welk huishouden het is.
 
 De relay ziet nooit de _inhoud_ van je posts. Elke post wordt
@@ -270,18 +272,27 @@ Wat dat in de praktijk betekent:
 
 Leden met wie je gekoppeld bent, merken niets: hun posts bereiken
 je rechtstreeks of via de mesh. Staat de space op meer dan één GFS, dan merken
-volgers op de andere GFS'en ook niets. Alleen huishoudens die
-afhankelijk zijn van de GFS die uitvalt, moeten wachten. Er gaat
-niets stilletjes verloren: je huishouden blijft het proberen – na
-een paar seconden, dan een halve minuut, dan een paar minuten,
-dan elke tien – en de GFS houdt, zodra hij terug is, nog steeds
-tot een dag aan verzegelde enveloppen vast voor huishoudens die
-offline waren. Je lokale kopie wordt thuis opgeslagen op het
-moment dat je op verzenden drukt.
+volgers op de andere GFS'en ook niets, en leden verhuizen: blijft
+de GFS waarop je huishouden de posts van een space krijgt zo'n tien
+minuten onbereikbaar, en is je huishouden verbonden met een andere
+GFS van de space, dan verhuist het daarheen en sturen de andere
+leden daarnaartoe.
+
+Er gaat niets stilletjes verloren: je huishouden blijft het
+proberen – na een paar seconden, dan een halve minuut, dan een paar
+minuten, dan elke tien – en de GFS houdt, zodra hij terug is, nog
+steeds tot een dag aan verzegelde enveloppen vast voor huishoudens
+die offline waren. Je lokale kopie wordt thuis opgeslagen op het
+moment dat je op verzenden drukt. Wat je dan nog gemist hebt, kan
+elk ander lid aanvullen, ook als de host offline is. **Is alles
+er?** in de instellingen van de space laat zien of je huishouden
+alles heeft, en **Nu controleren** vraagt het meteen na.
 
 Dat is de beste reden om een drukke wereldwijde space op twee
 GFS'en te vermelden, bijvoorbeeld die van het project en een die
-je zelf draait.
+je zelf draait, en om je huishouden te verbinden met elke GFS die
+je spaces gebruiken. Een space meldt in zijn feed wanneer hij op
+een GFS staat waarmee je huishouden niet verbonden is.
 
 <details class="tech">
 <summary>Onder de motorkap</summary>
@@ -289,6 +300,18 @@ je zelf draait.
 Retry-backoff: 5 s, 30 s, 2 min, 10 min. Wachtrij aan GFS-kant
 voor offline ontvangers: 24 uur, 2000 enveloppen / 32 MiB per
 brievenbus.
+
+Failover: een brievenbus waarvan de GFS 10 min onbereikbaar blijft
+terwijl een andere GFS van de space wel antwoordt, verhuist daarheen
+(10–18 min na het begin van de storing); de uitgevallen GFS komt
+vanaf dan als laatste in de rangorde, zodat er niets heen en weer
+springt. Bijwerken: de eigenaar, of een beheerder met de
+ondertekeningssleutel van de space, ondertekent een **sync-pagina**
+(256 bucket-hashes over de rijen van de space, `sha256-b256-c1`) en
+stuurt die hoogstens één keer per uur naar de leden. Een lid haalt de
+buckets die verschillen op bij elk lid-huishouden en houdt alleen
+rijen waarvoor de ondertekende pagina instaat. Details in
+`docs/protocol/sync-pages.md` in de core-repo.
 
 </details>
 
@@ -314,16 +337,16 @@ handleiding met Docker Compose + Cloudflare.
 
 ## Naast elkaar
 
-| Gedrag                 | Privé / huishouden / openbaar                                    | Wereldwijd                                                                  |
-| ---------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Wie kan hem vinden     | uitgenodigde mensen / je huis / gekoppelde huishoudens           | iedereen die een van de door de eigenaar gekozen GFS'en gebruikt            |
-| Lid worden             | uitnodiging, lidmaatschap van het huishouden of toetredingsmodus | open / aanvragen / alleen op uitnodiging, plus uitnodigingslinks            |
-| Hoe posts reizen       | rechtstreeks of via de mesh                                      | hetzelfde voor gekoppelde leden; via elke vermelde GFS voor de rest         |
-| Wat een GFS ziet       | niets (tenzij een privéspace hem aanzet)                         | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud          |
-| Versleuteling          | **altijd aan**                                                   | **altijd aan**                                                              |
-| Waar berichten leven   | in het huis van elk lid                                          | in het huis van elk lid (een GFS bewaart verzegelde kopieën maar kort)      |
-| Als een GFS offline is | n.v.t.                                                           | de andere vermelde GFS'en gaan door; posts proberen opnieuw                 |
-| Kan worden uitgezet    | ja, per stemming van beheerders                                  | een GFS weghalen kan altijd (eigenaar), of niet-wereldwijd maken (stemming) |
+| Gedrag                 | Privé / huishouden / openbaar                                    | Wereldwijd                                                                         |
+| ---------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Wie kan hem vinden     | uitgenodigde mensen / je huis / gekoppelde huishoudens           | iedereen die een van de door de eigenaar gekozen GFS'en gebruikt                   |
+| Lid worden             | uitnodiging, lidmaatschap van het huishouden of toetredingsmodus | open / aanvragen / alleen op uitnodiging, plus uitnodigingslinks                   |
+| Hoe posts reizen       | rechtstreeks of via de mesh                                      | hetzelfde voor gekoppelde leden; via elke vermelde GFS voor de rest                |
+| Wat een GFS ziet       | niets (tenzij een privéspace hem aanzet)                         | routeringsdata en een verzegelde, opgevulde envelop – nooit inhoud                 |
+| Versleuteling          | **altijd aan**                                                   | **altijd aan**                                                                     |
+| Waar berichten leven   | in het huis van elk lid                                          | in het huis van elk lid (een GFS bewaart verzegelde kopieën maar kort)             |
+| Als een GFS offline is | n.v.t.                                                           | de andere vermelde GFS'en gaan door; huishoudens verhuizen; posts proberen opnieuw |
+| Kan worden uitgezet    | ja, per stemming van beheerders                                  | een GFS weghalen kan altijd (eigenaar), of niet-wereldwijd maken (stemming)        |
 
 ## Privacy in wereldwijde spaces
 
